@@ -1,0 +1,59 @@
+{
+  // "parser": "@typescript-eslint/parser",
+  // "parserOptions": {
+  //   "project": "./tsconfig.json",
+  //   "tsconfigRootDir": "libs/ui-kit",
+  //   "sourceType": "module"
+  // },
+  "parserOptions": {
+    "project": ["libs/ui-kit/tsconfig.*?.json"]
+  },
+  "extends": [
+    // "plugin:@nx/react-typescript",
+    "../../.eslintrc.json",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:eslint-comments/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "prettier"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "!**/*",
+    // @todo look into a better way to do below?
+    "jest.config.*",
+    ".storybook/*",
+    "src/**/*.stories.*"
+  ],
+  "rules": {
+    "prettier/prettier": ["error"],
+    // suppress import React errors, using version 17+ no longer needed
+    "react/react-in-jsx-scope": "off",
+    // use parent package.json due to monorepo single-version policy (related: https://github.com/nrwl/nx/issues/1777)
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "packageDir": "."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}
