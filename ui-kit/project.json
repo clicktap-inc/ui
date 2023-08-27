@@ -1,0 +1,89 @@
+{
+  "name": "ui-kit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-kit/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui-kit",
+        "tsConfig": "libs/ui-kit/tsconfig.lib.json",
+        "project": "libs/ui-kit/package.json",
+        "entryFile": "libs/ui-kit/src/index.ts",
+        "external": ["react/jsx-runtime", "react", "react-dom"],
+        "rollupConfig": "libs/ui-kit/rollup.config.js",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/ui-kit/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ui-kit/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/ui-kit"],
+      "options": {
+        "jestConfig": "libs/ui-kit/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "host": "monorepo",
+        "port": 4400,
+        "configDir": "libs/ui-kit/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "configDir": "libs/ui-kit/.storybook",
+        "outputDir": "dist/storybook/ui-kit"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "semantic-release": {
+      "executor": "@clicktap/semantic-release-monorepo:tag",
+      "options": {
+        "changelogRepositoryUrl": "https://github.com/clicktap-inc/ui",
+        "publishOptions": [
+          {
+            "type": "vcs",
+            "repositoryUrl": "https://github.com/clicktap-inc/ui.git",
+            "releaseVersion": "1",
+            "environmentVars": {
+              "password": "GITHUB_PASSWORD"
+            }
+          },
+          {
+            "type": "npm"
+          }
+        ]
+      }
+    }
+  }
+}
