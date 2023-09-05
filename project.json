@@ -69,6 +69,7 @@
     "semantic-release": {
       "executor": "@clicktap/semantic-release-monorepo:tag",
       "options": {
+        "packageManager": "npm",
         "changelogRepositoryUrl": "https://github.com/clicktap-inc/ui",
         "publishOptions": [
           {
@@ -77,7 +78,11 @@
             "releaseVersion": "1",
             "environmentVars": {
               "password": "GITHUB_PASSWORD"
-            }
+            },
+            "exclude": [
+              "project.json",
+              "rollup.config.js"
+            ]
           },
           {
             "type": "npm"
