@@ -1,3 +1,38 @@
+[1.0.5](https://github.com/clicktap-inc/ui/compare/1.0.4...1.0.5) (2023-09-05)
+
+### Bug Fixes
+* Updated comment to 66 ([f78ab1b](https://github.com/clicktap-inc/ui/commit/f78ab1be4edccbd0470f106df14604e145e1b469))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
+[1.0.4](https://github.com/clicktap-inc/ui/compare/1.0.3...1.0.4) (2023-09-05)
+
+### Bug Fixes
+* Updated comment to 65 ([b43f7fd](https://github.com/clicktap-inc/ui/commit/b43f7fde2416e665c5d216c9b693694e950c0000))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
+[1.0.3](https://github.com/clicktap-inc/ui/compare/1.0.2...1.0.3) (2023-09-05)
+
+### Bug Fixes
+* Updated comment to 64 ([ee528c9](https://github.com/clicktap-inc/ui/commit/ee528c9596abe21c6b445fd057715180055a0858))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
+[1.0.2](https://github.com/clicktap-inc/ui/compare/1.0.1...1.0.2) (2023-09-05)
+
+### Bug Fixes
+* Updated comment to 63 ([083c045](https://github.com/clicktap-inc/ui/commit/083c045dc13fb9549a9b809ca96242c00067c894))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
+[1.0.1](https://github.com/clicktap-inc/ui/compare/1.0.0...1.0.1) (2023-09-05)
+
+### Bug Fixes
+* Updated comment to 62 ([7f8a4b7](https://github.com/clicktap-inc/ui/commit/7f8a4b72f43d5d2047edbb73e0a856a3fbc7e9bb))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [1.0.0](https://github.com/clicktap-inc/ui/compare/0.2.35...1.0.0) (2023-09-05)
 
 
