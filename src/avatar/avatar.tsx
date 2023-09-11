@@ -9,7 +9,7 @@ import {
 } from './avatar.styles';
 import { defaultTheme } from '../theming/theming';
 
-// Avatar 75
+// Avatar 76
 export function Avatar({
   css = {},
   theme = defaultTheme,
