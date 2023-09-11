@@ -1,3 +1,10 @@
+[1.0.24](https://github.com/clicktap-inc/ui/compare/1.0.23...1.0.24) (2023-09-11)
+
+### Bug Fixes
+* Updated comment to 84 ([0dc2a28](https://github.com/clicktap-inc/ui/commit/0dc2a28d741f4b8784d24a5df47e179a58a9181c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [1.0.23](https://github.com/clicktap-inc/ui/compare/1.0.22...1.0.23) (2023-09-11)
 
 ### Bug Fixes
