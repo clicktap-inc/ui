@@ -1,3 +1,10 @@
+[1.0.33](https://github.com/clicktap-inc/ui/compare/1.0.32...1.0.33) (2023-09-22)
+
+### Bug Fixes
+* Added deep merge fn for merge themes ([572ad36](https://github.com/clicktap-inc/ui/commit/572ad36dbbf1346914e5ed6fbbd0605cda3c467f))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [1.0.32](https://github.com/clicktap-inc/ui/compare/1.0.31...1.0.32) (2023-09-13)
 
 ### Bug Fixes

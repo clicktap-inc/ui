@@ -9,7 +9,7 @@ import baseStyled, {
   // useTheme,
 } from 'styled-components';
 
-import type { PartialDeep } from 'type-fest';
+import { PartialDeep } from 'type-fest';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // export interface Theme extends DefaultTheme {
@@ -595,7 +595,40 @@ export const defaultTheme = {
   },
 };
 
-export type Theme = PartialDeep<typeof defaultTheme>;
+export type Theme = typeof defaultTheme;
+
+/**
+ * Performs a deep merge of source into target
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mergeTheme<
+  T extends Record<string, any>,
+  S extends PartialDeep<T>
+>(target: T, source: S): T {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const output: any = { ...target };
+
+  Object.entries(source).forEach(([key, value]) => {
+    if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+      // Ensure the key exists in the output object, or create an empty object
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (output[key] === undefined || output[key] === null) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        output[key] = {};
+      }
+
+      // Go deeper
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      output[key] = mergeTheme(output[key], value);
+    } else {
+      // Otherwise, just set/overwrite the value
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      output[key] = value;
+    }
+  });
+
+  return output as T;
+}
 
 // make styled-components bundle properly: https://github.com/styled-components/styled-components/issues/3437#issuecomment-1103085056
 export const styled =
@@ -605,7 +638,7 @@ export const styled =
       // @ts-ignore
       (baseStyled.default as ThemedStyledInterface<Theme>);
 
-export default styled;
+// export default styled;
 
 // export { ThemeProvider, useTheme, withTheme };
 
