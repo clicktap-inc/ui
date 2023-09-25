@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import styled from 'styled-components';
 import { Container } from './container';
 // import { defaultTheme } from '../theming/theming';
@@ -7,7 +7,7 @@ import { Container } from './container';
 export default {
   component: Container,
   title: 'Layout/Container',
-} as ComponentMeta<typeof Container>;
+} as Meta<typeof Container>;
 
 const Placeholder = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ const Placeholder = styled.div`
     );
 `;
 
-const BasicTemplate: ComponentStory<typeof Container> = (args) => (
+const BasicTemplate: StoryFn<typeof Container> = (args) => (
   <Container {...args}>
     <Placeholder />
   </Container>
@@ -45,7 +45,7 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {};
 Basic.argTypes = {};
 
-const CenterTemplate: ComponentStory<typeof Container> = (args) => (
+const CenterTemplate: StoryFn<typeof Container> = (args) => (
   <Container {...args} mx="auto">
     <Placeholder />
   </Container>

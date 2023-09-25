@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import Flex from '../flex/flex';
 import { Palette } from '../palette/palette';
 import { Badge } from './badge';
@@ -19,9 +19,9 @@ const shapes = ['circle', 'round', 'square'] as const;
 export default {
   component: Badge,
   title: 'Elements/Badge',
-} as ComponentMeta<typeof Badge>;
+} as Meta<typeof Badge>;
 
-const BasicTemplate: ComponentStory<typeof Badge> = (args) => (
+const BasicTemplate: StoryFn<typeof Badge> = (args) => (
   <Badge {...args}>Badge</Badge>
 );
 
@@ -48,7 +48,7 @@ Basic.argTypes = {
 
 // Sizes
 
-const SizesTemplate: ComponentStory<typeof Badge> = (args) => (
+const SizesTemplate: StoryFn<typeof Badge> = (args) => (
   <Flex direction="column" gap="1rem">
     {sizes.map((size) => (
       <Flex key={size} gap="1rem" justifyContent="center">
@@ -86,7 +86,7 @@ Sizes.storyName = 'Sizes';
 
 // Shapes
 
-const ShapesTemplate: ComponentStory<typeof Badge> = (args) => (
+const ShapesTemplate: StoryFn<typeof Badge> = (args) => (
   <Flex direction="column" gap="1rem">
     {shapes.map((shape) => (
       <Flex key={shape} gap="1rem" justifyContent="center">
@@ -124,7 +124,7 @@ Shapes.storyName = 'Shapes';
 
 // WithDots
 
-const WithDotsTemplate: ComponentStory<typeof Badge> = (args) => (
+const WithDotsTemplate: StoryFn<typeof Badge> = (args) => (
   <Flex direction="column" gap="3rem">
     {shapes.map((shape) => (
       <Flex direction="column" gap="1rem" key={shape}>

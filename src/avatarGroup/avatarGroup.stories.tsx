@@ -1,19 +1,20 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import Flex from '../flex/flex';
 
 import { AvatarGroup } from './avatarGroup';
 import { Avatar } from '../avatar/avatar';
 
-export default {
+const meta: Meta<typeof AvatarGroup> = {
   component: AvatarGroup,
   title: 'Data Display/AvatarGroup',
-} as ComponentMeta<typeof AvatarGroup>;
+};
+export default meta;
 
 const avatarSizes = ['xs', 'sm', 'md'] as const;
 
 // Basic AvatarGroup
 
-const BasicTemplate: ComponentStory<typeof AvatarGroup> = (args) => (
+const BasicTemplate: StoryFn<typeof AvatarGroup> = (args) => (
   <Flex justifyContent="center">
     <AvatarGroup {...args}>
       {Array(10)
@@ -34,7 +35,7 @@ const BasicTemplate: ComponentStory<typeof AvatarGroup> = (args) => (
   </Flex>
 );
 
-export const Basic = BasicTemplate.bind({});
+export const Basic: StoryFn = BasicTemplate.bind({});
 Basic.args = {};
 Basic.argTypes = {
   direction: {
@@ -50,7 +51,7 @@ Basic.storyName = 'Basic AvatarGroup';
 
 // AvatarGroup stacked bottom to top
 
-const AvatarGroupBottomTemplate: ComponentStory<typeof AvatarGroup> = (
+const AvatarGroupBottomTemplate: StoryFn<typeof AvatarGroup> = (
   args
 ) => (
   <Flex justifyContent="center" alignItems="flex-end" gap="3rem" wrap="wrap">
@@ -75,7 +76,7 @@ const AvatarGroupBottomTemplate: ComponentStory<typeof AvatarGroup> = (
   </Flex>
 );
 
-export const AvatarGroupBottom = AvatarGroupBottomTemplate.bind({});
+export const AvatarGroupBottom: StoryFn = AvatarGroupBottomTemplate.bind({});
 AvatarGroupBottom.args = {
   stackedFrom: 'bottom',
 };
@@ -84,7 +85,7 @@ AvatarGroupBottom.storyName = 'AvatarGroup stacked bottom to top';
 
 // AvatarGroup stacked top to bottom
 
-export const AvatarGroupTop = AvatarGroupBottomTemplate.bind({});
+export const AvatarGroupTop: StoryFn = AvatarGroupBottomTemplate.bind({});
 AvatarGroupTop.args = {
   stackedFrom: 'top',
 };
@@ -93,7 +94,7 @@ AvatarGroupTop.storyName = 'AvatarGroup stacked top to bottom';
 
 // Vertical AvatarGroup
 
-export const AvatarGroupVertical = AvatarGroupBottomTemplate.bind({});
+export const AvatarGroupVertical: StoryFn = AvatarGroupBottomTemplate.bind({});
 AvatarGroupVertical.args = {
   direction: 'vertical',
 };

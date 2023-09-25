@@ -1,12 +1,13 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import Flex from '../flex/flex';
 
 import { Avatar } from './avatar';
 
-export default {
+const meta: Meta<typeof Avatar> = {
   component: Avatar,
   title: 'Data Display/Avatar',
-} as ComponentMeta<typeof Avatar>;
+};
+export default meta;
 
 function OverlayExample() {
   return (
@@ -23,13 +24,13 @@ function OverlayExample() {
 
 // Basic avatar
 
-const BasicTemplate: ComponentStory<typeof Avatar> = (args) => (
+const BasicTemplate: StoryFn<typeof Avatar> = (args) => (
   <Flex justifyContent="center">
     <Avatar {...args} />
   </Flex>
 );
 
-export const Basic = BasicTemplate.bind({});
+export const Basic: StoryFn = BasicTemplate.bind({});
 Basic.args = {
   image: (
     <img src="//api.lorem.space/image/face?w=150&h=150" alt="Avatar example" />
@@ -69,7 +70,7 @@ Basic.storyName = 'Basic avatar';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 
-const AvatarsTemplate: ComponentStory<typeof Avatar> = (args) => (
+const AvatarsTemplate: StoryFn<typeof Avatar> = (args) => (
   <Flex justifyContent="center" alignItems="flex-end" gap="3rem">
     {sizes.map((size) => (
       <Avatar {...args} size={size} key={size} />
@@ -77,14 +78,14 @@ const AvatarsTemplate: ComponentStory<typeof Avatar> = (args) => (
   </Flex>
 );
 
-export const CircularAvatars = AvatarsTemplate.bind({});
+export const CircularAvatars: StoryFn = AvatarsTemplate.bind({});
 CircularAvatars.args = Basic.args;
 CircularAvatars.argTypes = Basic.argTypes;
 CircularAvatars.storyName = 'Circular avatars';
 
 // Rounded avatars
 
-export const RoundedAvatars = AvatarsTemplate.bind({});
+export const RoundedAvatars: StoryFn = AvatarsTemplate.bind({});
 RoundedAvatars.args = {
   ...Basic.args,
   variant: 'rounded',
@@ -94,7 +95,7 @@ RoundedAvatars.storyName = 'Rounded avatars';
 
 // Square avatars
 
-export const SquareAvatars = AvatarsTemplate.bind({});
+export const SquareAvatars: StoryFn = AvatarsTemplate.bind({});
 SquareAvatars.args = {
   ...Basic.args,
   variant: 'square',
@@ -104,7 +105,7 @@ SquareAvatars.storyName = 'Square avatars';
 
 // Avatar with fallback
 
-export const FallbackAvatar = BasicTemplate.bind({});
+export const FallbackAvatar: StoryFn = BasicTemplate.bind({});
 FallbackAvatar.args = {
   image: <img src="//some-bad-url" alt="Avatar example" />,
   fallback: (
@@ -116,7 +117,7 @@ FallbackAvatar.storyName = 'Avatar with fallback';
 
 // Avatars with overlay
 
-const AvatarsOverlayTemplate: ComponentStory<typeof Avatar> = (args) => (
+const AvatarsOverlayTemplate: StoryFn<typeof Avatar> = (args) => (
   <Flex justifyContent="center" alignItems="flex-end" gap="3rem">
     <Avatar
       {...args}
@@ -175,21 +176,21 @@ const AvatarsOverlayTemplate: ComponentStory<typeof Avatar> = (args) => (
   </Flex>
 );
 
-export const AvatarsOverlay = AvatarsOverlayTemplate.bind({});
+export const AvatarsOverlay: StoryFn = AvatarsOverlayTemplate.bind({});
 AvatarsOverlay.args = Basic.args;
 AvatarsOverlay.argTypes = Basic.argTypes;
 AvatarsOverlay.storyName = 'Avatars with overlay';
 
 // Avatars with icon
 
-export const AvatarsIcon = AvatarsTemplate.bind({});
+export const AvatarsIcon: StoryFn = AvatarsTemplate.bind({});
 AvatarsIcon.args = {};
 AvatarsIcon.argTypes = Basic.argTypes;
 AvatarsIcon.storyName = 'Avatars with icon';
 
 // Avatars with custom icon
 
-export const AvatarsCustomIcon = AvatarsTemplate.bind({});
+export const AvatarsCustomIcon: StoryFn = AvatarsTemplate.bind({});
 AvatarsCustomIcon.args = {
   icon: (
     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" fill="#090">
@@ -202,7 +203,7 @@ AvatarsCustomIcon.storyName = 'Avatars with custom icon';
 
 // Avatars with text
 
-export const AvatarsText = AvatarsTemplate.bind({});
+export const AvatarsText: StoryFn = AvatarsTemplate.bind({});
 AvatarsText.args = {
   text: 'JS',
   size: '2xl',

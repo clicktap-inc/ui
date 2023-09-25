@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import styled from 'styled-components';
 import Divider from './divider';
@@ -8,7 +8,7 @@ import { Svg } from '../svg/svg';
 export default {
   component: Divider,
   title: 'Components/Divider',
-} as ComponentMeta<typeof Divider>;
+} as Meta<typeof Divider>;
 
 const OverlayWrapper = styled.span`
   display: inline-flex;
@@ -58,7 +58,7 @@ const OverlayTemplate = (
   </OverlayWrapper>
 );
 
-const BasicTemplate: ComponentStory<typeof Divider> = (args) => (
+const BasicTemplate: StoryFn<typeof Divider> = (args) => (
   <Flex direction="column" gapy="50px">
     <Divider {...args} overlay={OverlayTemplate} />
     <Divider {...args} />

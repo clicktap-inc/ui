@@ -1,15 +1,15 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Breadcrumbs } from './breadcrumbs';
 
 export default {
   component: Breadcrumbs,
   title: 'Data Display/Breadcrumbs',
-} as ComponentMeta<typeof Breadcrumbs>;
+} as Meta<typeof Breadcrumbs>;
 
 // Basic avatar
 
-const BasicTemplate: ComponentStory<typeof Breadcrumbs> = (args) => (
+const BasicTemplate: StoryFn<typeof Breadcrumbs> = (args) => (
   <Breadcrumbs {...args}>
     <Breadcrumbs.Item>Home</Breadcrumbs.Item>
     <Breadcrumbs.Separator />

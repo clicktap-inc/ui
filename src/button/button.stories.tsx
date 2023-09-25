@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import { Button } from './button';
 import { defaultTheme } from '../theming/theming';
@@ -6,9 +6,9 @@ import { defaultTheme } from '../theming/theming';
 export default {
   component: Button,
   title: 'Form/Button',
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const BasicTemplate: ComponentStory<typeof Button> = (args) => (
+const BasicTemplate: StoryFn<typeof Button> = (args) => (
   <Button {...args}>Button</Button>
 );
 
@@ -33,7 +33,7 @@ Basic.argTypes = {
   size: { control: 'select', options: ['sm', 'md', 'lg'] },
 };
 
-const LeftIconTemplate: ComponentStory<typeof Button> = (args) => (
+const LeftIconTemplate: StoryFn<typeof Button> = (args) => (
   <Button {...args}>
     <Button.Text>Button</Button.Text>
   </Button>
@@ -57,7 +57,7 @@ const newTheme = Object.assign(defaultTheme, {
     },
   },
 });
-const CustomThemeTemplate: ComponentStory<typeof Button> = (args) => (
+const CustomThemeTemplate: StoryFn<typeof Button> = (args) => (
   <ThemeProvider theme={defaultTheme}>
     <Button {...args} theme={newTheme}>
       <Button.Text>Button</Button.Text>
@@ -72,7 +72,7 @@ CustomTheme.argTypes = Basic.argTypes;
 
 // // Custom CSS Example
 
-const CustomCssTemplate: ComponentStory<typeof Button> = (args) => (
+const CustomCssTemplate: StoryFn<typeof Button> = (args) => (
   <Button {...args} css={defaultTheme.components.button.css}>
     <Button.Text>Button</Button.Text>
   </Button>

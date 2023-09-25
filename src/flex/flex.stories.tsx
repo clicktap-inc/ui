@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import styled, { css } from 'styled-components';
 import { Flex } from './flex';
 // import { defaultTheme } from '../theming/theming';
@@ -7,7 +7,7 @@ import { Flex } from './flex';
 export default {
   component: Flex,
   title: 'Layout/Flex',
-} as ComponentMeta<typeof Flex>;
+} as Meta<typeof Flex>;
 
 // flex basis
 
@@ -35,7 +35,7 @@ const FlexBasisItemCss = css`
     margin-left: 0;
   }
 `;
-const FlexBasisTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexBasisTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex direction="row" css={FlexBasisCss}>
     <Flex basis="25%" css={FlexBasisItemCss}>
       01
@@ -81,7 +81,7 @@ const FlexDirectionRowItemCss = css`
     margin-left: 0;
   }
 `;
-const FlexDirectionRowTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexDirectionRowTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex direction="row" css={FlexDirectionRowCss}>
     <Flex css={FlexDirectionRowItemCss}>01</Flex>
     <Flex css={FlexDirectionRowItemCss}>02</Flex>
@@ -121,7 +121,7 @@ const FlexDirectionRowReverseItemCss = css`
     margin-right: 0;
   }
 `;
-const FlexDirectionRowReverseTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexDirectionRowReverseTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex direction="row-reverse" css={FlexDirectionRowReverseCss}>
     <Flex css={FlexDirectionRowReverseItemCss}>01</Flex>
     <Flex css={FlexDirectionRowReverseItemCss}>02</Flex>
@@ -161,7 +161,7 @@ const FlexDirectionColItemCss = css`
     margin-top: 0;
   }
 `;
-const FlexDirectionColTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexDirectionColTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex direction="column" mx="auto" css={FlexDirectionColCss}>
     <Flex css={FlexDirectionColItemCss}>01</Flex>
     <Flex css={FlexDirectionColItemCss}>02</Flex>
@@ -201,7 +201,7 @@ const FlexDirectionColReverseItemCss = css`
     margin-bottom: 0;
   }
 `;
-const FlexDirectionColReverseTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexDirectionColReverseTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex direction="column-reverse" mx="auto" css={FlexDirectionColReverseCss}>
     <Flex css={FlexDirectionColReverseItemCss}>01</Flex>
     <Flex css={FlexDirectionColReverseItemCss}>02</Flex>
@@ -256,7 +256,7 @@ const FlexNowrapItemInnerCss = styled.div`
   justify-content: center;
 `;
 
-const FlexNowrapTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexNowrapTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex wrap="nowrap" gap="1rem" css={FlexNowrapCss}>
     <Flex flex="none" css={FlexNowrapItemCss}>
       <FlexNowrapItemInnerCss>01</FlexNowrapItemInnerCss>
@@ -317,7 +317,7 @@ const FlexWrapItemInnerCss = styled.div`
   justify-content: center;
 `;
 
-const FlexWrapTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexWrapTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex wrap="wrap" gap="1rem" css={FlexWrapCss}>
     <Flex flex="none" css={FlexWrapItemCss}>
       <FlexWrapItemInnerCss>01</FlexWrapItemInnerCss>
@@ -378,7 +378,7 @@ const FlexWrapReverseItemInnerCss = styled.div`
   justify-content: center;
 `;
 
-const FlexWrapReverseTemplate: ComponentStory<typeof Flex> = (args) => (
+const FlexWrapReverseTemplate: StoryFn<typeof Flex> = (args) => (
   <Flex wrap="wrap-reverse" gap="1rem" css={FlexWrapReverseCss}>
     <Flex flex="none" css={FlexWrapReverseItemCss}>
       <FlexWrapReverseItemInnerCss>01</FlexWrapReverseItemInnerCss>

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import styled, { css } from 'styled-components';
 import { Grid, GridItem } from './grid';
 // import { defaultTheme } from '../theming/theming';
@@ -7,7 +7,7 @@ import { Grid, GridItem } from './grid';
 export default {
   component: Grid,
   title: 'Layout/Grid',
-} as ComponentMeta<typeof Grid>;
+} as Meta<typeof Grid>;
 
 const GridItemCss = css`
   background-color: rgb(217 70 239);
@@ -16,7 +16,7 @@ const GridItemCss = css`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   padding: 1rem;
 `;
-const TemplateColsTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateColsTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     cols={4}
@@ -73,7 +73,7 @@ const GridItemColSpanDarkCss = css`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   padding: 1rem;
 `;
-const TemplateColSpanTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateColSpanTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     cols={3}
@@ -131,7 +131,7 @@ const GridItemColStartEndSpacerCss = css`
   background-size: 7.07px 7.07px;
   border-radius: 0.5rem;
 `;
-const TemplateColStartEndTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateColStartEndTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     cols={6}
@@ -179,7 +179,7 @@ const GridItemRowCss = css`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   padding: 1rem;
 `;
-const TemplateRowsTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateRowsTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     rows={4}
@@ -241,7 +241,7 @@ const GridItemRowSpanDarkCss = css`
   padding: 1rem;
   place-content: center;
 `;
-const TemplateRowSpanTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateRowSpanTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     rows={3}
@@ -296,7 +296,7 @@ const GridItemRowStartEndCss = css`
   padding: 3rem;
   place-content: center;
 `;
-const TemplateRowStartEndTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateRowStartEndTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     rows={3}
@@ -358,7 +358,7 @@ const GridItemAutoflowDarkCss = css`
   padding: 1rem;
   place-content: center;
 `;
-const TemplateAutoflowTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateAutoflowTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     cols={3}
@@ -432,7 +432,7 @@ const GridItemJustifyItemsStartInner = styled.div`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   border-radius: 0.5rem;
 `;
-const TemplateJustifyItemsStartTemplate: ComponentStory<typeof Grid> = (
+const TemplateJustifyItemsStartTemplate: StoryFn<typeof Grid> = (
   args
 ) => (
   <Grid
@@ -505,7 +505,7 @@ const GridItemJustifyItemsEndInner = styled.div`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   border-radius: 0.5rem;
 `;
-const TemplateJustifyItemsEndTemplate: ComponentStory<typeof Grid> = (args) => (
+const TemplateJustifyItemsEndTemplate: StoryFn<typeof Grid> = (args) => (
   <Grid
     {...args}
     cols={3}
@@ -574,7 +574,7 @@ const GridItemJustifyItemsCenterInner = styled.div`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   border-radius: 0.5rem;
 `;
-const TemplateJustifyItemsCenterTemplate: ComponentStory<typeof Grid> = (
+const TemplateJustifyItemsCenterTemplate: StoryFn<typeof Grid> = (
   args
 ) => (
   <Grid
@@ -645,7 +645,7 @@ const GridItemJustifyItemsStretchInner = styled.div`
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
   border-radius: 0.5rem;
 `;
-const TemplateJustifyItemsStretchTemplate: ComponentStory<typeof Grid> = (
+const TemplateJustifyItemsStretchTemplate: StoryFn<typeof Grid> = (
   args
 ) => (
   <Grid

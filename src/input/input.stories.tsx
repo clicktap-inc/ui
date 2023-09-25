@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import styled from 'styled-components';
 import { Input } from './input';
 import { ReactComponent as Help } from './help.svg';
@@ -6,7 +6,7 @@ import { ReactComponent as Help } from './help.svg';
 export default {
   component: Input,
   title: 'Form/Input',
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
 const InputWrapper = styled.div`
   font-family: Inter var, ui-sans-serif, system-ui, -apple-system,
@@ -21,7 +21,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const SimpleInputTemplate: ComponentStory<typeof Input> = (args) => (
+const SimpleInputTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input id="story-input-1" placeholder="Input without label" />
   </InputWrapper>
@@ -32,7 +32,7 @@ SimpleInput.storyName = 'Simple Input';
 SimpleInput.args = {};
 SimpleInput.argTypes = {};
 
-const InputWithLabelTemplate: ComponentStory<typeof Input> = (args) => (
+const InputWithLabelTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-2"
@@ -47,7 +47,7 @@ InputWithLabel.storyName = 'Input with label';
 InputWithLabel.args = {};
 InputWithLabel.argTypes = {};
 
-const InputAutoWidthTemplate: ComponentStory<typeof Input> = (args) => (
+const InputAutoWidthTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-3"
@@ -63,7 +63,7 @@ InputAutoWidth.storyName = 'Input (auto width)';
 InputAutoWidth.args = {};
 InputAutoWidth.argTypes = {};
 
-const InputFullWidthTemplate: ComponentStory<typeof Input> = (args) => (
+const InputFullWidthTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-4"
@@ -79,7 +79,7 @@ InputFullWidth.storyName = 'Input (full width)';
 InputFullWidth.args = {};
 InputFullWidth.argTypes = {};
 
-const InputHelperTextTemplate: ComponentStory<typeof Input> = (args) => (
+const InputHelperTextTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-5"
@@ -96,7 +96,7 @@ InputHelperText.storyName = 'Input with helper text';
 InputHelperText.args = {};
 InputHelperText.argTypes = {};
 
-const InputErrorStateTemplate: ComponentStory<typeof Input> = (args) => (
+const InputErrorStateTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-6"
@@ -113,7 +113,7 @@ InputErrorState.storyName = 'Input with validation error';
 InputErrorState.args = {};
 InputErrorState.argTypes = {};
 
-const InputCornerHintTemplate: ComponentStory<typeof Input> = (args) => (
+const InputCornerHintTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-7"
@@ -129,7 +129,7 @@ InputCornerHint.storyName = 'Input with corner hint';
 InputCornerHint.args = {};
 InputCornerHint.argTypes = {};
 
-const InputLeadingIconTemplate: ComponentStory<typeof Input> = (args) => (
+const InputLeadingIconTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-8"
@@ -146,7 +146,7 @@ InputLeadingIcon.storyName = 'Input with leading icon';
 InputLeadingIcon.args = {};
 InputLeadingIcon.argTypes = {};
 
-const InputTrailingIconTemplate: ComponentStory<typeof Input> = (args) => (
+const InputTrailingIconTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-9"
@@ -163,7 +163,7 @@ InputTrailingIcon.storyName = 'Input with trailing icon';
 InputTrailingIcon.args = {};
 InputTrailingIcon.argTypes = {};
 
-const InputLeadingTextTemplate: ComponentStory<typeof Input> = (args) => (
+const InputLeadingTextTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-10"
@@ -180,7 +180,7 @@ InputLeadingText.storyName = 'Input with leading text';
 InputLeadingText.args = {};
 InputLeadingText.argTypes = {};
 
-const InputTrailingTextTemplate: ComponentStory<typeof Input> = (args) => (
+const InputTrailingTextTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-11"
@@ -197,7 +197,7 @@ InputTrailingText.storyName = 'Input with trailing text';
 InputTrailingText.args = {};
 InputTrailingText.argTypes = {};
 
-const InputInsideLabelTemplate: ComponentStory<typeof Input> = (args) => (
+const InputInsideLabelTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-12"
@@ -213,7 +213,7 @@ InputInsideLabel.storyName = 'Input with inside label';
 InputInsideLabel.args = {};
 InputInsideLabel.argTypes = {};
 
-const InputOverlapLabelTemplate: ComponentStory<typeof Input> = (args) => (
+const InputOverlapLabelTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-12"
@@ -229,7 +229,7 @@ InputOverlapLabel.storyName = 'Input with overlap label';
 InputOverlapLabel.args = {};
 InputOverlapLabel.argTypes = {};
 
-const InputKeyboardShortcutTemplate: ComponentStory<typeof Input> = (args) => (
+const InputKeyboardShortcutTemplate: StoryFn<typeof Input> = (args) => (
   <InputWrapper>
     <Input
       id="story-input-13"

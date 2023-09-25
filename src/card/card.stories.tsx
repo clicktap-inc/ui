@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -22,7 +22,7 @@ export default {
   component: Card,
   title: 'Data Display/Card',
   decorators: [(Story) => <StoryWrapper>{Story()}</StoryWrapper>],
-} as ComponentMeta<typeof Card>;
+} as Meta<typeof Card>;
 
 const StoryPlaceholder = styled.div<{ height: number }>`
   width: 100%;
@@ -54,7 +54,7 @@ StoryPlaceholder.displayName = 'StoryPlaceholder';
 
 // Basic Card
 
-const BasicTemplate: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+const BasicTemplate: StoryFn<typeof Card> = (args) => <Card {...args} />;
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
@@ -65,7 +65,7 @@ Basic.storyName = 'Basic card';
 
 // Complex card
 
-const ComplexCardTemplate: ComponentStory<typeof Card> = (args) => (
+const ComplexCardTemplate: StoryFn<typeof Card> = (args) => (
   <Card {...args}>
     <Card.Header
       background="gray-100"
@@ -120,7 +120,7 @@ ComplexCard.storyName = 'Complex card';
 
 // Complex card with short syntax
 
-const ComplexShortCardTemplate: ComponentStory<typeof Card> = (args) => (
+const ComplexShortCardTemplate: StoryFn<typeof Card> = (args) => (
   <Card {...args} />
 );
 
@@ -171,7 +171,7 @@ ComplexShortCard.storyName = 'Complex card with short syntax';
 
 // Card grid
 
-const CardGridTemplate: ComponentStory<typeof Card> = (args) => (
+const CardGridTemplate: StoryFn<typeof Card> = (args) => (
   <Grid cols={3} gap="1rem">
     {Array(6)
       .fill(null)
