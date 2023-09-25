@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 
 // import { css, ThemeConsumer } from 'styled-components';
 // import { /* defaultTheme, */ styled /* Theme */ } from '../theming/theming';

@@ -1,15 +1,8 @@
 // import { createTheming } from '@callstack/react-theme-provider';
 // import { css, ThemeProvider, useTheme, withTheme } from 'styled-components';
-import baseStyled, {
-  css,
-  // DefaultTheme,
-  ThemedStyledInterface,
-  // ThemeProvider,
-  // withTheme,
-  // useTheme,
-} from 'styled-components';
+import { css, DefaultTheme, ThemeConsumer } from 'styled-components';
 
-import { PartialDeep } from 'type-fest';
+import type { MergeDeep, PartialDeep } from 'type-fest';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // export interface Theme extends DefaultTheme {
@@ -570,10 +563,6 @@ export const defaultTheme = {
         color: '#FFF',
         backgroundColor: '#000',
       },
-      css: css`
-        color: #000;
-        background-color: #f0f0f0;
-      `,
     },
     Card: {
       border: '1px solid rgb(226 232 240)',
@@ -604,7 +593,7 @@ export type Theme = typeof defaultTheme;
 export function mergeTheme<
   T extends Record<string, any>,
   S extends PartialDeep<T>
->(target: T, source: S): T {
+>(target: T, source: S): MergeDeep<T, S> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const output: any = { ...target };
 
@@ -627,16 +616,17 @@ export function mergeTheme<
     }
   });
 
-  return output as T;
+  return output as MergeDeep<T, S>;
 }
 
 // make styled-components bundle properly: https://github.com/styled-components/styled-components/issues/3437#issuecomment-1103085056
-export const styled =
-  typeof baseStyled === 'function'
-    ? (baseStyled as ThemedStyledInterface<Theme>)
-    : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      (baseStyled.default as ThemedStyledInterface<Theme>);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// export const styled =
+//   typeof baseStyled === 'function'
+//     ? (baseStyled as ThemedStyledInterface<Theme>)
+//     : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//       // @ts-ignore
+//       (baseStyled.default as ThemedStyledInterface<Theme>);
 
 // export default styled;
 

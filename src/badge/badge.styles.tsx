@@ -1,6 +1,5 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { palette } from '../palette/palette';
-import { styled /* defaultTheme, Theme */ } from '../theming/theming';
 import { BadgeDotProps, BadgeProps } from './badge.props';
 
 // const getTheme = (themeOverride: Theme) =>

@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 import type { BreadcrumbsItemProps } from './breadcrumbs.props';
 
 export const BreadcrumbsRoot = styled.nav`

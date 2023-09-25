@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 import { AvatarProps } from './avatar.props';
 import type { Theme } from '../theming/theming';
 
@@ -87,7 +87,7 @@ function getOverlayPosition(
 
 export const AvatarRoot = styled.div<AvatarProps>`
   position: relative;
-  color: ${({ theme }) => theme.colors?.gray?.[300]};
+  color: ${({ theme }) => theme.colors.gray[300]};
   ${({ size }) => getSize(size)}
   ${({ width }) => getWidth(width)}
   ${({ height }) => getHeight(height)}
@@ -103,9 +103,9 @@ export const AvatarText = styled.span<AvatarProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: ${({ theme }) => theme.fontFamily?.sans?.join(', ')};
-  color: ${({ theme }) => theme.colors?.white};
-  background-color: ${({ theme }) => theme.colors?.gray?.[500]};
+  font-family: ${({ theme }) => theme.fontFamily.sans.join(', ')};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.gray[500]};
 
   ${({ variant }) => getBorderRadius(variant)}
   ${({ theme, size }) => getFontSize(theme, size)}
@@ -126,7 +126,7 @@ export const AvatarIcon = styled.div<AvatarProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors?.gray?.[100]};
+  background-color: ${({ theme }) => theme.colors.gray[100]};
   ${({ variant }) => getBorderRadius(variant)}
 
   svg {

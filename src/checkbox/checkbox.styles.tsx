@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 
 export const CheckboxWrap = styled.div`
   display: flex;

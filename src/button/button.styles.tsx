@@ -1,7 +1,7 @@
 import rgba from 'color-alpha';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { effects } from '../effects/effects.styles';
-import { styled, defaultTheme } from '../theming/theming';
+import { defaultTheme } from '../theming/theming';
 import { ButtonProps } from './button.props';
 
 export const StyledButton = styled.button<ButtonProps>`

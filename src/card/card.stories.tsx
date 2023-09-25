@@ -7,7 +7,7 @@ import Container from '../container/container';
 import Flex from '../flex/flex';
 import Grid from '../grid/grid';
 import Svg from '../svg/svg';
-import defaultTheme from '../theming/theming';
+import { defaultTheme } from '../theming/theming';
 import { Card } from './card';
 
 const StoryWrapper: FC<PropsWithChildren<{}>> = ({ children }) => (

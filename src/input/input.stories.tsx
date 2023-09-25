@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import styled from 'styled-components';
 import { Input } from './input';
 import { ReactComponent as Help } from './help.svg';
-import styled from 'styled-components';
 
 export default {
   component: Input,

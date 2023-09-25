@@ -5,7 +5,7 @@ import { Theme } from '../theming/theming';
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   css?: CSSProp;
-  theme?: Theme | undefined;
+  theme?: Theme;
   variant?: 'circular' | 'rounded' | 'square';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   width?: string | number;

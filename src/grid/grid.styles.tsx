@@ -1,8 +1,7 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { effects } from '../effects/effects.styles';
 import { spacing } from '../spacing/spacing.styles';
 import { typography } from '../typography/typography.styles';
-import { styled } from '../theming/theming';
 import { GridItemProps, GridProps } from './grid.props';
 
 export const StyledGrid = styled.div<GridProps>`

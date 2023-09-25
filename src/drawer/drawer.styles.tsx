@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 import type { DrawerProps } from './drawer.props';
 
 export const StyledContent = styled.div<{

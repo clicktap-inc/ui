@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 
 export const SubmenuWrap = styled.div`
   padding: 1rem;

@@ -44,13 +44,16 @@ export function Menu({
     trigger.find((value) => value === 'hover')
       ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useHover(context, { delay })
       : undefined,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     trigger.find((value) => value === 'click') ? useClick(context) : undefined,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     trigger.find((value) => value === 'focus') ? useFocus(context) : undefined,
     dismiss,
   ];

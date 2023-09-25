@@ -1,4 +1,4 @@
-import { styled } from '../theming/theming';
+import styled from 'styled-components';
 
 export const StyledModalRoot = styled.div<{ open?: boolean }>`
   position: fixed;

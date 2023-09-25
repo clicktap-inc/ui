@@ -1,5 +1,5 @@
-import { css } from 'styled-components';
-import { styled, defaultTheme } from '../theming/theming';
+import styled, { css } from 'styled-components';
+import { defaultTheme } from '../theming/theming';
 import { InputProps, LabelProps } from './input.props';
 import { spacing } from '../spacing/spacing.styles';
 

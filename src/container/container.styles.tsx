@@ -1,5 +1,6 @@
+import styled from 'styled-components';
 import { spacing } from '../spacing/spacing.styles';
-import { styled, defaultTheme } from '../theming/theming';
+import { defaultTheme } from '../theming/theming';
 import { ContainerProps } from './container.props';
 
 const getMediaQueries = (

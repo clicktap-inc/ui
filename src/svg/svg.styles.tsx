@@ -1,6 +1,5 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { styled } from '../theming/theming';
 import { palette } from '../palette/palette';
 import { SvgProps } from './svg.props';
 

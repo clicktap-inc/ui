@@ -1,7 +1,5 @@
-import { css } from 'styled-components';
-
+import styled, { css } from 'styled-components';
 import { AvatarRoot } from '../avatar/avatar';
-import { /* Theme, defaultTheme, */ styled } from '../theming/theming';
 import { AvatarGroupProps } from './avatarGroup.props';
 
 // function getTheme(themeOverride?: Theme) {

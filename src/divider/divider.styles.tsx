@@ -1,4 +1,5 @@
-import { defaultTheme, styled } from '../theming/theming';
+import styled from 'styled-components';
+import { defaultTheme } from '../theming/theming';
 import { DividerProps } from './divider.props';
 import { Palette, palette } from '../palette/palette';
 
