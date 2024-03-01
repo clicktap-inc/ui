@@ -1,3 +1,11 @@
+[1.1.0](https://github.com/clicktap-inc/ui/compare/1.0.37...1.1.0) (2024-03-01)
+
+### Features
+* Updated input and switch to react aria ([699005d](https://github.com/clicktap-inc/ui/commit/699005da342bda7b20d55d1d39f6dfae50ac777b))
+* Added react aria lib ([6eca9ae](https://github.com/clicktap-inc/ui/commit/6eca9ae02728c2444f5b8d3a2fe8a697ff4e5486))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [1.0.37](https://github.com/clicktap-inc/ui/compare/1.0.36...1.0.37) (2023-09-26)
 
 ### Bug Fixes

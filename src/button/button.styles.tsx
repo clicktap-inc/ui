@@ -1,10 +1,13 @@
 import rgba from 'color-alpha';
 import styled, { css } from 'styled-components';
+import { Button, ButtonProps as ButtonAriaProps } from 'react-aria-components';
 import { effects } from '../effects/effects.styles';
 import { defaultTheme } from '../theming/theming';
 import { ButtonProps } from './button.props';
 
-export const StyledButton = styled.button<ButtonProps>`
+export const StyledButton = styled(Button)<
+  ButtonAriaProps & Omit<ButtonProps, 'onFocus'>
+>`
   background-color: ${(props) => {
     // eslint-disable-next-line no-nested-ternary
     return props.variant === 'solid'
