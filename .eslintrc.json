@@ -1,0 +1,35 @@
+{
+  "extends": ["plugin:@nx/react", "../../.eslintrc.json"],
+  "ignorePatterns": [
+    "!**/*",
+    // @todo look into a better way to do below?
+    "jest.config.*",
+    ".storybook/*",
+    "src/**/*.stories.*",
+    "vite.config.ts"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {},
+      "parserOptions": {
+        "project": [
+          "libs/ui/tsconfig.*?.json"
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {},
+      "parserOptions": {
+        "project": [
+          "libs/ui/tsconfig.*?.json"
+        ]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}
