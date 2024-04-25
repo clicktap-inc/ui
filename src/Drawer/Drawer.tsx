@@ -1,7 +1,7 @@
 import { DialogProps } from 'react-aria-components';
 import { StyledDrawer, StyledDrawerAnimations } from './styles';
 
-type DrawerProps = DialogProps & {
+export type DrawerProps = DialogProps & {
   direction?: 'top' | 'right' | 'bottom' | 'left';
 };
 

@@ -19,7 +19,7 @@ export const StyledDialog = styled(Dialog)`
   background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.slate[400]};
   outline: none;
-  max-width: 20rem;
+  max-width: max-content;
   width: 100vw;
   position: absolute;
   top: 50%;

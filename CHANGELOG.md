@@ -1,3 +1,10 @@
+[0.0.4](https://github.com/clicktap-inc/ui/compare/0.0.3...0.0.4) (2024-04-25)
+
+### Bug Fixes
+* Added comment to bump version ([2102f5f](https://github.com/clicktap-inc/ui/commit/2102f5f1da329d839c62413f04faaf2ca6b9f816))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.3](https://github.com/clicktap-inc/ui/compare/0.0.2...0.0.3) (2024-04-24)
 
 ### Bug Fixes

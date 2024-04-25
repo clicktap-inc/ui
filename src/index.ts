@@ -16,12 +16,18 @@ export * from './Breadcrumbs/Breadcrumbs';
 export * from './Button/Button';
 export * from './Button/types';
 
+// Card
+export * from './Card/Card';
+
 // Checkbox
 export * from './Checkbox/Checkbox';
 
 // Collapsible
 export * from './Collapsible/CollapsibleTrigger';
 export * from './Collapsible/Collapsible';
+
+// Container
+export * from './Container/Container';
 
 // Context Menu
 export * from './ContextMenu/ContextMenu';
@@ -71,6 +77,9 @@ export * from './Tabs/Tab';
 export * from './Tabs/TabList';
 export * from './Tabs/TabPanel';
 export * from './Tabs/Tabs';
+
+// Theme
+export * from './defaultTheme';
 
 // TimeInput
 export * from './TimeInput/TimeInput';
