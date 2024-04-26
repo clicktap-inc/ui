@@ -1,3 +1,10 @@
+[0.0.5](https://github.com/clicktap-inc/ui/compare/0.0.4...0.0.5) (2024-04-26)
+
+### Bug Fixes
+* removed unnecessary import of ui-kit ([fe8de02](https://github.com/clicktap-inc/ui/commit/fe8de026846574a0212f023bb9aa746959718c0a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.4](https://github.com/clicktap-inc/ui/compare/0.0.3...0.0.4) (2024-04-25)
 
 ### Bug Fixes

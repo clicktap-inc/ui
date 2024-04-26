@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { CSSProp } from 'styled-components';
-import { Theme } from '@clicktap/ui-kit';
+import { Theme } from '../defaultTheme';
 
 export interface ContainerProps {
   children: ReactNode;

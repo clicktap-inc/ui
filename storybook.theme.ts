@@ -1,7 +1,6 @@
-import { defaultTheme, mergeTheme } from '@clicktap/ui-kit';
-// import type { Theme } from '@clicktap/ui-kit';
 import { Inter } from 'next/font/google';
 import { createGlobalStyle } from 'styled-components';
+import { defaultTheme, mergeTheme } from './src/defaultTheme';
 
 const inter = Inter({ subsets: ['latin'] });
 
