@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Tooltip } from '@nextui-org/tooltip';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledTooltip = styled(Tooltip).attrs({
   className: 'tooltip',
@@ -16,7 +17,8 @@ export const StyledTooltip = styled(Tooltip).attrs({
     width: 0.625rem;
     height: 0.625rem;
     border-radius: 0.125rem;
-    background-color: ${({ theme }) => theme.colors.slate[500]};
+    background-color: ${({ theme }) =>
+      theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500]};
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 
@@ -102,7 +104,8 @@ export const StyledTooltip = styled(Tooltip).attrs({
     z-index: 10;
     outline-width: 2px;
     outline-offset: 2px;
-    outline-color: ${({ theme }) => theme.colors.slate[500]};
+    outline-color: ${({ theme }) =>
+      theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500]};
   }
 
   &.tooltip-content {
@@ -119,8 +122,9 @@ export const StyledTooltip = styled(Tooltip).attrs({
     box-sizing: border-box;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    background-color: ${({ theme }) => theme.colors.slate[500]};
-    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) =>
+      theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500]};
+    color: ${({ theme }) => theme?.colors?.white ?? defaultTheme.colors.white};
     border-radius: 0.375rem;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }

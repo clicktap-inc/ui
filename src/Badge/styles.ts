@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Badge as NextUIBadge } from '@nextui-org/badge';
 import { BadgeProps, BadgeWrapperProps } from './types';
+import { defaultTheme } from '../defaultTheme';
 
 export const Root = styled.div`
   position: relative;
@@ -74,7 +75,8 @@ export const StyledBadge = styled(NextUIBadge)<BadgeProps>`
   padding: 0 0.25rem;
   font-weight: 400;
   user-select: none;
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   white-space: nowrap;
 
@@ -125,28 +127,34 @@ export const StyledBadge = styled(NextUIBadge)<BadgeProps>`
       case 'flat':
         return `color-mix(
           in srgb,
-          ${theme.colors?.slate?.[800]},
+          ${theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]},
           transparent 45%
         )`;
       case 'faded':
-        return `${theme.colors?.white}`;
+        return `${theme?.colors?.white ?? defaultTheme.colors.white}`;
       case 'solid':
       case 'shadow':
       default:
-        return `${theme.colors?.slate?.[800]}`;
+        return `${
+          theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]
+        }`;
     }
   }};
 
   color: ${({ variant, theme }) =>
     variant === 'faded'
-      ? `${theme.colors?.slate?.[800]}`
-      : `${theme.colors?.white}`};
+      ? `${theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]}`
+      : `${theme?.colors?.white ?? defaultTheme.colors.white}`};
 
   border: ${({ showOutline, variant, theme }) => {
     if (variant === 'faded') {
-      return `2px solid ${theme.colors?.slate?.[800]}`;
+      return `2px solid ${
+        theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]
+      }`;
     }
-    return showOutline ? `2px solid ${theme.colors.white}` : 'none';
+    return showOutline
+      ? `2px solid ${theme?.colors?.white ?? defaultTheme.colors.white}`
+      : 'none';
   }};
 
   box-shadow: ${({ variant, theme }) => {
@@ -154,13 +162,13 @@ export const StyledBadge = styled(NextUIBadge)<BadgeProps>`
       return `rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       color-mix(
           in srgb,
-          ${theme.colors?.slate?.[800]},
+          ${theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]},
           transparent 60%
         )
         0px 10px 15px -3px,
       color-mix(
           in srgb,
-          ${theme.colors?.slate?.[800]},
+          ${theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]},
           transparent 60%
         )
         0px 4px 6px -4px`;

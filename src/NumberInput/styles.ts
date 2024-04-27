@@ -2,6 +2,7 @@ import { Group, NumberField } from 'react-aria-components';
 import styled from 'styled-components';
 import { StyledButton } from '../Button/styles';
 import { StyledInput } from '../Input/styles';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledNumberField = styled(NumberField)`
   display: flex;
@@ -43,55 +44,71 @@ export const StyledGroup = styled(Group)`
 
   &[data-hovered] {
     ${StyledButton}, ${StyledInput} {
-      border-color: ${({ theme }) => theme.colors.slate[400]};
+      border-color: ${({ theme }) =>
+        theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400]};
     }
   }
 
   &[data-focus-within] {
-    outline: 2px solid ${({ theme }) => theme.colors.slate[200]};
+    outline: 2px solid
+      ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
 
     &[data-invalid] {
-      outline: 2px solid ${({ theme }) => theme.colors.red[200]};
+      outline: 2px solid
+        ${({ theme }) =>
+          theme?.colors?.red?.[200] ?? defaultTheme.colors.red[200]};
     }
 
     ${StyledButton}, ${StyledInput} {
-      border-color: ${({ theme }) => theme.colors.slate[400]};
+      border-color: ${({ theme }) =>
+        theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400]};
     }
   }
 
   &[data-disabled] {
-    background: ${({ theme }) => theme.colors.slate[100]};
+    background: ${({ theme }) =>
+      theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
 
     ${StyledButton} {
       cursor: default;
     }
 
     ${StyledButton}, ${StyledInput} {
-      border-color: ${({ theme }) => theme.colors.slate[200]};
+      border-color: ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
     }
   }
 
   &[data-invalid] {
     ${StyledButton}, ${StyledInput} {
-      border-color: ${({ theme }) => theme.colors.red[500]};
-      background: ${({ theme }) => theme.colors.red[100]};
-      color: ${({ theme }) => theme.colors.red[600]};
+      border-color: ${({ theme }) =>
+        theme?.colors?.red?.[500] ?? defaultTheme.colors.red[500]};
+      background: ${({ theme }) =>
+        theme?.colors?.red?.[100] ?? defaultTheme.colors.red[100]};
+      color: ${({ theme }) =>
+        theme?.colors?.red?.[600] ?? defaultTheme.colors.red[600]};
 
       &[data-hovered] {
-        border-color: ${({ theme }) => theme.colors.red[600]};
+        border-color: ${({ theme }) =>
+          theme?.colors?.red?.[600] ?? defaultTheme.colors.red[600]};
       }
 
       &[data-focused] {
-        border-color: ${({ theme }) => theme.colors.red[600]};
+        border-color: ${({ theme }) =>
+          theme?.colors?.red?.[600] ?? defaultTheme.colors.red[600]};
       }
     }
   }
 
   &[aria-readonly] {
     ${StyledButton} {
-      background: ${({ theme }) => theme.colors.slate[100]};
-      border-color: ${({ theme }) => theme.colors.slate[200]};
-      color: ${({ theme }) => theme.colors.slate[500]};
+      background: ${({ theme }) =>
+        theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
+      border-color: ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
+      color: ${({ theme }) =>
+        theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500]};
       cursor: default;
     }
   }

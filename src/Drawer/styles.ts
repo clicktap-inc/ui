@@ -1,5 +1,6 @@
 import { Dialog } from 'react-aria-components';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
+import { defaultTheme } from '../defaultTheme';
 
 const topAnimation = keyframes`
   from  { transform: translateY(-100%); }
@@ -25,8 +26,12 @@ export const StyledDrawer = styled(Dialog)`
   padding: 2rem;
   position: fixed;
   outline: none;
-  background: ${({ theme }) => theme.colors.white};
-  border: 0 ${({ theme }) => theme.colors.slate[200]} solid;
+  background: ${({ theme }) =>
+    theme?.colors?.white ?? defaultTheme.colors.white};
+  border: 0
+    ${({ theme }) =>
+      theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]}
+    solid;
   animation-duration: 300ms;
 
   &[data-direction='top'] {

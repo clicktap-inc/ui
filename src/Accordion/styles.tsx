@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Accordion } from '@nextui-org/accordion';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledAccordion = styled(Accordion)`
   width: 100%;
@@ -8,7 +9,8 @@ export const StyledAccordion = styled(Accordion)`
   hr {
     border-width: 1px 0 0;
     border-style: solid;
-    border-color: ${({ theme }) => theme.colors?.slate?.[200]};
+    border-color: ${({ theme }) =>
+      theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
   }
 
   h2 {

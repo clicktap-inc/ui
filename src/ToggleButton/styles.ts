@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ToggleButton } from 'react-aria-components';
 import { ToggleButtonProps } from './types';
+import { defaultTheme } from '../defaultTheme';
 
 export const Root = styled(ToggleButton)<ToggleButtonProps>`
   display: flex;
@@ -16,7 +17,8 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
   outline: none;
   border-style: solid;
   border-width: 1px;
-  color: ${({ theme }) => theme.colors?.slate?.[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
 
   height: ${({ size }) => {
     switch (size) {
@@ -37,7 +39,7 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
         return 'transparent';
       case 'solid':
       default:
-        return theme.colors?.slate?.[200];
+        return theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200];
     }
   }};
   border-color: ${({ variant, theme }) => {
@@ -45,10 +47,10 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
       case 'ghost':
         return 'transparent';
       case 'outline':
-        return theme.colors?.slate?.[300];
+        return theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300];
       case 'solid':
       default:
-        return theme.colors?.slate?.[200];
+        return theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200];
     }
   }};
 
@@ -60,7 +62,7 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
           return 'transparent';
         case 'solid':
         default:
-          return theme.colors?.slate?.[800];
+          return theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800];
       }
     }};
     border-color: ${({ variant, theme }) => {
@@ -70,17 +72,17 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
         case 'outline':
         case 'solid':
         default:
-          return theme.colors.slate[800];
+          return theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800];
       }
     }};
     color: ${({ variant, theme }) => {
       switch (variant) {
         case 'ghost':
         case 'outline':
-          return theme.colors.slate[700];
+          return theme?.colors?.slate?.[700] ?? defaultTheme.colors.slate[700];
         case 'solid':
         default:
-          return theme.colors.white;
+          return theme?.colors?.white ?? defaultTheme.colors.white;
       }
     }};
   }
@@ -95,7 +97,7 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
           return 'transparent';
         case 'solid':
         default:
-          return theme.colors?.slate?.[100];
+          return theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100];
       }
     }};
     border-color: ${({ variant, theme }) => {
@@ -103,20 +105,20 @@ export const Root = styled(ToggleButton)<ToggleButtonProps>`
         case 'ghost':
           return 'transparent';
         case 'outline':
-          return theme.colors.slate[200];
+          return theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200];
         case 'solid':
         default:
-          return theme.colors.slate[100];
+          return theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100];
       }
     }};
     color: ${({ variant, theme }) => {
       switch (variant) {
         case 'ghost':
         case 'outline':
-          return theme.colors.slate[500];
+          return theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500];
         case 'solid':
         default:
-          return theme.colors.slate[400];
+          return theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400];
       }
     }};
   }

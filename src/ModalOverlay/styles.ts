@@ -1,5 +1,6 @@
 import { ModalOverlay } from 'react-aria-components';
 import styled, { keyframes } from 'styled-components';
+import { defaultTheme } from '../defaultTheme';
 
 const overlayAnimation = keyframes`
   0% {
@@ -15,7 +16,10 @@ const overlayAnimation = keyframes`
 
 export const StyledModalOverlay = styled(ModalOverlay)`
   backdrop-filter: blur(10px);
-  background: ${({ theme }) => `rgb(from ${theme.colors.black} r g b / 30%)`};
+  background: ${({ theme }) =>
+    `rgb(from ${
+      theme?.colors?.black ?? defaultTheme.colors.black
+    } r g b / 30%)`};
   position: fixed;
   z-index: 100;
   top: 0;

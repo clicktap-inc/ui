@@ -1,7 +1,6 @@
 import {
   Content,
   Indicator,
-  Item,
   Link,
   List,
   Root,
@@ -10,12 +9,7 @@ import {
 } from '@radix-ui/react-navigation-menu';
 import { Link as AriaLink } from 'react-aria-components';
 import styled, { keyframes } from 'styled-components';
-
-// /* reset */
-// button,
-// p {
-//   all: unset;
-// }
+import { defaultTheme } from '../defaultTheme';
 
 const enterFromRight = keyframes`
   from {
@@ -103,7 +97,8 @@ const fadeOut = keyframes`
 
 export const CaretDown = styled.svg`
   position: relative;
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   top: 1px;
   transition: transform 200ms ease;
 `;
@@ -122,10 +117,6 @@ export const StyledList = styled(List)`
   list-style: none;
   margin: 0;
   padding: 0;
-  // background-color: white;
-  // padding: 4px;
-  // border-radius: 6px;
-  // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 `;
 
 export const StyledTrigger = styled(Trigger)`
@@ -143,15 +134,19 @@ export const StyledTrigger = styled(Trigger)`
   cursor: pointer;
   background-color: transparent;
   font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   transition: all 200ms ease;
 
   &:focus {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.slate[200]};
+    box-shadow: 0 0 0 2px
+      ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.slate[100]};
+    background-color: ${({ theme }) =>
+      theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
   }
 
   &[data-state='open'] > ${CaretDown} {
@@ -173,15 +168,19 @@ export const StyledLink = styled(Link)`
   font-size: 0.9rem;
   border: none;
   background-color: transparent;
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   transition: all 200ms ease;
 
   &:focus {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.slate[200]};
+    box-shadow: 0 0 0 2px
+      ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.slate[100]};
+    background-color: ${({ theme }) =>
+      theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
   }
 `;
 
@@ -236,7 +235,8 @@ export const StyledViewport = styled(Viewport)`
   transform-origin: top center;
   margin-top: 10px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) =>
+    theme?.colors?.white ?? defaultTheme.colors.white};
   border-radius: 6px;
   overflow: hidden;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -289,11 +289,14 @@ export const ListItemLink = styled(AriaLink)`
   transition: background-color 200ms ease;
 
   &:focus {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.slate[900]};
+    box-shadow: 0 0 0 2px
+      ${({ theme }) =>
+        theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.slate[100]};
+    background-color: ${({ theme }) =>
+      theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
   }
 `;
 
@@ -301,11 +304,13 @@ export const ListItemHeading = styled.div`
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: 5px;
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
 `;
 
 export const ListItemText = styled.p`
-  color: ${({ theme }) => theme.colors.slate[900]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   line-height: 1.4;
   font-weight: initial;
 `;
@@ -318,8 +323,12 @@ export const Callout = styled(AriaLink)`
   height: 100%;
   background: linear-gradient(
     135deg,
-    ${({ theme }) => theme.colors.violet[500]} 0%,
-    ${({ theme }) => theme.colors.indigo[500]} 100%
+    ${({ theme }) =>
+        theme?.colors?.violet?.[500] ?? defaultTheme.colors.violet[500]}
+      0%,
+    ${({ theme }) =>
+        theme?.colors?.indigo?.[500] ?? defaultTheme.colors.indigo[500]}
+      100%
   );
   border-radius: 0.375rem;
   padding: 25px;
@@ -328,7 +337,9 @@ export const Callout = styled(AriaLink)`
   user-select: none;
 
   &:focus {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.slate[900]};
+    box-shadow: 0 0 0 2px
+      ${({ theme }) =>
+        theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   }
 `;
 

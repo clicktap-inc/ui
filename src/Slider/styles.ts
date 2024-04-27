@@ -6,19 +6,28 @@ import {
   SliderThumb,
 } from 'react-aria-components';
 import styled from 'styled-components';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledSlider = styled(Slider)`
-  --label-color: ${({ theme }) => theme.colors.slate[500]};
-  --track-background: ${({ theme }) => theme.colors.slate[300]};
-  --thumb-background: ${({ theme }) => theme.colors.slate[300]};
-  --thumb-background-dragging: ${({ theme }) => theme.colors.slate[400]};
-  --thumb-border-color: ${({ theme }) => theme.colors.white};
+  --label-color: ${({ theme }) =>
+    theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500]};
+  --track-background: ${({ theme }) =>
+    theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
+  --thumb-background: ${({ theme }) =>
+    theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
+  --thumb-background-dragging: ${({ theme }) =>
+    theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400]};
+  --thumb-border-color: ${({ theme }) =>
+    theme?.colors?.white ?? defaultTheme.colors.white};
   --thumb-cursor: pointer;
 
   &[data-disabled] {
-    --label-color: ${({ theme }) => theme.colors.slate[400]};
-    --track-background: ${({ theme }) => theme.colors.slate[100]};
-    --thumb-background: ${({ theme }) => theme.colors.slate[200]};
+    --label-color: ${({ theme }) =>
+      theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400]};
+    --track-background: ${({ theme }) =>
+      theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
+    --thumb-background: ${({ theme }) =>
+      theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
     --thumb-cursor: default;
   }
 
@@ -62,7 +71,9 @@ export const StyledSliderThumb = styled(SliderThumb)`
   transition: background-color ease 0.25s;
 
   &[data-focused] {
-    outline: 2px solid ${({ theme }) => theme.colors.slate[200]};
+    outline: 2px solid
+      ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
   }
 
   &[data-dragging] {

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { flushSync } from 'react-dom';
 
 export const useEnterExitAnimation = (isOpen: boolean) => {
   const [isEntering, setIsEntering] = useState(isOpen);

@@ -21,10 +21,7 @@ export const StyledContainer = styled.div<ContainerProps>`
   margin: 0 auto;
   padding: 0 1rem;
 
-  ${({ theme }) =>
-    theme.screens
-      ? getMediaQueries(theme.screens)
-      : getMediaQueries(defaultTheme.screens)}
+  ${({ theme }) => getMediaQueries(theme?.screens ?? defaultTheme.screens)}
 `;
 
 export default StyledContainer;

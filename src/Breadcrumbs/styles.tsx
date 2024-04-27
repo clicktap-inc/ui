@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)`
   display: flex;
@@ -19,7 +20,8 @@ export const StyledBreadcrumbSeparator = styled(Breadcrumb)`
   display: flex;
   align-items: center;
   margin: 0 0.5rem;
-  color: ${({ theme }) => theme.colors.slate[600]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[600] ?? defaultTheme.colors.slate[600]};
 
   > svg {
     width: 1rem;
@@ -28,7 +30,8 @@ export const StyledBreadcrumbSeparator = styled(Breadcrumb)`
 `;
 
 export const StyledBreadcrumbLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.slate[600]};
+  color: ${({ theme }) =>
+    theme?.colors?.slate?.[600] ?? defaultTheme.colors.slate[600]};
   text-decoration: none;
   cursor: pointer;
 
@@ -37,20 +40,23 @@ export const StyledBreadcrumbLink = styled(Link)`
   }
   &[data-hovered] {
     text-decoration: underline;
-    color: ${({ theme }) => theme.colors.slate[900]};
+    color: ${({ theme }) =>
+      theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   }
 
   &[data-current] {
     font-weight: 600;
     cursor: default;
-    color: ${({ theme }) => theme.colors.slate[900]};
+    color: ${({ theme }) =>
+      theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]};
   }
 
   &[data-disabled] {
     cursor: default;
 
     &:not([data-current]) {
-      color: ${({ theme }) => theme.colors.slate[400]};
+      color: ${({ theme }) =>
+        theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400]};
     }
   }
 `;

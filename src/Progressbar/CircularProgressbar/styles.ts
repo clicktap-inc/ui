@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ProgressBar, Label as AriaLabel } from 'react-aria-components';
+import { defaultTheme } from '../../defaultTheme';
 
 export const Root = styled(ProgressBar)`
   display: flex;
@@ -16,15 +17,18 @@ export const Label = styled(AriaLabel)`
 `;
 
 export const Bar = styled.circle`
-  stroke: ${({ theme }) => theme.colors.slate[300]};
+  stroke: ${({ theme }) =>
+    theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
 `;
 
 export const Fill = styled.circle`
-  stroke: ${({ theme }) => theme.colors.slate[800]};
+  stroke: ${({ theme }) =>
+    theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]};
   transition: stroke-dashoffset 600ms ease-in-out;
 `;
 
 export const Value = styled.text`
   font-size: 0.875rem;
-  fill: ${({ theme }) => theme.colors.slate[800]};
+  fill: ${({ theme }) =>
+    theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]};
 `;

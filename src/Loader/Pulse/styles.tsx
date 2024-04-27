@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { defaultTheme } from '../../defaultTheme';
 
 export const PulseAnimation = keyframes`
     0% {
@@ -16,7 +17,8 @@ export const PulseAnimation = keyframes`
 `;
 
 export const Dot = styled.span<{ speedMultiplier: number; i: number }>`
-  background-color: ${({ theme }) => theme.colors.slate[300]};
+  background-color: ${({ theme }) =>
+    theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
   display: inline-block;
   width: 0.5rem;
   height: 0.5rem;

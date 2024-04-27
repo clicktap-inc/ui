@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Meter, Label } from 'react-aria-components';
 import { motion } from 'framer-motion';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledMeter = styled(Meter)`
   display: flex;
@@ -27,12 +28,14 @@ export const StyledValue = styled.span`
 export const StyledBar = styled.div`
   height: 0.625rem;
   border-radius: 0.3rem;
-  background-color: ${({ theme }) => theme.colors.slate[300]};
+  background-color: ${({ theme }) =>
+    theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
   forced-color-adjust: none;
   overflow: hidden;
 `;
 
 export const StyledBarFill = styled(motion.div)`
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.slate[800]};
+  background-color: ${({ theme }) =>
+    theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800]};
 `;

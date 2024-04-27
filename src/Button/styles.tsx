@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button } from 'react-aria-components';
 import { ButtonProps } from './types';
+import { defaultTheme } from '../defaultTheme';
 
 export const StyledButton = styled(Button)<ButtonProps>`
   display: flex;
@@ -32,7 +33,7 @@ export const StyledButton = styled(Button)<ButtonProps>`
         return 'transparent';
       case 'solid':
       default:
-        return theme.colors?.slate?.[800];
+        return theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800];
     }
   }};
   border-color: ${({ variant, theme }) => {
@@ -40,20 +41,20 @@ export const StyledButton = styled(Button)<ButtonProps>`
       case 'ghost':
         return 'transparent';
       case 'outline':
-        return theme.colors?.slate?.[300];
+        return theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300];
       case 'solid':
       default:
-        return theme.colors?.slate?.[800];
+        return theme?.colors?.slate?.[800] ?? defaultTheme.colors.slate[800];
     }
   }};
   color: ${({ variant, theme }) => {
     switch (variant) {
       case 'ghost':
       case 'outline':
-        return theme.colors?.slate?.[900];
+        return theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900];
       case 'solid':
       default:
-        return theme.colors?.white;
+        return theme?.colors?.white ?? defaultTheme.colors.white;
     }
   }};
 
@@ -66,7 +67,7 @@ export const StyledButton = styled(Button)<ButtonProps>`
           return 'transparent';
         case 'solid':
         default:
-          return theme.colors?.slate?.[900];
+          return theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900];
       }
     }};
     border-color: ${({ variant, theme }) => {
@@ -74,16 +75,18 @@ export const StyledButton = styled(Button)<ButtonProps>`
         case 'ghost':
           return 'transparent';
         case 'outline':
-          return theme.colors?.slate?.[400];
+          return theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400];
         case 'solid':
         default:
-          return theme.colors?.slate?.[900];
+          return theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900];
       }
     }};
   }
 
   &[data-focused] {
-    outline: 2px solid ${({ theme }) => theme.colors.slate[200]};
+    outline: 2px solid
+      ${({ theme }) =>
+        theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200]};
     background-color: ${({ variant, theme }) => {
       switch (variant) {
         case 'ghost':
@@ -92,7 +95,7 @@ export const StyledButton = styled(Button)<ButtonProps>`
           return 'transparent';
         case 'solid':
         default:
-          return theme.colors?.slate?.[900];
+          return theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900];
       }
     }};
     border-color: ${({ variant, theme }) => {
@@ -100,10 +103,10 @@ export const StyledButton = styled(Button)<ButtonProps>`
         case 'ghost':
           return 'transparent';
         case 'outline':
-          return theme.colors?.slate?.[400];
+          return theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400];
         case 'solid':
         default:
-          return theme.colors?.slate?.[900];
+          return theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900];
       }
     }};
   }
@@ -120,7 +123,9 @@ export const StyledButton = styled(Button)<ButtonProps>`
           return 'transparent';
         case 'solid':
         default:
-          return isLoading ? theme.colors.slate[900] : theme.colors.slate[100];
+          return isLoading
+            ? theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]
+            : theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100];
       }
     }};
     border-color: ${({ isLoading, theme, variant }) => {
@@ -128,20 +133,28 @@ export const StyledButton = styled(Button)<ButtonProps>`
         case 'ghost':
           return 'transparent';
         case 'outline':
-          return isLoading ? theme.colors.slate[300] : theme.colors.slate[200];
+          return isLoading
+            ? theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]
+            : theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200];
         case 'solid':
         default:
-          return isLoading ? theme.colors.slate[900] : theme.colors.slate[200];
+          return isLoading
+            ? theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]
+            : theme?.colors?.slate?.[200] ?? defaultTheme.colors.slate[200];
       }
     }};
     color: ${({ isLoading, theme, variant }) => {
       switch (variant) {
         case 'ghost':
         case 'outline':
-          return isLoading ? theme.colors.slate[900] : theme.colors.slate[500];
+          return isLoading
+            ? theme?.colors?.slate?.[900] ?? defaultTheme.colors.slate[900]
+            : theme?.colors?.slate?.[500] ?? defaultTheme.colors.slate[500];
         case 'solid':
         default:
-          return isLoading ? theme.colors.white : theme.colors.slate[400];
+          return isLoading
+            ? theme?.colors?.white ?? defaultTheme.colors.white
+            : theme?.colors?.slate?.[400] ?? defaultTheme.colors.slate[400];
       }
     }};
   }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Avatar } from '@nextui-org/avatar';
 import { AvatarProps, RootProps } from './types';
+import { defaultTheme } from '../defaultTheme';
 
 export const Root = styled.div<RootProps>`
   z-index: 1;
@@ -19,7 +20,8 @@ export const Root = styled.div<RootProps>`
 `;
 
 export const StyledAvatar = styled(Avatar)<AvatarProps>`
-  background: ${({ theme }) => theme.colors?.slate?.[100]};
+  background: ${({ theme }) =>
+    theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +48,11 @@ export const StyledAvatar = styled(Avatar)<AvatarProps>`
 
   box-shadow: ${({ isBordered, theme }) =>
     isBordered
-      ? `${theme.colors?.white} 0px 0px 0px 2px, ${theme.colors?.slate?.[100]} 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px`
+      ? `${
+          theme?.colors?.white ?? defaultTheme.colors.white
+        } 0px 0px 0px 2px, ${
+          theme?.colors?.slate?.[100] ?? defaultTheme.colors.slate[100]
+        } 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px`
       : 'none'};
 
   border-radius: ${({ radius }) => {

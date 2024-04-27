@@ -1,3 +1,10 @@
+[0.0.6](https://github.com/clicktap-inc/ui/compare/0.0.5...0.0.6) (2024-04-27)
+
+### Bug Fixes
+* fallback theme for styles ([a7d3628](https://github.com/clicktap-inc/ui/commit/a7d36283d3dbaef85ffe1e3f21639a6e6d1f49fa))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.5](https://github.com/clicktap-inc/ui/compare/0.0.4...0.0.5) (2024-04-26)
 
 ### Bug Fixes
