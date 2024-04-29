@@ -1,3 +1,10 @@
+[0.0.11](https://github.com/clicktap-inc/ui/compare/0.0.10...0.0.11) (2024-04-29)
+
+### Bug Fixes
+* pipeline build fix ([77ba168](https://github.com/clicktap-inc/ui/commit/77ba168e54f660175eb589bf76b982cb0da4e463))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.10](https://github.com/clicktap-inc/ui/compare/0.0.9...0.0.10) (2024-04-29)
 
 ### Bug Fixes
