@@ -1,3 +1,10 @@
+[0.0.14](https://github.com/clicktap-inc/ui/compare/0.0.13...0.0.14) (2024-04-29)
+
+### Bug Fixes
+* added optimizeDeps to vite config ([ff699f1](https://github.com/clicktap-inc/ui/commit/ff699f13c6074e0a4046c536f06abe5a96319866))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.13](https://github.com/clicktap-inc/ui/compare/0.0.12...0.0.13) (2024-04-29)
 
 ### Bug Fixes
