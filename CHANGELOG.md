@@ -1,3 +1,11 @@
+[0.0.10](https://github.com/clicktap-inc/ui/compare/0.0.9...0.0.10) (2024-04-29)
+
+### Bug Fixes
+* updated es format ([ead2af5](https://github.com/clicktap-inc/ui/commit/ead2af594676e2fe7e724717cdbfde44d6389656))
+* updated output in vite config ([9a8433c](https://github.com/clicktap-inc/ui/commit/9a8433c25765cef5dcd4434212af7767b88df3be))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.9](https://github.com/clicktap-inc/ui/compare/0.0.8...0.0.9) (2024-04-29)
 
 ### Bug Fixes
