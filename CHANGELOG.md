@@ -1,3 +1,10 @@
+[0.0.8](https://github.com/clicktap-inc/ui/compare/0.0.7...0.0.8) (2024-04-29)
+
+### Bug Fixes
+* updated the external list in vite config ([45dd159](https://github.com/clicktap-inc/ui/commit/45dd159d3e843d8eb9a4ab643752cc33af98ef66))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.7](https://github.com/clicktap-inc/ui/compare/0.0.6...0.0.7) (2024-04-29)
 
 ### Bug Fixes
