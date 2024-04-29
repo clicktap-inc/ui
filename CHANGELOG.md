@@ -1,3 +1,10 @@
+[0.0.7](https://github.com/clicktap-inc/ui/compare/0.0.6...0.0.7) (2024-04-29)
+
+### Bug Fixes
+* updated dependencies ([b2b333e](https://github.com/clicktap-inc/ui/commit/b2b333e95ae339fea66cd6a203a05ab4add99196))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.6](https://github.com/clicktap-inc/ui/compare/0.0.5...0.0.6) (2024-04-27)
 
 ### Bug Fixes
