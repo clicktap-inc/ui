@@ -1,3 +1,10 @@
+[0.0.12](https://github.com/clicktap-inc/ui/compare/0.0.11...0.0.12) (2024-04-29)
+
+### Bug Fixes
+* added vite-plugin-ssr plugin to vite config ([855bcc2](https://github.com/clicktap-inc/ui/commit/855bcc21be5c9a2429410228bdaedae3932034ed))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.11](https://github.com/clicktap-inc/ui/compare/0.0.10...0.0.11) (2024-04-29)
 
 ### Bug Fixes
