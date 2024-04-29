@@ -1,3 +1,10 @@
+[0.0.16](https://github.com/clicktap-inc/ui/compare/0.0.15...0.0.16) (2024-04-29)
+
+### Bug Fixes
+* updated styled-components version in peerDependencies ([4150055](https://github.com/clicktap-inc/ui/commit/4150055abe7437baa525f8a8c8cc4017afc975d2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.15](https://github.com/clicktap-inc/ui/compare/0.0.14...0.0.15) (2024-04-29)
 
 ### Bug Fixes
