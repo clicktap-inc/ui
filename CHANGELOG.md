@@ -1,3 +1,10 @@
+[0.0.13](https://github.com/clicktap-inc/ui/compare/0.0.12...0.0.13) (2024-04-29)
+
+### Bug Fixes
+* module type ([a26dc13](https://github.com/clicktap-inc/ui/commit/a26dc139c58001fc367383143c78819757b9a449))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.12](https://github.com/clicktap-inc/ui/compare/0.0.11...0.0.12) (2024-04-29)
 
 ### Bug Fixes
