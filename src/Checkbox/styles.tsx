@@ -1,5 +1,5 @@
 import { Checkbox } from 'react-aria-components';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { defaultTheme } from '../defaultTheme';
 
 export const Control = styled.div`

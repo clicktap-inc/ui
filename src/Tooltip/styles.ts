@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Tooltip } from '@nextui-org/tooltip';
 import { defaultTheme } from '../defaultTheme';
 

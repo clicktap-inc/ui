@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { ToggleButton } from 'react-aria-components';
 import { ToggleButtonProps } from './types';
 import { defaultTheme } from '../defaultTheme';

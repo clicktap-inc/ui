@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { AvatarGroup } from '@nextui-org/avatar';
 import { AvatarGroupProps } from './types';
 

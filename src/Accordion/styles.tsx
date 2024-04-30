@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Accordion } from '@nextui-org/accordion';
 import { defaultTheme } from '../defaultTheme';
 

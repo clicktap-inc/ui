@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { ProgressBar, Label as AriaLabel } from 'react-aria-components';
 import { defaultTheme } from '../../defaultTheme';
 

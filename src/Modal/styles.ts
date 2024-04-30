@@ -1,5 +1,5 @@
 import { Modal } from 'react-aria-components';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 export const StyledModal = styled(Modal)`
   position: absolute;

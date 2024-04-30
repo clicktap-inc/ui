@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Badge as NextUIBadge } from '@nextui-org/badge';
 import { BadgeProps, BadgeWrapperProps } from './types';
 import { defaultTheme } from '../defaultTheme';

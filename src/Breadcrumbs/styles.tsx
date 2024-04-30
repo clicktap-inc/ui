@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 import { defaultTheme } from '../defaultTheme';
 

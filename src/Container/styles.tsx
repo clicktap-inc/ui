@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { defaultTheme } from '../defaultTheme';
 import { ContainerProps } from './types';
 

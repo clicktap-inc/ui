@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Button } from 'react-aria-components';
 import { ButtonProps } from './types';
 import { defaultTheme } from '../defaultTheme';

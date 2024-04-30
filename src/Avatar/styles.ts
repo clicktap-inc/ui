@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Avatar } from '@nextui-org/avatar';
 import { AvatarProps, RootProps } from './types';
 import { defaultTheme } from '../defaultTheme';

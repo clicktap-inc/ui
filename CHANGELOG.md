@@ -1,3 +1,10 @@
+[0.1.0](https://github.com/clicktap-inc/ui/compare/0.0.22...0.1.0) (2024-04-30)
+
+### Features
+* Updated styled-components to v6 ([d1e1c10](https://github.com/clicktap-inc/ui/commit/d1e1c10fae5614f870756684d32687bdca43f5de))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.22](https://github.com/clicktap-inc/ui/compare/0.0.21...0.0.22) (2024-04-30)
 
 ### Bug Fixes

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Popover } from 'react-aria-components';
 import { motion } from 'framer-motion';
 import { defaultTheme } from '../defaultTheme';

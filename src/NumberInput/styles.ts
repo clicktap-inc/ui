@@ -1,5 +1,5 @@
 import { Group, NumberField } from 'react-aria-components';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { StyledButton } from '../Button/styles';
 import { StyledInput } from '../Input/styles';
 import { defaultTheme } from '../defaultTheme';
