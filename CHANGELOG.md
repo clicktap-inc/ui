@@ -1,3 +1,10 @@
+[0.0.18](https://github.com/clicktap-inc/ui/compare/0.0.17...0.0.18) (2024-04-30)
+
+### Bug Fixes
+* fix vite config ([ed3e0d7](https://github.com/clicktap-inc/ui/commit/ed3e0d74c792101073fd9091f2029edf41d3b94b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.17](https://github.com/clicktap-inc/ui/compare/0.0.16...0.0.17) (2024-04-30)
 
 ### Bug Fixes
