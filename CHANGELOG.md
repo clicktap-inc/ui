@@ -1,3 +1,10 @@
+[0.1.2](https://github.com/clicktap-inc/ui/compare/0.1.1...0.1.2) (2024-04-30)
+
+### Bug Fixes
+* Update build ([28f02b0](https://github.com/clicktap-inc/ui/commit/28f02b022f4f47fe185a10ce8aecd990bdea07e0))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.1.1](https://github.com/clicktap-inc/ui/compare/0.1.0...0.1.1) (2024-04-30)
 
 ### Bug Fixes
