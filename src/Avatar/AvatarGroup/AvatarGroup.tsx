@@ -8,7 +8,7 @@ export function AvatarGroup({
   renderCount,
 }: PropsWithChildren<AvatarGroupProps>) {
   return (
-    <Root isGrid={isGrid} max={0} renderCount={renderCount ?? (() => {})}>
+    <Root isGrid={isGrid} max={0} renderCount={renderCount ?? undefined}>
       {children}
     </Root>
   );

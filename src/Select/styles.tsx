@@ -25,7 +25,7 @@ export const ComboBoxContainer = styled.div`
   width: 100%;
 `;
 
-export const StyledPopover = motion(styled(Popover)`
+export const StyledPopover = styled(motion(Popover))`
   padding: 0.4rem 0;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   border-radius: 0.375rem;
@@ -34,7 +34,7 @@ export const StyledPopover = motion(styled(Popover)`
   border: 1px solid
     ${({ theme }) =>
       theme?.colors?.slate?.[300] ?? defaultTheme.colors.slate[300]};
-`);
+`;
 
 export const StyledInput = styled(Input).withConfig({
   shouldForwardProp: (prop) => !['isLoading'].includes(prop),

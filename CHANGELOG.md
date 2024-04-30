@@ -1,3 +1,10 @@
+[0.1.1](https://github.com/clicktap-inc/ui/compare/0.1.0...0.1.1) (2024-04-30)
+
+### Bug Fixes
+* Fixed error with styledv6 and framer ([ed97fe9](https://github.com/clicktap-inc/ui/commit/ed97fe938ec9c5907ad35da68f4d6b7876c442f7))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.1.0](https://github.com/clicktap-inc/ui/compare/0.0.22...0.1.0) (2024-04-30)
 
 ### Features
