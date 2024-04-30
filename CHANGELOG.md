@@ -1,3 +1,10 @@
+[0.0.21](https://github.com/clicktap-inc/ui/compare/0.0.20...0.0.21) (2024-04-30)
+
+### Bug Fixes
+* Updated package json and vite config ([b9f0362](https://github.com/clicktap-inc/ui/commit/b9f03622edac89ecd6eefdfcda9f6aef16e935d2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.20](https://github.com/clicktap-inc/ui/compare/0.0.19...0.0.20) (2024-04-30)
 
 ### Bug Fixes
