@@ -1,3 +1,10 @@
+[0.0.20](https://github.com/clicktap-inc/ui/compare/0.0.19...0.0.20) (2024-04-30)
+
+### Bug Fixes
+* alias update ([259dd73](https://github.com/clicktap-inc/ui/commit/259dd7332588164db556b5dd116e0549de4ed1c0))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.19](https://github.com/clicktap-inc/ui/compare/0.0.18...0.0.19) (2024-04-30)
 
 ### Bug Fixes
