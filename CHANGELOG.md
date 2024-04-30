@@ -1,3 +1,10 @@
+[0.0.19](https://github.com/clicktap-inc/ui/compare/0.0.18...0.0.19) (2024-04-30)
+
+### Bug Fixes
+* added rollup interop option ([d869261](https://github.com/clicktap-inc/ui/commit/d8692610fe723d0f8f5ca088a31bfe04056b0807))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.0.18](https://github.com/clicktap-inc/ui/compare/0.0.17...0.0.18) (2024-04-30)
 
 ### Bug Fixes
