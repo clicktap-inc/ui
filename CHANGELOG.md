@@ -1,3 +1,10 @@
+[0.2.0](https://github.com/clicktap-inc/ui/compare/0.1.2...0.2.0) (2024-04-30)
+
+### Features
+* Removed comment to feature bump ([eb8109a](https://github.com/clicktap-inc/ui/commit/eb8109aead6a66d50dd33364c18a506ab8d55a27))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.1.2](https://github.com/clicktap-inc/ui/compare/0.1.1...0.1.2) (2024-04-30)
 
 ### Bug Fixes
