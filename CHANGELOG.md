@@ -1,3 +1,10 @@
+[0.2.7](https://github.com/clicktap-inc/ui/compare/0.2.6...0.2.7) (2024-05-01)
+
+### Bug Fixes
+* Added resolve to build ([db3e992](https://github.com/clicktap-inc/ui/commit/db3e992b221e8313461d6c4c09f927265b46f068))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.6](https://github.com/clicktap-inc/ui/compare/0.2.5...0.2.6) (2024-05-01)
 
 ### Bug Fixes
