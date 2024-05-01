@@ -1,3 +1,10 @@
+[0.2.9](https://github.com/clicktap-inc/ui/compare/0.2.8...0.2.9) (2024-05-01)
+
+### Bug Fixes
+* Updated vite build ([e365e5c](https://github.com/clicktap-inc/ui/commit/e365e5c8dcc8651a5007808764b5cc29d6c3acc2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.8](https://github.com/clicktap-inc/ui/compare/0.2.7...0.2.8) (2024-05-01)
 
 ### Bug Fixes
