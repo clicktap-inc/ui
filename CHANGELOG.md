@@ -1,3 +1,11 @@
+[0.2.10](https://github.com/clicktap-inc/ui/compare/0.2.9...0.2.10) (2024-05-01)
+
+### Bug Fixes
+* Updated next version dependency ([64705fc](https://github.com/clicktap-inc/ui/commit/64705fcadfab2782a6a5e7cd5f8fcca5fc6f9541))
+* Removed bad tsconfig config ([ebd5807](https://github.com/clicktap-inc/ui/commit/ebd5807eecc746d610468b27485308c7fc7ac597))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.9](https://github.com/clicktap-inc/ui/compare/0.2.8...0.2.9) (2024-05-01)
 
 ### Bug Fixes
