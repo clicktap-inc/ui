@@ -1,3 +1,10 @@
+[0.2.11](https://github.com/clicktap-inc/ui/compare/0.2.10...0.2.11) (2024-05-01)
+
+### Bug Fixes
+* Added forwardRef to context menu ([43b8e15](https://github.com/clicktap-inc/ui/commit/43b8e15b377ccd97ae8affebebceb4a26bf1af0d))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.10](https://github.com/clicktap-inc/ui/compare/0.2.9...0.2.10) (2024-05-01)
 
 ### Bug Fixes
