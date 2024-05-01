@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel, TabsProps } from 'react-aria-components';
 import { motion } from 'framer-motion';
 import type { TabListProps, TabItem, TabProps } from './types';

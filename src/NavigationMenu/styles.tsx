@@ -8,7 +8,7 @@ import {
   Viewport,
 } from '@radix-ui/react-navigation-menu';
 import { Link as AriaLink } from 'react-aria-components';
-import styled, { keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import { defaultTheme } from '../defaultTheme';
 
 const enterFromRight = keyframes`

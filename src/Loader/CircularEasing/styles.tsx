@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import { CircularEasingProps } from './types';
 
 export const Rotate = keyframes`

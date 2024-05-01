@@ -1,3 +1,10 @@
+[0.2.8](https://github.com/clicktap-inc/ui/compare/0.2.7...0.2.8) (2024-05-01)
+
+### Bug Fixes
+* Updated styled imports ([7fb1f16](https://github.com/clicktap-inc/ui/commit/7fb1f16d6976c864de8243d20ea4eb20b2d78250))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.7](https://github.com/clicktap-inc/ui/compare/0.2.6...0.2.7) (2024-05-01)
 
 ### Bug Fixes

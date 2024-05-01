@@ -1,5 +1,5 @@
 import { Dialog } from 'react-aria-components';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { createGlobalStyle, keyframes, styled } from 'styled-components';
 import { defaultTheme } from '../defaultTheme';
 
 const dialogAnimation = keyframes`

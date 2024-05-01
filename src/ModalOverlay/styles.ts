@@ -1,5 +1,5 @@
 import { ModalOverlay } from 'react-aria-components';
-import styled, { keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import { defaultTheme } from '../defaultTheme';
 
 const overlayAnimation = keyframes`
