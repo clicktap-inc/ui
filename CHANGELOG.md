@@ -1,3 +1,10 @@
+[0.2.2](https://github.com/clicktap-inc/ui/compare/0.2.1...0.2.2) (2024-05-01)
+
+### Bug Fixes
+* Updated build ([cb020ae](https://github.com/clicktap-inc/ui/commit/cb020ae12b263cd3b2068aadb2edc28c555e476c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.1](https://github.com/clicktap-inc/ui/compare/0.2.0...0.2.1) (2024-05-01)
 
 ### Bug Fixes
