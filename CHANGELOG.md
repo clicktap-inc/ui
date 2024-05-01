@@ -1,3 +1,10 @@
+[0.2.12](https://github.com/clicktap-inc/ui/compare/0.2.11...0.2.12) (2024-05-01)
+
+### Bug Fixes
+* Made framer-motion external, removed ref ([4816bb7](https://github.com/clicktap-inc/ui/commit/4816bb7faba51a9638faef6a67b9d56262145b71))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.11](https://github.com/clicktap-inc/ui/compare/0.2.10...0.2.11) (2024-05-01)
 
 ### Bug Fixes
