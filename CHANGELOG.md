@@ -1,3 +1,10 @@
+[0.2.1](https://github.com/clicktap-inc/ui/compare/0.2.0...0.2.1) (2024-05-01)
+
+### Bug Fixes
+* Moved styled components to dependency ([de96505](https://github.com/clicktap-inc/ui/commit/de965059d635a2468f2044768d2e2cf986173b35))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.0](https://github.com/clicktap-inc/ui/compare/0.1.2...0.2.0) (2024-04-30)
 
 ### Features
