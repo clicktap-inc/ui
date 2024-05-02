@@ -1,3 +1,10 @@
+[0.2.13](https://github.com/clicktap-inc/ui/compare/0.2.12...0.2.13) (2024-05-02)
+
+### Bug Fixes
+* Made react-aria (and rac) external ([36afe65](https://github.com/clicktap-inc/ui/commit/36afe652cbee483fc43fa58ec8c97939b167c09e))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.12](https://github.com/clicktap-inc/ui/compare/0.2.11...0.2.12) (2024-05-01)
 
 ### Bug Fixes
