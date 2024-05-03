@@ -1,3 +1,10 @@
+[0.3.1](https://github.com/clicktap-inc/ui/compare/0.3.0...0.3.1) (2024-05-03)
+
+### Bug Fixes
+* Updated modal to use rac modal props ([bac0349](https://github.com/clicktap-inc/ui/commit/bac03490739a6fd23427584bb45ca69d407b509f))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.0](https://github.com/clicktap-inc/ui/compare/0.2.13...0.3.0) (2024-05-03)
 
 ### Features
