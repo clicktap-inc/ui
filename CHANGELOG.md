@@ -1,3 +1,10 @@
+[0.3.2](https://github.com/clicktap-inc/ui/compare/0.3.1...0.3.2) (2024-05-03)
+
+### Bug Fixes
+* Updated modal props ([542b268](https://github.com/clicktap-inc/ui/commit/542b268c42b51eff86120a82a2e985b0817c4fea))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.1](https://github.com/clicktap-inc/ui/compare/0.3.0...0.3.1) (2024-05-03)
 
 ### Bug Fixes
