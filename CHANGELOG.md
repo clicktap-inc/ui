@@ -1,3 +1,10 @@
+[0.3.0](https://github.com/clicktap-inc/ui/compare/0.2.13...0.3.0) (2024-05-03)
+
+### Features
+* Slider - added data-attributes for CSS selection ([0a62e52](https://github.com/clicktap-inc/ui/commit/0a62e5282a46797135f8437aef842c2b3b80de91))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.2.13](https://github.com/clicktap-inc/ui/compare/0.2.12...0.2.13) (2024-05-02)
 
 ### Bug Fixes

@@ -34,7 +34,7 @@ export function Slider({
         </StyledSliderOutput>
       )}
 
-      <StyledSliderTrack>
+      <StyledSliderTrack data-track>
         {({ state }) =>
           state.values.map((_, i) => (
             <StyledSliderThumb
@@ -42,6 +42,7 @@ export function Slider({
               key={i}
               index={i}
               aria-label={thumbLabels?.[i]}
+              data-thumb
             />
           ))
         }
