@@ -2,6 +2,9 @@
 export * from './Avatar/Avatar';
 export * from './Avatar/AvatarGroup/AvatarGroup';
 
+// Accordion
+export * from './Accordion/Accordion';
+
 // Badge
 export * from './Badge/Badge';
 
