@@ -29,7 +29,7 @@ export const StyledPopover = styled(motion(Popover))`
   padding: 0.4rem 0;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   border-radius: 0.375rem;
-  width: 14rem;
+  width: var(--trigger-width);
   background: #fff;
   border: 1px solid
     ${({ theme }) =>
