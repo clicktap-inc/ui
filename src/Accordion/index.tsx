@@ -1,6 +1,2 @@
 export * from './Accordion';
-export {
-  AccordionItem,
-  AccordionItemProps,
-  AccordionProps,
-} from '@nextui-org/accordion';
+export { AccordionItem } from '@nextui-org/accordion';

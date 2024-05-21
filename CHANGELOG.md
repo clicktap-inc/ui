@@ -1,3 +1,10 @@
+[0.3.6](https://github.com/clicktap-inc/ui/compare/0.3.5...0.3.6) (2024-05-21)
+
+### Bug Fixes
+* updated the Accordion component export ([0f16a7b](https://github.com/clicktap-inc/ui/commit/0f16a7b1d9bda15d719ba4dcd729081fc35bb11b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.5](https://github.com/clicktap-inc/ui/compare/0.3.4...0.3.5) (2024-05-21)
 
 
