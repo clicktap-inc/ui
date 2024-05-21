@@ -3,7 +3,7 @@ export * from './Avatar/Avatar';
 export * from './Avatar/AvatarGroup/AvatarGroup';
 
 // Accordion
-export * from './Accordion/Accordion';
+export * from './Accordion';
 
 // Badge
 export * from './Badge/Badge';
