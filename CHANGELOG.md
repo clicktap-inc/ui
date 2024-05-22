@@ -1,3 +1,8 @@
+[0.3.8](https://github.com/clicktap-inc/ui/compare/0.3.7...0.3.8) (2024-05-22)
+
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.7](https://github.com/clicktap-inc/ui/compare/0.3.6...0.3.7) (2024-05-22)
 
 ### Bug Fixes
