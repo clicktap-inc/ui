@@ -1,16 +1,26 @@
-import { SwitchProps as AriaSwitchProps } from 'react-aria-components';
+import {
+  SwitchProps as AriaSwitchProps,
+  SwitchRenderProps,
+} from 'react-aria-components';
 import { Indicator, StyledSwitch } from './styles';
 
-interface SwitchProps extends Omit<AriaSwitchProps, 'children'> {
-  children: React.ReactNode;
-}
-
-export function Switch({ children, ...props }: SwitchProps) {
+export function Switch({ children, ...props }: AriaSwitchProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledSwitch {...props}>
-      <Indicator />
-      {children}
+    <StyledSwitch
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {(renderProps: SwitchRenderProps) => (
+        <>
+          <Indicator className="switch-indicator" />
+          {typeof children === 'function'
+            ? children({
+                defaultChildren: undefined,
+                ...renderProps,
+              })
+            : children}
+        </>
+      )}
     </StyledSwitch>
   );
 }

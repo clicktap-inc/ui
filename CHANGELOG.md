@@ -1,3 +1,12 @@
+[0.3.7](https://github.com/clicktap-inc/ui/compare/0.3.6...0.3.7) (2024-05-22)
+
+### Bug Fixes
+* Added classname to switch indicator ([6538904](https://github.com/clicktap-inc/ui/commit/65389045fba155ed9d28dc01aa4bb9ced671f911))
+* Simplified render props on switch ([b2e78f6](https://github.com/clicktap-inc/ui/commit/b2e78f64a94b14e142996ed17e487ded55c1701c))
+* Updated switch to allow render props ([f2186d5](https://github.com/clicktap-inc/ui/commit/f2186d53902a0c45f5b55458ec1c9a0115e71a07))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.6](https://github.com/clicktap-inc/ui/compare/0.3.5...0.3.6) (2024-05-21)
 
 ### Bug Fixes
