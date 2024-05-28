@@ -1,3 +1,10 @@
+[0.4.0](https://github.com/clicktap-inc/ui/compare/0.3.8...0.4.0) (2024-05-28)
+
+### Features
+* Update the Tab component ([b333931](https://github.com/clicktap-inc/ui/commit/b33393159ca2c029cdcb17b48396e373d1da65e9))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.3.8](https://github.com/clicktap-inc/ui/compare/0.3.7...0.3.8) (2024-05-22)
 
 

@@ -1,18 +1,25 @@
 import { useContext } from 'react';
+import { TabRenderProps } from 'react-aria-components';
 import { StyledTab, TabOverlay } from './styles';
 import { TabProps } from './types';
 import { TabsOrientationContext } from './Tabs';
 
-export function Tab({ variant = 'base', ...props }: TabProps) {
+export function Tab({ variant = 'base', children, ...props }: TabProps) {
   const orientation = useContext(TabsOrientationContext);
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <StyledTab orientation={orientation} variant={variant} {...props}>
-      {({ isSelected, isFocusVisible }) => (
+      {(renderProps: TabRenderProps) => (
         <>
-          {props.children}
-          {(isFocusVisible || isSelected) && (
+          {typeof children === 'function'
+            ? children({
+                defaultChildren: undefined,
+                ...renderProps,
+              })
+            : children}
+
+          {(renderProps.isFocusVisible || renderProps.isSelected) && (
             <TabOverlay
               orientation={orientation}
               layoutId={variant}
