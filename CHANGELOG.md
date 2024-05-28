@@ -1,3 +1,14 @@
+[0.5.0](https://github.com/clicktap-inc/ui/compare/0.4.0...0.5.0) (2024-05-28)
+
+### Features
+* Divider ([b75bd38](https://github.com/clicktap-inc/ui/commit/b75bd3811e0d3d6b8577ea152b6dedaf0ebe94c0))
+* Divider ([1935df4](https://github.com/clicktap-inc/ui/commit/1935df4d5c74c407e6f8e13b900263db6b827621))
+* Divider ([bc762d2](https://github.com/clicktap-inc/ui/commit/bc762d2cd03b633db4a90765778234e9284e9994))
+* Divider ([1605f82](https://github.com/clicktap-inc/ui/commit/1605f82c75601fbecb76664aabed1421279f06b3))
+* Divider className ([1d214b9](https://github.com/clicktap-inc/ui/commit/1d214b9e6e32a914671bf30926fcfb09b7722196))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.4.0](https://github.com/clicktap-inc/ui/compare/0.3.8...0.4.0) (2024-05-28)
 
 ### Features
