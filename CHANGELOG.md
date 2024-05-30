@@ -1,3 +1,10 @@
+[0.6.0](https://github.com/clicktap-inc/ui/compare/0.5.0...0.6.0) (2024-05-30)
+
+### Features
+* Update z-index ([5aaaafe](https://github.com/clicktap-inc/ui/commit/5aaaafef874c2a3a8d7c1f81556c43ce69d2de98))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.5.0](https://github.com/clicktap-inc/ui/compare/0.4.0...0.5.0) (2024-05-28)
 
 ### Features

@@ -84,7 +84,7 @@ export const StyledTab = styled(Tab)<
   TabProps & { orientation: TabsProps['orientation'] }
 >`
   position: relative;
-  z-index: 3;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: ${({ orientation, variant }) => {
@@ -125,6 +125,8 @@ export const StyledTab = styled(Tab)<
   }};
 
   &[data-selected] {
+    z-index: 2;
+
     color: ${({ variant, theme }) => {
       switch (variant) {
         case 'underline':
@@ -160,7 +162,7 @@ export const TabOverlay = styled(motion.span).attrs({
   className: 'tab-overlay',
 })<TabProps & { orientation: TabsProps['orientation'] }>`
   position: absolute;
-  z-index: 1;
+  z-index: 0;
 
   ${({ orientation, theme, variant }) => {
     switch (variant) {
