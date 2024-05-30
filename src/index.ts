@@ -40,6 +40,7 @@ export * from './DateInput/DateInput';
 
 // Divider
 export * from './Divider/Divider';
+export * from './Divider/types';
 
 // Input
 export * from './Input/Input';

@@ -1,3 +1,12 @@
+[0.7.0](https://github.com/clicktap-inc/ui/compare/0.6.0...0.7.0) (2024-05-30)
+
+### Features
+* Props ([5ca4347](https://github.com/clicktap-inc/ui/commit/5ca434740521f6a50bf02f2dfd121733abe8d01b))
+* Props ([7a00806](https://github.com/clicktap-inc/ui/commit/7a00806b10935ea92fd18bc20521c827823d8400))
+* Update styles ([2ae4d98](https://github.com/clicktap-inc/ui/commit/2ae4d98d44f0b0e17a198febeef83bff987e24f9))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.6.0](https://github.com/clicktap-inc/ui/compare/0.5.0...0.6.0) (2024-05-30)
 
 ### Features
