@@ -1,3 +1,12 @@
+[0.7.1](https://github.com/clicktap-inc/ui/compare/0.7.0...0.7.1) (2024-06-11)
+
+### Bug Fixes
+* Fixed credit card input to handle controlled vals ([ef76939](https://github.com/clicktap-inc/ui/commit/ef76939a64ba3f03e0883fae106eb66fe93bf3a6))
+* Added cc and cc expire components ([33d98f0](https://github.com/clicktap-inc/ui/commit/33d98f00a9b923007f69bc0cf6a77ba61d338c13))
+* Added placeholder to input ([24bcfb5](https://github.com/clicktap-inc/ui/commit/24bcfb5438b316d360405991741311d03b5be237))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.7.0](https://github.com/clicktap-inc/ui/compare/0.6.0...0.7.0) (2024-05-30)
 
 ### Features

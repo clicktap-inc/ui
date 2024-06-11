@@ -1,5 +1,4 @@
 import { TextFieldProps, ValidationResult } from 'react-aria-components';
-import { useState } from 'react';
 import {
   StyledFieldError,
   StyledInput,
@@ -12,12 +11,14 @@ interface MyTextFieldProps extends TextFieldProps {
   label?: string;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
+  placeholder?: string;
 }
 
 export function Input({
   label,
   description,
   errorMessage,
+  placeholder,
   ...props
 }: MyTextFieldProps) {
   return (
@@ -26,7 +27,7 @@ export function Input({
       {...props}
     >
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput />
+      <StyledInput placeholder={placeholder} />
       {description && <StyledText slot="description">{description}</StyledText>}
       <StyledFieldError>{errorMessage}</StyledFieldError>
     </StyledTextField>
@@ -37,6 +38,7 @@ Input.defaultProps = {
   label: undefined,
   description: undefined,
   errorMessage: undefined,
+  placeholder: undefined,
 };
 
 export default Input;

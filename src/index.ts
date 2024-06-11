@@ -35,6 +35,12 @@ export * from './Container/Container';
 // Context Menu
 export * from './ContextMenu/ContextMenu';
 
+// Credit Card Expiration Input
+export * from './CreditCardExpirationInput/CreditCardExpirationInput';
+
+// Credit Card Input
+export * from './CreditCardInput/CreditCardInput';
+
 // DateInput
 export * from './DateInput/DateInput';
 
