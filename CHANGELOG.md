@@ -1,3 +1,10 @@
+[0.8.0](https://github.com/clicktap-inc/ui/compare/0.7.1...0.8.0) (2024-06-15)
+
+### Features
+* Added radio component ([f3dac34](https://github.com/clicktap-inc/ui/commit/f3dac349b7f3f9466bef2ce38f6f470e4c72be3c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.7.1](https://github.com/clicktap-inc/ui/compare/0.7.0...0.7.1) (2024-06-11)
 
 ### Bug Fixes

@@ -72,6 +72,9 @@ export * from './PinInput/PinInput';
 // Progressbar
 export * from './Progressbar';
 
+// Radio
+export * from './Radio/Radio';
+
 // Select
 export * from './Select/Option';
 export * from './Select/Select';
