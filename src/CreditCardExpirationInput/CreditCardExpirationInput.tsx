@@ -20,6 +20,7 @@ export function CreditCardExpirationInput({
   description,
   errorMessage,
   placeholder,
+  value,
   ...props
 }: CreditCardExpirationInputProps) {
   const format = (val: string) => {
@@ -41,6 +42,8 @@ export function CreditCardExpirationInput({
     return `${month}/${year}`;
   };
 
+  console.log('value', value);
+
   return (
     <StyledTextField
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -51,6 +54,7 @@ export function CreditCardExpirationInput({
         format={format}
         customInput={StyledInput}
         placeholder={placeholder}
+        value={value}
       />
       {description && <StyledText slot="description">{description}</StyledText>}
       <StyledFieldError>{errorMessage}</StyledFieldError>

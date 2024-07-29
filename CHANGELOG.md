@@ -1,3 +1,10 @@
+[0.8.1](https://github.com/clicktap-inc/ui/compare/0.8.0...0.8.1) (2024-07-29)
+
+### Bug Fixes
+* Updated cc exp input ([a9a93ca](https://github.com/clicktap-inc/ui/commit/a9a93ca3d928ad186daad8871b9435e27a2479f5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.8.0](https://github.com/clicktap-inc/ui/compare/0.7.1...0.8.0) (2024-06-15)
 
 ### Features
