@@ -1,3 +1,15 @@
+[0.9.0](https://github.com/clicktap-inc/ui/compare/0.8.1...0.9.0) (2024-08-21)
+
+### Features
+* Carousel ([43bc153](https://github.com/clicktap-inc/ui/commit/43bc1530069a1803fc9e6f119856c4e0bf120085))
+### Bug Fixes
+* Carousel ([f1d82ac](https://github.com/clicktap-inc/ui/commit/f1d82ac4b2f8f3ddea3244469b6969e396a18183))
+* Carousel ([681485d](https://github.com/clicktap-inc/ui/commit/681485dbd2a60135d610bebcb9f73ad16bb0a089))
+* Carousel ([441e50f](https://github.com/clicktap-inc/ui/commit/441e50f7d0119092186dabe37ea437bb23af6a37))
+* Carousel ([8d332a0](https://github.com/clicktap-inc/ui/commit/8d332a0581db6635934c637a52bd27a9721d2b43))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.8.1](https://github.com/clicktap-inc/ui/compare/0.8.0...0.8.1) (2024-07-29)
 
 ### Bug Fixes
