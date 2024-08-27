@@ -1,3 +1,10 @@
+[0.10.0](https://github.com/clicktap-inc/ui/compare/0.9.0...0.10.0) (2024-08-27)
+
+### Features
+* added additional props to Select component ([15e1f3d](https://github.com/clicktap-inc/ui/commit/15e1f3d3191da3b37723fa3fe0e8168f660bb5c2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.9.0](https://github.com/clicktap-inc/ui/compare/0.8.1...0.9.0) (2024-08-21)
 
 ### Features

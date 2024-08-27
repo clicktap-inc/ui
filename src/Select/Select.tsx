@@ -36,6 +36,8 @@ export interface SelectProps<T extends object>
   isLoading?: boolean;
   children: ReactNode | ((item: T) => ReactNode);
   slots?: CustomSelectSlots;
+  popoverOffset?: number;
+  popoverPortalContainer?: Element;
 }
 
 function ButtonIconSlot({
@@ -75,6 +77,9 @@ export function Select<T extends object>({
   key,
   isLoading,
   slots,
+  popoverPortalContainer,
+  popoverOffset,
+  selectedKey,
   ...props
 }: SelectProps<T>) {
   const [animation, setAnimation] =
@@ -88,6 +93,7 @@ export function Select<T extends object>({
         setIsComboOpen(!isComboOpen);
       }}
       isDisabled={props.isDisabled || isLoading}
+      data-has-value={!!selectedKey}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
@@ -119,6 +125,8 @@ export function Select<T extends object>({
             key={key}
             isOpen={isComboOpen}
             isExiting={animation === 'hidden'}
+            offset={popoverOffset}
+            UNSTABLE_portalContainer={popoverPortalContainer}
             onAnimationComplete={(completedAnimation: string) => {
               setAnimation((a) =>
                 completedAnimation === 'hidden' && a === 'hidden'
@@ -155,6 +163,8 @@ Select.defaultProps = {
     loadingIcon: undefined,
     buttonIcon: undefined,
   },
+  popoverOffset: undefined,
+  popoverPortalContainer: undefined,
 };
 
 export default Select;
