@@ -1,3 +1,10 @@
+[0.12.0](https://github.com/clicktap-inc/ui/compare/0.11.0...0.12.0) (2024-09-11)
+
+### Features
+* version bump ([f7c72f6](https://github.com/clicktap-inc/ui/commit/f7c72f6c5e070a2d0da6f77c4c3c4442569b9728))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.11.0](https://github.com/clicktap-inc/ui/compare/0.10.2...0.11.0) (2024-09-11)
 
 ### Features
