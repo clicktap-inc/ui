@@ -1,10 +1,19 @@
-import { BreadcrumbProps } from 'react-aria-components';
-import { StyledBreadcrumbItem } from './styles';
+import { BreadcrumbProps, Breadcrumb } from 'react-aria-components';
+import { cn } from '../utils';
 
-export function BreadcrumbItem({ children, ...props }: BreadcrumbProps) {
+export function BreadcrumbItem({
+  children,
+  className,
+  ...props
+}: BreadcrumbProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledBreadcrumbItem {...props}>{children}</StyledBreadcrumbItem>
+    <Breadcrumb
+      className={cn('flex items-center', className)}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </Breadcrumb>
   );
 }
 

@@ -1,11 +1,4 @@
 import {
-  Group,
-  GroupProps,
-  Input,
-  TextField,
-  ValidationResult,
-} from 'react-aria-components';
-import {
   ChangeEvent,
   ClipboardEvent,
   KeyboardEvent,
@@ -14,14 +7,17 @@ import {
   useState,
 } from 'react';
 import {
-  StyledFieldError,
-  StyledGroup,
-  StyledHiddenTextField,
-  StyledInput,
-  StyledLabel,
-  StyledText,
-  StyledTextField,
-} from './styles';
+  FieldError,
+  Group,
+  Input,
+  Label,
+  Text,
+  TextField,
+  GroupProps,
+  ValidationResult,
+} from 'react-aria-components';
+import { cn } from '../utils';
+import type { SlotsToClasses } from '../types';
 
 /** @todo extend certain textfield props like name, validationBehavior and isRequired */
 interface PinInputProps extends GroupProps {
@@ -37,6 +33,9 @@ interface PinInputProps extends GroupProps {
   isRequired?: boolean;
   type?: 'alpha' | 'alphanumeric' | 'numeric';
   validationBehavior?: 'native' | 'aria';
+  classNames?: SlotsToClasses<
+    'label' | 'input' | 'description' | 'error' | 'inputWrap' | 'textWrap'
+  >;
 }
 
 /** based on https://github.com/chakra-ui/chakra-ui/blob/main/packages/components/src/pin-input/use-pin-input.ts */
@@ -54,6 +53,8 @@ export function PinInput({
   value = '',
   type = 'numeric',
   validationBehavior = 'native',
+  className,
+  classNames,
   ...props
 }: PinInputProps) {
   const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -239,11 +240,27 @@ export function PinInput({
   };
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledGroup {...props} aria-label={label}>
-      <StyledLabel>{label}</StyledLabel>
+    <Group
+      className={cn('flex flex-wrap gap-2', className)}
+      aria-label={label}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      <Label
+        className={cn(
+          'flex text-slate-500 text-sm grow shrink-0 basis-full',
+          classNames?.label
+        )}
+      >
+        {label}
+      </Label>
+
       {values.map((v, i) => (
-        <StyledTextField
+        <TextField
+          className={cn(
+            'flex flex-col w-full flex-1 text-slate-900',
+            classNames?.inputWrap
+          )}
           // eslint-disable-next-line react/no-array-index-key
           key={`pin-input-${i}`}
           aria-label={`Pin Input Digit ${i + 1}`}
@@ -252,7 +269,20 @@ export function PinInput({
           isRequired={isRequired}
           validationBehavior={validationBehavior}
         >
-          <StyledInput
+          <Input
+            className={cn(
+              'border-solid border border-slate-300 rounded-md',
+              'text-sm text-slate-900 placeholder-slate-400 text-center',
+              'h-10 px-2 py-0 m-0 w-full',
+              'bg-white',
+              'transition-all duration-200 ease-in-out',
+              'hover:border-slate-400',
+              'focus:outline-2 focus:outline focus:outline-slate-200 focus:border-slate-400',
+              'disabled:border-slate-200 disabled:bg-slate-100',
+              'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
+              'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
+              classNames?.input
+            )}
             onChange={onChange}
             onKeyDown={onKeyDown}
             onPaste={onPaste}
@@ -268,9 +298,13 @@ export function PinInput({
           {/* {description && (
           <StyledText slot="description">{description}</StyledText>
         )} */}
-        </StyledTextField>
+        </TextField>
       ))}
-      <StyledHiddenTextField
+      <TextField
+        className={cn(
+          'flex flex-row flex-wrap grow shrink-0 basis-full',
+          classNames?.textWrap
+        )}
         aria-label="Pin Input"
         isDisabled={isDisabled}
         isInvalid={isInvalid}
@@ -279,11 +313,26 @@ export function PinInput({
       >
         {name && <Input type="hidden" name={name} value={joinedValue} />}
         {description && (
-          <StyledText slot="description">{description}</StyledText>
+          <Text
+            className={cn(
+              'flex text-slate-500 text-sm grow shrink-0 basis-full',
+              classNames?.description
+            )}
+            slot="description"
+          >
+            {description}
+          </Text>
         )}
-        <StyledFieldError>{errorMessage}</StyledFieldError>
-      </StyledHiddenTextField>
-    </StyledGroup>
+        <FieldError
+          className={cn(
+            'flex text-red-500 text-sm grow shrink-0 basis-full',
+            classNames?.error
+          )}
+        >
+          {errorMessage}
+        </FieldError>
+      </TextField>
+    </Group>
   );
 }
 
@@ -293,6 +342,7 @@ PinInput.defaultProps = {
   isMasked: false,
   isRequired: true,
   label: undefined,
+  classNames: undefined,
   length: 6,
   name: '',
   onChange: () => {},

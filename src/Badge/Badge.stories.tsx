@@ -1,21 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
 import { Badge } from './Badge';
 import { BadgeProps } from './types';
 import { Avatar } from '../Avatar/Avatar';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 type Story = StoryObj<typeof Badge>;
 
 function Component(props: BadgeProps) {
   return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Badge {...props}>
-        <Avatar name="Regular" radius="md" />
-      </Badge>
-    </ThemeProvider>
+    <Badge {...props}>
+      <Avatar name="Regular" radius="md" />
+    </Badge>
   );
 }
 

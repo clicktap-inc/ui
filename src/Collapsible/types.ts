@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, HTMLAttributes } from 'react';
 
 export type CollapsibleTriggerState = {
   isOpen: boolean;
@@ -10,6 +10,9 @@ export type CollapsibleTriggerProps = PropsWithChildren<{
   isOpen?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  className?: string | undefined;
 }>;
 
-export type CollapsibleContentProps = PropsWithChildren<object>;
+export type CollapsibleContentProps = PropsWithChildren<
+  HTMLAttributes<HTMLDivElement>
+>;

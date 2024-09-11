@@ -1,14 +1,16 @@
 import { useContext } from 'react';
-import { CollapsibleContentRoot } from './styles';
+import { motion } from 'framer-motion';
 import type { CollapsibleContentProps } from './types';
 import { CollapsibleTriggerStateContext } from './CollapsibleTrigger';
+import { cn } from '../utils';
 
-export function Collapsible({ children }: CollapsibleContentProps) {
+export function Collapsible({ children, className }: CollapsibleContentProps) {
   const { isOpen, id, defaultOpen } = useContext(
     CollapsibleTriggerStateContext
   );
   return (
-    <CollapsibleContentRoot
+    <motion.div
+      className={cn('w-full overflow-hidden', className)}
       id={id}
       variants={{
         hidden: { height: '0px', opacity: 0 },
@@ -20,9 +22,10 @@ export function Collapsible({ children }: CollapsibleContentProps) {
         type: 'spring',
         bounce: 0,
       }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
     >
       {children}
-    </CollapsibleContentRoot>
+    </motion.div>
   );
 }
 

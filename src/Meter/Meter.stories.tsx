@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
 import { Meter } from './Meter';
 import { Button } from '../Button/Button';
-import { MeterProps } from './types';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
+import { MeterProps } from './Meter';
 
 type Story = StoryObj<typeof Meter>;
 
@@ -23,36 +20,32 @@ function Component({ children, value: v, ...props }: MeterProps) {
   }, [v]);
 
   return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem',
+        margin: '2rem 0',
+      }}
+    >
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Meter value={value} {...props} />
 
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
           gap: '2rem',
-          margin: '2rem 0',
+          justifyContent: 'center',
         }}
       >
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Meter value={value} {...props} />
-
-        <div
-          style={{
-            display: 'flex',
-            gap: '2rem',
-            justifyContent: 'center',
-          }}
-        >
-          <Button size="sm" onPress={decrease}>
-            -
-          </Button>
-          <Button size="sm" onPress={increase}>
-            +
-          </Button>
-        </div>
+        <Button size="sm" onPress={decrease}>
+          -
+        </Button>
+        <Button size="sm" onPress={increase}>
+          +
+        </Button>
       </div>
-    </ThemeProvider>
+    </div>
   );
 }
 

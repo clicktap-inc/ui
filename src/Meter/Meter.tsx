@@ -1,12 +1,19 @@
-import { MeterProps } from './types';
 import {
-  StyledMeter,
-  StyledMeterHeader,
-  StyledLabel,
-  StyledValue,
-  StyledBar,
-  StyledBarFill,
-} from './styles';
+  Meter as AriaMeter,
+  Label,
+  MeterProps as AriaMeterProps,
+} from 'react-aria-components';
+import { motion } from 'framer-motion';
+import { cn } from '../utils';
+import type { SlotsToClasses } from '../types';
+
+export type MeterProps = AriaMeterProps & {
+  label?: string;
+  showValue?: boolean;
+  classNames?: SlotsToClasses<
+    'label' | 'value' | 'labelWrapper' | 'track' | 'trackWrapepr'
+  >;
+};
 
 export function Meter({
   label,
@@ -15,10 +22,13 @@ export function Meter({
   minValue = 0,
   maxValue = 100,
   formatOptions = { style: 'percent' },
+  className,
+  classNames,
   ...props
 }: MeterProps) {
   return (
-    <StyledMeter
+    <AriaMeter
+      className={cn('flex flex-col gap-2', className)}
       value={value}
       minValue={minValue}
       maxValue={maxValue}
@@ -29,14 +39,38 @@ export function Meter({
       {({ percentage, valueText }) => (
         <>
           {(label || showValue) && (
-            <StyledMeterHeader>
-              {label && <StyledLabel>{label}</StyledLabel>}
-              {showValue && <StyledValue>{valueText}</StyledValue>}
-            </StyledMeterHeader>
+            <div
+              className={cn(
+                'flex justify-between gap-4',
+                classNames?.labelWrapper
+              )}
+            >
+              {label && (
+                <Label className={cn('text-sm', classNames?.label)}>
+                  {label}
+                </Label>
+              )}
+              {showValue && (
+                <span
+                  className={cn(
+                    'text-sm tabular-nums ml-auto',
+                    classNames?.value
+                  )}
+                >
+                  {valueText}
+                </span>
+              )}
+            </div>
           )}
 
-          <StyledBar>
-            <StyledBarFill
+          <div
+            className={cn(
+              'h-2.5 rounded-md bg-slate-300 forced-color-adjust-none overflow-hidden',
+              classNames?.trackWrapepr
+            )}
+          >
+            <motion.div
+              className={cn('h-full bg-slate-800', classNames?.track)}
               initial={{ width: `${percentage}%` }}
               animate={{ width: `${percentage}%` }}
               transition={{
@@ -44,11 +78,17 @@ export function Meter({
                 bounce: 0,
               }}
             />
-          </StyledBar>
+          </div>
         </>
       )}
-    </StyledMeter>
+    </AriaMeter>
   );
 }
+
+Meter.defaultProps = {
+  showValue: undefined,
+  label: undefined,
+  classNames: undefined,
+};
 
 export default Meter;

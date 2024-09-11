@@ -91,9 +91,6 @@ export * from './Tabs/TabList';
 export * from './Tabs/TabPanel';
 export * from './Tabs/Tabs';
 
-// Theme
-export * from './defaultTheme';
-
 // TimeInput
 export * from './TimeInput/TimeInput';
 
@@ -106,3 +103,5 @@ export * from './Tooltip/Tooltip';
 export * from './Loader';
 
 export * from './NavigationMenu/NavigationMenu';
+
+export * from './utils';

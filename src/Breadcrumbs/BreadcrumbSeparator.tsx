@@ -1,13 +1,18 @@
-import { StyledBreadcrumbSeparator } from './styles';
+import { Breadcrumb } from 'react-aria-components';
+import { cn } from '../utils';
 import { BreadcrumbItemProps } from './types';
 
 export function BreadcrumbSeparator({
   children,
+  className,
   ...props
 }: BreadcrumbItemProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledBreadcrumbSeparator {...props}>
+    <Breadcrumb
+      className={cn('flex items-center text-slate-600', 'my-0 mx-2', className)}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
       {children ?? (
         <svg
           aria-hidden="true"
@@ -16,6 +21,7 @@ export function BreadcrumbSeparator({
           height="16"
           viewBox="0 0 16 16"
           fill="none"
+          className="w-4 h-4"
         >
           <path
             d="M6 12L10 8L6 4"
@@ -26,7 +32,7 @@ export function BreadcrumbSeparator({
           />
         </svg>
       )}
-    </StyledBreadcrumbSeparator>
+    </Breadcrumb>
   );
 }
 

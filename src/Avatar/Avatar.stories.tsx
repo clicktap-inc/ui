@@ -1,19 +1,12 @@
 import { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
 import { Avatar } from './Avatar';
 import { AvatarProps } from './types';
 import { AvatarGroup } from './AvatarGroup/AvatarGroup';
 import { AvatarGroupProps } from './AvatarGroup/types';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 function Layout({ children }: { children: ReactNode }) {
-  return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      {children}
-    </ThemeProvider>
-  );
+  return children;
 }
 
 function AvatarExample(props: AvatarProps) {

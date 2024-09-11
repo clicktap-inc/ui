@@ -1,18 +1,16 @@
-import { ModalOverlayProps } from 'react-aria-components';
-import { StyledModal } from './styles';
+import { ModalOverlayProps, Modal as UIModal } from 'react-aria-components';
+import { cn } from '../utils';
 
 interface ModalProps extends Omit<ModalOverlayProps, 'children'> {
   children: React.ReactNode;
 }
 
-export function Modal({ children, ...props }: ModalProps) {
+export function Modal({ children, className, ...props }: ModalProps) {
   return (
-    <StyledModal
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <UIModal {...props} className={cn('absolute inset-1/2', className)}>
       {children}
-    </StyledModal>
+    </UIModal>
   );
 }
 

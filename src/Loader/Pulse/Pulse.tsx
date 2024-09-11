@@ -1,13 +1,51 @@
-import { Dot } from './styles';
+import { motion } from 'framer-motion';
+import { cn } from '../../utils';
+import type { SlotsToClasses } from '../../types';
 
-export function Pulse() {
+export interface PulseProps {
+  classNames?: SlotsToClasses<'base' | 'dot'>;
+}
+
+export function Pulse({ classNames }: PulseProps) {
   return (
-    <span>
-      <Dot speedMultiplier={1} i={1} />
-      <Dot speedMultiplier={1} i={2} />
-      <Dot speedMultiplier={1} i={3} />
+    <span className={cn(classNames?.base)}>
+      {Array.from(new Array(3)).map((_, i) => (
+        <motion.div
+          // eslint-disable-next-line react/no-array-index-key
+          key={i}
+          animate={{
+            opacity: [1, 1, 0.7, 1, 1],
+            transform: [
+              'scale(1)',
+              'scale(1)',
+              'scale(0.1)',
+              'scale(1)',
+              'scale(1)',
+            ],
+            transition: {
+              repeat: Infinity,
+              duration: 0.75,
+              delay: i * 0.1,
+              // ease: [0.2, 0.68, 0.18, 1.08],
+            },
+          }}
+          className={cn(
+            'bg-slate-300',
+            'inline-block',
+            'w-2',
+            'h-2',
+            'm-0.5',
+            'rounded-lg',
+            classNames?.dot
+          )}
+        />
+      ))}
     </span>
   );
 }
+
+Pulse.defaultProps = {
+  classNames: undefined,
+};
 
 export default Pulse;

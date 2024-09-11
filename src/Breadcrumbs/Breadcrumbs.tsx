@@ -1,10 +1,25 @@
-import { StyledBreadcrumbs } from './styles';
+import { Breadcrumbs as AriaBreadcrumbs } from 'react-aria-components';
+import { cn } from '../utils';
 import { BreadcrumbsProps } from './types';
 
-export function Breadcrumbs({ children, ...props }: BreadcrumbsProps<object>) {
+export function Breadcrumbs({
+  children,
+  className,
+  ...props
+}: BreadcrumbsProps<object>) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledBreadcrumbs {...props}>{children}</StyledBreadcrumbs>
+    <AriaBreadcrumbs
+      className={cn(
+        'flex items-center list-none text-sm',
+        'mx-0 mt-0 mr-4',
+        'px-0 pt-1.5 pb-0',
+        className
+      )}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </AriaBreadcrumbs>
   );
 }
 

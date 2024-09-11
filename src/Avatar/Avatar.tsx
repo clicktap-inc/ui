@@ -1,18 +1,96 @@
-import { useAvatarGroupContext } from '@nextui-org/avatar';
+import { useAvatarGroupContext, Avatar as UiAvatar } from '@nextui-org/avatar';
+import { cn } from '../utils';
 import { AvatarProps } from './types';
-import { Root, StyledAvatar } from './styles';
 
-export function Avatar({ icon, ...props }: AvatarProps) {
+export function Avatar({
+  icon,
+  className,
+  isDisabled,
+  size,
+  classNames,
+  isBordered,
+  radius,
+  ...props
+}: AvatarProps) {
   const avatarGroupContext = useAvatarGroupContext();
-
   return (
-    <Root
-      isInGroup={!!avatarGroupContext}
-      isGrid={!!avatarGroupContext?.isGrid}
+    <div
+      className={cn(
+        'group',
+        'z-10',
+        'first:ms-0',
+        !avatarGroupContext?.isGrid && !!avatarGroupContext && '-ms-2',
+        className
+      )}
     >
-      <StyledAvatar
+      <UiAvatar
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
+        isDisabled={isDisabled}
+        size={size}
+        radius={radius}
+        isBordered={isBordered}
+        className={cn(
+          !avatarGroupContext?.isGrid &&
+            !!avatarGroupContext &&
+            'group-hover:-translate-y-3.5',
+          'transition-transform duration-300 ease-in-out',
+          'bg-slate-100',
+          'flex items-center justify-center',
+          'relative',
+          'z-10',
+          'overflow-hidden',
+          isDisabled ? 'opacity-50' : 'opacity-100',
+          [
+            size === 'sm' && 'h-8',
+            size === 'md' && 'h-10',
+            size === 'lg' && 'h-12',
+            size === 'sm' && 'w-8',
+            size === 'md' && 'w-10',
+            size === 'lg' && 'w-12',
+          ],
+          [
+            radius === 'full' && 'rounded-full',
+            radius === 'lg' && 'rounded-2xl',
+            radius === 'md' && 'rounded-xl',
+            radius === 'sm' && 'rounded-lg',
+            radius === 'none' && 'rounded-none',
+          ],
+          isBordered &&
+            'shadow-[#fff_0px_0px_0px_2px,_#f1f5f9_0px_0px_0px_4px,_#00000000_0px_0px_0px_0px]',
+          classNames?.base
+        )}
+        classNames={{
+          icon: cn(
+            'data-[loaded=true]:opacity-100 opacity-0',
+            'absolute',
+            'w-full',
+            'h-full',
+            'overflow-hidden',
+            'object-cover',
+            'object-center',
+            'transition-opacity ease-in-out duration-500',
+            classNames?.icon
+          ),
+          name: cn(
+            'flex items-center justify-center',
+            'absolute top-1/2 left-1/2',
+            '-translate-x-1/2 -translate-y-1/2',
+            'text-xs text-center',
+            'max-w-full',
+            'overflow-hidden',
+            classNames?.name
+          ),
+          fallback: cn(
+            'flex items-center justify-center',
+            'absolute top-1/2 left-1/2',
+            '-translate-x-1/2 -translate-y-1/2',
+            'text-xs text-center',
+            'max-w-full',
+            'overflow-hidden',
+            classNames?.fallback
+          ),
+        }}
         icon={
           icon || (
             <svg
@@ -33,7 +111,7 @@ export function Avatar({ icon, ...props }: AvatarProps) {
           )
         }
       />
-    </Root>
+    </div>
   );
 }
 

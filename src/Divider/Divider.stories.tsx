@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
 import { SeparatorProps } from 'react-aria';
 import { Divider } from './Divider';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 type Story = StoryObj<typeof Divider>;
 
@@ -11,15 +9,12 @@ function Component(props: SeparatorProps) {
   const display = orientation === 'vertical' ? 'flex' : 'block';
 
   return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      <div style={{ display }}>
-        <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Divider {...props} />
-        <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-      </div>
-    </ThemeProvider>
+    <div style={{ display }}>
+      <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Divider {...props} />
+      <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
+    </div>
   );
 }
 

@@ -1,19 +1,28 @@
-import { TabsProps } from 'react-aria-components';
+import { TabsProps, Tabs as AriaTabs } from 'react-aria-components';
 import { LayoutGroup } from 'framer-motion';
 import { createContext, useId } from 'react';
-import { StyledTabs } from './styles';
+import { cn } from '../utils';
 
 export const TabsOrientationContext =
   createContext<TabsProps['orientation']>('horizontal');
 
-export function Tabs({ children, ...props }: TabsProps) {
+export function Tabs({ children, className, ...props }: TabsProps) {
   const id = useId();
 
   return (
     <TabsOrientationContext.Provider value={props.orientation ?? 'horizontal'}>
       <LayoutGroup id={id}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <StyledTabs {...props}>{children}</StyledTabs>
+        <AriaTabs
+          className={cn(
+            'flex flex-col w-full px-0 py-2',
+            props.orientation === 'vertical' && 'orientation-vertical:flex-row',
+            className
+          )}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...props}
+        >
+          {children}
+        </AriaTabs>
       </LayoutGroup>
     </TabsOrientationContext.Provider>
   );

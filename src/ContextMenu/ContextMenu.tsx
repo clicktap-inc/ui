@@ -1,6 +1,12 @@
-import { Menu, PopoverProps as AriaPopoverProps } from 'react-aria-components';
+import {
+  Menu,
+  PopoverProps as AriaPopoverProps,
+  Popover,
+} from 'react-aria-components';
 import { Dispatch, Key, SetStateAction, ReactNode } from 'react';
-import { StyledPopover } from './styles';
+import { motion } from 'framer-motion';
+import { cn } from '../utils';
+import type { SlotsToClasses } from '../types';
 
 export type ContextMenuAnimationState = 'unmounted' | 'hidden' | 'visible';
 
@@ -10,7 +16,10 @@ interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
   onAction?: (key: Key) => void;
   setAnimation: Dispatch<SetStateAction<ContextMenuAnimationState>>;
   key?: Key | null;
+  classNames?: SlotsToClasses<'menu'>;
 }
+
+const StyledPopover = motion(Popover);
 
 export function ContextMenu({
   children,
@@ -18,10 +27,21 @@ export function ContextMenu({
   onAction,
   setAnimation,
   animation = 'hidden',
+  className,
+  classNames,
   ...props
 }: PopoverProps) {
   return (
     <StyledPopover
+      className={cn(
+        'px-0 py-1.5',
+        'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
+        'rounded-md',
+        'w-56',
+        'bg-white',
+        'border border-solid border-slate-300',
+        className
+      )}
       key={key}
       isExiting={animation === 'hidden'}
       onAnimationComplete={(completedAnimation: string) => {
@@ -38,7 +58,10 @@ export function ContextMenu({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <Menu style={{ outline: 'none' }} onAction={onAction}>
+      <Menu
+        className={cn('outline-none', classNames?.menu)}
+        onAction={onAction}
+      >
         {children}
       </Menu>
     </StyledPopover>
@@ -48,6 +71,7 @@ export function ContextMenu({
 ContextMenu.defaultProps = {
   key: undefined,
   onAction: undefined,
+  classNames: undefined,
 };
 
 export default ContextMenu;

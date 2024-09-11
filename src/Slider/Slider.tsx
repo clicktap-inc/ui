@@ -1,53 +1,117 @@
-import type { SliderProps as AriaSliderProps } from 'react-aria-components';
 import {
-  StyledLabel,
-  StyledSlider,
-  StyledSliderOutput,
-  StyledSliderTrack,
-  StyledSliderThumb,
-} from './styles';
+  Label,
+  Slider as AriaSlider,
+  SliderOutput,
+  SliderTrack,
+  SliderThumb,
+  SliderProps as AriaSliderProps,
+} from 'react-aria-components';
+import { cn } from '../utils';
+import type { SlotsToClasses } from '../types';
 
-interface SliderProps extends AriaSliderProps {
+export type SliderProps = AriaSliderProps & {
   label?: string;
   showOutput?: boolean;
   thumbLabels?: string[];
-}
+  classNames?: SlotsToClasses<
+    'base' | 'label' | 'output' | 'outputWrapper' | 'track' | 'thumb'
+  >;
+};
 
 export function Slider({
   label,
   showOutput = true,
   thumbLabels,
+  classNames,
+  orientation,
+  isDisabled,
+  children,
   ...props
 }: SliderProps) {
   return (
-    <StyledSlider
+    <AriaSlider
+      orientation={orientation}
+      isDisabled={isDisabled}
+      className={cn(
+        'data-[orientation="horizontal"]:w-full data-[orientation="horizontal"]:flex data-[orientation="horizontal"]:flex-wrap',
+        'data-[orientation="vertical"]:w-8 data-[orientation="vertical"]:block data-[orientation="vertical"]:h-full',
+        classNames?.base
+      )}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <StyledLabel>{label}</StyledLabel>
+      {children || (
+        <>
+          {(label || showOutput) && (
+            <div
+              className={cn(
+                'w-full flex justify-between items-center',
+                orientation === 'vertical' && 'gap-2 w-max mb-2',
+                classNames?.outputWrapper
+              )}
+            >
+              <Label
+                className={cn(
+                  'flex-1 text-sm',
+                  isDisabled && 'opacity-50',
+                  classNames?.label
+                )}
+              >
+                {label}
+              </Label>
 
-      {showOutput && (
-        <StyledSliderOutput>
-          {({ state }) =>
-            state.values.map((_, i) => state.getThumbValueLabel(i)).join(' – ')
-          }
-        </StyledSliderOutput>
+              {showOutput && (
+                <SliderOutput
+                  className={cn(
+                    'flex flex-initial ml-auto justify-end text-sm',
+                    isDisabled && 'opacity-50',
+                    classNames?.output
+                  )}
+                >
+                  {({ state }) =>
+                    state.values
+                      .map((_, i) => state.getThumbValueLabel(i))
+                      .join(' – ')
+                  }
+                </SliderOutput>
+              )}
+            </div>
+          )}
+
+          <SliderTrack
+            className={cn(
+              'data-[orientation="horizontal"]:w-full data-[orientation="horizontal"]:h-8',
+              'data-[orientation="vertical"]:w-8 data-[orientation="vertical"]:h-full',
+              'transition-all duration-200 ease',
+              'before:bg-slate-300 before:block before:absolute cursor-pointer',
+              'data-[orientation="horizontal"]:before:w-full data-[orientation="horizontal"]:before:h-0.5',
+              'data-[orientation="horizontal"]:before:top-1/2 data-[orientation="horizontal"]:before:-translate-y-1/2',
+              'data-[orientation="vertical"]:before:w-0.5 data-[orientation="vertical"]:before:h-full data-[orientation="vertical"]:before:left-1/2 data-[orientation="vertical"]:before:-translate-y-1/2 data-[orientation="vertical"]:before:-translate-x-1/2',
+              isDisabled && 'opacity-50 before:cursor-default',
+              classNames?.track
+            )}
+          >
+            {({ state }) =>
+              state.values.map((_, i) => (
+                <SliderThumb
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={i}
+                  index={i}
+                  aria-label={thumbLabels?.[i]}
+                  className={cn(
+                    'w-6 h-6 bg-slate-300 forced-color-adjust-none cursor-pointer top-1/2',
+                    'border-2 border-slate-400 rounded-full',
+                    isDisabled && 'cursor-default',
+                    orientation === 'vertical' && 'left-1/2',
+                    classNames?.thumb
+                  )}
+                />
+              ))
+            }
+          </SliderTrack>
+        </>
       )}
-
-      <StyledSliderTrack data-track>
-        {({ state }) =>
-          state.values.map((_, i) => (
-            <StyledSliderThumb
-              // eslint-disable-next-line react/no-array-index-key
-              key={i}
-              index={i}
-              aria-label={thumbLabels?.[i]}
-              data-thumb
-            />
-          ))
-        }
-      </StyledSliderTrack>
-    </StyledSlider>
+    </AriaSlider>
   );
 }
 
@@ -55,6 +119,7 @@ Slider.defaultProps = {
   label: undefined,
   showOutput: true,
   thumbLabels: undefined,
+  classNames: undefined,
 };
 
 export default Slider;

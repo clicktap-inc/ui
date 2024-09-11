@@ -1,20 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ThemeProvider } from 'styled-components';
 import { ToggleButtonProps } from 'react-aria-components';
 import { ToggleButton } from './ToggleButton';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 type Story = StoryObj<typeof ToggleButton>;
 
 function Component({ children, ...props }: ToggleButtonProps) {
-  return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <ToggleButton {...props}>{children}</ToggleButton>
-    </ThemeProvider>
-  );
+  return <ToggleButton {...props}>{children}</ToggleButton>;
 }
 
 const meta: Meta<typeof ToggleButton> = {

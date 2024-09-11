@@ -1,5 +1,6 @@
+import { ProgressBar, Label } from 'react-aria-components';
+import { cn } from '../../utils';
 import { CircularProgressbarProps } from './types';
-import { Root, Block, Label, Bar, Fill, Value } from './styles';
 
 export function CircularProgressbar({
   label,
@@ -7,6 +8,8 @@ export function CircularProgressbar({
   showValue = true,
   size = 60,
   strokeWidth = 6,
+  className,
+  classNames,
   ...props
 }: CircularProgressbarProps) {
   const center = size / 2;
@@ -14,14 +17,28 @@ export function CircularProgressbar({
   const circumference = 2 * Math.PI * radius;
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Root aria-label="Loading..." {...props} value={value}>
+    <ProgressBar
+      aria-label="Loading..."
+      className={cn('flex', className)}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      value={value}
+    >
       {({ percentage = 0 }) => (
-        <Block>
-          <Label>{label}</Label>
+        <div className={cn('flex items-center flex-col', classNames?.base)}>
+          <Label className={cn('text-sm', classNames?.label)}>{label}</Label>
           <svg width={size} height={size} fill="none">
-            <Bar cx={center} cy={center} r={radius} strokeWidth={strokeWidth} />
-            <Fill
+            <circle
+              className={cn('stroke-slate-300')}
+              cx={center}
+              cy={center}
+              r={radius}
+              strokeWidth={strokeWidth}
+            />
+            <circle
+              className={cn(
+                'stroke-slate-800 transition-stroke-dashoffset duration-500 ease-in-out'
+              )}
               cx={center}
               cy={center}
               r={radius}
@@ -32,19 +49,20 @@ export function CircularProgressbar({
               transform={`rotate(-90 ${center} ${center})`}
             />
             {showValue && (
-              <Value
+              <text
+                className={cn('text-sm fill-slate-800', classNames?.value)}
                 x="50%"
                 y="50%"
                 alignmentBaseline="middle"
                 textAnchor="middle"
               >
                 {percentage}%
-              </Value>
+              </text>
             )}
           </svg>
-        </Block>
+        </div>
       )}
-    </Root>
+    </ProgressBar>
   );
 }
 

@@ -1,8 +1,8 @@
 import 'styled-components';
 import type { CSSProp } from 'styled-components';
-import { storybookTheme } from '../storybook.theme';
+import { defaultTheme } from './defaultTheme';
 
-type Theme = typeof storybookTheme;
+type Theme = typeof defaultTheme;
 
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

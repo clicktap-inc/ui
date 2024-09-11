@@ -1,13 +1,16 @@
 import { ReactNode } from 'react';
 import type { NumberFieldProps, ValidationResult } from 'react-aria-components';
 import {
-  StyledLabel,
-  StyledInput,
-  StyledFieldError,
-  StyledText,
-} from '../Input/styles';
-import { StyledGroup, StyledNumberField } from './styles';
-import { StyledButton } from '../Button/styles';
+  Group,
+  NumberField,
+  Button,
+  Input,
+  Text,
+  FieldError,
+  Label,
+} from 'react-aria-components';
+import { cn } from '../utils';
+import type { SlotsToClasses } from '../types';
 
 interface NumberInputProps extends NumberFieldProps {
   label?: string;
@@ -17,6 +20,15 @@ interface NumberInputProps extends NumberFieldProps {
     decrementIcon?: ReactNode;
     incrementIcon?: ReactNode;
   };
+  classNames?: SlotsToClasses<
+    | 'label'
+    | 'input'
+    | 'description'
+    | 'error'
+    | 'incrementBtn'
+    | 'decrementBtn'
+    | 'group'
+  >;
 }
 
 const DecrementIcon = (
@@ -62,32 +74,109 @@ export function NumberInput({
   isInvalid,
   isReadOnly,
   slots,
+  className,
+  classNames,
   ...props
 }: NumberInputProps) {
+  const groupClasses = [
+    'group-hover:border-slate-400',
+    'group-disabled:border-slate-200',
+    'group-invalid:border-red-500 group-invalid:bg-red-100 group-invalid:text-red-600',
+    'group-invalid:group-hover:border-red-600',
+    'group-invalid:group-focus:border-red-600',
+  ];
+  const buttonClasses = [
+    'flex items-center justify-center shrink-0',
+    'rounded-md border-solid border',
+    'font-semibold text-sm',
+    'w-10 h-10 py-0 px-0 cursor-pointer disabled:cursor-default',
+    'transition-all duration-200 ease-in-out',
+    'focus:outline-2 focus:outline focus:outline-slate-200 pressed:scale-95',
+    'bg-transparent hover:bg-transparent focus:bg-transparent disabled:bg-transparent',
+    'border-slate-300 hover:border-slate-400 focus:border-slate-400 disabled:border-slate-200',
+    'text-slate-900 disabled:text-slate-500',
+    'group-aria-readonly:bg-slate-100 group-aria-readonly:text-slate-500 group-aria-readonly:border-slate-200 group-aria-readonly:cursor-default',
+  ];
+
   return (
-    <StyledNumberField
+    <NumberField
       isInvalid={isInvalid}
+      isReadOnly={isReadOnly}
+      className={cn('flex flex-col w-full', className)}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <StyledLabel>{label}</StyledLabel>
+      <Label className={cn('flex text-slate-500 text-sm', classNames?.label)}>
+        {label}
+      </Label>
 
-      <StyledGroup isInvalid={isInvalid} aria-readonly={isReadOnly}>
-        <StyledButton variant="outline" slot="decrement">
+      <Group
+        isInvalid={isInvalid}
+        aria-readonly={isReadOnly}
+        className={cn(
+          'flex rounded-md group',
+          'focus-within:outline-2 focus-within:outline focus-within:outline-slate-200',
+          'focus-within:invalid:outline-2 focus-within:invalid:outline focus-within:invalid:outline-slate-200',
+          'disabled:bg-slate-100',
+          classNames?.group
+        )}
+      >
+        <Button
+          slot="decrement"
+          className={cn(
+            'border-r-0 rounded-r-none',
+            buttonClasses,
+            groupClasses,
+            classNames?.decrementBtn
+          )}
+        >
           {slots?.decrementIcon}
-        </StyledButton>
+        </Button>
 
-        <StyledInput readOnly={isReadOnly} />
+        <Input
+          className={cn(
+            'border-solid border border-slate-300',
+            'text-sm text-slate-900 placeholder-slate-400',
+            'h-10 px-2 py-0 m-0 w-full',
+            'bg-white',
+            'transition-all duration-200 ease-in-out',
+            'hover:border-slate-400',
+            'focus:outline-0 focus:border-slate-400',
+            'disabled:border-slate-200 disabled:bg-slate-100',
+            'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
+            'invalid:hover:border-red-600 invalid:focus:border-red-600',
+            groupClasses,
+            classNames?.input
+          )}
+        />
 
-        <StyledButton variant="outline" slot="increment">
+        <Button
+          slot="increment"
+          className={cn(
+            'border-l-0 rounded-l-none',
+            buttonClasses,
+            groupClasses,
+            classNames?.incrementBtn
+          )}
+        >
           {slots?.incrementIcon}
-        </StyledButton>
-      </StyledGroup>
+        </Button>
+      </Group>
 
-      {description && <StyledText slot="description">{description}</StyledText>}
-
-      <StyledFieldError>{errorMessage}</StyledFieldError>
-    </StyledNumberField>
+      {description && (
+        <Text
+          className={cn('flex text-slate-500 text-sm', classNames?.description)}
+          slot="description"
+        >
+          {description}
+        </Text>
+      )}
+      <FieldError
+        className={cn('flex text-red-500 text-sm', classNames?.error)}
+      >
+        {errorMessage}
+      </FieldError>
+    </NumberField>
   );
 }
 
@@ -95,6 +184,7 @@ NumberInput.defaultProps = {
   label: undefined,
   description: undefined,
   errorMessage: undefined,
+  classNames: undefined,
   slots: {
     decrementIcon: DecrementIcon,
     incrementIcon: IncrementIcon,

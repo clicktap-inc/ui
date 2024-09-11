@@ -1,18 +1,21 @@
-import { forwardRef } from 'react';
+import { forwardRef, HTMLAttributes } from 'react';
 import type { ForwardedRef } from 'react';
-import { StyledContainer } from './styles';
-import { ContainerProps } from './types';
+import { cn } from '../utils';
 
 export const Container = forwardRef(
   (
-    { children, ...props }: ContainerProps,
+    { children, className, ...props }: HTMLAttributes<HTMLDivElement>,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <StyledContainer {...props} ref={ref}>
+      <div
+        ref={ref}
+        className={cn('container', 'mx-auto my-0', 'py-0 px-4', className)}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
         {children}
-      </StyledContainer>
+      </div>
     );
   }
 );

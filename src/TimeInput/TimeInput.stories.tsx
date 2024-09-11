@@ -1,37 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Form } from 'react-aria-components';
 import { action } from '@storybook/addon-actions';
-import { ThemeProvider } from 'styled-components';
 import { TimeInput } from './TimeInput';
 import { TimeInputProps } from './types';
 import { Button } from '../Button/Button';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 type Story = StoryObj<typeof TimeInput>;
 
 function Component({ children, ...props }: TimeInputProps) {
   return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      <Form
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem',
-          width: '20rem',
-        }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          action('onPress');
-        }}
-      >
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <TimeInput {...props}>{children}</TimeInput>
-        <Button size="sm" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </ThemeProvider>
+    <Form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+        width: '20rem',
+      }}
+      onSubmit={(e) => {
+        e.preventDefault();
+        action('onPress');
+      }}
+    >
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <TimeInput {...props}>{children}</TimeInput>
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 }
 

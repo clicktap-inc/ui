@@ -1,20 +1,12 @@
 import { LinkProps } from 'react-aria-components';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ThemeProvider } from 'styled-components';
 import { Link } from './Link';
-import { storybookTheme, GlobalStyle } from '../../storybook.theme';
 
 type Story = StoryObj<typeof Link>;
 
 function Component({ children, ...props }: LinkProps) {
-  return (
-    <ThemeProvider theme={storybookTheme}>
-      <GlobalStyle />
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Link {...props}>{children}</Link>
-    </ThemeProvider>
-  );
+  return <Link {...props}>{children}</Link>;
 }
 
 const meta: Meta<typeof Link> = {

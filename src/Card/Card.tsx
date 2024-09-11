@@ -1,8 +1,19 @@
-import { PropsWithChildren } from 'react';
-import { StyledCard } from './styles';
+import { PropsWithChildren, HTMLAttributes } from 'react';
+import { cn } from '../utils';
 
-export function Card({ children, ...props }: PropsWithChildren) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <StyledCard {...props}>{children}</StyledCard>;
+type CardProps = HTMLAttributes<HTMLDivElement>;
+
+export function Card({
+  children,
+  className,
+  ...props
+}: PropsWithChildren<CardProps>) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div className={cn('flex flex-col', className)} {...props}>
+      {children}
+    </div>
+  );
 }
+
 export default Card;

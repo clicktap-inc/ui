@@ -1,0 +1,18 @@
+@keyframes overlayAnimation {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  }
+}
+
+.animateOverlay[data-entering] {
+  animation: overlayAnimation 300ms;
+}
+
+.animateOverlay[data-exiting] {
+  animation: overlayAnimation 300ms reverse;
+}

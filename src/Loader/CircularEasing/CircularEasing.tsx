@@ -1,4 +1,6 @@
-import { Loader, StyledCircle, StyledSvg } from './styles';
+import { CSSProperties } from 'react';
+import { motion } from 'framer-motion';
+import { cn } from '../../utils';
 import { CircularEasingProps } from './types';
 
 export function CircularEasing({
@@ -6,25 +8,56 @@ export function CircularEasing({
   stroke,
   strokeLinecap = 'round',
   strokeWidth = 5,
+  className,
+  style,
   ...props
 }: CircularEasingProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Loader width={width} {...props}>
-      <StyledSvg viewBox="25 25 50 50">
-        <StyledCircle
+    <div
+      style={{ '--circularWidth': `${width}px`, ...style } as CSSProperties}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      className={cn(
+        'relative',
+        'm-0',
+        'w-[--circularWidth]',
+        'aspect-square',
+        className
+      )}
+    >
+      <motion.svg
+        animate={{
+          transform: 'rotate(360deg)',
+          transition: { repeat: Infinity, duration: 2, ease: 'linear' },
+        }}
+        viewBox="25 25 50 50"
+        className={cn(
+          'w-full h-full',
+          'absolute inset-x-0 inset-y-0',
+          'origin-center',
+          'm-auto'
+        )}
+      >
+        <motion.circle
+          animate={{
+            strokeDasharray: ['1, 200', '89, 200', '89, 200'],
+            strokeDashoffset: [0, -35, -124],
+            transition: { repeat: Infinity, duration: 1.5, ease: 'easeInOut' },
+          }}
           className="path"
           cx="50"
           cy="50"
           fill="none"
           r="20"
+          strokeDasharray="1, 200"
+          strokeDashoffset="0"
           stroke={stroke}
           strokeLinecap={strokeLinecap}
           strokeMiterlimit="10"
           strokeWidth={strokeWidth}
         />
-      </StyledSvg>
-    </Loader>
+      </motion.svg>
+    </div>
   );
 }
 

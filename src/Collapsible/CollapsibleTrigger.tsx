@@ -2,14 +2,15 @@ import { Provider } from 'react-aria-components';
 import { useControlledState } from '@react-stately/utils';
 import { createContext, useCallback, useId, useRef } from 'react';
 import { PressResponder } from '@react-aria/interactions';
-import { CollapsibleRoot } from './styles';
 import { CollapsibleTriggerProps, CollapsibleTriggerState } from './types';
+import { cn } from '../utils';
 
 export const CollapsibleTriggerStateContext =
   createContext<CollapsibleTriggerState>({} as CollapsibleTriggerState);
 
 export function CollapsibleTrigger({
   children,
+  className,
   ...props
 }: CollapsibleTriggerProps) {
   const id = useId();
@@ -41,7 +42,7 @@ export function CollapsibleTrigger({
         aria-expanded={isOpen}
         aria-controls={id}
       >
-        <CollapsibleRoot>{children}</CollapsibleRoot>
+        <div className={cn('w-full', className)}>{children}</div>
       </PressResponder>
     </Provider>
   );
