@@ -1,6 +1,5 @@
 import type { MergeDeep, PartialDeep } from 'type-fest';
 
-// default theme
 export const defaultTheme = {
   fontFamily: {
     sans: [
