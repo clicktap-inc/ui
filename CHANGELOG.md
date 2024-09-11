@@ -1,3 +1,10 @@
+[0.10.2](https://github.com/clicktap-inc/ui/compare/0.10.1...0.10.2) (2024-09-11)
+
+### Bug Fixes
+* Version bump ([6d50636](https://github.com/clicktap-inc/ui/commit/6d506364d3b99fe12bbe9ca7328ee7b666273904))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.10.1](https://github.com/clicktap-inc/ui/compare/0.10.0...0.10.1) (2024-09-11)
 
 ### Bug Fixes
