@@ -1,3 +1,10 @@
+[0.12.1](https://github.com/clicktap-inc/ui/compare/0.12.0...0.12.1) (2024-09-11)
+
+### Bug Fixes
+* Removed navigation menu ([40a3bfc](https://github.com/clicktap-inc/ui/commit/40a3bfcb37074e85d6936e30ba2316c395eba31b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.0](https://github.com/clicktap-inc/ui/compare/0.11.0...0.12.0) (2024-09-11)
 
 ### Features
