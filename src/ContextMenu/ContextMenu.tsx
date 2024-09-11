@@ -3,23 +3,47 @@ import {
   PopoverProps as AriaPopoverProps,
   Popover,
 } from 'react-aria-components';
-import { Dispatch, Key, SetStateAction, ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import {
+  Dispatch,
+  Key,
+  SetStateAction,
+  ReactNode,
+  forwardRef,
+  Ref,
+  CSSProperties,
+} from 'react';
+import { motion, MotionStyle } from 'framer-motion';
 import { cn } from '../utils';
 import type { SlotsToClasses } from '../types';
 
 export type ContextMenuAnimationState = 'unmounted' | 'hidden' | 'visible';
 
-interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
+interface PopoverProps extends Omit<AriaPopoverProps, 'children' | 'style'> {
   animation: ContextMenuAnimationState;
   children: ReactNode;
   onAction?: (key: Key) => void;
   setAnimation: Dispatch<SetStateAction<ContextMenuAnimationState>>;
   key?: Key | null;
   classNames?: SlotsToClasses<'menu'>;
+  style?: MotionStyle;
 }
 
-const StyledPopover = motion(Popover);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ForwardedPopover = forwardRef<HTMLElement, any>(
+  ({ style, ...props }, ref: Ref<HTMLElement>) => {
+    // Separate the dynamic style logic
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    const ariaStyle = typeof style === 'function' ? style(props) : style;
+
+    return (
+      // Pass only static styles to framer-motion
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+      <Popover {...props} ref={ref} style={ariaStyle} />
+    );
+  }
+);
+
+const MotionPopover = motion.create(ForwardedPopover);
 
 export function ContextMenu({
   children,
@@ -32,7 +56,7 @@ export function ContextMenu({
   ...props
 }: PopoverProps) {
   return (
-    <StyledPopover
+    <MotionPopover
       className={cn(
         'px-0 py-1.5',
         'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
@@ -64,7 +88,7 @@ export function ContextMenu({
       >
         {children}
       </Menu>
-    </StyledPopover>
+    </MotionPopover>
   );
 }
 
@@ -72,6 +96,7 @@ ContextMenu.defaultProps = {
   key: undefined,
   onAction: undefined,
   classNames: undefined,
+  style: undefined,
 };
 
 export default ContextMenu;

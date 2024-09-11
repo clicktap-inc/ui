@@ -1,3 +1,10 @@
+[0.12.2](https://github.com/clicktap-inc/ui/compare/0.12.1...0.12.2) (2024-09-11)
+
+### Bug Fixes
+* Updated bad motion usage ([5ed3dda](https://github.com/clicktap-inc/ui/commit/5ed3ddab984a5b800aba50c0b94b41105c4fb4a4))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.1](https://github.com/clicktap-inc/ui/compare/0.12.0...0.12.1) (2024-09-11)
 
 ### Bug Fixes

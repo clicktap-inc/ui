@@ -11,13 +11,22 @@ import {
   type ComboBoxProps as AriaComboBoxProps,
   type ValidationResult,
 } from 'react-aria-components';
-import { Key, ReactNode, useState } from 'react';
+import { forwardRef, Key, ReactNode, Ref, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { SlotsToClasses } from '../types';
 import { cn } from '../utils';
 import { Pulse } from '../Loader';
 
-const MotionPopover = motion(Popover);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ForwardedPopover = forwardRef<HTMLElement, any>(
+  (props, ref: Ref<HTMLElement>) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Popover {...props} ref={ref} />
+  )
+);
+
+// Now use motion with ForwardedPopover
+const MotionPopover = motion.create(ForwardedPopover);
 
 export type ComboBoxPopoverAnimationState = 'unmounted' | 'hidden' | 'visible';
 
