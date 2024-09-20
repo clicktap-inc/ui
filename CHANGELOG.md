@@ -1,3 +1,13 @@
+[0.12.3](https://github.com/clicktap-inc/ui/compare/0.12.2...0.12.3) (2024-09-20)
+
+### Bug Fixes
+* Add isOpen variant ([1878b5b](https://github.com/clicktap-inc/ui/commit/1878b5be01bc75f09326aa558030728b7b681172))
+* Add prop size for the Drawer ([2714da2](https://github.com/clicktap-inc/ui/commit/2714da29b4bb024e9de1e5f4adc506f750375c5b))
+* Update components with animation ([0cdb68c](https://github.com/clicktap-inc/ui/commit/0cdb68c4a3c1e1a9580e4566613d833bb1a34f16))
+* Update Dialog. Framer-motion ([c2668d7](https://github.com/clicktap-inc/ui/commit/c2668d7f2e3b4d2908f7e40b920a088ca590f81f))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.2](https://github.com/clicktap-inc/ui/compare/0.12.1...0.12.2) (2024-09-11)
 
 ### Bug Fixes

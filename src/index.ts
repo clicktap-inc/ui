@@ -44,6 +44,9 @@ export * from './CreditCardInput/CreditCardInput';
 // DateInput
 export * from './DateInput/DateInput';
 
+// DialogTrigger
+export * from './DialogTrigger/DialogTrigger';
+
 // Divider
 export * from './Divider/Divider';
 export * from './Divider/types';
