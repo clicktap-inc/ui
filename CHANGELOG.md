@@ -1,3 +1,10 @@
+[0.12.4](https://github.com/clicktap-inc/ui/compare/0.12.3...0.12.4) (2024-10-26)
+
+### Bug Fixes
+* update ui lib for rsc ([d5dfa2a](https://github.com/clicktap-inc/ui/commit/d5dfa2a92c411d5ee191934bb658562558891dcf))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.3](https://github.com/clicktap-inc/ui/compare/0.12.2...0.12.3) (2024-09-20)
 
 ### Bug Fixes
