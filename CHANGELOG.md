@@ -1,3 +1,10 @@
+[0.12.10](https://github.com/clicktap-inc/ui/compare/0.12.9...0.12.10) (2024-10-27)
+
+### Bug Fixes
+* Updated deps ([7aeef6d](https://github.com/clicktap-inc/ui/commit/7aeef6dccaaef1765fc243832b75c678b8c52ef7))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.9](https://github.com/clicktap-inc/ui/compare/0.12.8...0.12.9) (2024-10-27)
 
 ### Bug Fixes
