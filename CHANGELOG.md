@@ -1,3 +1,11 @@
+[0.12.8](https://github.com/clicktap-inc/ui/compare/0.12.7...0.12.8) (2024-10-27)
+
+### Bug Fixes
+* Removed files field from package json ([ddaed47](https://github.com/clicktap-inc/ui/commit/ddaed472ddf473bf78861c86cb2f36571ba6db40))
+* Updated vite config ([7427ce7](https://github.com/clicktap-inc/ui/commit/7427ce7f3e0440b0549faacef21a1d5fa1faa75c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.7](https://github.com/clicktap-inc/ui/compare/0.12.6...0.12.7) (2024-10-27)
 
 ### Bug Fixes
