@@ -1,3 +1,10 @@
+[0.12.7](https://github.com/clicktap-inc/ui/compare/0.12.6...0.12.7) (2024-10-27)
+
+### Bug Fixes
+* Moved build dir ([044ab6e](https://github.com/clicktap-inc/ui/commit/044ab6e936f44f7ecd03993746d922a15129e6ce))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.6](https://github.com/clicktap-inc/ui/compare/0.12.5...0.12.6) (2024-10-27)
 
 ### Bug Fixes
