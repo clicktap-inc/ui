@@ -1,3 +1,10 @@
+[0.12.9](https://github.com/clicktap-inc/ui/compare/0.12.8...0.12.9) (2024-10-27)
+
+### Bug Fixes
+* Updated package and build ([f59edd7](https://github.com/clicktap-inc/ui/commit/f59edd72e2b10cfa4d108267ba0c582e21b50a53))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.8](https://github.com/clicktap-inc/ui/compare/0.12.7...0.12.8) (2024-10-27)
 
 ### Bug Fixes
