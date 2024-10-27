@@ -1,3 +1,10 @@
+[0.12.5](https://github.com/clicktap-inc/ui/compare/0.12.4...0.12.5) (2024-10-27)
+
+### Bug Fixes
+* Fixed ui lib package json export ([e09e727](https://github.com/clicktap-inc/ui/commit/e09e727825730ffc0fd0e8563729c64f4faa7eef))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.4](https://github.com/clicktap-inc/ui/compare/0.12.3...0.12.4) (2024-10-26)
 
 ### Bug Fixes
