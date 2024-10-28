@@ -1,3 +1,11 @@
+[0.12.11](https://github.com/clicktap-inc/ui/compare/0.12.10...0.12.11) (2024-10-28)
+
+### Bug Fixes
+* Removed preserve modules ([1448daf](https://github.com/clicktap-inc/ui/commit/1448dafd22631c9c74766caa833089bfa63ef60e))
+* Updated deps, added preserveSymlinks ([1746258](https://github.com/clicktap-inc/ui/commit/1746258c8dd2eb4c2312dcbcb01d091186e4b3e9))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.10](https://github.com/clicktap-inc/ui/compare/0.12.9...0.12.10) (2024-10-27)
 
 ### Bug Fixes
