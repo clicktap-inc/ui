@@ -1,3 +1,10 @@
+[0.12.12](https://github.com/clicktap-inc/ui/compare/0.12.11...0.12.12) (2024-10-28)
+
+### Bug Fixes
+* Moved nextui to peer deps ([536bfe5](https://github.com/clicktap-inc/ui/commit/536bfe5e65b8760a4f77d0069e5a5a5e4f28f197))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.11](https://github.com/clicktap-inc/ui/compare/0.12.10...0.12.11) (2024-10-28)
 
 ### Bug Fixes
