@@ -1,3 +1,10 @@
+[0.12.17](https://github.com/clicktap-inc/ui/compare/0.12.16...0.12.17) (2024-11-05)
+
+### Bug Fixes
+* fixed key spread issue ([cfde701](https://github.com/clicktap-inc/ui/commit/cfde70114c23b22f9195cae4160317e21abed7b0))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.16](https://github.com/clicktap-inc/ui/compare/0.12.15...0.12.16) (2024-11-05)
 
 ### Bug Fixes

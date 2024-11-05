@@ -12,7 +12,7 @@ import type { ModalOverlayProps } from './ModalOverlay.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
-  ({ key, style, ...props }, ref: Ref<HTMLElement>) => {
+  ({ style, ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     const ariaStyle = typeof style === 'function' ? style(props) : style;
@@ -20,7 +20,7 @@ const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
     return (
       // Pass only static styles to framer-motion
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
-      <UIModalOverlay key={key} {...props} ref={ref} style={ariaStyle} />
+      <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
     );
   }
 );
@@ -42,11 +42,12 @@ function InnerModalOverlay({
 }) {
   const id = useId();
 
+  // extract key from props to avoid spreading it
+  const { key, ...restProps } = props;
+
   return (
     <MotionModalOverlay
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-      key={id}
+      key={key || id}
       isExiting={animation === 'hidden'}
       onAnimationComplete={(currentAnimation: DriverAnimationState) => {
         setAnimation((a) =>
@@ -78,6 +79,8 @@ function InnerModalOverlay({
         'w-screen h-[var(--visual-viewport-height)]',
         className
       )}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...restProps}
     >
       {children as ReactNode}
     </MotionModalOverlay>
