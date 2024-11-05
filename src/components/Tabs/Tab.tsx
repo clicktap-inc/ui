@@ -115,8 +115,4 @@ export function Tab({
   );
 }
 
-Tab.defaultProps = {
-  classNames: undefined,
-};
-
 export default Tab;

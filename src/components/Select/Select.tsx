@@ -231,20 +231,4 @@ export function Select<T extends object>({
   );
 }
 
-Select.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  placeholder: '',
-  key: undefined,
-  isLoading: false,
-  slots: {
-    loadingIcon: undefined,
-    buttonIcon: undefined,
-  },
-  popoverOffset: undefined,
-  popoverPortalContainer: undefined,
-  classNames: undefined,
-};
-
 export default Select;

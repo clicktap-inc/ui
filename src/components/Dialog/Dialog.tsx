@@ -62,10 +62,4 @@ export function Dialog({
   );
 }
 
-Dialog.defaultProps = {
-  key: undefined,
-  style: undefined,
-  animationVariants: undefined,
-};
-
 export default Dialog;

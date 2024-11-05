@@ -94,12 +94,4 @@ export function CreditCardExpirationInput({
   );
 }
 
-CreditCardExpirationInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  placeholder: undefined,
-  classNames: undefined,
-};
-
 export default CreditCardExpirationInput;

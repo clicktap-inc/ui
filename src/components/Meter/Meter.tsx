@@ -75,10 +75,4 @@ export function Meter({
   );
 }
 
-Meter.defaultProps = {
-  showValue: undefined,
-  label: undefined,
-  classNames: undefined,
-};
-
 export default Meter;

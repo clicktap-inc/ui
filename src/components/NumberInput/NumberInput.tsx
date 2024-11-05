@@ -161,15 +161,4 @@ export function NumberInput({
   );
 }
 
-NumberInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  classNames: undefined,
-  slots: {
-    decrementIcon: DecrementIcon,
-    incrementIcon: IncrementIcon,
-  },
-};
-
 export default NumberInput;

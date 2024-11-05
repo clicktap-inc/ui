@@ -107,11 +107,4 @@ export function Slider({
   );
 }
 
-Slider.defaultProps = {
-  label: undefined,
-  showOutput: true,
-  thumbLabels: undefined,
-  classNames: undefined,
-};
-
 export default Slider;

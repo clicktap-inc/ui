@@ -42,8 +42,4 @@ export function Pulse({ classNames }: PulseProps) {
   );
 }
 
-Pulse.defaultProps = {
-  classNames: undefined,
-};
-
 export default Pulse;

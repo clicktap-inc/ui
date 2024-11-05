@@ -311,19 +311,4 @@ export function PinInput({
   );
 }
 
-PinInput.defaultProps = {
-  description: undefined,
-  errorMessage: undefined,
-  isMasked: false,
-  isRequired: true,
-  label: undefined,
-  classNames: undefined,
-  length: 6,
-  name: '',
-  onChange: () => {},
-  value: '',
-  type: 'numeric',
-  validationBehavior: 'native',
-};
-
 export default PinInput;

@@ -119,11 +119,4 @@ export function Checkbox({
   );
 }
 
-Checkbox.defaultProps = {
-  slots: {
-    control: undefined,
-  },
-  classNames: undefined,
-};
-
 export default Checkbox;

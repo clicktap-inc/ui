@@ -144,14 +144,4 @@ export function CreditCardInput({
   );
 }
 
-CreditCardInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  placeholder: undefined,
-  classNames: undefined,
-  value: undefined,
-  onChange: () => {},
-};
-
 export default CreditCardInput;

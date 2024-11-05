@@ -78,11 +78,4 @@ export function TimeInput({
   );
 }
 
-TimeInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  classNames: undefined,
-};
-
 export default TimeInput;

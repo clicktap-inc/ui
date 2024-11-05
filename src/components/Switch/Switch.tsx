@@ -60,8 +60,4 @@ export function Switch({
   );
 }
 
-Switch.defaultProps = {
-  classNames: undefined,
-};
-
 export default Switch;

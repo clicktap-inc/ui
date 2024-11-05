@@ -85,10 +85,4 @@ export function Radio({
   );
 }
 
-Radio.defaultProps = {
-  children: undefined,
-  slots: undefined,
-  classNames: undefined,
-};
-
 export default Radio;

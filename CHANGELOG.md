@@ -1,3 +1,10 @@
+[0.12.16](https://github.com/clicktap-inc/ui/compare/0.12.15...0.12.16) (2024-11-05)
+
+### Bug Fixes
+* removed default props and split key modaloverlay ([716a26c](https://github.com/clicktap-inc/ui/commit/716a26cb538e6e90c37bb029bcdf2392ea14fbb7))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.15](https://github.com/clicktap-inc/ui/compare/0.12.14...0.12.15) (2024-10-28)
 
 ### Bug Fixes

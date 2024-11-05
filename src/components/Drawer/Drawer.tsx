@@ -123,12 +123,4 @@ export function Drawer({
   );
 }
 
-Drawer.defaultProps = {
-  direction: 'right',
-  key: undefined,
-  style: undefined,
-  animationVariants: undefined,
-  size: '20rem',
-};
-
 export default Drawer;

@@ -78,11 +78,4 @@ export function DateInput({
   );
 }
 
-DateInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  classNames: undefined,
-};
-
 export default DateInput;

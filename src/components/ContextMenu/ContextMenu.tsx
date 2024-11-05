@@ -71,11 +71,4 @@ export function ContextMenu({
   );
 }
 
-ContextMenu.defaultProps = {
-  key: undefined,
-  onAction: undefined,
-  classNames: undefined,
-  style: undefined,
-};
-
 export default ContextMenu;

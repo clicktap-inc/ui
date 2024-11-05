@@ -62,12 +62,4 @@ export function Input({
   );
 }
 
-Input.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  placeholder: undefined,
-  classNames: undefined,
-};
-
 export default Input;

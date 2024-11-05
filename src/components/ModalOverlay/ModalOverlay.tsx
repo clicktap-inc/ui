@@ -12,7 +12,7 @@ import type { ModalOverlayProps } from './ModalOverlay.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
-  ({ style, ...props }, ref: Ref<HTMLElement>) => {
+  ({ key, style, ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     const ariaStyle = typeof style === 'function' ? style(props) : style;
@@ -20,7 +20,7 @@ const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
     return (
       // Pass only static styles to framer-motion
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
-      <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
+      <UIModalOverlay key={key} {...props} ref={ref} style={ariaStyle} />
     );
   }
 );
@@ -114,11 +114,5 @@ export function ModalOverlay(props: ModalOverlayProps) {
     />
   );
 }
-
-ModalOverlay.defaultProps = {
-  key: undefined,
-  style: undefined,
-  animationVariants: undefined,
-};
 
 export default ModalOverlay;
