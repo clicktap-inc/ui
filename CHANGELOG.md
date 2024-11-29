@@ -1,3 +1,11 @@
+[0.12.18](https://github.com/clicktap-inc/ui/compare/0.12.17...0.12.18) (2024-11-29)
+
+### Bug Fixes
+* [Checkout] Expiration date validation issue ([6474314](https://github.com/clicktap-inc/ui/commit/647431448786b694d122cdd83756bf42fd08b7da))
+* [Checkout] Expiration date validation issue ([b7758d6](https://github.com/clicktap-inc/ui/commit/b7758d6cfd877ba2a9fe9e9ade693b6bb34c07a5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.17](https://github.com/clicktap-inc/ui/compare/0.12.16...0.12.17) (2024-11-05)
 
 ### Bug Fixes

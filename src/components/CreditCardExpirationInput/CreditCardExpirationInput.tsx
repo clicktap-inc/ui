@@ -1,4 +1,4 @@
-import { NumberFormatBase } from 'react-number-format';
+import { NumberFormatBase, NumberFormatValues } from 'react-number-format';
 import type { InputAttributes } from 'react-number-format';
 import {
   FieldError,
@@ -7,6 +7,7 @@ import {
   Text,
   TextField,
 } from 'react-aria-components';
+import { useEffect, useState } from 'react';
 import { cn } from '../../utils/cn';
 import type { CreditCardExpirationInputProps } from './CreditCardExpirationInput.types';
 
@@ -40,8 +41,15 @@ export function CreditCardExpirationInput({
   value,
   className,
   classNames,
+  onChange,
   ...props
 }: CreditCardExpirationInputProps) {
+  const [inputValue, setInputValue] = useState(value || '');
+
+  useEffect(() => {
+    setInputValue(value || '');
+  }, [value]);
+
   const format = (val: string) => {
     if (val === '') return '';
     let month = val.substring(0, 2);
@@ -61,6 +69,13 @@ export function CreditCardExpirationInput({
     return `${month}/${year}`;
   };
 
+  const handleValueChange = (values: NumberFormatValues) => {
+    setInputValue(values.formattedValue);
+    if (onChange) {
+      onChange(values.formattedValue);
+    }
+  };
+
   return (
     <TextField
       className={cn('flex flex-col w-full text-slate-900', className)}
@@ -75,7 +90,8 @@ export function CreditCardExpirationInput({
         customInput={AriaInput}
         className={cn(classNames?.input)}
         placeholder={placeholder}
-        value={value}
+        value={inputValue}
+        onValueChange={handleValueChange}
       />
       {description && (
         <Text
