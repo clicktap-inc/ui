@@ -1,3 +1,10 @@
+[0.12.19](https://github.com/clicktap-inc/ui/compare/0.12.18...0.12.19) (2024-12-04)
+
+### Bug Fixes
+* selectedKey in Select component ([812c2e5](https://github.com/clicktap-inc/ui/commit/812c2e562f1097bc5d0fcbf3e37b2e3e1606dc3a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.18](https://github.com/clicktap-inc/ui/compare/0.12.17...0.12.18) (2024-11-29)
 
 ### Bug Fixes

@@ -96,6 +96,7 @@ export function Select<T extends object>({
       }}
       isDisabled={props.isDisabled || isLoading}
       data-has-value={!!selectedKey}
+      selectedKey={selectedKey}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={cn('flex flex-col', 'w-full', className)}
