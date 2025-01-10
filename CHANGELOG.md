@@ -1,3 +1,12 @@
+[0.13.0](https://github.com/clicktap-inc/ui/compare/0.12.19...0.13.0) (2025-01-10)
+
+### Features
+* added listBox slot to Select component ([65c76c5](https://github.com/clicktap-inc/ui/commit/65c76c5a487e522a11871f63b393cdd044170df4))
+### Bug Fixes
+* fixed listBoxSlot ([a6bece4](https://github.com/clicktap-inc/ui/commit/a6bece4a9786da81cf668922a69ee4b0982af191))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.12.19](https://github.com/clicktap-inc/ui/compare/0.12.18...0.12.19) (2024-12-04)
 
 ### Bug Fixes

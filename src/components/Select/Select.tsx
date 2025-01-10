@@ -10,9 +10,9 @@ import {
   FieldError,
   Popover,
 } from 'react-aria-components';
-import type { ComboBoxRenderProps } from 'react-aria-components';
+import type { ComboBoxRenderProps, ListBoxProps } from 'react-aria-components';
 import { forwardRef, useState } from 'react';
-import type { Ref } from 'react';
+import type { PropsWithChildren, Ref } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
@@ -33,10 +33,10 @@ const ForwardedPopover = forwardRef<HTMLElement, any>(
 // Now use motion with ForwardedPopover
 const MotionPopover = motion.create(ForwardedPopover);
 
-function ButtonIconSlot({
+function ButtonIconSlot<T extends object>({
   buttonIcon,
   ...props
-}: ComboBoxRenderProps & Pick<SelectSlots, 'buttonIcon'>) {
+}: ComboBoxRenderProps & Pick<SelectSlots<T>, 'buttonIcon'>) {
   if (!buttonIcon) {
     return (
       <svg
@@ -66,6 +66,23 @@ function ButtonIconSlot({
   }
 
   return typeof buttonIcon === 'function' ? buttonIcon(props) : buttonIcon;
+}
+
+function ListBoxSlot<T extends object>({
+  listBoxComponent,
+  children,
+  ...props
+}: ListBoxProps<T> & Pick<SelectSlots<T>, 'listBoxComponent'>) {
+  const Component = listBoxComponent || ListBox;
+
+  return (
+    <Component
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </Component>
+  );
 }
 
 export function Select<T extends object>({
@@ -220,11 +237,12 @@ export function Select<T extends object>({
               classNames?.listContainer
             )}
           >
-            <ListBox
+            <ListBoxSlot
+              listBoxComponent={slots?.listBoxComponent}
               className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
             >
               {children}
-            </ListBox>
+            </ListBoxSlot>
           </MotionPopover>
         </>
       )}

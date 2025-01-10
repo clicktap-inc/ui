@@ -2,15 +2,17 @@ import type {
   ComboBoxRenderProps,
   ComboBoxProps as AriaComboBoxProps,
   ValidationResult,
+  ListBoxProps,
 } from 'react-aria-components';
-import type { Key, ReactNode } from 'react';
+import type { ComponentType, Key, ReactNode } from 'react';
 import type { SlotsToClasses } from '../../types/SlotsToClasses';
 
 export type ComboBoxPopoverAnimationState = 'unmounted' | 'hidden' | 'visible';
 
-export type SelectSlots = {
+export type SelectSlots<T extends object> = {
   buttonIcon?: ReactNode | ((values: ComboBoxRenderProps) => ReactNode);
   loadingIcon?: ReactNode;
+  listBoxComponent?: ComponentType<ListBoxProps<T>>;
 };
 
 export interface SelectProps<T extends object>
@@ -22,7 +24,7 @@ export interface SelectProps<T extends object>
   key?: Key | null;
   isLoading?: boolean;
   children: ReactNode | ((item: T) => ReactNode);
-  slots?: SelectSlots;
+  slots?: SelectSlots<T>;
   popoverOffset?: number;
   popoverPortalContainer?: Element;
   classNames?: SlotsToClasses<
