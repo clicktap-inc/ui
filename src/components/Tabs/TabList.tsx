@@ -2,10 +2,10 @@
 
 import { useContext } from 'react';
 import { TabList as AriaTabList } from 'react-aria-components';
-import { TabsOrientationContext } from './Tabs';
 import { cn } from '../../utils/cn';
 import { BaseTab } from './Tab';
 import type { TabListProps } from './TabList.types';
+import { TabsOrientationContext } from './Tabs.context';
 
 export function TabList({
   items,

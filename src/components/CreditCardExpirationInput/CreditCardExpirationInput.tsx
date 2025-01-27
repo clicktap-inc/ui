@@ -1,3 +1,5 @@
+'use client';
+
 import { NumberFormatBase, NumberFormatValues } from 'react-number-format';
 import type { InputAttributes } from 'react-number-format';
 import {

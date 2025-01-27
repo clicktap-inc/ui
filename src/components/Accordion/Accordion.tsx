@@ -3,6 +3,7 @@
 import { Accordion as NextUiAccordion } from '@nextui-org/accordion';
 import type { AccordionProps } from '@nextui-org/accordion';
 import { cn } from '../../utils/cn';
+import { DownArrow } from '../Icon/DownArrow';
 
 export function Accordion({
   children,
@@ -75,3 +76,7 @@ export function Accordion({
 }
 
 export default Accordion;
+
+export function AccordionItemArrow() {
+  return <DownArrow className="w-4 h-4" />;
+}

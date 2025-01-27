@@ -27,35 +27,18 @@ export function Meter({
       {...props}
     >
       {({ percentage, valueText }) => (
-        <>
-          {(label || showValue) && (
-            <div
-              className={cn(
-                'flex justify-between gap-4',
-                classNames?.labelWrapper
-              )}
-            >
-              {label && (
-                <Label className={cn('text-sm', classNames?.label)}>
-                  {label}
-                </Label>
-              )}
-              {showValue && (
-                <span
-                  className={cn(
-                    'text-sm tabular-nums ml-auto',
-                    classNames?.value
-                  )}
-                >
-                  {valueText}
-                </span>
-              )}
-            </div>
+        <div
+          className={cn(
+            'flex justify-between items-center gap-4',
+            classNames?.labelWrapper
           )}
-
+        >
+          {label && (
+            <Label className={cn('text-sm', classNames?.label)}>{label}</Label>
+          )}
           <div
             className={cn(
-              'h-2.5 rounded-md bg-slate-300 forced-color-adjust-none overflow-hidden',
+              'flex-auto h-2.5 rounded-md bg-slate-300 forced-color-adjust-none overflow-hidden',
               classNames?.trackWrapepr
             )}
           >
@@ -69,7 +52,14 @@ export function Meter({
               }}
             />
           </div>
-        </>
+          {showValue && (
+            <span
+              className={cn('text-sm tabular-nums ml-auto', classNames?.value)}
+            >
+              {valueText}
+            </span>
+          )}
+        </div>
       )}
     </AriaMeter>
   );

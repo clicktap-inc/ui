@@ -3,11 +3,11 @@
 import { useContext } from 'react';
 import { Tab as AriaTab } from 'react-aria-components';
 import { motion } from 'framer-motion';
-import { TabsOrientationContext } from './Tabs';
 import { cn } from '../../utils/cn';
 import type { SlotsToClasses } from '../../types/SlotsToClasses';
 import type { TabProps, TabRenderProps } from './Tab.types';
 import type { TabsProps } from './Tabs.types';
+import { TabsOrientationContext } from './Tabs.context';
 
 export function BaseTab({
   orientation,

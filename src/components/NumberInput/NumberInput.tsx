@@ -105,18 +105,18 @@ export function NumberInput({
         <Button
           slot="decrement"
           className={cn(
-            'border-r-0 rounded-r-none',
             buttonClasses,
             groupClasses,
+            'border-r-0 rounded-r-none',
             classNames?.decrementBtn
           )}
         >
-          {slots?.decrementIcon}
+          {slots?.decrementIcon || DecrementIcon}
         </Button>
 
         <Input
           className={cn(
-            'border-solid border border-slate-300',
+            'border-solid border border-slate-300 text-center',
             'text-sm text-slate-900 placeholder-slate-400',
             'h-10 px-2 py-0 m-0 w-full',
             'bg-white',
@@ -134,13 +134,13 @@ export function NumberInput({
         <Button
           slot="increment"
           className={cn(
-            'border-l-0 rounded-l-none',
             buttonClasses,
             groupClasses,
+            'border-l-0 rounded-l-none',
             classNames?.incrementBtn
           )}
         >
-          {slots?.incrementIcon}
+          {slots?.incrementIcon || IncrementIcon}
         </Button>
       </Group>
 

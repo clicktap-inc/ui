@@ -1,17 +1,18 @@
 'use client';
 
+import { forwardRef } from 'react';
 import { Link as UiLink } from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import type { LinkProps } from './Link.types';
 
-export function Link({ children, isDisabled, className, ...props }: LinkProps) {
-  return (
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  ({ children, isDisabled, className, ...props }, ref) => (
     <UiLink
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       isDisabled={isDisabled}
       className={cn(
-        'cursor-pointer',
+        'flex items-center cursor-pointer',
         'text-slate-500',
         'no-underline',
         'transition-colors duration-300',
@@ -23,10 +24,11 @@ export function Link({ children, isDisabled, className, ...props }: LinkProps) {
         ],
         className
       )}
+      ref={ref}
     >
       {children}
     </UiLink>
-  );
-}
+  )
+);
 
 export default Link;

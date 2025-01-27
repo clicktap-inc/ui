@@ -2,13 +2,13 @@
 
 import { Tabs as AriaTabs } from 'react-aria-components';
 import { LayoutGroup } from 'framer-motion';
-import { createContext, useId } from 'react';
+import { useId } from 'react';
 import { cn } from '../../utils/cn';
 import type { TabsProps } from './Tabs.types';
-
-/** @todo consider making available through use hook instead */
-export const TabsOrientationContext =
-  createContext<TabsProps['orientation']>('horizontal');
+import { TabList } from './TabList';
+import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
+import { TabsOrientationContext } from './Tabs.context';
 
 export function Tabs({ children, className, ...props }: TabsProps) {
   const id = useId();
@@ -31,5 +31,9 @@ export function Tabs({ children, className, ...props }: TabsProps) {
     </TabsOrientationContext.Provider>
   );
 }
+
+Tabs.List = TabList;
+Tabs.Tab = Tab;
+Tabs.Panel = TabPanel;
 
 export default Tabs;
