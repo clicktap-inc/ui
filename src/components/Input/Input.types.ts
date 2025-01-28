@@ -10,6 +10,8 @@ export interface InputProps extends TextFieldProps {
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
   placeholder?: string;
-  classNames?: SlotsToClasses<'label' | 'input' | 'description' | 'error'>;
+  classNames?: SlotsToClasses<
+    'label' | 'input' | 'description' | 'error' | 'skeleton'
+  >;
   inputProps?: AriaInputProps;
 }

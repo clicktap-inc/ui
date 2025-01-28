@@ -10,6 +10,20 @@ import {
 import { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 import type { InputProps } from './Input.types';
+import { Skeleton } from '../Skeleton/Skeleton';
+import { useIsClient } from '../../hooks/useIsClient';
+
+function InputSkeleton({
+  className,
+}: {
+  className: NonNullable<InputProps['classNames']>['skeleton'];
+}) {
+  return (
+    <Skeleton
+      className={cn('w-full h-14 rounded-md z-20 relative', className)}
+    />
+  );
+}
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -25,6 +39,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    const isClient = useIsClient();
+
+    if (!isClient) {
+      return <InputSkeleton className={classNames?.skeleton} />;
+    }
+
     return (
       <TextField
         className={cn('flex flex-col w-full text-slate-900', className)}
