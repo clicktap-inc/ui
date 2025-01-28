@@ -20,7 +20,7 @@ function InputSkeleton({
 }) {
   return (
     <Skeleton
-      className={cn('w-full h-14 rounded-md z-20 relative', className)}
+      className={cn('w-full h-10 rounded-md z-20 relative', className)}
     />
   );
 }
@@ -42,7 +42,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const isClient = useIsClient();
 
     if (!isClient) {
-      return <InputSkeleton className={classNames?.skeleton} />;
+      return (
+        <div className={cn('flex flex-col w-full text-slate-900', className)}>
+          {label ? (
+            <Label
+              className={cn('flex text-slate-500 text-xs', classNames?.label)}
+            >
+              {label}
+            </Label>
+          ) : null}
+          <InputSkeleton className={classNames?.skeleton} />
+        </div>
+      );
     }
 
     return (
