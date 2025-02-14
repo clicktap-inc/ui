@@ -25,7 +25,7 @@ export function DateInput({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <Label className={cn('flex text-slate-500 text-sm', classNames?.label)}>
+      <Label className={cn('flex text-slate-500 text-xs', classNames?.label)}>
         {label}
       </Label>
       <AriaDateInput

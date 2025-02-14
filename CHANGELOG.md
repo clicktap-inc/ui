@@ -1,3 +1,10 @@
+[0.14.3](https://github.com/clicktap-inc/ui/compare/0.14.2...0.14.3) (2025-02-14)
+
+### Bug Fixes
+* Fixed style issue on label for date input ([f4b1754](https://github.com/clicktap-inc/ui/commit/f4b1754648c76445d584e20ba6bdb3886fdda77d))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.2](https://github.com/clicktap-inc/ui/compare/0.14.1...0.14.2) (2025-01-28)
 
 
