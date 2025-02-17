@@ -87,7 +87,7 @@ export function PhoneInput({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d="M1 7L7.5 0.999999L14 7" stroke="#20293A" />
+            <path d="M1 7L7.5 0.999999L14 7" stroke="currentColor" />
           </svg>
         </Button>
 
@@ -108,7 +108,7 @@ export function PhoneInput({
             className="absolute top-4 left-[1.325rem]"
           >
             <path
-              fill="#20293A"
+              fill="currentColor"
               fillRule="evenodd"
               d="M12.3 6.9a4.9 4.9 0 1 1-9.8 0 4.9 4.9 0 0 1 9.8 0Zm-1.1 5.7c-1.1.7-2.4 1.2-3.8 1.2a6.9 6.9 0 1 1 5.3-2.5l3 3-1.4 1.4-3.1-3Z"
               clipRule="evenodd"

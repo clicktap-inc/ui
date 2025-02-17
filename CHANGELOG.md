@@ -1,3 +1,10 @@
+[0.14.4](https://github.com/clicktap-inc/ui/compare/0.14.3...0.14.4) (2025-02-17)
+
+### Bug Fixes
+* PhoneInput fixed SVG colors ([e50434e](https://github.com/clicktap-inc/ui/commit/e50434e7eba9248538efee8119180da419acb229))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.3](https://github.com/clicktap-inc/ui/compare/0.14.2...0.14.3) (2025-02-14)
 
 ### Bug Fixes
