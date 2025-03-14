@@ -1,3 +1,11 @@
+[0.14.8](https://github.com/clicktap-inc/ui/compare/0.14.7...0.14.8) (2025-03-14)
+
+### Bug Fixes
+* Added comment ([b9b5bc7](https://github.com/clicktap-inc/ui/commit/b9b5bc731b3a8b1594e059b2ba2e1ec9f7e33000))
+* Updated project json to include assets ([5d72182](https://github.com/clicktap-inc/ui/commit/5d72182d1d3345ac36c6e9ea5c95db2e6644d76a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.7](https://github.com/clicktap-inc/ui/compare/0.14.6...0.14.7) (2025-03-14)
 
 ### Bug Fixes
