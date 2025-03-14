@@ -1,3 +1,10 @@
+[0.14.9](https://github.com/clicktap-inc/ui/compare/0.14.8...0.14.9) (2025-03-14)
+
+### Bug Fixes
+* Removed comment ([713a2a4](https://github.com/clicktap-inc/ui/commit/713a2a4cbb47cf98fbd9b684a963dcc515672ab5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.8](https://github.com/clicktap-inc/ui/compare/0.14.7...0.14.8) (2025-03-14)
 
 ### Bug Fixes
