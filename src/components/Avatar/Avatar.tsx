@@ -4,6 +4,7 @@ import { useAvatarGroupContext, Avatar as UiAvatar } from '@nextui-org/avatar';
 import { cn } from '../../utils/cn';
 import type { AvatarProps } from './Avatar.types';
 
+// avatar
 export function Avatar({
   icon,
   className,
