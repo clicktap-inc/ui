@@ -1,3 +1,10 @@
+[0.14.11](https://github.com/clicktap-inc/ui/compare/0.14.10...0.14.11) (2025-03-20)
+
+### Bug Fixes
+* Updated button className strategy ([a21a765](https://github.com/clicktap-inc/ui/commit/a21a7657c2f2176347731e4e00466fdb70754b82))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.10](https://github.com/clicktap-inc/ui/compare/0.14.9...0.14.10) (2025-03-14)
 
 ### Bug Fixes
