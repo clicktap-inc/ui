@@ -1,3 +1,11 @@
+[0.14.12](https://github.com/clicktap-inc/ui/compare/0.14.11...0.14.12) (2025-03-21)
+
+### Bug Fixes
+* Add tailwind config to build output ([eb1c709](https://github.com/clicktap-inc/ui/commit/eb1c70922edfde55080dc76fea0fe52000b64738))
+* Updated tailwind export ([062915f](https://github.com/clicktap-inc/ui/commit/062915fc2425814661c48c88064118aa4f7407b5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.11](https://github.com/clicktap-inc/ui/compare/0.14.10...0.14.11) (2025-03-20)
 
 ### Bug Fixes

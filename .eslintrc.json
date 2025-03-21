@@ -6,6 +6,7 @@
     "jest.config.*",
     ".storybook/*",
     "src/**/*.stories.*",
+    "tailwind.config.js",
     "vite.config.ts"
   ],
   "overrides": [
