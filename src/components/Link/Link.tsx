@@ -11,19 +11,24 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       isDisabled={isDisabled}
-      className={cn(
-        'flex items-center cursor-pointer',
-        'text-slate-500',
-        'no-underline',
-        'transition-colors duration-300',
-        'hover:text-slate-800',
-        [
-          'data-[disabled="true"]:cursor-default',
-          'data-[disabled="true"]:text-slate-300',
-          'data-[disabled="true"]:hover:text-slate-300',
-        ],
-        className
-      )}
+      className={(renderProps) => {
+        const userClasses =
+          typeof className === 'function' ? className(renderProps) : className;
+
+        return cn(
+          'flex items-center cursor-pointer',
+          'text-slate-500',
+          'no-underline',
+          'transition-colors duration-300',
+          'hover:text-slate-800',
+          [
+            'data-[disabled="true"]:cursor-default',
+            'data-[disabled="true"]:text-slate-300',
+            'data-[disabled="true"]:hover:text-slate-300',
+          ],
+          userClasses
+        );
+      }}
       ref={ref}
     >
       {children}

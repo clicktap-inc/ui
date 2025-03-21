@@ -1,3 +1,10 @@
+[0.14.14](https://github.com/clicktap-inc/ui/compare/0.14.13...0.14.14) (2025-03-21)
+
+### Bug Fixes
+* Updated Link to use className fn or string ([83ee885](https://github.com/clicktap-inc/ui/commit/83ee8858bed321b731612eb32502a5510f2397cc))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.13](https://github.com/clicktap-inc/ui/compare/0.14.12...0.14.13) (2025-03-21)
 
 ### Bug Fixes
