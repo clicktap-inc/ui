@@ -1,3 +1,10 @@
+[0.14.13](https://github.com/clicktap-inc/ui/compare/0.14.12...0.14.13) (2025-03-21)
+
+### Bug Fixes
+* Updated config values ([5b5138d](https://github.com/clicktap-inc/ui/commit/5b5138d1aca147e68d83dd18dd9ca0f5e1da6d40))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.12](https://github.com/clicktap-inc/ui/compare/0.14.11...0.14.12) (2025-03-21)
 
 ### Bug Fixes

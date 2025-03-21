@@ -1,4 +1,6 @@
+const path = require('path');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/components/**/*.{js,jsx,ts,tsx}'],
+    content: [path.resolve(__dirname, './components/**/*.{js,jsx,ts,tsx}')],
 };
