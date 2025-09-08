@@ -4,7 +4,12 @@ import type {
   ValidationResult,
   ListBoxProps,
 } from 'react-aria-components';
-import type { ComponentType, Key, ReactNode } from 'react';
+import type {
+  ComponentType,
+  HTMLInputAutoCompleteAttribute,
+  Key,
+  ReactNode,
+} from 'react';
 import type { SlotsToClasses } from '../../types/SlotsToClasses';
 
 export type ComboBoxPopoverAnimationState = 'unmounted' | 'hidden' | 'visible';
@@ -39,4 +44,5 @@ export interface SelectProps<T extends object>
     | 'listContainer'
     | 'list'
   >;
+  autoComplete?: HTMLInputAutoCompleteAttribute;
 }

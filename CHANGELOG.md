@@ -1,3 +1,10 @@
+[0.14.15](https://github.com/clicktap-inc/ui/compare/0.14.14...0.14.15) (2025-09-08)
+
+### Bug Fixes
+* autocomplete prop forwarding in Select ([d7b25f7](https://github.com/clicktap-inc/ui/commit/d7b25f726a9858b5800d16d6e2f11ed7958a6a60))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.14](https://github.com/clicktap-inc/ui/compare/0.14.13...0.14.14) (2025-03-21)
 
 ### Bug Fixes

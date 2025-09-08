@@ -12,7 +12,7 @@ import {
 } from 'react-aria-components';
 import type { ComboBoxRenderProps, ListBoxProps } from 'react-aria-components';
 import { forwardRef, useState } from 'react';
-import type { PropsWithChildren, Ref } from 'react';
+import type { ForwardedRef, Ref } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
@@ -85,22 +85,28 @@ function ListBoxSlot<T extends object>({
   );
 }
 
-export function Select<T extends object>({
-  label,
-  description,
-  errorMessage,
-  children,
-  placeholder,
-  key,
-  isLoading,
-  slots,
-  popoverPortalContainer,
-  popoverOffset,
-  selectedKey,
-  className,
-  classNames,
-  ...props
-}: SelectProps<T>) {
+// Internal component - necessary to preserve generics in children
+// i.e. <Select items={[{id: 'test', value: 'test'}]}.../> won't reference "any"
+function SelectInner<T extends object>(
+  {
+    label,
+    description,
+    errorMessage,
+    children,
+    placeholder,
+    key,
+    isLoading,
+    slots,
+    popoverPortalContainer,
+    popoverOffset,
+    selectedKey,
+    className,
+    classNames,
+    autoComplete,
+    ...props
+  }: SelectProps<T>,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   const [animation, setAnimation] =
     useState<ComboBoxPopoverAnimationState>('unmounted');
   const [isComboOpen, setIsComboOpen] = useState<boolean>(false);
@@ -156,6 +162,8 @@ export function Select<T extends object>({
                 'data-[invalid]:placeholder:text-slate-400',
                 classNames?.input
               )}
+              ref={ref}
+              autoComplete={autoComplete}
             />
             {isLoading ? (
               <div
@@ -249,5 +257,15 @@ export function Select<T extends object>({
     </ComboBox>
   );
 }
+
+// Type for the exported component that preserves generics
+interface SelectComponent {
+  <T extends object>(
+    props: SelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> }
+  ): JSX.Element;
+}
+
+// Create the forwarded component with proper typing
+export const Select = forwardRef(SelectInner) as SelectComponent;
 
 export default Select;
