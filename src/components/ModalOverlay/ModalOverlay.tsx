@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useId } from 'react';
-import type { CSSProperties, Dispatch, ReactNode, SetStateAction } from 'react';
+import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 import { ModalOverlay as UIModalOverlay } from 'react-aria-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDialogTrigger } from '../DialogTrigger/DialogTrigger';
@@ -10,16 +10,17 @@ import type { DriverAnimationState } from '../DialogTrigger/DialogTrigger.types'
 import { cn } from '../../utils/cn';
 import type { ModalOverlayProps } from './ModalOverlay.types';
 
-const ForwardedModalOverlay = forwardRef<HTMLDivElement, ModalOverlayProps>(
-  ({ style, ...props }, ref) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
+  ({ style, ...props }, ref: Ref<HTMLElement>) => {
+    // Separate the dynamic style logic
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    const ariaStyle = typeof style === 'function' ? style(props) : style;
+
     return (
       // Pass only static styles to framer-motion
-      <UIModalOverlay
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-        ref={ref}
-        style={style as CSSProperties}
-      />
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+      <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
     );
   }
 );
@@ -32,7 +33,6 @@ function InnerModalOverlay({
   setAnimation,
   className,
   animationVariants,
-  onAnimationStart,
   children,
   ...props
 }: ModalOverlayProps & {

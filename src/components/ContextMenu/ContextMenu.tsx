@@ -32,7 +32,6 @@ export function ContextMenu({
   animation = 'hidden',
   className,
   classNames,
-  onAnimationStart,
   ...props
 }: PopoverProps) {
   return (

@@ -1,3 +1,12 @@
+[0.14.18](https://github.com/clicktap-inc/ui/compare/0.14.17...0.14.18) (2025-09-17)
+
+### Bug Fixes
+* fixed typings errors ([8439dea](https://github.com/clicktap-inc/ui/commit/8439dea7463cf524ebd36d8fad6e4ed09197676a))
+* revert ba33c07852de1d0a3f11a7d7f28ae896d9e76c39 ([f950fd5](https://github.com/clicktap-inc/ui/commit/f950fd58860c786138c4d0e1dde161e8cf5dcbb1))
+* revert 76c6de01934a911127478f4c6c13852ff100d212 ([6d896f4](https://github.com/clicktap-inc/ui/commit/6d896f43975c32fc24c48315ceca834475706abd))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.17](https://github.com/clicktap-inc/ui/compare/0.14.16...0.14.17) (2025-09-17)
 
 ### Bug Fixes
