@@ -1,3 +1,10 @@
+[0.14.16](https://github.com/clicktap-inc/ui/compare/0.14.15...0.14.16) (2025-09-17)
+
+### Bug Fixes
+* fixed typings errors in ModalOverlay ([ba33c07](https://github.com/clicktap-inc/ui/commit/ba33c07852de1d0a3f11a7d7f28ae896d9e76c39))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.15](https://github.com/clicktap-inc/ui/compare/0.14.14...0.14.15) (2025-09-08)
 
 ### Bug Fixes
