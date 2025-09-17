@@ -1,3 +1,10 @@
+[0.14.19](https://github.com/clicktap-inc/ui/compare/0.14.18...0.14.19) (2025-09-17)
+
+### Bug Fixes
+* fixed ts errors ([e9ec7c5](https://github.com/clicktap-inc/ui/commit/e9ec7c5a3202320c174f117396cfb40a1a75fe57))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.18](https://github.com/clicktap-inc/ui/compare/0.14.17...0.14.18) (2025-09-17)
 
 ### Bug Fixes

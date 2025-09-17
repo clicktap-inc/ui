@@ -263,7 +263,11 @@ export function PinInput({
             onPaste={onPaste}
             type={isMasked ? 'password' : 'text'}
             // eslint-disable-next-line no-return-assign
-            ref={(el) => (el ? (inputRefs.current[i] = el) : null)}
+            ref={(el) => {
+              if (el) {
+                inputRefs.current[i] = el;
+              }
+            }}
             value={v}
             maxLength={1}
             name={name && `${name}-${i}`}
