@@ -95,6 +95,7 @@ export function Drawer({
   children,
   className,
   animationVariants,
+  onAnimationStart,
   ...props
 }: DrawerProps) {
   return (

@@ -28,6 +28,7 @@ export function Dialog({
   className,
   children,
   animationVariants,
+  onAnimationStart,
   ...props
 }: DialogProps) {
   return (

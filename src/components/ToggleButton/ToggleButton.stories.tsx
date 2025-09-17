@@ -37,10 +37,10 @@ export const Example: Story = {
     autoFocus: {
       control: 'boolean',
     },
-    type: {
-      options: ['button', 'submit', 'reset'],
-      control: { type: 'radio' },
-    },
+    // type: {
+    //   options: ['button', 'submit', 'reset'],
+    //   control: { type: 'radio' },
+    // },
     excludeFromTabOrder: {
       control: 'boolean',
     },
@@ -73,7 +73,7 @@ export const Example: Story = {
     autoFocus: false,
     defaultSelected: false,
     excludeFromTabOrder: false,
-    type: 'button',
+    // type: 'button',
     children: 'Press me',
     onPress: action('onPress'),
     onPressStart: action('onPressStart'),

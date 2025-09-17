@@ -1,3 +1,10 @@
+[0.14.17](https://github.com/clicktap-inc/ui/compare/0.14.16...0.14.17) (2025-09-17)
+
+### Bug Fixes
+* updated packages & fixed typing errors ([76c6de0](https://github.com/clicktap-inc/ui/commit/76c6de01934a911127478f4c6c13852ff100d212))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.16](https://github.com/clicktap-inc/ui/compare/0.14.15...0.14.16) (2025-09-17)
 
 ### Bug Fixes

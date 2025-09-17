@@ -32,6 +32,7 @@ function InnerModalOverlay({
   setAnimation,
   className,
   animationVariants,
+  onAnimationStart,
   children,
   ...props
 }: ModalOverlayProps & {
