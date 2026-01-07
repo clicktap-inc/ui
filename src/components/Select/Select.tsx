@@ -30,8 +30,16 @@ const ForwardedPopover = forwardRef<HTMLElement, any>(
   )
 );
 
-// Now use motion with ForwardedPopover
-const MotionPopover = motion.create(ForwardedPopover);
+// Lazy-initialized motion component for SSR compatibility
+let MotionPopover: ReturnType<typeof motion.create> | null = null;
+
+function getMotionPopover() {
+  if (typeof window === 'undefined') return null;
+  if (!MotionPopover) {
+    MotionPopover = motion.create(ForwardedPopover);
+  }
+  return MotionPopover;
+}
 
 function ButtonIconSlot<T extends object>({
   buttonIcon,
@@ -110,6 +118,17 @@ function SelectInner<T extends object>(
   const [animation, setAnimation] =
     useState<ComboBoxPopoverAnimationState>('unmounted');
   const [isComboOpen, setIsComboOpen] = useState<boolean>(false);
+  const Motion = getMotionPopover();
+
+  const popoverClassName = cn(
+    'px-0 py-1.5',
+    'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
+    'rounded-md',
+    'w-[var(--trigger-width)]',
+    'bg-white',
+    'border border-solid border-slate-300',
+    classNames?.listContainer
+  );
 
   return (
     <ComboBox
@@ -216,42 +235,51 @@ function SelectInner<T extends object>(
           >
             {errorMessage}
           </FieldError>
-          <MotionPopover
-            key={key}
-            isOpen={isComboOpen}
-            isExiting={animation === 'hidden'}
-            offset={popoverOffset}
-            UNSTABLE_portalContainer={popoverPortalContainer}
-            onAnimationComplete={(completedAnimation: string) => {
-              setAnimation((a) =>
-                completedAnimation === 'hidden' && a === 'hidden'
-                  ? 'unmounted'
-                  : a
-              );
-            }}
-            variants={{
-              hidden: { opacity: 0, y: -10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={animation}
-            className={cn(
-              'px-0 py-1.5',
-              'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
-              'rounded-md',
-              'w-[var(--trigger-width)]',
-              'bg-white',
-              'border border-solid border-slate-300',
-              classNames?.listContainer
-            )}
-          >
-            <ListBoxSlot
-              listBoxComponent={slots?.listBoxComponent}
-              className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
+          {Motion ? (
+            <Motion
+              key={key}
+              isOpen={isComboOpen}
+              isExiting={animation === 'hidden'}
+              offset={popoverOffset}
+              UNSTABLE_portalContainer={popoverPortalContainer}
+              onAnimationComplete={(completedAnimation: string) => {
+                setAnimation((a) =>
+                  completedAnimation === 'hidden' && a === 'hidden'
+                    ? 'unmounted'
+                    : a
+                );
+              }}
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              initial="hidden"
+              animate={animation}
+              className={popoverClassName}
             >
-              {children}
-            </ListBoxSlot>
-          </MotionPopover>
+              <ListBoxSlot
+                listBoxComponent={slots?.listBoxComponent}
+                className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
+              >
+                {children}
+              </ListBoxSlot>
+            </Motion>
+          ) : (
+            <ForwardedPopover
+              key={key}
+              isOpen={isComboOpen}
+              offset={popoverOffset}
+              UNSTABLE_portalContainer={popoverPortalContainer}
+              className={popoverClassName}
+            >
+              <ListBoxSlot
+                listBoxComponent={slots?.listBoxComponent}
+                className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
+              >
+                {children}
+              </ListBoxSlot>
+            </ForwardedPopover>
+          )}
         </>
       )}
     </ComboBox>

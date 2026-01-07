@@ -22,7 +22,16 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
   }
 );
 
-const MotionDialog = motion.create(ForwardedDialog);
+// Lazy-initialized motion component for SSR compatibility
+let MotionDialog: ReturnType<typeof motion.create> | null = null;
+
+function getMotionDialog() {
+  if (typeof window === 'undefined') return null;
+  if (!MotionDialog) {
+    MotionDialog = motion.create(ForwardedDialog);
+  }
+  return MotionDialog;
+}
 
 export function Dialog({
   className,
@@ -30,16 +39,27 @@ export function Dialog({
   animationVariants,
   ...props
 }: DialogProps) {
+  const Motion = getMotionDialog();
+
+  const commonProps = {
+    className: cn(
+      'p-8 outline-0 max-w-max w-screen absolute top-2/4 left-2/4',
+      'shadow-[0_8px_24px_rgba(0,0,0,0.1)] rounded-lg bg-white border border-solid border-slate-400',
+      'transform -translate-x-1/2 -translate-y-1/2',
+      className
+    ),
+    ...props,
+  };
+
+  // SSR fallback - render without animation
+  if (!Motion) {
+    return <ForwardedDialog {...commonProps}>{children as ReactNode}</ForwardedDialog>;
+  }
+
   return (
-    <MotionDialog
-      className={cn(
-        'p-8 outline-0 max-w-max w-screen absolute top-2/4 left-2/4',
-        'shadow-[0_8px_24px_rgba(0,0,0,0.1)] rounded-lg bg-white border border-solid border-slate-400',
-        'transform -translate-x-1/2 -translate-y-1/2',
-        className
-      )}
+    <Motion
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
+      {...commonProps}
       variants={
         animationVariants || {
           hidden: {
@@ -58,7 +78,7 @@ export function Dialog({
       }
     >
       {children as ReactNode}
-    </MotionDialog>
+    </Motion>
   );
 }
 

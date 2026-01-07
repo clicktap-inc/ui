@@ -25,7 +25,16 @@ const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
   }
 );
 
-const MotionModalOverlay = motion.create(ForwardedModalOverlay);
+// Lazy-initialized motion component for SSR compatibility
+let MotionModalOverlay: ReturnType<typeof motion.create> | null = null;
+
+function getMotionModalOverlay() {
+  if (typeof window === 'undefined') return null;
+  if (!MotionModalOverlay) {
+    MotionModalOverlay = motion.create(ForwardedModalOverlay);
+  }
+  return MotionModalOverlay;
+}
 
 function InnerModalOverlay({
   animate,
@@ -41,12 +50,31 @@ function InnerModalOverlay({
   setAnimation: Dispatch<SetStateAction<DriverAnimationState>>;
 }) {
   const id = useId();
+  const Motion = getMotionModalOverlay();
 
   // extract key from props to avoid spreading it
   const { key, ...restProps } = props;
 
+  const commonProps = {
+    className: cn(
+      'bg-black/30',
+      'fixed top-0 left-0',
+      'z-50',
+      'w-screen h-[var(--visual-viewport-height)]',
+      className
+    ),
+    ...restProps,
+  };
+
+  // SSR fallback - render without animation
+  if (!Motion) {
+    return (
+      <UIModalOverlay {...commonProps}>{children as ReactNode}</UIModalOverlay>
+    );
+  }
+
   return (
-    <MotionModalOverlay
+    <Motion
       key={key || id}
       isExiting={animation === 'hidden'}
       onAnimationComplete={(currentAnimation: DriverAnimationState) => {
@@ -72,18 +100,11 @@ function InnerModalOverlay({
       initial="hidden"
       animate={animate}
       exit="hidden"
-      className={cn(
-        'bg-black/30',
-        'fixed top-0 left-0',
-        'z-50',
-        'w-screen h-[var(--visual-viewport-height)]',
-        className
-      )}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...restProps}
+      {...commonProps}
     >
       {children as ReactNode}
-    </MotionModalOverlay>
+    </Motion>
   );
 }
 

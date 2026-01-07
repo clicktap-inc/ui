@@ -88,7 +88,16 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
   }
 );
 
-const MotionDrawer = motion.create(ForwardedDialog);
+// Lazy-initialized motion component for SSR compatibility
+let MotionDrawer: ReturnType<typeof motion.create> | null = null;
+
+function getMotionDrawer() {
+  if (typeof window === 'undefined') return null;
+  if (!MotionDrawer) {
+    MotionDrawer = motion.create(ForwardedDialog);
+  }
+  return MotionDrawer;
+}
 
 export function Drawer({
   direction = 'right',
@@ -97,29 +106,40 @@ export function Drawer({
   animationVariants,
   ...props
 }: DrawerProps) {
+  const Motion = getMotionDrawer();
+
+  const commonProps = {
+    className: cn(
+      'fixed p-8 outline-0 bg-white',
+      'border-solid border-slate-200',
+      'max-w-full max-h-[var(--visual-viewport-height)]',
+      direction === 'top' &&
+        'top-0 left-0 right-0 bottom-auto border-b shadow-[0_8px_24px_rgba(0,0,0,0.1)] h-[var(--drawer-size)]',
+      direction === 'right' &&
+        'top-0 left-auto bottom-0 right-0 border-l shadow-[-8px_0_24px_rgba(0,0,0,0.1)] w-[var(--drawer-size)]',
+      direction === 'bottom' &&
+        'bottom-0 left-0 right-0 top-auto border-t shadow-[0_-8px_24px_rgba(0,0,0,0.1)] h-[var(--drawer-size)]',
+      direction === 'left' &&
+        'top-0 bottom-0 left-0 right-auto border-r shadow-[8px_0_24px_rgba(0,0,0,0.1)] w-[var(--drawer-size)]',
+      className
+    ),
+    'data-direction': direction,
+    ...props,
+  };
+
+  // SSR fallback - render without animation
+  if (!Motion) {
+    return <ForwardedDialog {...commonProps}>{children as ReactNode}</ForwardedDialog>;
+  }
+
   return (
-    <MotionDrawer
-      className={cn(
-        'fixed p-8 outline-0 bg-white',
-        'border-solid border-slate-200',
-        'max-w-full max-h-[var(--visual-viewport-height)]',
-        direction === 'top' &&
-          'top-0 left-0 right-0 bottom-auto border-b shadow-[0_8px_24px_rgba(0,0,0,0.1)] h-[var(--drawer-size)]',
-        direction === 'right' &&
-          'top-0 left-auto bottom-0 right-0 border-l shadow-[-8px_0_24px_rgba(0,0,0,0.1)] w-[var(--drawer-size)]',
-        direction === 'bottom' &&
-          'bottom-0 left-0 right-0 top-auto border-t shadow-[0_-8px_24px_rgba(0,0,0,0.1)] h-[var(--drawer-size)]',
-        direction === 'left' &&
-          'top-0 bottom-0 left-0 right-auto border-r shadow-[8px_0_24px_rgba(0,0,0,0.1)] w-[var(--drawer-size)]',
-        className
-      )}
-      data-direction={direction}
+    <Motion
       variants={animationVariants || directionAnimatation[direction]}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
+      {...commonProps}
     >
       {children as ReactNode}
-    </MotionDrawer>
+    </Motion>
   );
 }
 

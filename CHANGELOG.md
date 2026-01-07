@@ -1,3 +1,10 @@
+[0.14.20](https://github.com/clicktap-inc/ui/compare/0.14.19...0.14.20) (2026-01-07)
+
+### Bug Fixes
+* SSR compatibility for framer-motion components ([93ee413](https://github.com/clicktap-inc/ui/commit/93ee4133d68c0324e67c91c0f94b35e0f098d59a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.19](https://github.com/clicktap-inc/ui/compare/0.14.18...0.14.19) (2025-09-17)
 
 ### Bug Fixes

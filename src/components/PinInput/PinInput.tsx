@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
 import {
-  FieldError,
   Group,
   Input,
   Label,
@@ -41,11 +40,6 @@ export function PinInput({
     inputRefs.current = inputRefs.current.slice(0, length);
   }, [length]);
 
-  useEffect(() => {
-    const updatedValue = values.join('');
-    setJoinedValue(updatedValue);
-    if (controlledOnChange) controlledOnChange(updatedValue);
-  }, [controlledOnChange, values]);
 
   //   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //     const eventValue = event.target.value;
@@ -83,7 +77,7 @@ export function PinInput({
   //       setMoveFocus(true);
   //     }
   //   };
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const inputIndex = Number(
       event.target.getAttribute('data-pin-input-index')
@@ -98,7 +92,12 @@ export function PinInput({
     );
     setValues(updatedValues);
 
-    // return setValues(updatedValues);
+    // Directly call controlled onChange to ensure form state is updated
+    const newJoinedValue = updatedValues.join('');
+    setJoinedValue(newJoinedValue);
+    if (controlledOnChange) {
+      controlledOnChange(newJoinedValue);
+    }
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -150,6 +149,13 @@ export function PinInput({
       setValues(updatedValues);
       inputRefs.current?.[inputIndex - 1]?.focus();
       event.preventDefault();
+
+      // Update controlled value
+      const newJoinedValue = updatedValues.join('');
+      setJoinedValue(newJoinedValue);
+      if (controlledOnChange) {
+        controlledOnChange(newJoinedValue);
+      }
     }
 
     if (
@@ -163,6 +169,13 @@ export function PinInput({
       setValues(updatedValues);
       inputRefs.current?.[inputIndex + 1]?.focus();
       event.preventDefault();
+
+      // Update controlled value
+      const newJoinedValue = updatedValues.join('');
+      setJoinedValue(newJoinedValue);
+      if (controlledOnChange) {
+        controlledOnChange(newJoinedValue);
+      }
     }
 
     // const prevValues = value;
@@ -208,6 +221,13 @@ export function PinInput({
     }
 
     setValues(updatedValues);
+
+    // Update controlled value
+    const newJoinedValue = updatedValues.join('');
+    setJoinedValue(newJoinedValue);
+    if (controlledOnChange) {
+      controlledOnChange(newJoinedValue);
+    }
 
     const nextInputIndex =
       focusIndex + 1 < length ? focusIndex + 1 : length - 1;
@@ -258,10 +278,11 @@ export function PinInput({
               'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
               classNames?.input
             )}
-            onChange={onChange}
+            onChange={handleInputChange}
             onKeyDown={onKeyDown}
             onPaste={onPaste}
             type={isMasked ? 'password' : 'text'}
+            autoComplete="one-time-code"
             // eslint-disable-next-line no-return-assign
             ref={(el) => {
               if (el) {
@@ -270,7 +291,6 @@ export function PinInput({
             }}
             value={v}
             maxLength={1}
-            name={name && `${name}-${i}`}
             // pattern="[0-9]*"
             data-pin-input-index={i}
           />
@@ -290,7 +310,6 @@ export function PinInput({
         isRequired={isRequired}
         validationBehavior={validationBehavior}
       >
-        {name && <Input type="hidden" name={name} value={joinedValue} />}
         {description && (
           <Text
             className={cn(
@@ -302,14 +321,17 @@ export function PinInput({
             {description}
           </Text>
         )}
-        <FieldError
-          className={cn(
-            'flex text-red-500 text-sm grow shrink-0 basis-full',
-            classNames?.error
-          )}
-        >
-          {errorMessage}
-        </FieldError>
+        {isInvalid && errorMessage && (
+          <Text
+            className={cn(
+              'flex text-red-500 text-sm grow shrink-0 basis-full',
+              classNames?.error
+            )}
+            slot="errorMessage"
+          >
+            {errorMessage}
+          </Text>
+        )}
       </TextField>
     </Group>
   );
