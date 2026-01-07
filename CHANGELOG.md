@@ -1,3 +1,10 @@
+[0.14.21](https://github.com/clicktap-inc/ui/compare/0.14.20...0.14.21) (2026-01-07)
+
+### Bug Fixes
+* TypeScript errors in SSR-compatible motion components ([8a5b44c](https://github.com/clicktap-inc/ui/commit/8a5b44ce8d310c1f1d9affd77971d27f288704a9))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.20](https://github.com/clicktap-inc/ui/compare/0.14.19...0.14.20) (2026-01-07)
 
 ### Bug Fixes

@@ -23,7 +23,8 @@ const ForwardedPopover = forwardRef<HTMLElement, any>(
 );
 
 // Lazy-initialized motion component for SSR compatibility
-let MotionPopover: ReturnType<typeof motion.create> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let MotionPopover: any = null;
 
 function getMotionPopover() {
   if (typeof window === 'undefined') return null;

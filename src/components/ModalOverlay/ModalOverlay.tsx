@@ -26,7 +26,8 @@ const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
 );
 
 // Lazy-initialized motion component for SSR compatibility
-let MotionModalOverlay: ReturnType<typeof motion.create> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let MotionModalOverlay: any = null;
 
 function getMotionModalOverlay() {
   if (typeof window === 'undefined') return null;
@@ -69,7 +70,8 @@ function InnerModalOverlay({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      <UIModalOverlay {...commonProps}>{children as ReactNode}</UIModalOverlay>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <UIModalOverlay {...(commonProps as any)}>{children as ReactNode}</UIModalOverlay>
     );
   }
 

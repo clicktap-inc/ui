@@ -321,7 +321,7 @@ export function PinInput({
             {description}
           </Text>
         )}
-        {isInvalid && errorMessage && (
+        {isInvalid && errorMessage && typeof errorMessage === 'string' && (
           <Text
             className={cn(
               'flex text-red-500 text-sm grow shrink-0 basis-full',

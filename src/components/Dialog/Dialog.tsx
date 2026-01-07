@@ -23,7 +23,8 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
 );
 
 // Lazy-initialized motion component for SSR compatibility
-let MotionDialog: ReturnType<typeof motion.create> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let MotionDialog: any = null;
 
 function getMotionDialog() {
   if (typeof window === 'undefined') return null;
