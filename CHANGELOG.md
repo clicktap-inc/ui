@@ -1,3 +1,10 @@
+[0.14.22](https://github.com/clicktap-inc/ui/compare/0.14.21...0.14.22) (2026-01-09)
+
+### Bug Fixes
+* onOpenChange handler in DialogTrigger for controlled mode ([e661a23](https://github.com/clicktap-inc/ui/commit/e661a23b135ed77e2468bf784f934d19e0552480))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.21](https://github.com/clicktap-inc/ui/compare/0.14.20...0.14.21) (2026-01-07)
 
 ### Bug Fixes

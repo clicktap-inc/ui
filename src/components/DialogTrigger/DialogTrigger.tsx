@@ -19,10 +19,13 @@ const DialogTriggerContext = createContext<{
 export const useDialogTrigger = () => useContext(DialogTriggerContext);
 
 export function DialogTrigger(props: DialogTriggerProps) {
+  const { onOpenChange: parentOnOpenChange, ...restProps } = props;
   const [animation, setAnimation] = useState<DriverAnimationState>('unmounted');
 
   const onOpenChange = (isOpen: boolean) => {
     setAnimation(isOpen ? 'visible' : 'hidden');
+    // Call parent's onOpenChange if provided (for controlled mode)
+    parentOnOpenChange?.(isOpen);
   };
 
   const value = useMemo(
@@ -31,13 +34,13 @@ export function DialogTrigger(props: DialogTriggerProps) {
       setAnimation,
       onOpenChange,
     }),
-    [animation]
+    [animation, parentOnOpenChange]
   );
 
   return (
     <DialogTriggerContext.Provider value={value}>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <UIDialogTrigger {...props} onOpenChange={onOpenChange} />
+      <UIDialogTrigger {...restProps} onOpenChange={onOpenChange} />
     </DialogTriggerContext.Provider>
   );
 }
