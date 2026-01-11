@@ -1,3 +1,10 @@
+[0.14.25](https://github.com/clicktap-inc/ui/compare/0.14.24...0.14.25) (2026-01-11)
+
+### Bug Fixes
+* copying raw .tsx source files to dist ([86cb974](https://github.com/clicktap-inc/ui/commit/86cb974d45509c0c62f876be1ee06012c639ccb3))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.24](https://github.com/clicktap-inc/ui/compare/0.14.23...0.14.24) (2026-01-11)
 
 ### Bug Fixes
