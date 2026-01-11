@@ -1,3 +1,10 @@
+[0.14.24](https://github.com/clicktap-inc/ui/compare/0.14.23...0.14.24) (2026-01-11)
+
+### Bug Fixes
+* explicit type annotation to TabsOrientationContext ([3204d44](https://github.com/clicktap-inc/ui/commit/3204d440c0dcd5c998412678dd2356d210433699))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.23](https://github.com/clicktap-inc/ui/compare/0.14.22...0.14.23) (2026-01-11)
 
 
