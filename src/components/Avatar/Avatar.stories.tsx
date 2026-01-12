@@ -57,9 +57,6 @@ export const AvatarComponent: Story = {
       options: ['sm', 'md', 'lg'],
       control: 'radio',
     },
-    showFallback: {
-      control: 'boolean',
-    },
     radius: {
       options: ['sm', 'md', 'lg', 'none', 'full'],
       control: 'radio',
@@ -70,19 +67,14 @@ export const AvatarComponent: Story = {
     isDisabled: {
       control: 'boolean',
     },
-    isFocusable: {
-      control: 'boolean',
-    },
   },
   args: {
     src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
     name: 'Avatar',
     size: 'md',
-    showFallback: false,
     radius: 'full',
     isBordered: false,
     isDisabled: false,
-    isFocusable: false,
   },
 };
 export const AvatarGroupComponent: StoryGroup = {

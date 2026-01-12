@@ -1,8 +1,10 @@
-import type { AvatarGroupProps as NextAvatarGroupProps } from '@nextui-org/avatar';
+import type { ReactNode } from 'react';
 
-export type AvatarGroupProps = Pick<
-  NextAvatarGroupProps,
-  'isGrid' | 'renderCount'
-> & {
+export type AvatarGroupProps = {
+  /** Whether to display avatars in a grid layout */
+  isGrid?: boolean;
+  /** Custom render function for the count indicator */
+  renderCount?: (count: number) => ReactNode;
+  /** Additional class name */
   className?: string;
 };

@@ -1,6 +1,6 @@
 {
   "name": "@clicktap/ui",
-  "version": "0.14.25",
+  "version": "0.14.26",
   "private": false,
   "author": "Clicktap",
   "description": "A library of React UI components and low-level hooks.",
@@ -54,7 +54,6 @@
   "peerDependencies": {
     "@floating-ui/react": "^0.25.4",
     "@nextui-org/accordion": "^2.0.28",
-    "@nextui-org/avatar": "^2.0.32",
     "@nextui-org/badge": "^2.0.31",
     "@nextui-org/pagination": "^2.0.35",
     "@nextui-org/tooltip": "^2.0.30",

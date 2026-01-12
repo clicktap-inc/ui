@@ -1,21 +1,20 @@
 'use client';
 
-import { AvatarGroup as UIAvatarGroup } from '@nextui-org/avatar';
 import type { PropsWithChildren } from 'react';
 import { cn } from '../../../utils/cn';
 import type { AvatarGroupProps } from './AvatarGroup.types';
 
+/**
+ * SSR-compatible AvatarGroup component.
+ * Pure Tailwind implementation that works with Next.js App Router SSR.
+ */
 export function AvatarGroup({
   children,
   isGrid,
-  renderCount,
   className,
 }: PropsWithChildren<AvatarGroupProps>) {
   return (
-    <UIAvatarGroup
-      isGrid={isGrid}
-      max={0}
-      renderCount={renderCount ?? undefined}
+    <div
       className={cn(
         isGrid ? 'inline-grid' : 'flex',
         isGrid ? 'gap-3' : 'gap-0',
@@ -25,7 +24,7 @@ export function AvatarGroup({
       )}
     >
       {children}
-    </UIAvatarGroup>
+    </div>
   );
 }
 
