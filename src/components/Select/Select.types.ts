@@ -7,12 +7,9 @@ import type {
 import type {
   ComponentType,
   HTMLInputAutoCompleteAttribute,
-  Key,
   ReactNode,
 } from 'react';
 import type { SlotsToClasses } from '../../types/SlotsToClasses';
-
-export type ComboBoxPopoverAnimationState = 'unmounted' | 'hidden' | 'visible';
 
 export type SelectSlots<T extends object> = {
   buttonIcon?: ReactNode | ((values: ComboBoxRenderProps) => ReactNode);
@@ -26,12 +23,11 @@ export interface SelectProps<T extends object>
   description?: string | null;
   errorMessage?: string | ((validation: ValidationResult) => string);
   placeholder?: string;
-  key?: Key | null;
   isLoading?: boolean;
   children: ReactNode | ((item: T) => ReactNode);
   slots?: SelectSlots<T>;
   popoverOffset?: number;
-  popoverPortalContainer?: Element;
+  popoverPortalContainer?: () => HTMLElement | null;
   classNames?: SlotsToClasses<
     | 'label'
     | 'name'

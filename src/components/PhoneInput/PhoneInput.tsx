@@ -179,13 +179,4 @@ export function PhoneInput({
   );
 }
 
-PhoneInput.defaultProps = {
-  label: undefined,
-  description: undefined,
-  errorMessage: undefined,
-  placeholder: undefined,
-  classNames: undefined,
-  defaultCountry: undefined,
-};
-
 export default PhoneInput;

@@ -60,7 +60,7 @@ function InnerModalOverlay({
     className: cn(
       'bg-black/30',
       'fixed top-0 left-0',
-      'z-50',
+      'z-[1000]',
       'w-screen h-[var(--visual-viewport-height)]',
       className
     ),

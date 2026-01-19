@@ -1,3 +1,16 @@
+[0.15.0](https://github.com/clicktap-inc/ui/compare/0.14.27...0.15.0) (2026-01-19)
+
+### Features
+* disableSkeleton prop to Input component ([78a90f5](https://github.com/clicktap-inc/ui/commit/78a90f5c832cb28f46595d9bba6e18a6d14a157d))
+* useRoute hook for generating URLs from route configs ([2c57731](https://github.com/clicktap-inc/ui/commit/2c577316cb067aecf64b1bdc06199776e6a41776))
+* automatic external URL detection to Link component ([16cda35](https://github.com/clicktap-inc/ui/commit/16cda35dd00940b449e52f8f8e85d9f5e2b721c1))
+### Bug Fixes
+* defaultChildren from Radio DOM spread ([f1ef627](https://github.com/clicktap-inc/ui/commit/f1ef627d73db2e37ffeccd9e249679483e523bc7))
+* ModalOverlay z-index for third-party payment buttons ([c6b4005](https://github.com/clicktap-inc/ui/commit/c6b400592cb1bf86eec2477beedb12d02caabe31))
+* TypeScript errors and remove deprecated patterns ([67a6789](https://github.com/clicktap-inc/ui/commit/67a6789ad809e207190495eb4276760fff89e1af))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.14.27](https://github.com/clicktap-inc/ui/compare/0.14.26...0.14.27) (2026-01-12)
 
 ### Bug Fixes

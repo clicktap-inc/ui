@@ -35,13 +35,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       className,
       classNames,
+      disableSkeleton,
       ...props
     },
     ref
   ) => {
     const isClient = useIsClient();
 
-    if (!isClient) {
+    if (!isClient && !disableSkeleton) {
       return (
         <div className={cn('flex flex-col w-full text-slate-900', className)}>
           {label ? (

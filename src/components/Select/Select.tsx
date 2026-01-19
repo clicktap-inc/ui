@@ -9,38 +9,14 @@ import {
   Text,
   FieldError,
   Popover,
+  UNSAFE_PortalProvider,
 } from 'react-aria-components';
 import type { ComboBoxRenderProps, ListBoxProps } from 'react-aria-components';
-import { forwardRef, useState } from 'react';
-import type { ForwardedRef, Ref } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
+import type { ForwardedRef } from 'react';
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
-import type {
-  ComboBoxPopoverAnimationState,
-  SelectProps,
-  SelectSlots,
-} from './Select.types';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ForwardedPopover = forwardRef<HTMLElement, any>(
-  (props, ref: Ref<HTMLElement>) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Popover {...props} ref={ref} />
-  )
-);
-
-// Lazy-initialized motion component for SSR compatibility
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let MotionPopover: any = null;
-
-function getMotionPopover() {
-  if (typeof window === 'undefined') return null;
-  if (!MotionPopover) {
-    MotionPopover = motion.create(ForwardedPopover);
-  }
-  return MotionPopover;
-}
+import type { SelectProps, SelectSlots } from './Select.types';
 
 function ButtonIconSlot<T extends object>({
   buttonIcon,
@@ -103,7 +79,6 @@ function SelectInner<T extends object>(
     errorMessage,
     children,
     placeholder,
-    key,
     isLoading,
     slots,
     popoverPortalContainer,
@@ -116,11 +91,6 @@ function SelectInner<T extends object>(
   }: SelectProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) {
-  const [animation, setAnimation] =
-    useState<ComboBoxPopoverAnimationState>('unmounted');
-  const [isComboOpen, setIsComboOpen] = useState<boolean>(false);
-  const Motion = getMotionPopover();
-
   const popoverClassName = cn(
     'px-0 py-1.5',
     'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
@@ -131,12 +101,19 @@ function SelectInner<T extends object>(
     classNames?.listContainer
   );
 
+  const popoverContent = (
+    <Popover offset={popoverOffset} className={popoverClassName}>
+      <ListBoxSlot
+        listBoxComponent={slots?.listBoxComponent}
+        className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
+      >
+        {children}
+      </ListBoxSlot>
+    </Popover>
+  );
+
   return (
     <ComboBox
-      onOpenChange={() => {
-        setAnimation(animation === 'visible' ? 'hidden' : 'visible');
-        setIsComboOpen(!isComboOpen);
-      }}
       isDisabled={props.isDisabled || isLoading}
       data-has-value={!!selectedKey}
       selectedKey={selectedKey}
@@ -236,50 +213,12 @@ function SelectInner<T extends object>(
           >
             {errorMessage}
           </FieldError>
-          {Motion ? (
-            <Motion
-              key={key}
-              isOpen={isComboOpen}
-              isExiting={animation === 'hidden'}
-              offset={popoverOffset}
-              UNSTABLE_portalContainer={popoverPortalContainer}
-              onAnimationComplete={(completedAnimation: string) => {
-                setAnimation((a) =>
-                  completedAnimation === 'hidden' && a === 'hidden'
-                    ? 'unmounted'
-                    : a
-                );
-              }}
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate={animation}
-              className={popoverClassName}
-            >
-              <ListBoxSlot
-                listBoxComponent={slots?.listBoxComponent}
-                className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
-              >
-                {children}
-              </ListBoxSlot>
-            </Motion>
+          {popoverPortalContainer ? (
+            <UNSAFE_PortalProvider getContainer={popoverPortalContainer}>
+              {popoverContent}
+            </UNSAFE_PortalProvider>
           ) : (
-            <ForwardedPopover
-              key={key}
-              isOpen={isComboOpen}
-              offset={popoverOffset}
-              UNSTABLE_portalContainer={popoverPortalContainer}
-              className={popoverClassName}
-            >
-              <ListBoxSlot
-                listBoxComponent={slots?.listBoxComponent}
-                className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
-              >
-                {children}
-              </ListBoxSlot>
-            </ForwardedPopover>
+            popoverContent
           )}
         </>
       )}

@@ -8,19 +8,43 @@ import type { RadioProps, RadioSlots } from './Radio.types';
 function ControlSlot({
   control,
   classNames,
+  isHovered,
+  isFocused,
+  isFocusVisible,
+  isDisabled,
+  isInvalid,
+  isSelected,
+  isPressed,
+  isReadOnly,
+  isRequired,
+  // Destructure to exclude from DOM spread (react-aria render prop)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  defaultChildren,
   ...props
 }: RadioRenderProps &
   Pick<RadioSlots, 'control'> &
   Pick<RadioProps, 'classNames'>) {
+  const renderProps = {
+    isHovered,
+    isFocused,
+    isFocusVisible,
+    isDisabled,
+    isInvalid,
+    isSelected,
+    isPressed,
+    isReadOnly,
+    isRequired,
+  };
+
   if (!control) {
     return (
       <div
-        data-hovered={props?.isHovered}
-        data-focused={props?.isFocused}
-        data-disabled={props?.isDisabled}
-        data-invalid={props?.isInvalid}
-        data-selected={props?.isSelected}
-        data-pressed={props?.isPressed}
+        data-hovered={isHovered}
+        data-focused={isFocused}
+        data-disabled={isDisabled}
+        data-invalid={isInvalid}
+        data-selected={isSelected}
+        data-pressed={isPressed}
         className={cn(
           'flex items-center justify-center w-6 h-6  border-solid border border-slate-300 ransition-all duration-300 ease rounded-full',
           'data-[hovered="true"]:border-slate-400',
@@ -38,18 +62,18 @@ function ControlSlot({
         {...props}
       >
         <div
-          data-invalid={props?.isInvalid}
+          data-invalid={isInvalid}
           className={cn(
             'w-3 h-3 rounded-full bg-slate-900 opacity-0 transition-all duration-300 ease data-[invalid="true"]:bg-red-500',
             {
-              'opacity-100': props?.isSelected,
+              'opacity-100': isSelected,
             }
           )}
         />
       </div>
     );
   }
-  return typeof control === 'function' ? control(props) : control;
+  return typeof control === 'function' ? control(renderProps) : control;
 }
 
 export function Radio({
