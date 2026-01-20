@@ -97,6 +97,7 @@ function getMotionDrawer() {
   if (!MotionDrawer) {
     MotionDrawer = motion.create(ForwardedDialog);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return MotionDrawer;
 }
 
@@ -107,6 +108,7 @@ export function Drawer({
   animationVariants,
   ...props
 }: DrawerProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Motion = getMotionDrawer();
 
   const commonProps = {
@@ -130,7 +132,12 @@ export function Drawer({
 
   // SSR fallback - render without animation
   if (!Motion) {
-    return <ForwardedDialog {...commonProps}>{children as ReactNode}</ForwardedDialog>;
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <ForwardedDialog {...commonProps}>
+        {children as ReactNode}
+      </ForwardedDialog>
+    );
   }
 
   return (

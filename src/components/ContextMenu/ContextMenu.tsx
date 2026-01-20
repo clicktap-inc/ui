@@ -31,6 +31,7 @@ function getMotionPopover() {
   if (!MotionPopover) {
     MotionPopover = motion.create(ForwardedPopover);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return MotionPopover;
 }
 
@@ -44,6 +45,7 @@ export function ContextMenu({
   classNames,
   ...props
 }: PopoverProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Motion = getMotionPopover();
 
   const popoverClassName = cn(

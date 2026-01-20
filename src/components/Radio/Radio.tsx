@@ -2,6 +2,7 @@
 
 import { Radio as AriaRadio } from 'react-aria-components';
 import type { RadioRenderProps } from 'react-aria-components';
+import type { ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 import type { RadioProps, RadioSlots } from './Radio.types';
 
@@ -23,7 +24,7 @@ function ControlSlot({
   ...props
 }: RadioRenderProps &
   Pick<RadioSlots, 'control'> &
-  Pick<RadioProps, 'classNames'>) {
+  Pick<RadioProps, 'classNames'> & { defaultChildren?: ReactNode }) {
   const renderProps = {
     isHovered,
     isFocused,

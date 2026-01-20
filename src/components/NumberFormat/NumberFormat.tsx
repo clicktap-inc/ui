@@ -9,7 +9,7 @@ export function NumberFormat({
   children,
   ...options
 }: NumberFormatProps) {
-  return children
+  return children != null
     ? new Intl.NumberFormat(locale, { ...options, style }).format(
         Number(children)
       )

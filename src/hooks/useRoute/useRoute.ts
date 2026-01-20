@@ -21,10 +21,13 @@ const DEFAULT_AUTH_PATH = '/account/authenticate';
 /**
  * Replace :param placeholders in path with values from params object.
  */
-function resolveParams(path: string, params?: Record<string, string> | null): string {
+function resolveParams(
+  path: string,
+  params?: Record<string, string> | null
+): string {
   if (!params) return path;
 
-  return path.replace(/:([a-zA-Z_][a-zA-Z0-9_]*)/g, (_, paramName) => {
+  return path.replace(/:([a-zA-Z_][a-zA-Z0-9_]*)/g, (_, paramName: string) => {
     const value = params[paramName];
     if (value === undefined) {
       throw new Error(
@@ -118,7 +121,9 @@ export function useRoute(
 
     // If protected and not logged in, redirect through auth
     if (isProtected && !isLoggedIn) {
-      return `${DEFAULT_AUTH_PATH}?redirect=${encodeURIComponent(resolvedPath)}`;
+      return `${DEFAULT_AUTH_PATH}?redirect=${encodeURIComponent(
+        resolvedPath
+      )}`;
     }
 
     return resolvedPath;

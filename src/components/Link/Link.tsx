@@ -26,7 +26,9 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         rel={rel ?? (isExternal ? 'noopener noreferrer' : undefined)}
         className={(renderProps) => {
           const userClasses =
-            typeof className === 'function' ? className(renderProps) : className;
+            typeof className === 'function'
+              ? className(renderProps)
+              : className;
 
           return cn(
             'flex items-center cursor-pointer',

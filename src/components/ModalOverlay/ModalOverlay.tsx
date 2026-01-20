@@ -34,6 +34,7 @@ function getMotionModalOverlay() {
   if (!MotionModalOverlay) {
     MotionModalOverlay = motion.create(ForwardedModalOverlay);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return MotionModalOverlay;
 }
 
@@ -51,6 +52,7 @@ function InnerModalOverlay({
   setAnimation: Dispatch<SetStateAction<DriverAnimationState>>;
 }) {
   const id = useId();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Motion = getMotionModalOverlay();
 
   // extract key from props to avoid spreading it
@@ -70,8 +72,10 @@ function InnerModalOverlay({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <UIModalOverlay {...(commonProps as any)}>{children as ReactNode}</UIModalOverlay>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/jsx-props-no-spreading
+      <UIModalOverlay {...(commonProps as any)}>
+        {children as ReactNode}
+      </UIModalOverlay>
     );
   }
 

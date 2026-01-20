@@ -2,13 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
-import {
-  Group,
-  Input,
-  Label,
-  Text,
-  TextField,
-} from 'react-aria-components';
+import { Group, Input, Label, Text, TextField } from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import type { PinInputProps } from './PinInput.types';
 
@@ -32,14 +26,13 @@ export function PinInput({
   ...props
 }: PinInputProps) {
   // const [focusedIndex, setFocusedIndex] = useState(-1);
-  const [joinedValue, setJoinedValue] = useState(value);
+  const [, setJoinedValue] = useState(value);
   const [values, setValues] = useState<string[]>(Array(length).fill(''));
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, length);
   }, [length]);
-
 
   //   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //     const eventValue = event.target.value;

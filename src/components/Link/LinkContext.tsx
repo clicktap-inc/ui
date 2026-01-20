@@ -15,9 +15,7 @@ type LinkProviderProps = {
 };
 
 export function LinkProvider({ children, config }: LinkProviderProps) {
-  return (
-    <LinkContext.Provider value={config}>{children}</LinkContext.Provider>
-  );
+  return <LinkContext.Provider value={config}>{children}</LinkContext.Provider>;
 }
 
 export function useLinkConfig() {

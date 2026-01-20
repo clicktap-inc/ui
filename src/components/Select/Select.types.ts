@@ -27,7 +27,6 @@ export interface SelectProps<T extends object>
   children: ReactNode | ((item: T) => ReactNode);
   slots?: SelectSlots<T>;
   popoverOffset?: number;
-  popoverPortalContainer?: () => HTMLElement | null;
   classNames?: SlotsToClasses<
     | 'label'
     | 'name'

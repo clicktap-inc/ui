@@ -9,7 +9,6 @@ import {
   Text,
   FieldError,
   Popover,
-  UNSAFE_PortalProvider,
 } from 'react-aria-components';
 import type { ComboBoxRenderProps, ListBoxProps } from 'react-aria-components';
 import { forwardRef } from 'react';
@@ -81,7 +80,6 @@ function SelectInner<T extends object>(
     placeholder,
     isLoading,
     slots,
-    popoverPortalContainer,
     popoverOffset,
     selectedKey,
     className,
@@ -213,13 +211,7 @@ function SelectInner<T extends object>(
           >
             {errorMessage}
           </FieldError>
-          {popoverPortalContainer ? (
-            <UNSAFE_PortalProvider getContainer={popoverPortalContainer}>
-              {popoverContent}
-            </UNSAFE_PortalProvider>
-          ) : (
-            popoverContent
-          )}
+          {popoverContent}
         </>
       )}
     </ComboBox>
@@ -237,4 +229,3 @@ interface SelectComponent {
 export const Select = forwardRef(SelectInner) as SelectComponent;
 
 export default Select;
-

@@ -31,6 +31,7 @@ function getMotionDialog() {
   if (!MotionDialog) {
     MotionDialog = motion.create(ForwardedDialog);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return MotionDialog;
 }
 
@@ -40,6 +41,7 @@ export function Dialog({
   animationVariants,
   ...props
 }: DialogProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Motion = getMotionDialog();
 
   const commonProps = {
@@ -54,7 +56,12 @@ export function Dialog({
 
   // SSR fallback - render without animation
   if (!Motion) {
-    return <ForwardedDialog {...commonProps}>{children as ReactNode}</ForwardedDialog>;
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <ForwardedDialog {...commonProps}>
+        {children as ReactNode}
+      </ForwardedDialog>
+    );
   }
 
   return (
