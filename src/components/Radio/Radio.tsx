@@ -59,8 +59,6 @@ function ControlSlot({
           'data-[invalid="true"]:data-[pressed="true"]:bg-red-600 data-[invalid="true"]:data-[pressed="true"]:border-red-600',
           classNames?.control
         )}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
       >
         <div
           data-invalid={isInvalid}
