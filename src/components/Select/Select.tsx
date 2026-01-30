@@ -110,11 +110,15 @@ function SelectInner<T extends object>(
     </Popover>
   );
 
+  // Normalize undefined to null to keep ComboBox always controlled
+  // undefined = uncontrolled, null = controlled with no selection
+  const normalizedSelectedKey = selectedKey === undefined ? null : selectedKey;
+
   return (
     <ComboBox
       isDisabled={props.isDisabled || isLoading}
       data-has-value={!!selectedKey}
-      selectedKey={selectedKey}
+      selectedKey={normalizedSelectedKey}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={cn('flex flex-col', 'w-full', className)}

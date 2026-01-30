@@ -18,10 +18,11 @@ function ControlSlot({
   isPressed,
   isReadOnly,
   isRequired,
-  // Destructure to exclude from DOM spread (react-aria render prop)
+  // Destructure to exclude from DOM spread (react-aria render props)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultChildren,
-  ...props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ...restRenderProps
 }: RadioRenderProps &
   Pick<RadioSlots, 'control'> &
   Pick<RadioProps, 'classNames'> & { defaultChildren?: ReactNode }) {

@@ -1,3 +1,16 @@
+[0.16.0](https://github.com/clicktap-inc/ui/compare/0.15.2...0.16.0) (2026-01-30)
+
+### Features
+* FeatureGate components and Lucide icons ([e21b012](https://github.com/clicktap-inc/ui/commit/e21b0127e827881a20be5b6bbc5a52da774538b6))
+* AssetRenderer components and asset-url utility ([76aec5a](https://github.com/clicktap-inc/ui/commit/76aec5ad3a5ec172f013bee049b45d33a1ac5361))
+### Bug Fixes
+* Select selectedKey to prevent uncontrolled-to-controlled warning ([0e1dcda](https://github.com/clicktap-inc/ui/commit/0e1dcdab31d48f74af596e34b511676f767480ec))
+* width auto to Image component for aspect ratio ([46f3602](https://github.com/clicktap-inc/ui/commit/46f3602b54480c4ee60249ef35337be2bc838122))
+* linting errors in Radio and useAssetDownload ([e23e54a](https://github.com/clicktap-inc/ui/commit/e23e54a63a34a419ceb9a2f533beb1c540786897))
+* Update Radio ([6ba55a9](https://github.com/clicktap-inc/ui/commit/6ba55a994232ba77e40ec06c2757056983404f62))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.15.2](https://github.com/clicktap-inc/ui/compare/0.15.1...0.15.2) (2026-01-21)
 
 

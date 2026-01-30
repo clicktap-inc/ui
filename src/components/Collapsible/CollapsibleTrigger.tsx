@@ -2,8 +2,8 @@
 
 import { Provider } from 'react-aria-components';
 import { useControlledState } from '@react-stately/utils';
-import { createContext, useCallback, useId, useRef } from 'react';
-import { PressResponder } from '@react-aria/interactions';
+import { createContext, useCallback, useId } from 'react';
+import { usePress } from '@react-aria/interactions';
 import {
   CollapsibleTriggerProps,
   CollapsibleTriggerState,
@@ -26,11 +26,13 @@ export function CollapsibleTrigger({
     props.onOpenChange
   );
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
   const toggle = useCallback(() => {
     onOpenChange(!isOpen);
   }, [onOpenChange, isOpen]);
+
+  const { pressProps } = usePress({
+    onPress: toggle,
+  });
 
   return (
     <Provider
@@ -41,15 +43,17 @@ export function CollapsibleTrigger({
         ],
       ]}
     >
-      <PressResponder
-        ref={buttonRef}
-        isPressed={isOpen}
-        onPress={toggle}
+      <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...pressProps}
+        role="button"
+        tabIndex={0}
         aria-expanded={isOpen}
         aria-controls={id}
+        className={cn('w-full', className)}
       >
-        <div className={cn('w-full', className)}>{children}</div>
-      </PressResponder>
+        {children}
+      </div>
     </Provider>
   );
 }
