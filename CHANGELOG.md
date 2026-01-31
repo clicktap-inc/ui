@@ -1,3 +1,10 @@
+[0.17.0](https://github.com/clicktap-inc/ui/compare/0.16.0...0.17.0) (2026-01-31)
+
+### Features
+* buildPath utility for non-hook route building ([6aa2727](https://github.com/clicktap-inc/ui/commit/6aa2727e2728670f55bcc4507a28236ad376bedd))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.16.0](https://github.com/clicktap-inc/ui/compare/0.15.2...0.16.0) (2026-01-30)
 
 ### Features

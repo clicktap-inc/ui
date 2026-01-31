@@ -21,7 +21,7 @@ const DEFAULT_AUTH_PATH = '/account/authenticate';
 /**
  * Replace :param placeholders in path with values from params object.
  */
-function resolveParams(
+export function resolveParams(
   path: string,
   params?: Record<string, string> | null
 ): string {
@@ -43,6 +43,30 @@ function resolveParams(
  */
 function hasParams(path: string): boolean {
   return /:([a-zA-Z_][a-zA-Z0-9_]*)/.test(path);
+}
+
+/**
+ * Build a path from a route config, replacing :param placeholders with values.
+ * Use this in event handlers and other non-component contexts where hooks can't be used.
+ *
+ * Unlike useRoute, this does NOT handle auth redirects - it just builds the path.
+ * Use this for internal navigation within an authenticated app.
+ *
+ * @param route - Route config object from Routes
+ * @param params - Object with param values for dynamic routes
+ * @returns The resolved path string
+ *
+ * @example
+ * // In a row click handler
+ * const handleRowClick = (row) => {
+ *   router.push(buildPath(Routes.order.view, { id: row.id }));
+ * };
+ */
+export function buildPath(
+  route: RouteConfig,
+  params?: Record<string, string> | null
+): string {
+  return resolveParams(route.path, params);
 }
 
 /**
