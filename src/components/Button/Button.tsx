@@ -62,7 +62,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
           return cn(baseClasses, userClasses);
         }}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
     );

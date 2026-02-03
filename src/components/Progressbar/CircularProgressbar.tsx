@@ -22,7 +22,6 @@ export function CircularProgressbar({
     <ProgressBar
       aria-label="Loading..."
       className={cn('flex', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       value={value}
     >

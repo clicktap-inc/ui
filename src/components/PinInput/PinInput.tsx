@@ -16,7 +16,7 @@ export function PinInput({
   isRequired = true,
   label,
   length = 6,
-  name,
+  name: _name,
   onChange: controlledOnChange,
   value = '',
   type = 'numeric',
@@ -207,7 +207,6 @@ export function PinInput({
 
     let focusIndex = inputIndex;
 
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < splitValue.length && inputIndex + i < length; i++) {
       updatedValues[inputIndex + i] = splitValue[i];
       focusIndex = inputIndex + i;
@@ -231,7 +230,6 @@ export function PinInput({
     <Group
       className={cn('flex flex-wrap gap-2', className)}
       aria-label={label}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Label
@@ -249,7 +247,6 @@ export function PinInput({
             'flex flex-col w-full flex-1 text-slate-900',
             classNames?.inputWrap
           )}
-          // eslint-disable-next-line react/no-array-index-key
           key={`pin-input-${i}`}
           aria-label={`Pin Input Digit ${i + 1}`}
           isDisabled={isDisabled}
@@ -276,7 +273,6 @@ export function PinInput({
             onPaste={onPaste}
             type={isMasked ? 'password' : 'text'}
             autoComplete="one-time-code"
-            // eslint-disable-next-line no-return-assign
             ref={(el) => {
               if (el) {
                 inputRefs.current[i] = el;

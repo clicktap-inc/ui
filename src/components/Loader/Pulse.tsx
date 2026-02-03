@@ -9,7 +9,6 @@ export function Pulse({ classNames }: PulseProps) {
     <span className={cn(classNames?.base)}>
       {Array.from(new Array(3)).map((_, i) => (
         <motion.div
-          // eslint-disable-next-line react/no-array-index-key
           key={i}
           animate={{
             opacity: [1, 1, 0.7, 1, 1],

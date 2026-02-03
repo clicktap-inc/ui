@@ -64,7 +64,6 @@ export function Badge({
 
   return (
     <NextUIBadge
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       size={size}
       variant={variant}

@@ -12,7 +12,6 @@ export function Cart({ className, ...rest }: IconProps) {
       viewBox="0 0 20 20"
       fill="none"
       className={cn(className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
       <path

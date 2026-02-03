@@ -9,14 +9,17 @@ import type { DialogProps } from './Dialog.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ForwardedDialog = forwardRef<HTMLElement, any>(
-  ({ style, animationVariants, ...props }, ref: Ref<HTMLElement>) => {
+  (
+    { style, animationVariants: _animationVariants, ...props },
+    ref: Ref<HTMLElement>
+  ) => {
     // Separate the dynamic style logic
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
     const ariaStyle = typeof style === 'function' ? style(props) : style;
 
     return (
       // Pass only static styles to framer-motion
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+
       <AriaDialog {...props} ref={ref} style={ariaStyle} />
     );
   }
@@ -31,9 +34,12 @@ function getMotionDialog() {
   if (!MotionDialog) {
     MotionDialog = motion.create(ForwardedDialog);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   return MotionDialog;
 }
+
+// Initialize motion component at module level to avoid creating during render
+const Motion = getMotionDialog();
 
 export function Dialog({
   className,
@@ -41,9 +47,6 @@ export function Dialog({
   animationVariants,
   ...props
 }: DialogProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const Motion = getMotionDialog();
-
   const commonProps = {
     className: cn(
       'p-8 outline-0 max-w-max w-screen absolute top-2/4 left-2/4',
@@ -57,7 +60,6 @@ export function Dialog({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <ForwardedDialog {...commonProps}>
         {children as ReactNode}
       </ForwardedDialog>
@@ -66,7 +68,6 @@ export function Dialog({
 
   return (
     <Motion
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...commonProps}
       variants={
         animationVariants || {

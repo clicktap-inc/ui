@@ -6,7 +6,6 @@ import type { ModalProps } from './Modal.types';
 
 export function Modal({ children, className, ...props }: ModalProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <UIModal {...props} className={cn('absolute inset-1/2', className)}>
       {children}
     </UIModal>

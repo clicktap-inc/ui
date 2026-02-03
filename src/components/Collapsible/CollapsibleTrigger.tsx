@@ -44,7 +44,6 @@ export function CollapsibleTrigger({
       ]}
     >
       <div
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...pressProps}
         role="button"
         tabIndex={0}

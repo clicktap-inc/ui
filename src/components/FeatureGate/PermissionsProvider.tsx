@@ -5,8 +5,7 @@ import React, {
   createContext,
   type PropsWithChildren,
   useContext,
-  useEffect,
-  useState,
+  useMemo,
 } from 'react';
 
 type Permissions = string[];
@@ -83,33 +82,32 @@ export function PermissionsProvider({
   accessToken,
   children,
 }: PropsWithChildren<PermissionsProviderProps>) {
-  const [permissions, setPermissions] = useState<Permissions | null>(null);
-  const [accountPermissions, setAccountPermissions] =
-    useState<Permissions | null>(null);
-  const [account, setAccount] = useState<AccountInfo>({ id: null, name: null });
+  const { permissions, accountPermissions, account } = useMemo(() => {
+    if (!accessToken) {
+      return {
+        permissions: null,
+        accountPermissions: null,
+        account: { id: null, name: null },
+      };
+    }
 
-  useEffect(() => {
-    if (accessToken) {
-      try {
-        const decoded = jwtDecode<JwtPayload>(accessToken);
-
-        setPermissions(decoded.permissions ?? null);
-        setAccountPermissions(decoded.account_permissions ?? null);
-        setAccount({
+    try {
+      const decoded = jwtDecode<JwtPayload>(accessToken);
+      return {
+        permissions: decoded.permissions ?? null,
+        accountPermissions: decoded.account_permissions ?? null,
+        account: {
           id: decoded.account_id ?? null,
           name: decoded.account_name ?? null,
-        });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Failed to decode JWT token:', error);
-        setPermissions(null);
-        setAccountPermissions(null);
-        setAccount({ id: null, name: null });
-      }
-    } else {
-      setPermissions(null);
-      setAccountPermissions(null);
-      setAccount({ id: null, name: null });
+        },
+      };
+    } catch (error) {
+      console.error('Failed to decode JWT token:', error);
+      return {
+        permissions: null,
+        accountPermissions: null,
+        account: { id: null, name: null },
+      };
     }
   }, [accessToken]);
 

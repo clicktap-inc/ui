@@ -15,7 +15,6 @@ export function RadioGroup({
     <AriaRadioGroup
       className={cn('flex flex-col gap-4', className)}
       orientation={orientation}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {typeof children === 'function' ? (

@@ -20,7 +20,6 @@ export function Switch({
         '',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {(renderProps: SwitchRenderProps) => {

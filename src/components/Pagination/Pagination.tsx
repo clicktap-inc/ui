@@ -35,7 +35,6 @@ export function Pagination({
         next: cn(controlClassNames, classNames?.next),
         ellipsis: cn('w-4 h-4.5 scale-110 translate-y-1', classNames?.ellipsis),
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   );

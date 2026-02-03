@@ -1,17 +1,18 @@
 'use client';
 
 import type { ImageProps } from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
+import { useIsClient } from '../../hooks/useIsClient';
 
 export function Image({ src, className, style, ...rest }: ImageProps) {
   const [loadingImg, setLoadingImg] = useState(true);
-  const [image, setImage] = useState(src);
-  const [isClient, setIsClient] = useState(false);
+  const [errorSrc, setErrorSrc] = useState<typeof src | null>(null);
+  const isClient = useIsClient();
 
-  useEffect(() => setImage(src), [src]);
-  useEffect(() => setIsClient(true), []);
+  // Use placeholder if this specific src errored
+  const image = errorSrc === src ? '/images/placeholder.jpg' : src;
 
   // When width/height are provided (not fill), ensure aspect ratio is maintained
   // by setting both dimensions to 'auto' if not explicitly set in style
@@ -30,9 +31,8 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
         className
       )}
       style={imageStyle}
-      onError={() => setImage('/images/placeholder.jpg')}
+      onError={() => setErrorSrc(src)}
       onLoad={() => setLoadingImg(false)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   );

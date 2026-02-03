@@ -29,7 +29,6 @@ export function Slider({
         'data-[orientation="vertical"]:w-8 data-[orientation="vertical"]:block data-[orientation="vertical"]:h-full',
         classNames?.base
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children || (
@@ -86,7 +85,6 @@ export function Slider({
             {({ state }) =>
               state.values.map((_, i) => (
                 <SliderThumb
-                  // eslint-disable-next-line react/no-array-index-key
                   key={i}
                   index={i}
                   aria-label={thumbLabels?.[i]}

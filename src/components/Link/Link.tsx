@@ -18,7 +18,6 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     return (
       <AriaLink
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         href={href}
         isDisabled={isDisabled}

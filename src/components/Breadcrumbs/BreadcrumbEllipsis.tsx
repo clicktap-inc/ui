@@ -7,7 +7,6 @@ export function BreadcrumbEllipsis({
   ...props
 }: BreadcrumbEllipsisProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <span {...props} aria-hidden="true">
       {children ?? (
         <svg

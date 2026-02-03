@@ -10,11 +10,7 @@ export function BreadcrumbItem({
   ...props
 }: BreadcrumbItemProps) {
   return (
-    <Breadcrumb
-      className={cn('flex items-center', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    <Breadcrumb className={cn('flex items-center', className)} {...props}>
       {children}
     </Breadcrumb>
   );

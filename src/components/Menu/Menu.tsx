@@ -22,6 +22,9 @@ import {
 import type { ButtonProps } from 'react-aria-components';
 import type { MenuProps } from './Menu.types';
 
+// This component uses @floating-ui/react which requires passing refs during render.
+// The refs.setReference, refs.setFloating, and arrowRef are callback refs, not ref.current access.
+/* eslint-disable react-hooks/refs */
 export function Menu({
   closeDelay = 300,
   offset = 20,
@@ -91,7 +94,6 @@ export function Menu({
     : { onClick };
 
   const ContentSlot = slots?.content ? (
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     cloneElement(slots.content, {
       ...slots.content.props,
       ref: refs.setReference,
@@ -99,7 +101,6 @@ export function Menu({
       ...keyboardEvents,
     })
   ) : (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <div ref={refs.setReference} {...getReferenceProps()}>
       Menu Action
     </div>
@@ -115,14 +116,12 @@ export function Menu({
         width: 'max-content',
         zIndex: 50,
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...getFloatingProps()}
       variants={{ hidden, visible }}
       initial="hidden"
       animate={isOpen || isOpenUncontrolled ? 'visible' : 'hidden'}
     >
       {withArrow && (
-        // eslint-disable-next-line react/jsx-props-no-spreading
         <FloatingArrow ref={arrowRef} context={context} {...arrow} />
       )}
 
@@ -139,5 +138,6 @@ export function Menu({
     </>
   );
 }
+/* eslint-enable react-hooks/refs */
 
 export default Menu;

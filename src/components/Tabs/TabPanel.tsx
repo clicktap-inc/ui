@@ -6,11 +6,7 @@ import type { TabPanelProps } from './TabPanel.types';
 
 export function TabPanel({ children, className, ...props }: TabPanelProps) {
   return (
-    <AriaTabPanel
-      className={cn('flex grow py-4 px-0', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    <AriaTabPanel className={cn('flex grow py-4 px-0', className)} {...props}>
       {children}
     </AriaTabPanel>
   );

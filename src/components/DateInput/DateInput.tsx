@@ -20,11 +20,7 @@ export function DateInput({
   ...props
 }: DateInputProps) {
   return (
-    <DateField
-      className={cn('text-slate-900', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    <DateField className={cn('text-slate-900', className)} {...props}>
       <Label className={cn('flex text-slate-500 text-xs', classNames?.label)}>
         {label}
       </Label>

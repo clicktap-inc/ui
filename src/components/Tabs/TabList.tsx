@@ -39,7 +39,6 @@ export function TabList({
         className
       )}
       items={items}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children ||

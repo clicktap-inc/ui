@@ -48,7 +48,6 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         }}
         placement={placement}
         showArrow={showArrow}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         ref={ref}
       />

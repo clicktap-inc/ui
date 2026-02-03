@@ -1,4 +1,9 @@
-export { useRoute, buildPath, resolveParams, type RouteConfig } from './useRoute';
+export {
+  useRoute,
+  buildPath,
+  resolveParams,
+  type RouteConfig,
+} from './useRoute';
 export {
   RouteProvider,
   useRouteConfig,

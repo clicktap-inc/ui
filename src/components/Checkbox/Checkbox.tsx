@@ -101,7 +101,6 @@ export function Checkbox({
         'invalid:text-red-500',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {(renderProps) => (
@@ -109,7 +108,6 @@ export function Checkbox({
           <ControlSlot
             control={slots?.control}
             classNames={classNames}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...renderProps}
           />
           {typeof children === 'function' ? children(renderProps) : children}

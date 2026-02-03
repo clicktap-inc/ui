@@ -60,7 +60,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <TextField
         className={cn('flex flex-col w-full text-slate-900', className)}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
         <Label className={cn('flex text-slate-500 text-xs', classNames?.label)}>
@@ -82,7 +81,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
             classNames?.input
           )}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
         />
 

@@ -23,7 +23,6 @@ export function Meter({
       minValue={minValue}
       maxValue={maxValue}
       formatOptions={formatOptions}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {({ percentage, valueText }) => (

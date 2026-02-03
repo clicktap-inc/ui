@@ -70,11 +70,10 @@ const directionAnimatation = {
 const ForwardedDialog = forwardRef<HTMLElement, any>(
   ({ style, size = '20rem', ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     const ariaStyle =
       typeof style === 'function'
-        ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-          style(props)
+        ? style(props)
         : ({
             ...style,
             '--drawer-size': `${size as string}`,
@@ -82,7 +81,7 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
 
     return (
       // Pass only static styles to framer-motion
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+
       <Dialog {...props} ref={ref} style={ariaStyle} />
     );
   }
@@ -97,9 +96,12 @@ function getMotionDrawer() {
   if (!MotionDrawer) {
     MotionDrawer = motion.create(ForwardedDialog);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   return MotionDrawer;
 }
+
+// Initialize motion component at module level to avoid creating during render
+const Motion = getMotionDrawer();
 
 export function Drawer({
   direction = 'right',
@@ -108,9 +110,6 @@ export function Drawer({
   animationVariants,
   ...props
 }: DrawerProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const Motion = getMotionDrawer();
-
   const commonProps = {
     className: cn(
       'fixed p-8 outline-0 bg-white',
@@ -133,7 +132,6 @@ export function Drawer({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <ForwardedDialog {...commonProps}>
         {children as ReactNode}
       </ForwardedDialog>
@@ -143,7 +141,6 @@ export function Drawer({
   return (
     <Motion
       variants={animationVariants || directionAnimatation[direction]}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...commonProps}
     >
       {children as ReactNode}

@@ -7,7 +7,6 @@ import type { OptionProps } from './Option.types';
 export function Option({ className, ...props }: OptionProps) {
   return (
     <ListBoxItem
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={cn(
         'flex flex-auto items-center',

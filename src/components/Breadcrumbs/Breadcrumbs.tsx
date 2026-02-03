@@ -17,7 +17,6 @@ export function Breadcrumbs({
         'px-0 pt-1.5 pb-0',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

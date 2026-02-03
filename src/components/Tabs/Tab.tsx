@@ -44,7 +44,6 @@ export function BaseTab({
           'selected:text-slate-100',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}
@@ -68,7 +67,6 @@ export function Tab({
       orientation={orientation}
       variant={variant}
       className={className}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {(renderProps: TabRenderProps) => (

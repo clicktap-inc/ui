@@ -19,7 +19,6 @@ export function BreadcrumbLink({
         'disabled:cursor-default disabled:text-slate-400 disabled:current:text-slate-900',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

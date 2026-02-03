@@ -8,7 +8,6 @@
  * @param baseUrl - Optional fallback base URL for SSR (e.g., 'https://example.com')
  * @returns true if the URL is external
  */
-// eslint-disable-next-line import/prefer-default-export
 export function isExternalUrl(href: string, baseUrl?: string): boolean {
   // Relative URLs are internal
   if (href.startsWith('/') || href.startsWith('#')) {

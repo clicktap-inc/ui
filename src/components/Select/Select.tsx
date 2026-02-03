@@ -59,14 +59,7 @@ function ListBoxSlot<T extends object>({
 }: ListBoxProps<T> & Pick<SelectSlots<T>, 'listBoxComponent'>) {
   const Component = listBoxComponent || ListBox;
 
-  return (
-    <Component
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
-      {children}
-    </Component>
-  );
+  return <Component {...props}>{children}</Component>;
 }
 
 // Internal component - necessary to preserve generics in children
@@ -119,7 +112,6 @@ function SelectInner<T extends object>(
       isDisabled={props.isDisabled || isLoading}
       data-has-value={!!selectedKey}
       selectedKey={normalizedSelectedKey}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={cn('flex flex-col', 'w-full', className)}
     >
@@ -186,7 +178,6 @@ function SelectInner<T extends object>(
               >
                 <ButtonIconSlot
                   buttonIcon={slots?.buttonIcon}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...renderProps}
                 />
               </Button>

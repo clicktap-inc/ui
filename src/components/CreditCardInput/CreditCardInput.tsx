@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NumberFormatBase } from 'react-number-format';
 import type { InputAttributes, NumberFormatValues } from 'react-number-format';
 import {
@@ -50,7 +50,6 @@ function AriaInput({ className, ...props }: InputAttributes) {
         'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     />
   );
@@ -67,11 +66,8 @@ export function CreditCardInput({
   classNames,
   ...props
 }: CreditCardInputProps) {
-  const [inputValue, setInputValue] = useState(value || '');
-
-  useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+  const [internalValue, setInternalValue] = useState('');
+  const inputValue = value ?? internalValue;
 
   const format = (val: string) => {
     if (val === '') return '';
@@ -104,16 +100,13 @@ export function CreditCardInput({
     const maxLength = cardFormat.replace(/[^#]/g, '').length;
     const truncatedVal = cleanedVal.slice(0, maxLength);
 
-    setInputValue(truncatedVal);
-    if (onChange) {
-      onChange(truncatedVal);
-    }
+    setInternalValue(truncatedVal);
+    onChange?.(truncatedVal);
   };
 
   return (
     <TextField
       className={cn('flex flex-col w-full text-slate-900', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Label className={cn('flex text-slate-500 text-sm', classNames?.label)}>

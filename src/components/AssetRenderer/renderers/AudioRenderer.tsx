@@ -69,7 +69,6 @@ export function AudioRenderer({
   const url = getAssetUrl(uuid, urlOptions);
 
   return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption
     <audio
       controls={controls}
       title={title}

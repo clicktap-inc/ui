@@ -118,7 +118,6 @@ export const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
                   accept={accept}
                   type="file"
                   hidden
-                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...props}
                   ref={ref}
                   className="hidden"

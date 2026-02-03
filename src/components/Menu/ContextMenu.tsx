@@ -20,8 +20,7 @@ export function ContextMenu({
   };
 
   const ContentSlot = slots?.submenu
-    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      cloneElement(slots?.submenu, {
+    ? cloneElement(slots?.submenu, {
         ...slots.submenu.props,
       })
     : null;
@@ -29,7 +28,7 @@ export function ContextMenu({
   const SubmenuSlot = slots?.contentRoot ? (
     cloneElement(
       slots.contentRoot,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
       {
         ...slots.contentRoot.props,
       },
@@ -73,7 +72,6 @@ export function ContextMenu({
           submenuRoot: slots?.submenuRoot,
           content: slots?.content,
         }}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </AnimatePresence>

@@ -38,7 +38,6 @@ function Digit({
           <motion.span
             className="block text-[inherit] leading-[inherit] tabular-nums"
             key={i}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...tickerMotionProps}
           >
             {i}
@@ -83,7 +82,6 @@ export function DigitResolver({
         <motion.span
           className="block text-[inherit] leading-[inherit] tabular-nums"
           aria-hidden
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...motionProps}
         >
           -
@@ -92,20 +90,16 @@ export function DigitResolver({
       {digits.map((digit, idx) =>
         NUMBER_REGEX.test(digit) ? (
           <DigitMemo
-            // eslint-disable-next-line react/no-array-index-key
             key={`${id}_${idx}`}
             digit={digit}
             tickerMotionProps={motionProps}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...columnTransition}
           />
         ) : (
           <motion.span
             className="block text-[inherit] leading-[inherit] tabular-nums"
-            // eslint-disable-next-line react/no-array-index-key
             key={`${id}_${idx}`}
             aria-hidden
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...motionProps}
           >
             {digit}

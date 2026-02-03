@@ -1,3 +1,10 @@
+[0.17.1](https://github.com/clicktap-inc/ui/compare/0.17.0...0.17.1) (2026-02-03)
+
+### Bug Fixes
+* ESLint ignore patterns for story files ([91853cb](https://github.com/clicktap-inc/ui/commit/91853cb8b30b56b2ff3ce4be5cc20706ba1732d1))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.0](https://github.com/clicktap-inc/ui/compare/0.16.0...0.17.0) (2026-01-31)
 
 ### Features

@@ -14,12 +14,12 @@ import type { ModalOverlayProps } from './ModalOverlay.types';
 const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
   ({ style, ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
     const ariaStyle = typeof style === 'function' ? style(props) : style;
 
     return (
       // Pass only static styles to framer-motion
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+
       <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
     );
   }
@@ -34,9 +34,11 @@ function getMotionModalOverlay() {
   if (!MotionModalOverlay) {
     MotionModalOverlay = motion.create(ForwardedModalOverlay);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   return MotionModalOverlay;
 }
+
+const Motion = getMotionModalOverlay();
 
 function InnerModalOverlay({
   animate,
@@ -52,8 +54,6 @@ function InnerModalOverlay({
   setAnimation: Dispatch<SetStateAction<DriverAnimationState>>;
 }) {
   const id = useId();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const Motion = getMotionModalOverlay();
 
   // extract key from props to avoid spreading it
   const { key, ...restProps } = props;
@@ -72,7 +72,7 @@ function InnerModalOverlay({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/jsx-props-no-spreading
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       <UIModalOverlay {...(commonProps as any)}>
         {children as ReactNode}
       </UIModalOverlay>
@@ -106,7 +106,6 @@ function InnerModalOverlay({
       initial="hidden"
       animate={animate}
       exit="hidden"
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...commonProps}
     >
       {children as ReactNode}
@@ -123,7 +122,6 @@ export function ModalOverlay(props: ModalOverlayProps) {
       <AnimatePresence>
         {isOpen && (
           <InnerModalOverlay
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...props}
             animate="visible"
             animation={animation}
@@ -136,7 +134,6 @@ export function ModalOverlay(props: ModalOverlayProps) {
 
   return (
     <InnerModalOverlay
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       animate={animation}
       animation={animation}

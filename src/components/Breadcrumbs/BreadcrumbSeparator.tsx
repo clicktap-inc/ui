@@ -12,7 +12,6 @@ export function BreadcrumbSeparator({
   return (
     <Breadcrumb
       className={cn('flex items-center text-slate-600', 'my-0 mx-2', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children ?? (

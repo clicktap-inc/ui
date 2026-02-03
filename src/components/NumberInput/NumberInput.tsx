@@ -84,7 +84,6 @@ export function NumberInput({
       isInvalid={isInvalid}
       isReadOnly={isReadOnly}
       className={cn('flex flex-col w-full', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Label className={cn('flex text-slate-500 text-sm', classNames?.label)}>

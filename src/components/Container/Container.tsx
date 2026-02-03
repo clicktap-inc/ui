@@ -14,7 +14,6 @@ export const Container = forwardRef(
       <div
         ref={ref}
         className={cn('container', 'mx-auto my-0', 'py-0 px-4', className)}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
         {children}

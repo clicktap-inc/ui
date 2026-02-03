@@ -24,7 +24,6 @@ export function Collapsible({ children, className }: CollapsibleContentProps) {
         type: 'spring',
         bounce: 0,
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
     >
       {children}
     </motion.div>

@@ -22,7 +22,6 @@ export function Tabs({ children, className, ...props }: TabsProps) {
             props.orientation === 'vertical' && 'orientation-vertical:flex-row',
             className
           )}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}
         >
           {children}

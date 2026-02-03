@@ -14,7 +14,6 @@ export function Divider({
 
   return (
     <div
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...combinedProps}
       className={cn(
         'bg-slate-200',

@@ -67,7 +67,6 @@ export function Accordion({
         indicator: itemClasses?.indicator,
         heading: itemClasses?.heading,
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

@@ -11,12 +11,12 @@ import type { PopoverProps } from './ContextMenu.types';
 const ForwardedPopover = forwardRef<HTMLElement, any>(
   ({ style, ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
     const ariaStyle = typeof style === 'function' ? style(props) : style;
 
     return (
       // Pass only static styles to framer-motion
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react/jsx-props-no-spreading
+
       <Popover {...props} ref={ref} style={ariaStyle} />
     );
   }
@@ -31,9 +31,12 @@ function getMotionPopover() {
   if (!MotionPopover) {
     MotionPopover = motion.create(ForwardedPopover);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   return MotionPopover;
 }
+
+// Initialize motion component at module level to avoid creating during render
+const Motion = getMotionPopover();
 
 export function ContextMenu({
   children,
@@ -45,9 +48,6 @@ export function ContextMenu({
   classNames,
   ...props
 }: PopoverProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const Motion = getMotionPopover();
-
   const popoverClassName = cn(
     'px-0 py-1.5',
     'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
@@ -61,12 +61,7 @@ export function ContextMenu({
   // SSR fallback - render without animation
   if (!Motion) {
     return (
-      <ForwardedPopover
-        className={popoverClassName}
-        key={key}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-      >
+      <ForwardedPopover className={popoverClassName} key={key} {...props}>
         <Menu
           className={cn('outline-none', classNames?.menu)}
           onAction={onAction}
@@ -93,7 +88,6 @@ export function ContextMenu({
       }}
       initial="hidden"
       animate={animation}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Menu

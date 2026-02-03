@@ -9,7 +9,7 @@ import {
   Text,
   TextField,
 } from 'react-aria-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { cn } from '../../utils/cn';
 import type { CreditCardExpirationInputProps } from './CreditCardExpirationInput.types';
 
@@ -29,7 +29,6 @@ function AriaInput({ className, ...props }: InputAttributes) {
         'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     />
   );
@@ -46,11 +45,8 @@ export function CreditCardExpirationInput({
   onChange,
   ...props
 }: CreditCardExpirationInputProps) {
-  const [inputValue, setInputValue] = useState(value || '');
-
-  useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+  const [internalValue, setInternalValue] = useState('');
+  const inputValue = value ?? internalValue;
 
   const format = (val: string) => {
     if (val === '') return '';
@@ -72,16 +68,13 @@ export function CreditCardExpirationInput({
   };
 
   const handleValueChange = (values: NumberFormatValues) => {
-    setInputValue(values.formattedValue);
-    if (onChange) {
-      onChange(values.formattedValue);
-    }
+    setInternalValue(values.formattedValue);
+    onChange?.(values.formattedValue);
   };
 
   return (
     <TextField
       className={cn('flex flex-col w-full text-slate-900', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Label className={cn('flex text-slate-500 text-xs', classNames?.label)}>

@@ -51,7 +51,6 @@ export function PhoneInput({
     });
   const dialCodeWithPrefix = `+${country.dialCode}`;
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { startsWith } = useFilter({ sensitivity: 'base' });
   const [filterValue, setFilterValue] = useState('');
   const [isOpen, onOpenChange] = useState(false);
@@ -160,7 +159,6 @@ export function PhoneInput({
       </DialogTrigger>
 
       <Input
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         value={inputValue}
         inputProps={{

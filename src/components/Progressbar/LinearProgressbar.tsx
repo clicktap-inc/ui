@@ -18,7 +18,6 @@ export function LinearProgressbar({
     <ProgressBar
       style={{ width: width || '100%' }}
       className={cn('overflow-hidden', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {({ percentage, valueText }) => (
@@ -49,7 +48,6 @@ export function LinearProgressbar({
                     ? `${percentage}%`
                     : '',
               }}
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...(isIndeterminate && {
                 animate: {
                   x: ['-100%', '250px'],

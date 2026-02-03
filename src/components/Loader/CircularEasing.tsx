@@ -17,7 +17,6 @@ export function CircularEasing({
   return (
     <div
       style={{ '--circularWidth': `${width}px`, ...style } as CSSProperties}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={cn(
         'relative',

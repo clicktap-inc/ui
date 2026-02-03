@@ -91,7 +91,6 @@ export function Radio({
         'disabled:text-slate-400',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {(renderProps) => (
@@ -99,7 +98,6 @@ export function Radio({
           <ControlSlot
             control={slots?.control}
             classNames={classNames}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...renderProps}
           />
           {typeof children === 'function' ? children(renderProps) : children}

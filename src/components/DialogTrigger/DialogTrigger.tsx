@@ -40,7 +40,7 @@ export function DialogTrigger(props: DialogTriggerProps) {
 
   return (
     <DialogTriggerContext.Provider value={value}>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <UIDialogTrigger {...restProps} onOpenChange={onOpenChange} />
     </DialogTriggerContext.Provider>
   );

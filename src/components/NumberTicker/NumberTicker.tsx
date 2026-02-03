@@ -36,7 +36,6 @@ export function NumberTicker({
       aria-valuenow={value}
       layout
       layoutRoot
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {slots?.startContent}

@@ -87,7 +87,6 @@ export function VideoRenderer({
     : undefined;
 
   return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption
     <video
       controls={controls}
       poster={poster}

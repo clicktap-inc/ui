@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { FieldError, Input, Label, TextField } from 'react-aria-components';
 import {
   type InputAttributes,
@@ -17,7 +17,6 @@ function AriaInput({ className, ...props }: InputAttributes) {
   return (
     <Input
       className={cn('peer h-11', /** inputBaseClasses, */ className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     />
   );
@@ -25,7 +24,7 @@ function AriaInput({ className, ...props }: InputAttributes) {
 
 export function DobInput({
   label,
-  description,
+  description: _description,
   errorMessage,
   type,
   className,
@@ -37,11 +36,8 @@ export function DobInput({
   ...props
 }: InputProps) {
   const inputId = useId();
-  const [inputValue, setInputValue] = useState(value || '');
-
-  useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+  const [internalValue, setInternalValue] = useState('');
+  const inputValue = value ?? internalValue;
 
   const format = (val: string) => {
     if (val === '') return '';
@@ -68,17 +64,14 @@ export function DobInput({
   };
 
   const handleValueChange = (values: NumberFormatValues) => {
-    setInputValue(values.formattedValue);
-    if (onChange) {
-      onChange(values.formattedValue);
-    }
+    setInternalValue(values.formattedValue);
+    onChange?.(values.formattedValue);
   };
 
   return (
     <TextField
       className={cn('flex flex-col w-full text-slate-900', className)}
       type={type}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Label

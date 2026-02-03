@@ -58,7 +58,6 @@ export function ToggleButton({
           typeof className === 'function' ? className(renderProps) : className
         );
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

@@ -15,7 +15,6 @@ export function LinkArrow({ className, ...rest }: IconProps) {
         'text-inherit transition duration-100 ease-linear',
         className
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
       <path

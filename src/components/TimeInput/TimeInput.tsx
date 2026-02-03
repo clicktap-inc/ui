@@ -20,11 +20,7 @@ export function TimeInput({
   ...props
 }: TimeInputProps) {
   return (
-    <TimeField
-      className={cn('text-slate-900', className)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    <TimeField className={cn('text-slate-900', className)} {...props}>
       <Label className={cn('flex text-slate-500 text-sm', classNames?.label)}>
         {label}
       </Label>
