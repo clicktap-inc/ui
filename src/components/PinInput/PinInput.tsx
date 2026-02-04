@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
-import { Group, Input, Label, TextField } from 'react-aria-components';
+import { Group, Label } from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import type { PinInputProps } from './PinInput.types';
 
@@ -20,211 +20,158 @@ export function PinInput({
   onChange: controlledOnChange,
   value = '',
   type = 'numeric',
-  validationBehavior = 'native',
+  validationBehavior: _validationBehavior,
   className,
   classNames,
   ...props
 }: PinInputProps) {
-  // const [focusedIndex, setFocusedIndex] = useState(-1);
-  const [, setJoinedValue] = useState(value);
-  const [values, setValues] = useState<string[]>(Array(length).fill(''));
-  const inputRefs = useRef<HTMLInputElement[]>([]);
+  const [values, setValues] = useState<string[]>(() => Array(length).fill(''));
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, length);
   }, [length]);
 
-  //   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     const eventValue = event.target.value;
-  //     const currentValue = values[index];
-  //     const nextValue = getNextValue(currentValue, eventValue);
-  //     const allItems = getAllItems(containerRef.current);
+  const handleInputChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const inputValue = event.target.value;
+      const inputIndex = Number(
+        event.target.getAttribute('data-pin-input-index'),
+      );
 
-  //     // if the value was removed using backspace
-  //     if (nextValue === '') {
-  //       setValue('', index);
-  //       return;
-  //     }
+      if (inputValue !== '' && inputIndex < length - 1) {
+        inputRefs.current?.[inputIndex + 1]?.focus();
+      }
 
-  //     // in the case of an autocomplete or copy and paste
-  //     if (eventValue.length > 2) {
-  //       // see if we can use the string to fill out our values
-  //       if (validate(eventValue, type)) {
-  //         // Ensure the value matches the number of inputs
-  //         const nextValue = eventValue
-  //           .split('')
-  //           .filter((_, index) => index < allItems.length);
-
-  //         setValues(nextValue);
-  //         // if pasting fills the entire input fields, trigger `onComplete`
-  //         if (nextValue.length === allItems.length) {
-  //           onComplete?.(nextValue.join(''));
-  //         }
-  //       }
-  //     } else {
-  //       // only set if the new value is a number
-  //       if (validate(nextValue, type)) {
-  //         setValue(nextValue, index);
-  //       }
-
-  //       setMoveFocus(true);
-  //     }
-  //   };
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    const inputIndex = Number(
-      event.target.getAttribute('data-pin-input-index'),
-    );
-
-    if (inputValue !== '' && inputIndex < values.length - 1) {
-      inputRefs.current?.[inputIndex + 1]?.focus();
-    }
-
-    const updatedValues = values.map((v, i) =>
-      i === inputIndex ? inputValue : v,
-    );
-    setValues(updatedValues);
-
-    // Directly call controlled onChange to ensure form state is updated
-    const newJoinedValue = updatedValues.join('');
-    setJoinedValue(newJoinedValue);
-    if (controlledOnChange) {
-      controlledOnChange(newJoinedValue);
-    }
-  };
-
-  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    // const inputValue = event.currentTarget.value;
-    const inputIndex = Number(
-      event.currentTarget.getAttribute('data-pin-input-index'),
-    );
-
-    // Allow standard keyboard shortcuts
-    if (event.ctrlKey || event.metaKey) {
-      return;
-    }
-
-    /** @todo is there a better way to pass through control keys? */
-    const allowedKeys = [
-      'Backspace',
-      'Delete',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowUp',
-      'ArrowDown',
-      'Control',
-      'Alt',
-      'Meta',
-      'Shift',
-      'Tab',
-      'Enter',
-      'Escape',
-    ];
-
-    const regex = {
-      alpha: /^[a-z]$/i,
-      alphanumeric: /^[a-z0-9]$/i,
-      numeric: /^[0-9]$/i,
-    };
-
-    if (!event.key.match(regex[type]) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-
-    if (
-      values[inputIndex] === '' &&
-      inputIndex > 0 &&
-      event.key === 'Backspace'
-    ) {
       const updatedValues = values.map((v, i) =>
-        i === inputIndex - 1 ? '' : v,
+        i === inputIndex ? inputValue : v,
       );
       setValues(updatedValues);
-      inputRefs.current?.[inputIndex - 1]?.focus();
-      event.preventDefault();
 
-      // Update controlled value
       const newJoinedValue = updatedValues.join('');
-      setJoinedValue(newJoinedValue);
-      if (controlledOnChange) {
-        controlledOnChange(newJoinedValue);
-      }
-    }
+      controlledOnChange?.(newJoinedValue);
+    },
+    [values, length, controlledOnChange],
+  );
 
-    if (
-      values[inputIndex] === '' &&
-      inputIndex < values.length - 1 &&
-      event.key === 'Delete'
-    ) {
-      const updatedValues = values.map((v, i) =>
-        i === inputIndex + 1 ? '' : v,
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      const inputIndex = Number(
+        event.currentTarget.getAttribute('data-pin-input-index'),
       );
-      setValues(updatedValues);
-      inputRefs.current?.[inputIndex + 1]?.focus();
+
+      if (event.ctrlKey || event.metaKey) {
+        return;
+      }
+
+      const allowedKeys = [
+        'Backspace',
+        'Delete',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowUp',
+        'ArrowDown',
+        'Control',
+        'Alt',
+        'Meta',
+        'Shift',
+        'Tab',
+        'Enter',
+        'Escape',
+      ];
+
+      const regex = {
+        alpha: /^[a-z]$/i,
+        alphanumeric: /^[a-z0-9]$/i,
+        numeric: /^[0-9]$/i,
+      };
+
+      if (!event.key.match(regex[type]) && !allowedKeys.includes(event.key)) {
+        event.preventDefault();
+      }
+
+      if (
+        values[inputIndex] === '' &&
+        inputIndex > 0 &&
+        event.key === 'Backspace'
+      ) {
+        const updatedValues = values.map((v, i) =>
+          i === inputIndex - 1 ? '' : v,
+        );
+        setValues(updatedValues);
+        inputRefs.current?.[inputIndex - 1]?.focus();
+        event.preventDefault();
+
+        const newJoinedValue = updatedValues.join('');
+        controlledOnChange?.(newJoinedValue);
+      }
+
+      if (
+        values[inputIndex] === '' &&
+        inputIndex < values.length - 1 &&
+        event.key === 'Delete'
+      ) {
+        const updatedValues = values.map((v, i) =>
+          i === inputIndex + 1 ? '' : v,
+        );
+        setValues(updatedValues);
+        inputRefs.current?.[inputIndex + 1]?.focus();
+        event.preventDefault();
+
+        const newJoinedValue = updatedValues.join('');
+        controlledOnChange?.(newJoinedValue);
+      }
+    },
+    [values, type, controlledOnChange],
+  );
+
+  const onPaste = useCallback(
+    (event: ClipboardEvent<HTMLInputElement>) => {
+      const inputIndex = Number(
+        event.currentTarget.getAttribute('data-pin-input-index'),
+      );
+
       event.preventDefault();
 
-      // Update controlled value
+      const pasteData = event.clipboardData?.getData('text');
+      if (!pasteData) return;
+
+      const splitValue = pasteData.split('').filter((char) => {
+        switch (type) {
+          case 'alpha':
+            return /^[a-zA-Z]$/.test(char);
+          case 'alphanumeric':
+            return /^[a-z0-9]$/i.test(char);
+          case 'numeric':
+          default:
+            return /^[0-9]$/.test(char);
+        }
+      });
+
+      if (splitValue.length === 0) {
+        return;
+      }
+
+      const updatedValues = [...values];
+
+      let focusIndex = inputIndex;
+
+      for (let i = 0; i < splitValue.length && inputIndex + i < length; i++) {
+        updatedValues[inputIndex + i] = splitValue[i];
+        focusIndex = inputIndex + i;
+      }
+
+      setValues(updatedValues);
+
       const newJoinedValue = updatedValues.join('');
-      setJoinedValue(newJoinedValue);
-      if (controlledOnChange) {
-        controlledOnChange(newJoinedValue);
-      }
-    }
+      controlledOnChange?.(newJoinedValue);
 
-    // const prevValues = value;
-    // prevValues[inputIndex] += inputValue;
-    // setValue(prevValues);
-  };
-
-  const onPaste = (event: ClipboardEvent<HTMLInputElement>) => {
-    const inputIndex = Number(
-      event.currentTarget.getAttribute('data-pin-input-index'),
-    );
-
-    event.preventDefault();
-
-    const pasteData = event.clipboardData?.getData('text');
-    if (!pasteData) return;
-
-    /** @todo update to fail paste if contains invalid chars? */
-    const splitValue = pasteData.split('').filter((char) => {
-      switch (type) {
-        case 'alpha':
-          return /^[a-zA-Z]$/.test(char);
-        case 'alphanumeric':
-          return /^[a-z0-9]$/i.test(char);
-        case 'numeric':
-        default:
-          return /^[0-9]$/.test(char);
-      }
-    });
-
-    if (splitValue.length === 0) {
-      return;
-    }
-
-    const updatedValues = [...values];
-
-    let focusIndex = inputIndex;
-
-    for (let i = 0; i < splitValue.length && inputIndex + i < length; i++) {
-      updatedValues[inputIndex + i] = splitValue[i];
-      focusIndex = inputIndex + i;
-    }
-
-    setValues(updatedValues);
-
-    // Update controlled value
-    const newJoinedValue = updatedValues.join('');
-    setJoinedValue(newJoinedValue);
-    if (controlledOnChange) {
-      controlledOnChange(newJoinedValue);
-    }
-
-    const nextInputIndex =
-      focusIndex + 1 < length ? focusIndex + 1 : length - 1;
-    inputRefs.current[nextInputIndex]?.focus();
-  };
+      const nextInputIndex =
+        focusIndex + 1 < length ? focusIndex + 1 : length - 1;
+      inputRefs.current[nextInputIndex]?.focus();
+    },
+    [values, type, length, controlledOnChange],
+  );
 
   return (
     <Group
@@ -232,29 +179,26 @@ export function PinInput({
       aria-label={label}
       {...props}
     >
-      <Label
-        className={cn(
-          'flex text-slate-500 text-sm grow shrink-0 basis-full',
-          classNames?.label,
-        )}
-      >
-        {label}
-      </Label>
+      {label && (
+        <Label
+          className={cn(
+            'flex text-slate-500 text-sm grow shrink-0 basis-full',
+            classNames?.label,
+          )}
+        >
+          {label}
+        </Label>
+      )}
 
       {values.map((v, i) => (
-        <TextField
+        <div
           className={cn(
             'flex flex-col w-full flex-1 text-slate-900',
             classNames?.inputWrap,
           )}
           key={`pin-input-${i}`}
-          aria-label={`Pin Input Digit ${i + 1}`}
-          isDisabled={isDisabled}
-          isInvalid={isInvalid}
-          isRequired={isRequired}
-          validationBehavior={validationBehavior}
         >
-          <Input
+          <input
             className={cn(
               'border-solid border border-slate-300 rounded-md',
               'text-sm text-slate-900 placeholder-slate-400 text-center',
@@ -264,8 +208,9 @@ export function PinInput({
               'hover:border-slate-400',
               'focus:outline-2 focus:outline focus:outline-slate-200 focus:border-slate-400',
               'disabled:border-slate-200 disabled:bg-slate-100',
-              'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
-              'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
+              isInvalid && 'border-red-500 bg-red-100 text-red-600',
+              isInvalid &&
+                'hover:border-red-600 focus:border-red-600 focus:outline-red-200',
               classNames?.input,
             )}
             onChange={handleInputChange}
@@ -274,21 +219,18 @@ export function PinInput({
             type={isMasked ? 'password' : 'text'}
             autoComplete="one-time-code"
             ref={(el) => {
-              if (el) {
-                inputRefs.current[i] = el;
-              }
+              inputRefs.current[i] = el;
             }}
             value={v}
             maxLength={1}
-            // pattern="[0-9]*"
             data-pin-input-index={i}
+            disabled={isDisabled}
+            required={isRequired}
+            aria-label={`Pin Input Digit ${i + 1}`}
           />
-          {/* {description && (
-          <StyledText slot="description">{description}</StyledText>
-        )} */}
-        </TextField>
+        </div>
       ))}
-      {/* Use a div instead of TextField for description/error to avoid ref bug */}
+
       {(description || (isInvalid && errorMessage)) && (
         <div
           className={cn(
