@@ -5,8 +5,10 @@ import type { SlotsToClasses } from '../../types/SlotsToClasses';
 
 type ContextMenuAnimationState = 'unmounted' | 'hidden' | 'visible';
 
-export interface PopoverProps
-  extends Omit<AriaPopoverProps, 'children' | 'style' | 'onAnimationStart'> {
+export interface PopoverProps extends Omit<
+  AriaPopoverProps,
+  'children' | 'style' | 'onAnimationStart'
+> {
   animation: ContextMenuAnimationState;
   children: ReactNode;
   onAction?: (key: Key) => void;

@@ -6,7 +6,7 @@ export function Skeleton({ className }: SkeletonProps) {
     <div
       className={cn(
         'relative rounded-md animate-pulse bg-slate-200',
-        className
+        className,
       )}
     />
   );

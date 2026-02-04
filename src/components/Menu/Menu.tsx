@@ -88,7 +88,7 @@ export function Menu({
   // https://github.com/floating-ui/floating-ui/issues/2646
   const { onClick, ...referenceProps } = getReferenceProps();
   const keyboardEvents = String(
-    (slots?.content?.props as ButtonProps).className
+    (slots?.content?.props as ButtonProps).className,
   ).includes('pressable')
     ? { onPress: onClick }
     : { onClick };

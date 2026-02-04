@@ -21,7 +21,7 @@ function Component({ children, ...props }: TimeInputProps) {
         action('onPress');
       }}
     >
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <TimeInput {...props}>{children}</TimeInput>
       <Button size="sm" type="submit">
         Submit

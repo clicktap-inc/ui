@@ -22,7 +22,7 @@ export function Option({ className, ...props }: OptionProps) {
         'data-[pressed]:bg-slate-200 data-[hovered]:text-slate-900',
         'data-[selected]:bg-none data-[selected]:text-slate-900 data-[selected]:font-semibold data-[selected]:data-[focused]:bg-slate-100',
         'data-[disabled]:bg-none data-[disabled]:text-slate-500',
-        className
+        className,
       )}
     />
   );

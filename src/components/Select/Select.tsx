@@ -31,7 +31,7 @@ function ButtonIconSlot<T extends object>({
         xmlns="http://www.w3.org/2000/svg"
         className={cn(
           'transition-all ease-in-out duration-200',
-          props.isOpen ? 'rotate-180' : 'rotate-0'
+          props.isOpen ? 'rotate-180' : 'rotate-0',
         )}
       >
         <path
@@ -80,7 +80,7 @@ function SelectInner<T extends object>(
     autoComplete,
     ...props
   }: SelectProps<T>,
-  ref: ForwardedRef<HTMLInputElement>
+  ref: ForwardedRef<HTMLInputElement>,
 ) {
   const popoverClassName = cn(
     'px-0 py-1.5',
@@ -89,7 +89,7 @@ function SelectInner<T extends object>(
     'w-[var(--trigger-width)]',
     'bg-white',
     'border border-solid border-slate-300',
-    classNames?.listContainer
+    classNames?.listContainer,
   );
 
   const popoverContent = (
@@ -127,7 +127,7 @@ function SelectInner<T extends object>(
               'flex',
               'relative',
               'w-full',
-              classNames?.comboBoxContainer
+              classNames?.comboBoxContainer,
             )}
           >
             <Input
@@ -151,7 +151,7 @@ function SelectInner<T extends object>(
                 'data-[invalid]:data-[hovered]:border-red-600',
                 'data-[invalid]:data-[focused]:border-red-600 data-[invalid]:data-[focused]:outline data-[invalid]:data-[focused]:outline-2 data-[invalid]:data-[focused]:outline-red-200',
                 'data-[invalid]:placeholder:text-slate-400',
-                classNames?.input
+                classNames?.input,
               )}
               ref={ref}
               autoComplete={autoComplete}
@@ -161,7 +161,7 @@ function SelectInner<T extends object>(
                 className={cn(
                   'absolute top-2 right-2',
                   'block',
-                  classNames?.loader
+                  classNames?.loader,
                 )}
               >
                 {slots?.loadingIcon || <Pulse />}
@@ -173,7 +173,7 @@ function SelectInner<T extends object>(
                   'block',
                   'border-none',
                   'bg-none',
-                  classNames?.arrowButton
+                  classNames?.arrowButton,
                 )}
               >
                 <ButtonIconSlot
@@ -190,7 +190,7 @@ function SelectInner<T extends object>(
                 'flex',
                 'text-xs',
                 'text-slate-500',
-                classNames?.description
+                classNames?.description,
               )}
             >
               {description}
@@ -201,7 +201,7 @@ function SelectInner<T extends object>(
               'flex',
               'text-xs',
               'text-red-500',
-              classNames?.errorMessage
+              classNames?.errorMessage,
             )}
           >
             {errorMessage}
@@ -216,7 +216,7 @@ function SelectInner<T extends object>(
 // Type for the exported component that preserves generics
 interface SelectComponent {
   <T extends object>(
-    props: SelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> }
+    props: SelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
   ): JSX.Element;
 }
 

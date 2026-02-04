@@ -13,7 +13,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     const isExternal = useMemo(
       () => (href ? isExternalUrl(href, baseUrl) : false),
-      [href, baseUrl]
+      [href, baseUrl],
     );
 
     return (
@@ -40,7 +40,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
               'data-[disabled="true"]:text-slate-300',
               'data-[disabled="true"]:hover:text-slate-300',
             ],
-            userClasses
+            userClasses,
           );
         }}
         ref={ref}
@@ -48,7 +48,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         {children}
       </AriaLink>
     );
-  }
+  },
 );
 
 Link.displayName = 'Link';

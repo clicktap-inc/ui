@@ -98,7 +98,7 @@ export function NumberInput({
           'focus-within:outline-2 focus-within:outline focus-within:outline-slate-200',
           'focus-within:invalid:outline-2 focus-within:invalid:outline focus-within:invalid:outline-slate-200',
           'disabled:bg-slate-100',
-          classNames?.group
+          classNames?.group,
         )}
       >
         <Button
@@ -107,7 +107,7 @@ export function NumberInput({
             buttonClasses,
             groupClasses,
             'border-r-0 rounded-r-none',
-            classNames?.decrementBtn
+            classNames?.decrementBtn,
           )}
         >
           {slots?.decrementIcon || DecrementIcon}
@@ -126,7 +126,7 @@ export function NumberInput({
             'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
             'invalid:hover:border-red-600 invalid:focus:border-red-600',
             groupClasses,
-            classNames?.input
+            classNames?.input,
           )}
         />
 
@@ -136,7 +136,7 @@ export function NumberInput({
             buttonClasses,
             groupClasses,
             'border-l-0 rounded-l-none',
-            classNames?.incrementBtn
+            classNames?.incrementBtn,
           )}
         >
           {slots?.incrementIcon || IncrementIcon}

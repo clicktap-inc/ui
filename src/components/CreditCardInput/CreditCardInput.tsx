@@ -24,7 +24,7 @@ const getCardFormat = (cardNumber: string) => {
   ];
 
   const matchingPattern = cardPatterns.find((cardPattern) =>
-    cardPattern.regex.test(cardNumber)
+    cardPattern.regex.test(cardNumber),
   );
   if (matchingPattern) {
     return matchingPattern.format;
@@ -48,7 +48,7 @@ function AriaInput({ className, ...props }: InputAttributes) {
         'disabled:border-slate-200 disabled:bg-slate-100',
         'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
         'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
-        className
+        className,
       )}
       {...props}
     />

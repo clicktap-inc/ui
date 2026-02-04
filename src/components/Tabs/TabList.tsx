@@ -36,7 +36,7 @@ export function TabList({
               'before:block before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-slate-200',
             ],
         ],
-        className
+        className,
       )}
       items={items}
       {...props}

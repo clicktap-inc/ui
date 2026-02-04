@@ -58,7 +58,7 @@ function ControlSlot({
           'data-[invalid="true"]:data-[focused="true"]:border-red-600 data-[invalid="true"]:data-[focused="true"]:outline-red-200',
           'data-[invalid="true"]:data-[selected="true"]:bg-red-100 data-[invalid="true"]:data-[selected="true"]:border-red-500',
           'data-[invalid="true"]:data-[pressed="true"]:bg-red-600 data-[invalid="true"]:data-[pressed="true"]:border-red-600',
-          classNames?.control
+          classNames?.control,
         )}
       >
         <div
@@ -67,7 +67,7 @@ function ControlSlot({
             'w-3 h-3 rounded-full bg-slate-900 opacity-0 transition-all duration-300 ease data-[invalid="true"]:bg-red-500',
             {
               'opacity-100': isSelected,
-            }
+            },
           )}
         />
       </div>
@@ -89,7 +89,7 @@ export function Radio({
         'flex items-center gap-2 group',
         'invalid:text-red-500 invalid:disabled:text-red-300',
         'disabled:text-slate-400',
-        className
+        className,
       )}
       {...props}
     >

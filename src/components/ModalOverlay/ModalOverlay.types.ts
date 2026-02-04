@@ -5,14 +5,16 @@ import type {
 } from 'react-aria-components';
 import type { MotionStyle, Variant } from 'framer-motion';
 
-export interface ModalOverlayProps
-  extends Omit<UiModalOverlayProps, 'children' | 'style' | 'onAnimationStart'> {
+export interface ModalOverlayProps extends Omit<
+  UiModalOverlayProps,
+  'children' | 'style' | 'onAnimationStart'
+> {
   key?: Key;
   style?: MotionStyle;
   animationVariants?: { visible: Variant; hidden: Variant };
   children:
     | ReactNode
     | ((
-        values: ModalRenderProps & { defaultChildren: ReactNode }
+        values: ModalRenderProps & { defaultChildren: ReactNode },
       ) => ReactNode);
 }

@@ -15,7 +15,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'solid',
       ...props
     },
-    ref
+    ref,
   ) {
     const baseClasses = [
       'flex items-center justify-center',
@@ -65,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
 export default Button;

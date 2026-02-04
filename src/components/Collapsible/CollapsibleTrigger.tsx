@@ -23,7 +23,7 @@ export function CollapsibleTrigger({
   const [isOpen, onOpenChange] = useControlledState(
     props.isOpen,
     props.defaultOpen || false,
-    props.onOpenChange
+    props.onOpenChange,
   );
 
   const toggle = useCallback(() => {

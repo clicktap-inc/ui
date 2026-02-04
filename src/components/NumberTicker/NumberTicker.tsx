@@ -31,7 +31,7 @@ export function NumberTicker({
     <motion.span
       className={cn(
         'flex h-auto flex-row flex-nowrap overflow-hidden relative text-[inherit]',
-        className
+        className,
       )}
       aria-valuenow={value}
       layout

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
-import { Group, Input, Label, Text, TextField } from 'react-aria-components';
+import { Group, Input, Label, TextField } from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import type { PinInputProps } from './PinInput.types';
 
@@ -73,7 +73,7 @@ export function PinInput({
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const inputIndex = Number(
-      event.target.getAttribute('data-pin-input-index')
+      event.target.getAttribute('data-pin-input-index'),
     );
 
     if (inputValue !== '' && inputIndex < values.length - 1) {
@@ -81,7 +81,7 @@ export function PinInput({
     }
 
     const updatedValues = values.map((v, i) =>
-      i === inputIndex ? inputValue : v
+      i === inputIndex ? inputValue : v,
     );
     setValues(updatedValues);
 
@@ -96,7 +96,7 @@ export function PinInput({
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     // const inputValue = event.currentTarget.value;
     const inputIndex = Number(
-      event.currentTarget.getAttribute('data-pin-input-index')
+      event.currentTarget.getAttribute('data-pin-input-index'),
     );
 
     // Allow standard keyboard shortcuts
@@ -137,7 +137,7 @@ export function PinInput({
       event.key === 'Backspace'
     ) {
       const updatedValues = values.map((v, i) =>
-        i === inputIndex - 1 ? '' : v
+        i === inputIndex - 1 ? '' : v,
       );
       setValues(updatedValues);
       inputRefs.current?.[inputIndex - 1]?.focus();
@@ -157,7 +157,7 @@ export function PinInput({
       event.key === 'Delete'
     ) {
       const updatedValues = values.map((v, i) =>
-        i === inputIndex + 1 ? '' : v
+        i === inputIndex + 1 ? '' : v,
       );
       setValues(updatedValues);
       inputRefs.current?.[inputIndex + 1]?.focus();
@@ -178,7 +178,7 @@ export function PinInput({
 
   const onPaste = (event: ClipboardEvent<HTMLInputElement>) => {
     const inputIndex = Number(
-      event.currentTarget.getAttribute('data-pin-input-index')
+      event.currentTarget.getAttribute('data-pin-input-index'),
     );
 
     event.preventDefault();
@@ -235,7 +235,7 @@ export function PinInput({
       <Label
         className={cn(
           'flex text-slate-500 text-sm grow shrink-0 basis-full',
-          classNames?.label
+          classNames?.label,
         )}
       >
         {label}
@@ -245,7 +245,7 @@ export function PinInput({
         <TextField
           className={cn(
             'flex flex-col w-full flex-1 text-slate-900',
-            classNames?.inputWrap
+            classNames?.inputWrap,
           )}
           key={`pin-input-${i}`}
           aria-label={`Pin Input Digit ${i + 1}`}
@@ -266,7 +266,7 @@ export function PinInput({
               'disabled:border-slate-200 disabled:bg-slate-100',
               'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
               'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
-              classNames?.input
+              classNames?.input,
             )}
             onChange={handleInputChange}
             onKeyDown={onKeyDown}
@@ -288,40 +288,36 @@ export function PinInput({
         )} */}
         </TextField>
       ))}
-      <TextField
-        className={cn(
-          'flex flex-row flex-wrap grow shrink-0 basis-full',
-          classNames?.textWrap
-        )}
-        aria-label="Pin Input"
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        isRequired={isRequired}
-        validationBehavior={validationBehavior}
-      >
-        {description && (
-          <Text
-            className={cn(
-              'flex text-slate-500 text-sm grow shrink-0 basis-full',
-              classNames?.description
-            )}
-            slot="description"
-          >
-            {description}
-          </Text>
-        )}
-        {isInvalid && errorMessage && typeof errorMessage === 'string' && (
-          <Text
-            className={cn(
-              'flex text-red-500 text-sm grow shrink-0 basis-full',
-              classNames?.error
-            )}
-            slot="errorMessage"
-          >
-            {errorMessage}
-          </Text>
-        )}
-      </TextField>
+      {/* Use a div instead of TextField for description/error to avoid ref bug */}
+      {(description || (isInvalid && errorMessage)) && (
+        <div
+          className={cn(
+            'flex flex-row flex-wrap grow shrink-0 basis-full',
+            classNames?.textWrap,
+          )}
+        >
+          {description && (
+            <p
+              className={cn(
+                'flex text-slate-500 text-sm grow shrink-0 basis-full',
+                classNames?.description,
+              )}
+            >
+              {description}
+            </p>
+          )}
+          {isInvalid && errorMessage && typeof errorMessage === 'string' && (
+            <p
+              className={cn(
+                'flex text-red-500 text-sm grow shrink-0 basis-full',
+                classNames?.error,
+              )}
+            >
+              {errorMessage}
+            </p>
+          )}
+        </div>
+      )}
     </Group>
   );
 }

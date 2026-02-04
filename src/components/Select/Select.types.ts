@@ -17,8 +17,10 @@ export type SelectSlots<T extends object> = {
   listBoxComponent?: ComponentType<ListBoxProps<T>>;
 };
 
-export interface SelectProps<T extends object>
-  extends Omit<AriaComboBoxProps<T>, 'children'> {
+export interface SelectProps<T extends object> extends Omit<
+  AriaComboBoxProps<T>,
+  'children'
+> {
   label?: string;
   description?: string | null;
   errorMessage?: string | ((validation: ValidationResult) => string);

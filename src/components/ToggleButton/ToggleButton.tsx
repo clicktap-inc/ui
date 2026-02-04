@@ -55,7 +55,7 @@ export function ToggleButton({
               ],
             ],
           ],
-          typeof className === 'function' ? className(renderProps) : className
+          typeof className === 'function' ? className(renderProps) : className,
         );
       }}
       {...props}

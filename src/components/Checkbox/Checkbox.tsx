@@ -44,7 +44,7 @@ function ControlSlot({
           (isSelected || isIndeterminate) && ['border-slate-300 bg-slate-300'],
           (isSelected || isIndeterminate) &&
             isPressed && ['border-slate-400 bg-slate-400'],
-          classNames?.control
+          classNames?.control,
         )}
       >
         {/* <Control className="checkbox-control"> */}
@@ -60,7 +60,7 @@ function ControlSlot({
             'stroke-white stroke-[3px]',
             'transition-all duration-200 ease-in-out',
             isDisabled && isIndeterminate && ['stroke-none fill-slate-300'],
-            isIndeterminate && ['stroke-none fill-white']
+            isIndeterminate && ['stroke-none fill-white'],
           )}
         >
           {isIndeterminate ? (
@@ -99,7 +99,7 @@ export function Checkbox({
         'flex items-center gap-2',
         'text-xs text-slate-500 forced-color-adjust-none disabled:text-slate-400 group',
         'invalid:text-red-500',
-        className
+        className,
       )}
       {...props}
     >

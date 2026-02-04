@@ -15,7 +15,7 @@ export function Breadcrumbs({
         'flex items-center list-none text-sm',
         'mx-0 mt-0 mr-4',
         'px-0 pt-1.5 pb-0',
-        className
+        className,
       )}
       {...props}
     >

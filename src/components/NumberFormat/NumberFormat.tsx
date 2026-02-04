@@ -11,7 +11,7 @@ export function NumberFormat({
 }: NumberFormatProps) {
   return children != null
     ? new Intl.NumberFormat(locale, { ...options, style }).format(
-        Number(children)
+        Number(children),
       )
     : fallback;
 }

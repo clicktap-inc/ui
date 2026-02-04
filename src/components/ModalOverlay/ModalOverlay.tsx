@@ -22,7 +22,7 @@ const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
 
       <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
     );
-  }
+  },
 );
 
 // Lazy-initialized motion component for SSR compatibility
@@ -64,7 +64,7 @@ function InnerModalOverlay({
       'fixed top-0 left-0',
       'z-[1000]',
       'w-screen h-[var(--visual-viewport-height)]',
-      className
+      className,
     ),
     ...restProps,
   };
@@ -85,7 +85,7 @@ function InnerModalOverlay({
       isExiting={animation === 'hidden'}
       onAnimationComplete={(currentAnimation: DriverAnimationState) => {
         setAnimation((a) =>
-          currentAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a
+          currentAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a,
         );
       }}
       variants={

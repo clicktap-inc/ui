@@ -25,7 +25,7 @@ export function LinearProgressbar({
           <div
             className={cn(
               'flex items-center justify-between gap-2 mb-1',
-              classNames?.labelWrapper
+              classNames?.labelWrapper,
             )}
           >
             <Label className={cn('text-sm', classNames?.label)}>{label}</Label>
@@ -38,7 +38,7 @@ export function LinearProgressbar({
           <div
             className={cn(
               'overflow-hidden forced-color-adjust-none h-2.5 rounded will-change-transform bg-slate-300',
-              classNames?.trackWrapper
+              classNames?.trackWrapper,
             )}
           >
             <motion.div
@@ -60,7 +60,7 @@ export function LinearProgressbar({
                   'w-1/2': isIndeterminate,
                   'transition-none': isIndeterminate,
                 },
-                classNames?.track
+                classNames?.track,
               )}
             />
           </div>

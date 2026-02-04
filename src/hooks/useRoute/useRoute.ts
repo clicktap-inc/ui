@@ -23,7 +23,7 @@ const DEFAULT_AUTH_PATH = '/account/authenticate';
  */
 export function resolveParams(
   path: string,
-  params?: Record<string, string> | null
+  params?: Record<string, string> | null,
 ): string {
   if (!params) return path;
 
@@ -31,7 +31,7 @@ export function resolveParams(
     const value = params[paramName];
     if (value === undefined) {
       throw new Error(
-        `useRoute: missing required param "${paramName}" for path "${path}"`
+        `useRoute: missing required param "${paramName}" for path "${path}"`,
       );
     }
     return encodeURIComponent(value);
@@ -64,7 +64,7 @@ function hasParams(path: string): boolean {
  */
 export function buildPath(
   route: RouteConfig,
-  params?: Record<string, string> | null
+  params?: Record<string, string> | null,
 ): string {
   return resolveParams(route.path, params);
 }
@@ -120,7 +120,7 @@ type UseRouteOptions = {
 export function useRoute(
   route: RouteConfig,
   params?: Record<string, string> | null,
-  options?: UseRouteOptions
+  options?: UseRouteOptions,
 ): string {
   const pathname = usePathname();
   const { isLoggedIn } = useRouteConfig();
@@ -131,7 +131,7 @@ export function useRoute(
     // Validate params are provided for dynamic routes
     if (hasParams(path) && !params) {
       throw new Error(
-        `useRoute: params required for route "${name}" with path "${path}"`
+        `useRoute: params required for route "${name}" with path "${path}"`,
       );
     }
 
@@ -146,7 +146,7 @@ export function useRoute(
     // If protected and not logged in, redirect through auth
     if (isProtected && !isLoggedIn) {
       return `${DEFAULT_AUTH_PATH}?redirect=${encodeURIComponent(
-        resolvedPath
+        resolvedPath,
       )}`;
     }
 

@@ -23,7 +23,7 @@ export function CircularEasing({
         'm-0',
         'w-[--circularWidth]',
         'aspect-square',
-        className
+        className,
       )}
     >
       <motion.svg
@@ -36,7 +36,7 @@ export function CircularEasing({
           'w-full h-full',
           'absolute inset-x-0 inset-y-0',
           'origin-center',
-          'm-auto'
+          'm-auto',
         )}
       >
         <motion.circle

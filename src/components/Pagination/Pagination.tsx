@@ -9,7 +9,7 @@ const controlClassNames = cn(
   'border border-slate-200 data-[disabled=true]:border-0',
   'rounded transition-colors duration-300 data-[focus-visible="true"]:outline-white data-[focus-visible="true"]:outline-offset-4',
   'hover:bg-slate-50 data-[disabled=true]:bg-slate-100 data-[disabled=true]:text-slate-400',
-  '[&>svg]:w-4.5 [&>svg]:h-auto'
+  '[&>svg]:w-4.5 [&>svg]:h-auto',
 );
 
 export function Pagination({
@@ -29,7 +29,7 @@ export function Pagination({
           'border-solid border border-slate-100 bg-transparent transition-colors duration-300',
           'data-[active=true]:bg-slate-500 data-[active=true]:text-white data-[focus-visible="true"]:outline-white data-[focus-visible="true"]:outline-offset-4',
           '[&[data-hover=true]:not([data-active=true])]:border-slate-200',
-          classNames?.item
+          classNames?.item,
         ),
         prev: cn(controlClassNames, classNames?.prev),
         next: cn(controlClassNames, classNames?.next),

@@ -106,7 +106,7 @@ export function Badge({
             placement === 'bottom-left' && '-translate-x-1/2 translate-y-1/2',
             placement === 'top-left' && '-translate-x-1/2 -translate-y-1/2',
           ],
-          classNames?.badge
+          classNames?.badge,
         ),
       }}
       content={
@@ -151,7 +151,7 @@ export function Badge({
                 ],
                 variant === 'shadow' &&
                   'shadow-[0_0_0_0_rgba(0,0,0,0),_0_0_0_0_rgba(0,0,0,0),_0_10px_15px_-3px_rgba(30,41,59,0.3),_0_4px_6px_-4px_rgba(30,41,59,0.3)]',
-                className
+                className,
               )}
             >
               {content}

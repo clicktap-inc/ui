@@ -8,7 +8,7 @@ import { cn } from '../../utils/cn';
 export const Container = forwardRef(
   (
     { children, className, ...props }: ContainerProps,
-    ref: ForwardedRef<HTMLDivElement>
+    ref: ForwardedRef<HTMLDivElement>,
   ) => {
     return (
       <div
@@ -19,7 +19,7 @@ export const Container = forwardRef(
         {children}
       </div>
     );
-  }
+  },
 );
 
 export default Container;

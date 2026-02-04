@@ -29,7 +29,7 @@ export function Meter({
         <div
           className={cn(
             'flex justify-between items-center gap-4',
-            classNames?.labelWrapper
+            classNames?.labelWrapper,
           )}
         >
           {label && (
@@ -38,7 +38,7 @@ export function Meter({
           <div
             className={cn(
               'flex-auto h-2.5 rounded-md bg-slate-300 forced-color-adjust-none overflow-hidden',
-              classNames?.trackWrapepr
+              classNames?.trackWrapepr,
             )}
           >
             <motion.div

@@ -56,7 +56,7 @@ export interface AssetUrlOptions {
  */
 export function getAssetUrl(
   uuid: string,
-  options: AssetUrlOptions = {}
+  options: AssetUrlOptions = {},
 ): string {
   const { version, filename, download, token } = options;
 
@@ -102,7 +102,7 @@ export function getAssetUrl(
 export function getAbsoluteAssetUrl(
   uuid: string,
   origin: string,
-  options: AssetUrlOptions = {}
+  options: AssetUrlOptions = {},
 ): string {
   const path = getAssetUrl(uuid, options);
   return `${origin.replace(/\/$/, '')}${path}`;

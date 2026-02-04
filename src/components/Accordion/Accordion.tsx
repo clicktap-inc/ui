@@ -20,7 +20,7 @@ export function Accordion({
       dividerProps={{
         className: cn(
           'my-2 border-solid border-slate-200',
-          variant === 'shadow' && 'border-slate-300'
+          variant === 'shadow' && 'border-slate-300',
         ),
       }}
       className={cn(
@@ -31,7 +31,7 @@ export function Accordion({
         variant === 'shadow' && [
           'px-4 py-4 rounded-xl bg-slate-100 shadow-slate-200 border border-slate-200',
         ],
-        className
+        className,
       )}
       itemClasses={{
         base: cn(
@@ -42,24 +42,24 @@ export function Accordion({
             'flex flex-col bg-slate-100 rounded-xl border border-slate-200',
           ],
           isCompact && 'py-0',
-          itemClasses?.base
+          itemClasses?.base,
         ),
         trigger: cn(
           'w-full h-full flex items-center gap-3 py-0 appearance-none cursor-pointer select-none',
           'data-[focus-visible="true"]:outline-2 data-[focus-visible="true"]:outline data-[focus-visible="true"]:outline-slate-100',
           'bg-transparent text-inherit',
           isCompact && ['py-2'],
-          itemClasses?.trigger
+          itemClasses?.trigger,
         ),
         title: cn(
           'text-xl font-semibold',
           isCompact && 'text-base',
-          itemClasses?.title
+          itemClasses?.title,
         ),
         subtitle: cn(
           'text-base',
           isCompact && 'text-sm',
-          itemClasses?.subtitle
+          itemClasses?.subtitle,
         ),
         titleWrapper: cn('text-left', itemClasses?.titleWrapper),
         startContent: cn('shrink-0', itemClasses?.startContent),

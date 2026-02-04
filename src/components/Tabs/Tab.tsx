@@ -42,7 +42,7 @@ export function BaseTab({
           'selected:text-slate-800',
         (variant === 'solid' || variant === 'enclosed') &&
           'selected:text-slate-100',
-        className
+        className,
       )}
       {...props}
     >
@@ -97,7 +97,7 @@ export function Tab({
                 variant === 'enclosed' &&
                   'inset-0 border-solid border-1 border-slate-800 -mb-px border-b-0 rounded-t-lg rounded-b-none bg-white mix-blend-difference',
                 variant === 'base' && 'hidden',
-                classNames?.overflow
+                classNames?.overflow,
               )}
               layoutId={variant}
               transition={{

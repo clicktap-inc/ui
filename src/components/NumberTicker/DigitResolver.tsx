@@ -21,7 +21,7 @@ function Digit({
         setPosition(node.clientHeight * parseInt(digit, 10));
       }
     },
-    [digit]
+    [digit],
   );
 
   return (
@@ -69,7 +69,7 @@ export function DigitResolver({
       typeof tickerMotionProps === 'function'
         ? tickerMotionProps({ delta })
         : tickerMotionProps,
-    [delta, tickerMotionProps]
+    [delta, tickerMotionProps],
   );
 
   const columnTransition = useColumnTransition({
@@ -104,7 +104,7 @@ export function DigitResolver({
           >
             {digit}
           </motion.span>
-        )
+        ),
       )}
     </>
   );

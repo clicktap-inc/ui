@@ -38,7 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       disableSkeleton,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isClient = useIsClient();
 
@@ -79,7 +79,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             'disabled:border-slate-200 disabled:bg-slate-100',
             'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
             'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
-            classNames?.input
+            classNames?.input,
           )}
           {...inputProps}
         />
@@ -88,7 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <Text
             className={cn(
               'flex text-slate-500 text-sm',
-              classNames?.description
+              classNames?.description,
             )}
             slot="description"
           >
@@ -102,7 +102,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </FieldError>
       </TextField>
     );
-  }
+  },
 );
 
 export default Input;

@@ -58,7 +58,7 @@ export function PhoneInput({
   const filteredItems = useMemo(
     () => options.filter((item) => startsWith(item.name, filterValue)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [filterValue]
+    [filterValue],
   );
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export function PhoneInput({
           className={cn(
             'w-full grid absolute left-0 top-[calc(100%+.25rem)] bg-white z-50 rounded-md text-slate-600 border border-slate-300',
             'shadow-inner',
-            isOpen ? 'block' : 'hidden'
+            isOpen ? 'block' : 'hidden',
           )}
           ref={triggerRef}
         >
@@ -120,7 +120,7 @@ export function PhoneInput({
             className={cn(
               'pl-12 pr-5 py-4 w-full m-0 border-0 text-slate-950 transition-all duration-[0.25s] ease outline-0 bg-transparent',
               'placeholder:text-slate-950 focus:outline-0',
-              'border-b border-slate-200'
+              'border-b border-slate-200',
             )}
             onChange={(event) => setFilterValue(event.target.value)}
             onBlur={() => {
@@ -168,7 +168,7 @@ export function PhoneInput({
         classNames={{
           input: cn(
             'rounded-l-none',
-            inputValue.trim() === dialCodeWithPrefix ? 'text-slate-600' : ''
+            inputValue.trim() === dialCodeWithPrefix ? 'text-slate-600' : '',
           ),
           label: 'absolute top-0 left-0',
         }}

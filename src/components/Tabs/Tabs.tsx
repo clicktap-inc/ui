@@ -20,7 +20,7 @@ export function Tabs({ children, className, ...props }: TabsProps) {
           className={cn(
             'flex flex-col w-full px-0 py-2',
             props.orientation === 'vertical' && 'orientation-vertical:flex-row',
-            className
+            className,
           )}
           {...props}
         >

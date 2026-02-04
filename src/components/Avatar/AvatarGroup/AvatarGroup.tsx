@@ -20,7 +20,7 @@ export function AvatarGroup({
         isGrid ? 'gap-3' : 'gap-0',
         'grid-cols-4',
         'items-center',
-        className
+        className,
       )}
     >
       {children}

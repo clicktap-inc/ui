@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 
 /** @todo what is this type actually trying to do? */
 export interface BreadcrumbSeparatorProps
-  extends Omit<BreadcrumbProps, 'children'>,
+  extends
+    Omit<BreadcrumbProps, 'children'>,
     React.RefAttributes<HTMLLIElement> {
   children?: ReactNode;
 }

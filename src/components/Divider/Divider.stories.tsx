@@ -11,7 +11,7 @@ function Component(props: SeparatorProps) {
   return (
     <div style={{ display }}>
       <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <Divider {...props} />
       <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
     </div>

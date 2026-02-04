@@ -84,7 +84,7 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
 
       <Dialog {...props} ref={ref} style={ariaStyle} />
     );
-  }
+  },
 );
 
 // Lazy-initialized motion component for SSR compatibility
@@ -123,7 +123,7 @@ export function Drawer({
         'bottom-0 left-0 right-0 top-auto border-t shadow-[0_-8px_24px_rgba(0,0,0,0.1)] h-[var(--drawer-size)]',
       direction === 'left' &&
         'top-0 bottom-0 left-0 right-auto border-r shadow-[8px_0_24px_rgba(0,0,0,0.1)] w-[var(--drawer-size)]',
-      className
+      className,
     ),
     'data-direction': direction,
     ...props,

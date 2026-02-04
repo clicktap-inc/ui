@@ -96,7 +96,7 @@ export function DobInput({
           'disabled:border-slate-200 disabled:bg-slate-100',
           'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
           'invalid:hover:border-red-600 invalid:focus:border-red-600 invalid:focus:outline-red-200',
-          classNames?.input
+          classNames?.input,
         )}
         onValueChange={handleValueChange}
       />

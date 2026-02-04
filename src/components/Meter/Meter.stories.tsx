@@ -16,6 +16,8 @@ function Component({ children, value: v, ...props }: MeterProps) {
     setValue(value === props?.minValue ? props?.minValue : value - 10);
 
   useEffect(() => {
+    // Sync storybook control value changes to local state
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (v) setValue(v);
   }, [v]);
 
@@ -28,7 +30,7 @@ function Component({ children, value: v, ...props }: MeterProps) {
         margin: '2rem 0',
       }}
     >
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <Meter value={value} {...props} />
 
       <div

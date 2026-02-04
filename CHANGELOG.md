@@ -1,3 +1,10 @@
+[0.17.2](https://github.com/clicktap-inc/ui/compare/0.17.1...0.17.2) (2026-02-04)
+
+### Bug Fixes
+* TextField with div in PinInput to avoid ref bug ([8770ff7](https://github.com/clicktap-inc/ui/commit/8770ff7b3f0275e6975adb84ee852d90b715451c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.1](https://github.com/clicktap-inc/ui/compare/0.17.0...0.17.1) (2026-02-03)
 
 ### Bug Fixes

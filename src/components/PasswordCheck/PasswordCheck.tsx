@@ -15,7 +15,7 @@ export function PasswordCheck({
       <div
         className={cn(
           'relative w-full flex gap-x-2',
-          variant === 'default' && 'mb-8 -mt-1'
+          variant === 'default' && 'mb-8 -mt-1',
         )}
       >
         {Array.from({ length: 5 }, (_, idx) => idx).map((v, idx) => (
@@ -26,7 +26,7 @@ export function PasswordCheck({
               (strength === 1 || strength === 2) && 'bg-red-600',
               strength === 3 && 'bg-yellow-600',
               strength === 4 && 'bg-green-600',
-              strength === 5 && 'bg-blue-600'
+              strength === 5 && 'bg-blue-600',
             )}
             key={v}
           />
@@ -35,7 +35,7 @@ export function PasswordCheck({
           <div
             className={cn(
               'inline-flex gap-x-1 absolute top-0 left-0 text-xs translate-y-2/4 text-slate-950',
-              strength ? 'opacity-100' : 'opacity-0'
+              strength ? 'opacity-100' : 'opacity-0',
             )}
           >
             <span>Password Strength:</span>
@@ -44,7 +44,7 @@ export function PasswordCheck({
                 (strength === 1 || strength === 2) && 'text-red-600',
                 strength === 3 && 'text-yellow-600',
                 strength === 4 && 'text-green-600',
-                strength === 5 && 'text-blue-600'
+                strength === 5 && 'text-blue-600',
               )}
             >
               {getProgressText(strength)}

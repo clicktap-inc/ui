@@ -18,7 +18,7 @@ export function Switch({
       className={cn(
         'flex items-center gap-2 text-sm text-slate-500 forced-color-adjust-none group',
         '',
-        className
+        className,
       )}
       {...props}
     >
@@ -42,7 +42,7 @@ export function Switch({
                   isPressed && 'before:bg-slate-400',
                   isDisabled && 'bg-slate-100',
                   classNames?.indicator,
-                ]
+                ],
               )}
             />
 

@@ -41,7 +41,7 @@ export const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
       classNames,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isClient = useIsClient();
     const [image, setImage] = useState<{
@@ -77,7 +77,7 @@ export const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
                 ['bg-slate-100', variant === 'base' && 'bg-transparent'],
                 'rounded-md',
                 [variant === 'base' && 'rounded-none'],
-                ['p-6 lg:p-7', variant === 'base' && 'p-0 lg:p-0']
+                ['p-6 lg:p-7', variant === 'base' && 'p-0 lg:p-0'],
               )}
             >
               <label
@@ -109,7 +109,7 @@ export const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
                   'my-0 mx-auto',
                   'has-[:disabled]:bg-transparent has-[:disabled]:text-slate-950',
                   'hover:bg-slate-100s hover:text-black',
-                  classNames?.label
+                  classNames?.label,
                 )}
               >
                 {actionTitle}
@@ -199,7 +199,7 @@ export const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default UploadImage;

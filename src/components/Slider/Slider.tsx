@@ -27,7 +27,7 @@ export function Slider({
       className={cn(
         'data-[orientation="horizontal"]:w-full data-[orientation="horizontal"]:flex data-[orientation="horizontal"]:flex-wrap',
         'data-[orientation="vertical"]:w-8 data-[orientation="vertical"]:block data-[orientation="vertical"]:h-full',
-        classNames?.base
+        classNames?.base,
       )}
       {...props}
     >
@@ -38,14 +38,14 @@ export function Slider({
               className={cn(
                 'w-full flex justify-between items-center',
                 orientation === 'vertical' && 'gap-2 w-max mb-2',
-                classNames?.outputWrapper
+                classNames?.outputWrapper,
               )}
             >
               <Label
                 className={cn(
                   'flex-1 text-sm',
                   isDisabled && 'opacity-50',
-                  classNames?.label
+                  classNames?.label,
                 )}
               >
                 {label}
@@ -56,7 +56,7 @@ export function Slider({
                   className={cn(
                     'flex flex-initial ml-auto justify-end text-sm',
                     isDisabled && 'opacity-50',
-                    classNames?.output
+                    classNames?.output,
                   )}
                 >
                   {({ state }) =>
@@ -79,7 +79,7 @@ export function Slider({
               'data-[orientation="horizontal"]:before:top-1/2 data-[orientation="horizontal"]:before:-translate-y-1/2',
               'data-[orientation="vertical"]:before:w-0.5 data-[orientation="vertical"]:before:h-full data-[orientation="vertical"]:before:left-1/2 data-[orientation="vertical"]:before:-translate-y-1/2 data-[orientation="vertical"]:before:-translate-x-1/2',
               isDisabled && 'opacity-50 before:cursor-default',
-              classNames?.track
+              classNames?.track,
             )}
           >
             {({ state }) =>
@@ -93,7 +93,7 @@ export function Slider({
                     'border-2 border-slate-400 rounded-full',
                     isDisabled && 'cursor-default',
                     orientation === 'vertical' && 'left-1/2',
-                    classNames?.thumb
+                    classNames?.thumb,
                   )}
                 />
               ))

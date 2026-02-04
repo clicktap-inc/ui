@@ -8,7 +8,7 @@ import { cn } from '../../utils/cn';
 
 export function Collapsible({ children, className }: CollapsibleContentProps) {
   const { isOpen, id, defaultOpen } = useContext(
-    CollapsibleTriggerStateContext
+    CollapsibleTriggerStateContext,
   );
   return (
     <motion.div

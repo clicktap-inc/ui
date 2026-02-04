@@ -37,7 +37,7 @@ export function DateInput({
           'disabled:border-slate-200 disabled:bg-slate-100',
           'invalid:border-red-500 invalid:bg-red-100 invalid:text-red-600',
           'invalid:hover:border-red-600 invalid:focus-within:border-red-600 invalid:focus-within:outline-red-200',
-          classNames?.input
+          classNames?.input,
         )}
       >
         {(segment) => (
@@ -52,7 +52,7 @@ export function DateInput({
               'data-[placeholder]:text-slate-400 data-[placeholder]:invalid:text-red-500 data-[placeholder]:invalid:focus:text-white',
               'aria-[readonly]:focus-visible:outline aria-[readonly]:focus-visible:outline-slate-500 aria-[readonly]:focus-visible:outline-1',
               'aria-[readonly]:focus:outline aria-[readonly]:focus:outline-slate-500 aria-[readonly]:focus:bg-transparent aria-[readonly]:focus:outline-2',
-              classNames?.segment
+              classNames?.segment,
             )}
           />
         )}

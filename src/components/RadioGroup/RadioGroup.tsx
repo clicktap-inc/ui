@@ -27,7 +27,7 @@ export function RadioGroup({
           <div
             className={cn(
               'flex flex-col gap-2',
-              orientation === 'horizontal' && 'flex-row items-center gap-4'
+              orientation === 'horizontal' && 'flex-row items-center gap-4',
             )}
           >
             {children}

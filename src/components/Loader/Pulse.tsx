@@ -33,7 +33,7 @@ export function Pulse({ classNames }: PulseProps) {
             'h-2',
             'm-0.5',
             'rounded-lg',
-            classNames?.dot
+            classNames?.dot,
           )}
         />
       ))}

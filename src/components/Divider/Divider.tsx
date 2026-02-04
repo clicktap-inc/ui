@@ -24,7 +24,7 @@ export function Divider({
           'aria-[orientation=vertical]:my-0',
           'aria-[orientation=vertical]:mx-4',
         ],
-        className
+        className,
       )}
     />
   );

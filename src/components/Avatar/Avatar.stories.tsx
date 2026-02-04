@@ -12,7 +12,7 @@ function Layout({ children }: { children: ReactNode }) {
 function AvatarExample(props: AvatarProps) {
   return (
     <Layout>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <Avatar {...props} />
     </Layout>
   );
@@ -21,7 +21,7 @@ function AvatarExample(props: AvatarProps) {
 function AvatarGroupExample(props: AvatarGroupProps) {
   return (
     <Layout>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {}
       <AvatarGroup {...props}>
         <Avatar src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" />
         <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />

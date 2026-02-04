@@ -15,7 +15,7 @@ export const useNumberTicker = ({
   precision = 2,
 }: NumberTickerConfig) => {
   const parsed = parseFloat(`${Math.max(Math.abs(value), 0)}`).toFixed(
-    precision ?? 0
+    precision ?? 0,
   );
 
   const number = asLocal
@@ -29,7 +29,7 @@ export const useNumberTicker = ({
       digits: number.split(''),
       isNegative: value < 0,
     }),
-    [number, value]
+    [number, value],
   );
 };
 

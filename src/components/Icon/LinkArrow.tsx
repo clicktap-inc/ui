@@ -13,7 +13,7 @@ export function LinkArrow({ className, ...rest }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={cn(
         'text-inherit transition duration-100 ease-linear',
-        className
+        className,
       )}
       {...rest}
     >

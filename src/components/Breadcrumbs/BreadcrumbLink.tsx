@@ -17,7 +17,7 @@ export function BreadcrumbLink({
         'hover:text-slate-900 hover:underline',
         'current:cursor-default current:text-slate-900 current:font-semibold',
         'disabled:cursor-default disabled:text-slate-400 disabled:current:text-slate-900',
-        className
+        className,
       )}
       {...props}
     >

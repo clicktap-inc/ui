@@ -38,7 +38,7 @@ export function CircularProgressbar({
             />
             <circle
               className={cn(
-                'stroke-slate-800 transition-stroke-dashoffset duration-500 ease-in-out'
+                'stroke-slate-800 transition-stroke-dashoffset duration-500 ease-in-out',
               )}
               cx={center}
               cy={center}

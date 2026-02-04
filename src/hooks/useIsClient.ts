@@ -6,7 +6,7 @@ export function useIsClient() {
   return useSyncExternalStore(
     emptySubscribe,
     () => true, // Client snapshot
-    () => false // Server snapshot
+    () => false, // Server snapshot
   );
 }
 

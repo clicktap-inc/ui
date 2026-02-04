@@ -8,7 +8,7 @@ import type { TooltipProps } from './Tooltip.types';
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   function Tooltip(
     { classNames, placement, showArrow = false, ...props },
-    ref
+    ref,
   ) {
     return (
       <UiTooltip
@@ -52,7 +52,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 export default Tooltip;

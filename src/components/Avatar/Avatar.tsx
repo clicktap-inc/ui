@@ -67,7 +67,7 @@ export function Avatar({
           ],
           isBordered &&
             'shadow-[#fff_0px_0px_0px_2px,_#f1f5f9_0px_0px_0px_4px,_#00000000_0px_0px_0px_0px]',
-          classNames?.base
+          classNames?.base,
         )}
       >
         {/* Image (if src provided) */}
@@ -82,7 +82,7 @@ export function Avatar({
               'overflow-hidden',
               'object-cover',
               'object-center',
-              classNames?.icon
+              classNames?.icon,
             )}
           />
         )}
@@ -96,7 +96,7 @@ export function Avatar({
               'max-w-full',
               'overflow-hidden',
               'font-medium',
-              classNames?.name
+              classNames?.name,
             )}
           >
             {name}
@@ -108,7 +108,7 @@ export function Avatar({
           <span
             className={cn(
               'flex items-center justify-center',
-              classNames?.fallback
+              classNames?.fallback,
             )}
           >
             {icon || <DefaultIcon />}

@@ -35,7 +35,7 @@ export function DialogTrigger(props: DialogTriggerProps) {
       onOpenChange,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [animation, parentOnOpenChange]
+    [animation, parentOnOpenChange],
   );
 
   return (

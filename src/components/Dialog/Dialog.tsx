@@ -11,7 +11,7 @@ import type { DialogProps } from './Dialog.types';
 const ForwardedDialog = forwardRef<HTMLElement, any>(
   (
     { style, animationVariants: _animationVariants, ...props },
-    ref: Ref<HTMLElement>
+    ref: Ref<HTMLElement>,
   ) => {
     // Separate the dynamic style logic
 
@@ -22,7 +22,7 @@ const ForwardedDialog = forwardRef<HTMLElement, any>(
 
       <AriaDialog {...props} ref={ref} style={ariaStyle} />
     );
-  }
+  },
 );
 
 // Lazy-initialized motion component for SSR compatibility
@@ -52,7 +52,7 @@ export function Dialog({
       'p-8 outline-0 max-w-max w-screen absolute top-2/4 left-2/4',
       'shadow-[0_8px_24px_rgba(0,0,0,0.1)] rounded-lg bg-white border border-solid border-slate-400',
       'transform -translate-x-1/2 -translate-y-1/2',
-      className
+      className,
     ),
     ...props,
   };

@@ -153,7 +153,7 @@ export function IsAllowedTo({
   const permissions = usePermissions();
 
   const shouldRender = to?.some((per) =>
-    isRestricted ? !permissions?.includes(per) : permissions?.includes(per)
+    isRestricted ? !permissions?.includes(per) : permissions?.includes(per),
   );
 
   return shouldRender ? children : null;

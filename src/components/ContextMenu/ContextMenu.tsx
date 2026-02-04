@@ -19,7 +19,7 @@ const ForwardedPopover = forwardRef<HTMLElement, any>(
 
       <Popover {...props} ref={ref} style={ariaStyle} />
     );
-  }
+  },
 );
 
 // Lazy-initialized motion component for SSR compatibility
@@ -55,7 +55,7 @@ export function ContextMenu({
     'w-56',
     'bg-white',
     'border border-solid border-slate-300',
-    className
+    className,
   );
 
   // SSR fallback - render without animation
@@ -79,7 +79,7 @@ export function ContextMenu({
       isExiting={animation === 'hidden'}
       onAnimationComplete={(completedAnimation: string) => {
         setAnimation((a) =>
-          completedAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a
+          completedAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a,
         );
       }}
       variants={{

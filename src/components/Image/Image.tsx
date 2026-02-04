@@ -28,7 +28,7 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
       className={cn(
         'transition-[filter] ease-linear duration-200',
         isClient && loadingImg && 'blur-md',
-        className
+        className,
       )}
       style={imageStyle}
       onError={() => setErrorSrc(src)}

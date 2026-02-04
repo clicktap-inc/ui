@@ -32,7 +32,7 @@ export function ContextMenu({
       {
         ...slots.contentRoot.props,
       },
-      ContentSlot
+      ContentSlot,
     )
   ) : (
     <div className="relative rounded-md py-4 px-6 bg-gray-50 shadow">
