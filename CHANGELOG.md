@@ -1,3 +1,10 @@
+[0.17.5](https://github.com/clicktap-inc/ui/compare/0.17.4...0.17.5) (2026-02-05)
+
+### Bug Fixes
+* render children in ForwardedModalOverlay ([40dd8bf](https://github.com/clicktap-inc/ui/commit/40dd8bff5af477faa0e0ecfa1092494e38e46fe5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.4](https://github.com/clicktap-inc/ui/compare/0.17.3...0.17.4) (2026-02-05)
 
 ### Bug Fixes

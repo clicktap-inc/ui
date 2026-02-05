@@ -12,15 +12,16 @@ import type { ModalOverlayProps } from './ModalOverlay.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
-  ({ style, ...props }, ref: Ref<HTMLElement>) => {
+  ({ style, children, ...props }, ref: Ref<HTMLElement>) => {
     // Separate the dynamic style logic
-
     const ariaStyle = typeof style === 'function' ? style(props) : style;
 
     return (
       // Pass only static styles to framer-motion
-
-      <UIModalOverlay {...props} ref={ref} style={ariaStyle} />
+      // Children must be explicitly rendered - spreading props doesn't render them as JSX children
+      <UIModalOverlay {...props} ref={ref} style={ariaStyle}>
+        {children}
+      </UIModalOverlay>
     );
   },
 );
