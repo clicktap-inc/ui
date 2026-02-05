@@ -1,3 +1,10 @@
+[0.17.6](https://github.com/clicktap-inc/ui/compare/0.17.5...0.17.6) (2026-02-05)
+
+### Bug Fixes
+* Modal/Drawer dismiss and focus behaviors ([a268001](https://github.com/clicktap-inc/ui/commit/a26800125cfe4a439b55b11507488c8b79acc32a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.5](https://github.com/clicktap-inc/ui/compare/0.17.4...0.17.5) (2026-02-05)
 
 ### Bug Fixes

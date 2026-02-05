@@ -112,7 +112,8 @@ export function Drawer({
 }: DrawerProps) {
   const commonProps = {
     className: cn(
-      'fixed p-8 outline-0 bg-white',
+      'fixed p-8 bg-white',
+      'outline-none focus:outline-none focus-visible:outline-none',
       'border-solid border-slate-200',
       'max-w-full max-h-[var(--visual-viewport-height)]',
       direction === 'top' &&
