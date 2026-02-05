@@ -1,3 +1,10 @@
+[0.17.4](https://github.com/clicktap-inc/ui/compare/0.17.3...0.17.4) (2026-02-05)
+
+### Bug Fixes
+* inset-0 instead of inset-1/2 for Modal default ([c318e25](https://github.com/clicktap-inc/ui/commit/c318e253dc3360732971314c9d32bac0dfc436ba))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.3](https://github.com/clicktap-inc/ui/compare/0.17.2...0.17.3) (2026-02-04)
 
 

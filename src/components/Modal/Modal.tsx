@@ -6,7 +6,7 @@ import type { ModalProps } from './Modal.types';
 
 export function Modal({ children, className, ...props }: ModalProps) {
   return (
-    <UIModal {...props} className={cn('absolute inset-1/2', className)}>
+    <UIModal {...props} className={cn('absolute inset-0', className)}>
       {children}
     </UIModal>
   );
