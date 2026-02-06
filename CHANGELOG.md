@@ -1,3 +1,10 @@
+[0.18.0](https://github.com/clicktap-inc/ui/compare/0.17.6...0.18.0) (2026-02-06)
+
+### Features
+* LinkAsButton component and Button variant aliases ([d195157](https://github.com/clicktap-inc/ui/commit/d1951573c3aebd4c9df115d9cc97b14a8aa6be6c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.17.6](https://github.com/clicktap-inc/ui/compare/0.17.5...0.17.6) (2026-02-05)
 
 ### Bug Fixes

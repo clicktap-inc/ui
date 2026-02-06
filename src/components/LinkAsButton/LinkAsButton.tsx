@@ -1,37 +1,24 @@
 'use client';
 
 import { forwardRef } from 'react';
-import { Button as AriaButton } from 'react-aria-components';
 import { cn } from '../../utils/cn';
-import type { ButtonProps, ButtonVariant } from './Button.types';
+import { Link } from '../Link';
+import { resolveVariant } from '../Button';
+import type { LinkAsButtonProps } from './LinkAsButton.types';
 
-export function resolveVariant(
-  variant: ButtonVariant,
-): 'solid' | 'outline' | 'ghost' {
-  switch (variant) {
-    case 'primary':
-      return 'solid';
-    case 'secondary':
-      return 'outline';
-    case 'tertiary':
-      return 'ghost';
-    default:
-      return variant;
-  }
-}
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
+export const LinkAsButton = forwardRef<HTMLAnchorElement, LinkAsButtonProps>(
+  (
     {
       className,
-      isDisabled = false,
+      isDisabled,
       isLoading = false,
       size = 'md',
       variant = 'solid',
+      children,
       ...props
     },
     ref,
-  ) {
+  ) => {
     const resolved = resolveVariant(variant);
 
     const baseClasses = [
@@ -61,15 +48,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       resolved === 'solid' && [
         'bg-slate-800 hover:bg-slate-900 focus:bg-slate-900 disabled:bg-slate-900',
         'border-slate-800 hover:border-slate-900 focus:border-slate-900 disabled:border-slate-200',
-        'text-white disabled:text-slate-400',
+        'text-white disabled:text-slate-400 hover:text-white',
         isLoading && ['disabled:border-slate-900', 'disabled:text-white'],
       ],
     ];
 
     return (
-      <AriaButton
+      <Link
         ref={ref}
-        type="button"
         isDisabled={isDisabled}
         className={(renderProps) => {
           const userClasses =
@@ -80,9 +66,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           return cn(baseClasses, userClasses);
         }}
         {...props}
-      />
+      >
+        {children}
+      </Link>
     );
   },
 );
 
-export default Button;
+LinkAsButton.displayName = 'LinkAsButton';
+
+export default LinkAsButton;

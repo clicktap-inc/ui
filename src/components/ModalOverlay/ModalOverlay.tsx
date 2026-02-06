@@ -11,8 +11,8 @@ import { cn } from '../../utils/cn';
 import type { ModalOverlayProps } from './ModalOverlay.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ForwardedModalOverlay = forwardRef<HTMLElement, any>(
-  ({ style, children, ...props }, ref: Ref<HTMLElement>) => {
+const ForwardedModalOverlay = forwardRef<HTMLDivElement, any>(
+  ({ style, children, ...props }, ref: Ref<HTMLDivElement>) => {
     // Separate the dynamic style logic
     const ariaStyle = typeof style === 'function' ? style(props) : style;
 
