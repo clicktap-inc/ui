@@ -18,7 +18,7 @@ export function PinInput({
   length = 6,
   name: _name,
   onChange: controlledOnChange,
-  value = '',
+  value: _value = '',
   type = 'numeric',
   validationBehavior: _validationBehavior,
   className,
