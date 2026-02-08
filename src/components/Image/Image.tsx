@@ -15,11 +15,11 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
   const image = errorSrc === src ? '/images/placeholder.jpg' : src;
 
   // When width/height are provided (not fill), ensure aspect ratio is maintained
-  // by setting both dimensions to 'auto' if not explicitly set in style
+  // by defaulting height to 'auto' if not explicitly set in style
   const hasSizedProps =
     'width' in rest && 'height' in rest && !('fill' in rest);
   const imageStyle = hasSizedProps
-    ? { width: 'auto' as const, height: 'auto' as const, ...style }
+    ? { height: 'auto' as const, ...style }
     : style;
 
   return (

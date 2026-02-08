@@ -1,3 +1,10 @@
+[0.18.2](https://github.com/clicktap-inc/ui/compare/0.18.1...0.18.2) (2026-02-08)
+
+### Bug Fixes
+* width auto from Image component and fix cart image wrappers ([aff6046](https://github.com/clicktap-inc/ui/commit/aff6046025f79f68ba032bd34c3f6cfd098f2f6c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.1](https://github.com/clicktap-inc/ui/compare/0.18.0...0.18.1) (2026-02-07)
 
 
