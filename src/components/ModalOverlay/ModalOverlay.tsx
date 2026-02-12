@@ -47,6 +47,7 @@ function InnerModalOverlay({
   setAnimation,
   className,
   animationVariants,
+  isDismissable = true,
   children,
   ...props
 }: ModalOverlayProps & {
@@ -60,6 +61,7 @@ function InnerModalOverlay({
   const { key, ...restProps } = props;
 
   const commonProps = {
+    isDismissable,
     className: cn(
       'bg-black/30',
       'fixed top-0 left-0',

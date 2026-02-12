@@ -1,3 +1,10 @@
+[0.18.3](https://github.com/clicktap-inc/ui/compare/0.18.2...0.18.3) (2026-02-12)
+
+### Bug Fixes
+* ModalOverlay isDismissable to true ([402f0ef](https://github.com/clicktap-inc/ui/commit/402f0ef3d1291c1718b6bdbf9902e84b28e1e757))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.2](https://github.com/clicktap-inc/ui/compare/0.18.1...0.18.2) (2026-02-08)
 
 ### Bug Fixes
