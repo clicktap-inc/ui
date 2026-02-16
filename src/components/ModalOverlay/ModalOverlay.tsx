@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useId } from 'react';
+import { forwardRef, useCallback, useEffect, useId } from 'react';
 import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 import { ModalOverlay as UIModalOverlay } from 'react-aria-components';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -9,6 +9,35 @@ import { useDialogTrigger } from '../DialogTrigger/DialogTrigger';
 import type { DriverAnimationState } from '../DialogTrigger/DialogTrigger.types';
 import { cn } from '../../utils/cn';
 import type { ModalOverlayProps } from './ModalOverlay.types';
+
+/**
+ * react-aria marks every sibling of the overlay container as `inert` while
+ * a modal is open.  The only element that should stay inert is `#__next`
+ * (page content behind the modal).  Everything else at the body level —
+ * browser extension UI (1Password, LastPass, Bitwarden, etc.) — gets
+ * incorrectly blocked.  We strip `inert` from those non-app elements so
+ * extensions keep working.
+ */
+const NON_APP_INERT_SELECTOR =
+  'body > [inert]:not(#__next):not([data-overlay-container])';
+
+function removeInertFromNonAppElements() {
+  document
+    .querySelectorAll(NON_APP_INERT_SELECTOR)
+    .forEach((el) => el.removeAttribute('inert'));
+}
+
+/**
+ * Check whether the element belongs to the page (not a browser extension).
+ * Extension-injected elements sit outside both the React tree and the
+ * react-aria overlay container.  Clicks on them should not dismiss the
+ * modal.
+ */
+function isPageElement(element: Element): boolean {
+  return !!(
+    element.closest('[data-overlay-container]') || element.closest('#__next')
+  );
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ForwardedModalOverlay = forwardRef<HTMLDivElement, any>(
@@ -57,11 +86,45 @@ function InnerModalOverlay({
 }) {
   const id = useId();
 
-  // extract key from props to avoid spreading it
-  const { key, ...restProps } = props;
+  // Strip `inert` from non-app elements (browser extensions) that
+  // react-aria incorrectly marks as inert when the modal opens.
+  useEffect(() => {
+    removeInertFromNonAppElements();
+
+    const observer = new MutationObserver(() => {
+      removeInertFromNonAppElements();
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['inert'],
+      subtree: false,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // extract key and shouldCloseOnInteractOutside from props to avoid
+  // spreading them (we handle shouldCloseOnInteractOutside below)
+  const {
+    key,
+    shouldCloseOnInteractOutside: propShouldClose,
+    ...restProps
+  } = props;
+
+  const shouldCloseOnInteractOutside = useCallback(
+    (element: Element) => {
+      if (propShouldClose) {
+        return propShouldClose(element);
+      }
+      return isPageElement(element);
+    },
+    [propShouldClose],
+  );
 
   const commonProps = {
     isDismissable,
+    shouldCloseOnInteractOutside,
     className: cn(
       'bg-black/30',
       'fixed top-0 left-0',

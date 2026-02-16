@@ -1,6 +1,6 @@
 {
   "name": "@clicktap/ui",
-  "version": "0.18.4",
+  "version": "0.18.5",
   "private": false,
   "author": "Clicktap",
   "description": "A library of React UI components and low-level hooks.",

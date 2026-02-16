@@ -1,3 +1,11 @@
+[0.18.5](https://github.com/clicktap-inc/ui/compare/0.18.4...0.18.5) (2026-02-16)
+
+### Bug Fixes
+* react-aria from marking browser extension elements as inert ([f880770](https://github.com/clicktap-inc/ui/commit/f880770a680743d7ba8bdafdb689e6d7c7ef7ef7))
+* error boundary to Image component for unconfigured hostnames ([b4364ae](https://github.com/clicktap-inc/ui/commit/b4364ae9088476093c3b897c8a84d8cea9ce9741))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.4](https://github.com/clicktap-inc/ui/compare/0.18.3...0.18.4) (2026-02-16)
 
 ### Bug Fixes
