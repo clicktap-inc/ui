@@ -1,3 +1,10 @@
+[0.18.4](https://github.com/clicktap-inc/ui/compare/0.18.3...0.18.4) (2026-02-16)
+
+### Bug Fixes
+* null pathname in useRoute returnHere redirect ([08856df](https://github.com/clicktap-inc/ui/commit/08856dfaf162f67a4f7a76ee86b38370731c06cd))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.3](https://github.com/clicktap-inc/ui/compare/0.18.2...0.18.3) (2026-02-12)
 
 ### Bug Fixes

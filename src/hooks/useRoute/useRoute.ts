@@ -140,7 +140,7 @@ export function useRoute(
 
     // If returnHere is true, append current pathname as redirect (login-with-return pattern)
     if (options?.returnHere) {
-      return `${resolvedPath}?redirect=${encodeURIComponent(pathname)}`;
+      return `${resolvedPath}?redirect=${encodeURIComponent(pathname ?? '/')}`;
     }
 
     // If protected and not logged in, redirect through auth
