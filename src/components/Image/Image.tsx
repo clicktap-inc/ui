@@ -4,6 +4,7 @@ import type { ImageProps } from 'next/image';
 import { Component, type ReactNode, useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
+import { isDevelopment } from '../../utils/env';
 import { useIsClient } from '../../hooks/useIsClient';
 
 class ImageErrorBoundary extends Component<
@@ -25,7 +26,7 @@ class ImageErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error) {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDevelopment) {
       console.warn(
         '[Image] next/image render error, falling back to <img>:',
         error.message,
@@ -114,7 +115,7 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
         )}
         style={imageStyle}
         onError={() => {
-          if (process.env.NODE_ENV === 'development') {
+          if (isDevelopment) {
             const imgSrc = typeof src === 'string' ? src : JSON.stringify(src);
             console.warn(
               `[Image] next/image optimization failed for ${imgSrc}, falling back to <img>`,
