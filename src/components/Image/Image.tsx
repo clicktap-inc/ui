@@ -7,6 +7,15 @@ import { cn } from '../../utils/cn';
 import { isDevelopment } from '../../utils/env';
 import { useIsClient } from '../../hooks/useIsClient';
 
+// Module-level cache of srcs that threw during render (e.g. unconfigured
+// hostnames). Prevents re-render loops in dev mode where React Strict Mode
+// and HotReload reset the error boundary and re-attempt NextImage.
+const failedRenderSrcs = new Set<string>();
+
+function getSrcKey(src: ImageProps['src']): string {
+  return typeof src === 'string' ? src : JSON.stringify(src);
+}
+
 class ImageErrorBoundary extends Component<
   {
     src: ImageProps['src'];
@@ -26,6 +35,7 @@ class ImageErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error) {
+    failedRenderSrcs.add(getSrcKey(this.props.src));
     if (isDevelopment) {
       console.warn(
         '[Image] next/image render error, falling back to <img>:',
@@ -72,9 +82,10 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
     ? { height: 'auto' as const, ...style }
     : style;
 
-  // When next/image optimization fails, bypass it entirely and render the
-  // original src as a plain <img> — same pattern as the error boundary fallback.
-  if (errorSrc === src) {
+  // When next/image optimization fails (onError) or threw during render
+  // (cached in failedRenderSrcs), bypass it entirely and render the original
+  // src as a plain <img>.
+  if (errorSrc === src || failedRenderSrcs.has(getSrcKey(src))) {
     const imgSrc =
       typeof src === 'string'
         ? src

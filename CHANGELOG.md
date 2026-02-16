@@ -1,3 +1,10 @@
+[0.18.8](https://github.com/clicktap-inc/ui/compare/0.18.7...0.18.8) (2026-02-16)
+
+### Bug Fixes
+* failed image srcs to prevent re-render loop in dev mode ([6f5324c](https://github.com/clicktap-inc/ui/commit/6f5324c5a639e079c1112d1161ad04608a1f0d6a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.7](https://github.com/clicktap-inc/ui/compare/0.18.6...0.18.7) (2026-02-16)
 
 
