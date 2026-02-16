@@ -63,9 +63,6 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
   const [errorSrc, setErrorSrc] = useState<typeof src | null>(null);
   const isClient = useIsClient();
 
-  // Use placeholder if this specific src errored
-  const image = errorSrc === src ? '/images/placeholder.jpg' : src;
-
   // When width/height are provided (not fill), ensure aspect ratio is maintained
   // by defaulting height to 'auto' if not explicitly set in style
   const hasSizedProps =
@@ -73,6 +70,28 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
   const imageStyle = hasSizedProps
     ? { height: 'auto' as const, ...style }
     : style;
+
+  // When next/image optimization fails, bypass it entirely and render the
+  // original src as a plain <img> — same pattern as the error boundary fallback.
+  if (errorSrc === src) {
+    const imgSrc =
+      typeof src === 'string'
+        ? src
+        : typeof src === 'object' && 'src' in src
+          ? src.src
+          : '';
+    return (
+      <img
+        src={imgSrc}
+        alt={rest.alt ?? ''}
+        className={className}
+        style={imageStyle}
+        width={'width' in rest ? rest.width : undefined}
+        height={'height' in rest ? rest.height : undefined}
+        loading="lazy"
+      />
+    );
+  }
 
   const boundaryKey = typeof src === 'string' ? src : JSON.stringify(src);
 
@@ -87,14 +106,22 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
       height={'height' in rest ? rest.height : undefined}
     >
       <NextImage
-        src={image}
+        src={src}
         className={cn(
           'transition-[filter] ease-linear duration-200',
           isClient && loadingImg && 'blur-md',
           className,
         )}
         style={imageStyle}
-        onError={() => setErrorSrc(src)}
+        onError={() => {
+          if (process.env.NODE_ENV === 'development') {
+            const imgSrc = typeof src === 'string' ? src : JSON.stringify(src);
+            console.warn(
+              `[Image] next/image optimization failed for ${imgSrc}, falling back to <img>`,
+            );
+          }
+          setErrorSrc(src);
+        }}
         onLoad={() => setLoadingImg(false)}
         {...rest}
       />

@@ -1,3 +1,10 @@
+[0.18.6](https://github.com/clicktap-inc/ui/compare/0.18.5...0.18.6) (2026-02-16)
+
+### Bug Fixes
+* back to native img instead of placeholder when next/image optimization fails ([78a21a6](https://github.com/clicktap-inc/ui/commit/78a21a636f35b4b48d4ac962c08c94f4e3e0b1ca))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.5](https://github.com/clicktap-inc/ui/compare/0.18.4...0.18.5) (2026-02-16)
 
 ### Bug Fixes
