@@ -4,7 +4,6 @@ import type { ImageProps } from 'next/image';
 import { Component, type ReactNode, useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
-import { isDevelopment } from '../../utils/env';
 import { useIsClient } from '../../hooks/useIsClient';
 
 // Module-level cache of srcs that threw during render (e.g. unconfigured
@@ -34,18 +33,9 @@ class ImageErrorBoundary extends Component<
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error) {
-    failedRenderSrcs.add(getSrcKey(this.props.src));
-    if (isDevelopment) {
-      console.warn(
-        '[Image] next/image render error, falling back to <img>:',
-        error.message,
-      );
-    }
-  }
-
   render() {
     if (this.state.hasError) {
+      failedRenderSrcs.add(getSrcKey(this.props.src));
       const { src, alt, className, style, width, height } = this.props;
       const imgSrc =
         typeof src === 'string'
@@ -82,10 +72,12 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
     ? { height: 'auto' as const, ...style }
     : style;
 
+  const srcKey = getSrcKey(src);
+
   // When next/image optimization fails (onError) or threw during render
   // (cached in failedRenderSrcs), bypass it entirely and render the original
   // src as a plain <img>.
-  if (errorSrc === src || failedRenderSrcs.has(getSrcKey(src))) {
+  if (errorSrc === src || failedRenderSrcs.has(srcKey)) {
     const imgSrc =
       typeof src === 'string'
         ? src
@@ -105,11 +97,9 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
     );
   }
 
-  const boundaryKey = typeof src === 'string' ? src : JSON.stringify(src);
-
   return (
     <ImageErrorBoundary
-      key={boundaryKey}
+      key={srcKey}
       src={src}
       alt={rest.alt}
       className={className}
@@ -125,15 +115,7 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
           className,
         )}
         style={imageStyle}
-        onError={() => {
-          if (isDevelopment) {
-            const imgSrc = typeof src === 'string' ? src : JSON.stringify(src);
-            console.warn(
-              `[Image] next/image optimization failed for ${imgSrc}, falling back to <img>`,
-            );
-          }
-          setErrorSrc(src);
-        }}
+        onError={() => setErrorSrc(src)}
         onLoad={() => setLoadingImg(false)}
         {...rest}
       />
