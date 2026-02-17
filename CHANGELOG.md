@@ -1,3 +1,10 @@
+[0.19.0](https://github.com/clicktap-inc/ui/compare/0.18.11...0.19.0) (2026-02-17)
+
+### Features
+* getSafeErrorMessage utility and showErrorToast helper ([d5c99f4](https://github.com/clicktap-inc/ui/commit/d5c99f444e5b7164e5ea268fab5294af1b932b0f))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.11](https://github.com/clicktap-inc/ui/compare/0.18.10...0.18.11) (2026-02-17)
 
 ### Bug Fixes
