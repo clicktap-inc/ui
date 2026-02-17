@@ -29,6 +29,7 @@ export interface SelectProps<T extends object> extends Omit<
   children: ReactNode | ((item: T) => ReactNode);
   slots?: SelectSlots<T>;
   popoverOffset?: number;
+  popoverPortalContainer?: () => HTMLElement | null;
   classNames?: SlotsToClasses<
     | 'label'
     | 'name'

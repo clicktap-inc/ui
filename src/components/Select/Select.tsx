@@ -1,5 +1,6 @@
 'use client';
 
+import { UNSAFE_PortalProvider } from 'react-aria';
 import {
   ListBox,
   ComboBox,
@@ -73,6 +74,7 @@ function SelectInner<T extends object>(
     placeholder,
     isLoading,
     slots,
+    popoverPortalContainer,
     popoverOffset,
     selectedKey,
     className,
@@ -206,7 +208,13 @@ function SelectInner<T extends object>(
           >
             {errorMessage}
           </FieldError>
-          {popoverContent}
+          {popoverPortalContainer ? (
+            <UNSAFE_PortalProvider getContainer={popoverPortalContainer}>
+              {popoverContent}
+            </UNSAFE_PortalProvider>
+          ) : (
+            popoverContent
+          )}
         </>
       )}
     </ComboBox>

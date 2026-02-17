@@ -1,3 +1,10 @@
+[0.19.1](https://github.com/clicktap-inc/ui/compare/0.19.0...0.19.1) (2026-02-17)
+
+### Bug Fixes
+* popoverPortalContainer prop on Select component ([252b8a9](https://github.com/clicktap-inc/ui/commit/252b8a928bb61a68d853a36abfc64d88cf0976c1))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.19.0](https://github.com/clicktap-inc/ui/compare/0.18.11...0.19.0) (2026-02-17)
 
 ### Features
