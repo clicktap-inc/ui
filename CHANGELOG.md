@@ -1,3 +1,10 @@
+[0.18.11](https://github.com/clicktap-inc/ui/compare/0.18.10...0.18.11) (2026-02-17)
+
+### Bug Fixes
+* extension-injected elements via React fiber instead of whitelist ([e008684](https://github.com/clicktap-inc/ui/commit/e008684313983b90b529d2cc8b2464ef74d72e4b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.10](https://github.com/clicktap-inc/ui/compare/0.18.9...0.18.10) (2026-02-17)
 
 ### Bug Fixes

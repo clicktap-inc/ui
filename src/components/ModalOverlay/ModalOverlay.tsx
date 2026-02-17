@@ -21,7 +21,17 @@ import type { ModalOverlayProps } from './ModalOverlay.types';
 const NON_APP_INERT_SELECTOR =
   'body > [inert]:not(#__next):not([data-overlay-container])';
 
+/**
+ * Check whether a DOM element is managed by React.
+ * React attaches __reactFiber$... and __reactProps$... properties to every
+ * DOM element it manages.  Extension-injected elements won't have these.
+ */
+function isReactElement(el: Element): boolean {
+  return Object.keys(el).some((key) => key.startsWith('__react'));
+}
+
 function removeInertFromNonAppElements() {
+  // Fast path: direct body children that aren't the app or overlay container
   document
     .querySelectorAll(NON_APP_INERT_SELECTOR)
     .forEach((el) => el.removeAttribute('inert'));
@@ -91,14 +101,28 @@ function InnerModalOverlay({
   useEffect(() => {
     removeInertFromNonAppElements();
 
-    const observer = new MutationObserver(() => {
-      removeInertFromNonAppElements();
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'inert'
+        ) {
+          const el = mutation.target as Element;
+          // Body-level non-app elements (fast path)
+          if (el.parentElement === document.body) {
+            removeInertFromNonAppElements();
+          } else if (!isReactElement(el)) {
+            // Deeper elements without React fiber = extension-injected
+            el.removeAttribute('inert');
+          }
+        }
+      }
     });
 
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ['inert'],
-      subtree: false,
+      subtree: true,
     });
 
     return () => observer.disconnect();
