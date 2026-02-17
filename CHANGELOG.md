@@ -1,3 +1,10 @@
+[0.18.10](https://github.com/clicktap-inc/ui/compare/0.18.9...0.18.10) (2026-02-17)
+
+### Bug Fixes
+* next/* modules so app config is not lost during bundling ([6ceacc6](https://github.com/clicktap-inc/ui/commit/6ceacc64d8949c9969f8f469a59ff16f5ad75295))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.18.9](https://github.com/clicktap-inc/ui/compare/0.18.8...0.18.9) (2026-02-16)
 
 
