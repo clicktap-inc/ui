@@ -150,7 +150,9 @@ function InnerModalOverlay({
     isDismissable,
     shouldCloseOnInteractOutside,
     className: cn(
-      'bg-black/30',
+      // backdrop-blur is applied here as a static class instead of in framer-motion
+      // variants because WAAPI cannot interpolate backdropFilter — see variants comment
+      'bg-black/30 backdrop-blur-sm',
       'fixed top-0 left-0',
       'z-[1000]',
       'w-screen h-[var(--visual-viewport-height)]',
@@ -178,18 +180,24 @@ function InnerModalOverlay({
           currentAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a,
         );
       }}
+      // WARNING: Do NOT add backdropFilter to these variants.
+      // framer-motion's WAAPI keyframe resolver cannot interpolate
+      // backdropFilter values (e.g. 'blur(0px)' → 'blur(8px)').
+      // When this ModalOverlay is rendered inside another AnimatePresence
+      // exit animation (e.g. address cards in checkout), the parent exit
+      // triggers WAAPI measurement on all descendant motion elements,
+      // hitting: mixObject (complex.mjs) → Cannot read properties of null.
+      // The blur is applied via CSS class (backdrop-blur-sm) instead.
       variants={
         animationVariants || {
           hidden: {
             opacity: 0,
-            backdropFilter: 'blur(0px)',
             transition: {
               delay: 0.08,
             },
           },
           visible: {
             opacity: 1,
-            backdropFilter: 'blur(8px)',
           },
         }
       }

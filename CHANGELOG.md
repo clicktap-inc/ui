@@ -1,3 +1,10 @@
+[0.19.3](https://github.com/clicktap-inc/ui/compare/0.19.2...0.19.3) (2026-02-18)
+
+### Bug Fixes
+* backdropFilter from ModalOverlay framer-motion variants ([49a94d3](https://github.com/clicktap-inc/ui/commit/49a94d367794d5021e4fc766e55403c33ba68e56))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.19.2](https://github.com/clicktap-inc/ui/compare/0.19.1...0.19.2) (2026-02-17)
 
 
