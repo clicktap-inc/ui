@@ -1,3 +1,10 @@
+[0.20.1](https://github.com/clicktap-inc/ui/compare/0.20.0...0.20.1) (2026-02-18)
+
+### Bug Fixes
+* replace popoverPortalContainer with CSS var for Select popover width ([66a26e9](https://github.com/clicktap-inc/ui/commit/66a26e9504619e308dddfc3ec09dfcb13843ec63))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.20.0](https://github.com/clicktap-inc/ui/compare/0.19.3...0.20.0) (2026-02-18)
 
 ### Features

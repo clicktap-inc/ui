@@ -1,6 +1,5 @@
 'use client';
 
-import { UNSAFE_PortalProvider } from 'react-aria';
 import {
   ListBox,
   ComboBox,
@@ -12,8 +11,8 @@ import {
   Popover,
 } from 'react-aria-components';
 import type { ComboBoxRenderProps, ListBoxProps } from 'react-aria-components';
-import { forwardRef } from 'react';
-import type { ForwardedRef } from 'react';
+import { forwardRef, useRef } from 'react';
+import type { CSSProperties, ForwardedRef } from 'react';
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
 import type { SelectProps, SelectSlots } from './Select.types';
@@ -74,7 +73,6 @@ function SelectInner<T extends object>(
     placeholder,
     isLoading,
     slots,
-    popoverPortalContainer,
     popoverOffset,
     selectedKey,
     className,
@@ -84,6 +82,7 @@ function SelectInner<T extends object>(
   }: SelectProps<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
+  const comboBoxRef = useRef<HTMLDivElement>(null);
   const popoverClassName = cn(
     'px-0 py-1.5',
     'shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]',
@@ -92,17 +91,6 @@ function SelectInner<T extends object>(
     'bg-white',
     'border border-solid border-slate-300',
     classNames?.listContainer,
-  );
-
-  const popoverContent = (
-    <Popover offset={popoverOffset} className={popoverClassName}>
-      <ListBoxSlot
-        listBoxComponent={slots?.listBoxComponent}
-        className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
-      >
-        {children}
-      </ListBoxSlot>
-    </Popover>
   );
 
   // Normalize undefined to null to keep ComboBox always controlled
@@ -116,6 +104,7 @@ function SelectInner<T extends object>(
       selectedKey={normalizedSelectedKey}
       {...props}
       className={cn('flex flex-col', 'w-full', className)}
+      ref={comboBoxRef}
     >
       {(renderProps) => (
         <>
@@ -208,13 +197,22 @@ function SelectInner<T extends object>(
           >
             {errorMessage}
           </FieldError>
-          {popoverPortalContainer ? (
-            <UNSAFE_PortalProvider getContainer={popoverPortalContainer}>
-              {popoverContent}
-            </UNSAFE_PortalProvider>
-          ) : (
-            popoverContent
-          )}
+          <Popover
+            offset={popoverOffset}
+            className={popoverClassName}
+            style={
+              {
+                '--trigger-width': `${comboBoxRef?.current?.getBoundingClientRect().width || 0}px`,
+              } as CSSProperties
+            }
+          >
+            <ListBoxSlot
+              listBoxComponent={slots?.listBoxComponent}
+              className={cn('max-h-80', 'overflow-y-scroll', classNames?.list)}
+            >
+              {children}
+            </ListBoxSlot>
+          </Popover>
         </>
       )}
     </ComboBox>
