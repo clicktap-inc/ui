@@ -1,3 +1,10 @@
+[0.20.0](https://github.com/clicktap-inc/ui/compare/0.19.3...0.20.0) (2026-02-18)
+
+### Features
+* password reveal toggle, requirements variant, and PinInput autoFocus ([170f73e](https://github.com/clicktap-inc/ui/commit/170f73ea24ba3138032c07d8969e3b6262662d75))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.19.3](https://github.com/clicktap-inc/ui/compare/0.19.2...0.19.3) (2026-02-18)
 
 ### Bug Fixes

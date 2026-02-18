@@ -3,6 +3,7 @@ import type { SlotsToClasses } from '../../types/SlotsToClasses';
 
 /** @todo extend certain textfield props like name, validationBehavior and isRequired */
 export interface PinInputProps extends GroupProps {
+  autoFocus?: boolean;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
   label?: string;

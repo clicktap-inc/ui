@@ -8,6 +8,7 @@ import type { PinInputProps } from './PinInput.types';
 
 /** based on https://github.com/chakra-ui/chakra-ui/blob/main/packages/components/src/pin-input/use-pin-input.ts */
 export function PinInput({
+  autoFocus = false,
   description,
   errorMessage,
   isDisabled = false,
@@ -31,6 +32,12 @@ export function PinInput({
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, length);
   }, [length]);
+
+  useEffect(() => {
+    if (autoFocus) {
+      inputRefs.current[0]?.focus();
+    }
+  }, [autoFocus]);
 
   const handleInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
