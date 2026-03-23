@@ -1,3 +1,10 @@
+[0.21.0](https://github.com/clicktap-inc/ui/compare/0.20.1...0.21.0) (2026-03-23)
+
+### Features
+* DropdownSelect component using React Aria Select for non-searchable dropdowns ([4b4d320](https://github.com/clicktap-inc/ui/commit/4b4d3201994338477dd1031782fce00ba00f1ba1))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.20.1](https://github.com/clicktap-inc/ui/compare/0.20.0...0.20.1) (2026-02-18)
 
 ### Bug Fixes
