@@ -1,7 +1,7 @@
 'use client';
 
 import type { ImageProps } from 'next/image';
-import { Component, type ReactNode, useState } from 'react';
+import { Component, type ReactNode, useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
 import { useIsClient } from '../../hooks/useIsClient';
@@ -59,10 +59,45 @@ class ImageErrorBoundary extends Component<
   }
 }
 
-export function Image({ src, className, style, ...rest }: ImageProps) {
+export type ExtendedImageProps = ImageProps & {
+  /** Reduce opacity to 50% (e.g., while waiting for data) */
+  dimmed?: boolean;
+  /** Hide image completely — opacity 0 (e.g., before grid rearrange) */
+  hidden?: boolean;
+  /** Fires when a new image has loaded after a src change */
+  onReady?: () => void;
+};
+
+export function Image({
+  src,
+  className,
+  style,
+  dimmed,
+  hidden,
+  onReady,
+  onLoad: externalOnLoad,
+  ...rest
+}: ExtendedImageProps) {
   const [loadingImg, setLoadingImg] = useState(true);
   const [errorSrc, setErrorSrc] = useState<typeof src | null>(null);
+  const errorTimer = useRef<ReturnType<typeof setTimeout>>();
+  const currentSrc = useRef(src);
+  const onReadyRef = useRef(onReady);
+  onReadyRef.current = onReady;
   const isClient = useIsClient();
+
+  // Only manage opacity when extended props are used
+  const managed = dimmed !== undefined || hidden !== undefined || onReady !== undefined;
+
+  // Detect src change during render — prevents stale image flash
+  if (managed) {
+    const newKey = getSrcKey(src);
+    const curKey = getSrcKey(currentSrc.current);
+    if (newKey !== curKey) {
+      currentSrc.current = src;
+      setLoadingImg(true);
+    }
+  }
 
   // When width/height are provided (not fill), ensure aspect ratio is maintained
   // by defaulting height to 'auto' if not explicitly set in style
@@ -99,7 +134,6 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
 
   return (
     <ImageErrorBoundary
-      key={srcKey}
       src={src}
       alt={rest.alt}
       className={className}
@@ -110,13 +144,38 @@ export function Image({ src, className, style, ...rest }: ImageProps) {
       <NextImage
         src={src}
         className={cn(
-          'transition-[filter] ease-linear duration-200',
-          isClient && loadingImg && 'blur-md',
+          managed
+            ? 'transition-opacity duration-200 ease-in-out'
+            : 'transition-[filter] ease-linear duration-200',
+          !managed && isClient && loadingImg && 'blur-md',
           className,
         )}
-        style={imageStyle}
-        onError={() => setErrorSrc(src)}
-        onLoad={() => setLoadingImg(false)}
+        style={{
+          ...imageStyle,
+          ...(managed
+            ? {
+                opacity: hidden
+                  ? 0
+                  : loadingImg || dimmed
+                    ? 0.5
+                    : 1,
+              }
+            : {}),
+        }}
+        onError={() => {
+          // Debounce — Next.js image optimization can fire onError then
+          // onLoad on the same image when a srcSet variant fails but
+          // another succeeds. Only fall back if onLoad doesn't fire.
+          errorTimer.current = setTimeout(() => setErrorSrc(src), 2000);
+        }}
+        onLoad={(e) => {
+          clearTimeout(errorTimer.current);
+          setLoadingImg(false);
+          onReadyRef.current?.();
+          if (typeof externalOnLoad === 'function') {
+            externalOnLoad(e);
+          }
+        }}
         {...rest}
       />
     </ImageErrorBoundary>

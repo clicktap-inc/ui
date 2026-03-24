@@ -1,3 +1,12 @@
+[0.22.0](https://github.com/clicktap-inc/ui/compare/0.21.2...0.22.0) (2026-03-24)
+
+### Features
+* dimmed, hidden, and onReady props to Image component ([3822990](https://github.com/clicktap-inc/ui/commit/38229903c70c07b96deca799f4f78fea131c859d))
+### Bug Fixes
+* Image onError and remove error boundary key remount ([1ad7dbb](https://github.com/clicktap-inc/ui/commit/1ad7dbbcb3b28e5ed63d5c292f5a041f23692f74))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.21.2](https://github.com/clicktap-inc/ui/compare/0.21.1...0.21.2) (2026-03-24)
 
 
