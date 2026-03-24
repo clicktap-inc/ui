@@ -4,7 +4,7 @@ import type { ImageProps } from 'next/image';
 import { Component, type ReactNode, useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
-import { useIsClient } from '../../hooks/useIsClient';
+
 
 // Module-level cache of srcs that threw during render (e.g. unconfigured
 // hostnames). Prevents re-render loops in dev mode where React Strict Mode
@@ -83,17 +83,22 @@ export function Image({
   const errorTimer = useRef<ReturnType<typeof setTimeout>>();
   const currentSrc = useRef(src);
   const onReadyRef = useRef(onReady);
+  // eslint-disable-next-line react-hooks/refs -- intentional: keep ref in sync without re-render
   onReadyRef.current = onReady;
-  const isClient = useIsClient();
 
   // Only manage opacity when extended props are used
-  const managed = dimmed !== undefined || hidden !== undefined || onReady !== undefined;
+  const managed =
+    dimmed !== undefined || hidden !== undefined || onReady !== undefined;
 
-  // Detect src change during render — prevents stale image flash
+  // Detect src change during render to prevent stale image flash.
+  // Intentional ref access during render — React allows setState here
+  // for derived state, and useEffect would cause a stale frame.
   if (managed) {
     const newKey = getSrcKey(src);
+    // eslint-disable-next-line react-hooks/refs -- intentional: compare previous src during render
     const curKey = getSrcKey(currentSrc.current);
     if (newKey !== curKey) {
+      // eslint-disable-next-line react-hooks/refs -- intentional: update ref during render
       currentSrc.current = src;
       setLoadingImg(true);
     }
@@ -144,21 +149,14 @@ export function Image({
       <NextImage
         src={src}
         className={cn(
-          managed
-            ? 'transition-opacity duration-200 ease-in-out'
-            : 'transition-[filter] ease-linear duration-200',
-          !managed && isClient && loadingImg && 'blur-md',
+          managed && 'transition-opacity duration-200 ease-in-out',
           className,
         )}
         style={{
           ...imageStyle,
           ...(managed
             ? {
-                opacity: hidden
-                  ? 0
-                  : loadingImg || dimmed
-                    ? 0.5
-                    : 1,
+                opacity: hidden ? 0 : loadingImg || dimmed ? 0.5 : 1,
               }
             : {}),
         }}
