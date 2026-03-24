@@ -8,7 +8,10 @@ import {
   Popover,
   ListBox,
 } from 'react-aria-components';
-import type { SelectProps as AriaSelectProps, Key } from 'react-aria-components';
+import type {
+  SelectProps as AriaSelectProps,
+  Key,
+} from 'react-aria-components';
 import type { ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 
@@ -38,10 +41,7 @@ export function DropdownSelect<T extends object>({
   ...props
 }: DropdownSelectProps<T>) {
   return (
-    <AriaSelect
-      {...props}
-      className={cn('flex items-center gap-2', className)}
-    >
+    <AriaSelect {...props} className={cn('flex items-center gap-2', className)}>
       {label && (
         <Label className={cn('text-xs text-slate-500', classNames?.label)}>
           {label}
@@ -63,9 +63,7 @@ export function DropdownSelect<T extends object>({
           classNames?.trigger,
         )}
       >
-        <SelectValue
-          className={cn('text-sm truncate', classNames?.value)}
-        >
+        <SelectValue className={cn('text-sm truncate', classNames?.value)}>
           {({ isPlaceholder, selectedText }) => (
             <span className={isPlaceholder ? 'text-slate-400' : ''}>
               {isPlaceholder ? (placeholder ?? 'Select...') : selectedText}
@@ -100,7 +98,12 @@ export function DropdownSelect<T extends object>({
           classNames?.listContainer,
         )}
       >
-        <ListBox className={cn('max-h-80 overflow-y-auto outline-none', classNames?.list)}>
+        <ListBox
+          className={cn(
+            'max-h-80 overflow-y-auto outline-none',
+            classNames?.list,
+          )}
+        >
           {children}
         </ListBox>
       </Popover>

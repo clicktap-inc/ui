@@ -1,7 +1,13 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useId } from 'react';
-import type { Dispatch, PointerEvent, ReactNode, Ref, SetStateAction } from 'react';
+import type {
+  Dispatch,
+  PointerEvent,
+  ReactNode,
+  Ref,
+  SetStateAction,
+} from 'react';
 import { ModalOverlay as UIModalOverlay } from 'react-aria-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDialogTrigger } from '../DialogTrigger/DialogTrigger';
