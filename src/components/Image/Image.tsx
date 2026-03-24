@@ -5,7 +5,6 @@ import { Component, type ReactNode, useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { cn } from '../../utils/cn';
 
-
 // Module-level cache of srcs that threw during render (e.g. unconfigured
 // hostnames). Prevents re-render loops in dev mode where React Strict Mode
 // and HotReload reset the error boundary and re-attempt NextImage.
