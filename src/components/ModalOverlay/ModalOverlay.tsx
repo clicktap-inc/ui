@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useId } from 'react';
-import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
+import type { Dispatch, PointerEvent, ReactNode, Ref, SetStateAction } from 'react';
 import { ModalOverlay as UIModalOverlay } from 'react-aria-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDialogTrigger } from '../DialogTrigger/DialogTrigger';
@@ -133,6 +133,7 @@ function InnerModalOverlay({
   const {
     key,
     shouldCloseOnInteractOutside: propShouldClose,
+    onOpenChange,
     ...restProps
   } = props;
 
@@ -146,9 +147,23 @@ function InnerModalOverlay({
     [propShouldClose],
   );
 
+  // react-aria's useInteractOutside checks clicks outside the overlay ref,
+  // but since the overlay covers the viewport, backdrop clicks are "inside"
+  // and never trigger dismiss. Handle backdrop clicks explicitly.
+  const handlePointerDown = useCallback(
+    (e: PointerEvent<HTMLDivElement>) => {
+      if (isDismissable && e.target === e.currentTarget && onOpenChange) {
+        onOpenChange(false);
+      }
+    },
+    [isDismissable, onOpenChange],
+  );
+
   const commonProps = {
     isDismissable,
     shouldCloseOnInteractOutside,
+    onOpenChange,
+    onPointerDown: handlePointerDown,
     className: cn(
       // backdrop-blur is applied here as a static class instead of in framer-motion
       // variants because WAAPI cannot interpolate backdropFilter — see variants comment

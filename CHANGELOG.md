@@ -1,3 +1,10 @@
+[0.21.1](https://github.com/clicktap-inc/ui/compare/0.21.0...0.21.1) (2026-03-24)
+
+### Bug Fixes
+* drawer on backdrop click ([e6f13fe](https://github.com/clicktap-inc/ui/commit/e6f13fe470279adc526953766612304b3a1babdb))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.21.0](https://github.com/clicktap-inc/ui/compare/0.20.1...0.21.0) (2026-03-23)
 
 ### Features
