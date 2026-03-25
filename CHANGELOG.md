@@ -1,3 +1,11 @@
+[0.24.0](https://github.com/clicktap-inc/ui/compare/0.23.0...0.24.0) (2026-03-25)
+
+### Features
+* use stroke-based checkmark for bolder swatch check ([d976322](https://github.com/clicktap-inc/ui/commit/d976322fb6ef30b47cd2b260279858fe48adecbd))
+* add swatch rendering on PDP with CheckIcon component ([5c22fda](https://github.com/clicktap-inc/ui/commit/5c22fda3aaa252715f0e26157f8235abc6819dcb))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.23.0](https://github.com/clicktap-inc/ui/compare/0.22.2...0.23.0) (2026-03-24)
 
 ### Features
