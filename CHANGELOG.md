@@ -1,3 +1,10 @@
+[0.24.1](https://github.com/clicktap-inc/ui/compare/0.24.0...0.24.1) (2026-03-26)
+
+### Bug Fixes
+* preinstall guard to prevent workspace-level pnpm install ([fda96d8](https://github.com/clicktap-inc/ui/commit/fda96d809cbee7636fe2fd1a9e5f9a9bee2fa892))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.24.0](https://github.com/clicktap-inc/ui/compare/0.23.0...0.24.0) (2026-03-25)
 
 ### Features
