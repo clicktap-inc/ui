@@ -17,6 +17,7 @@ export { ArrowLeftIcon } from './ArrowLeftIcon';
 export { CloseIcon } from './CloseIcon';
 export { CreateIcon } from './CreateIcon';
 export { DeleteIcon } from './DeleteIcon';
+export { FilterIcon } from './FilterIcon';
 export { GemIcon, type GemIconProps } from './GemIcon';
 export { IncludedIcon } from './IncludedIcon';
 export { InfoIcon } from './InfoIcon';

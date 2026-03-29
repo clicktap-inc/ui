@@ -1,3 +1,16 @@
+[0.25.0](https://github.com/clicktap-inc/ui/compare/0.24.1...0.25.0) (2026-03-29)
+
+### Features
+* ProductCardSwatches uses AttributeDataProvider, remove swatch data from product query ([bfeb5cc](https://github.com/clicktap-inc/ui/commit/bfeb5ccdf35b1d7011d72c87062c23b32448da62))
+* useCollectionState hook for shared collection state management ([ccd9388](https://github.com/clicktap-inc/ui/commit/ccd93882d503287382d6c965ca194ddb7a4209de))
+* AttributeDataProvider context and useAttributeData hook ([666d3b8](https://github.com/clicktap-inc/ui/commit/666d3b8e82a8fb8db2e5e996e7779e295fb8ef45))
+* move collection filter and swatch components to @clicktap/ui ([987e300](https://github.com/clicktap-inc/ui/commit/987e3001812270414d521125a0e11096f3011d80))
+* add collection types, swatch/color utils, and filter utilities ([b250782](https://github.com/clicktap-inc/ui/commit/b25078231b1c279d704617f3d3ce8ba14f9228c1))
+### Bug Fixes
+* remove unused param, stabilize filter memo dependencies ([467d05a](https://github.com/clicktap-inc/ui/commit/467d05a2462058dfe12eae0b424065f785558838))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.24.1](https://github.com/clicktap-inc/ui/compare/0.24.0...0.24.1) (2026-03-26)
 
 ### Bug Fixes

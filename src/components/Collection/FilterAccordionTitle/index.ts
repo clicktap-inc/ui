@@ -1,0 +1,1 @@
+export { FilterAccordionTitle } from './FilterAccordionTitle';

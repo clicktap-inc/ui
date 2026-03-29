@@ -1,0 +1,1 @@
+export { ProductCardSwatches } from './ProductCardSwatches';
