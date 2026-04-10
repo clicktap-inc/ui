@@ -1,3 +1,10 @@
+[0.25.1](https://github.com/clicktap-inc/ui/compare/0.25.0...0.25.1) (2026-04-10)
+
+### Bug Fixes
+* onChange on mount in NumberInput ([0c3fb86](https://github.com/clicktap-inc/ui/commit/0c3fb86523097be165754f907e20db69ed6176e3))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.25.0](https://github.com/clicktap-inc/ui/compare/0.24.1...0.25.0) (2026-03-29)
 
 ### Features
