@@ -1,3 +1,10 @@
+[0.26.0](https://github.com/clicktap-inc/ui/compare/0.25.1...0.26.0) (2026-04-14)
+
+### Features
+* indicators on PLP swatches, PDP swatches, and add-to-cart gating ([c5889be](https://github.com/clicktap-inc/ui/commit/c5889bee42c004dd829df61ec07ddf9ac26e813b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.25.1](https://github.com/clicktap-inc/ui/compare/0.25.0...0.25.1) (2026-04-10)
 
 ### Bug Fixes

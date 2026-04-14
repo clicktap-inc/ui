@@ -68,7 +68,11 @@ type Variant = {
     attribute: { code: string };
     option: { id: string; code: string; label: string };
   }[];
-  simpleProduct: { image?: string | null; sku: string };
+  simpleProduct: {
+    image?: string | null;
+    sku: string;
+    saleability?: { isSaleable?: boolean } | null;
+  };
 };
 
 type AttributeSwatchConfig = {
@@ -83,13 +87,35 @@ type SwatchOption = {
   label: string;
   swatch: SwatchData;
   image: string | null;
+  isSaleable: boolean;
 };
+
+/** Pre-compute which attributeCode:optionCode pairs have at least one saleable variant.
+ *
+ * Absent saleability data is treated as saleable — matches the Magento `manage_stock=0`
+ * pattern where stock is not tracked. Only variants with an explicit `isSaleable: false`
+ * are considered unsaleable. A color is saleable if ANY variant carrying that color
+ * doesn't have `isSaleable === false`.
+ */
+function buildSaleabilityMap(variants: Variant[]): Set<string> {
+  const saleable = new Set<string>();
+  for (const variant of variants) {
+    if (variant.simpleProduct?.saleability?.isSaleable === false) {
+      continue;
+    }
+    for (const attr of variant.attributes) {
+      saleable.add(`${attr.attribute.code}:${attr.option.code}`);
+    }
+  }
+  return saleable;
+}
 
 /** Extract unique swatch options from variants, cross-referencing filter swatch data. */
 function getSwatchOptions(
   variants: Variant[],
   swatchLookup: SwatchLookup,
   listRenderers: Map<string, string>,
+  saleabilityMap: Set<string>,
 ): SwatchOption[] {
   const seen = new Set<string>();
   const options: SwatchOption[] = [];
@@ -110,10 +136,18 @@ function getSwatchOptions(
           label: attr.option.label,
           swatch,
           image: variant.simpleProduct.image ?? null,
+          isSaleable: saleabilityMap.has(
+            `${attr.attribute.code}:${attr.option.code}`,
+          ),
         });
       }
     }
   }
+
+  // Saleable options first so in-stock colors lead the row
+  options.sort((a, b) =>
+    a.isSaleable === b.isSaleable ? 0 : a.isSaleable ? -1 : 1,
+  );
 
   return options;
 }
@@ -154,7 +188,13 @@ export function ProductCardSwatches({
   }
 
   const swatchLookup = buildSwatchLookup(availableFilters);
-  const options = getSwatchOptions(variants, swatchLookup, listRenderers);
+  const saleabilityMap = buildSaleabilityMap(variants);
+  const options = getSwatchOptions(
+    variants,
+    swatchLookup,
+    listRenderers,
+    saleabilityMap,
+  );
 
   if (options.length === 0) {
     return null;
@@ -176,11 +216,15 @@ export function ProductCardSwatches({
       {options.map((opt) => {
         const isSelected = effectiveSelected === opt.optionId;
 
+        const title = opt.isSaleable
+          ? opt.label
+          : `${opt.label} (out of stock)`;
+
         if (renderer === SwatchRenderer.IMAGE) {
           return (
             <Button
               key={opt.optionId}
-              aria-label={opt.label}
+              aria-label={title}
               className="cursor-pointer p-0"
               onPress={() => {
                 onSelect(
@@ -200,7 +244,7 @@ export function ProductCardSwatches({
                       : 'border-slate-200',
                     isHovered && !isSelected && 'border-slate-400',
                   )}
-                  title={opt.label}
+                  title={title}
                   style={
                     opt.swatch.imageUrl
                       ? { backgroundImage: `url(${opt.swatch.imageUrl})` }
@@ -216,7 +260,7 @@ export function ProductCardSwatches({
           return (
             <Button
               key={opt.optionId}
-              aria-label={opt.label}
+              aria-label={title}
               className="cursor-pointer p-0"
               onPress={() => {
                 onSelect(
@@ -279,7 +323,7 @@ export function ProductCardSwatches({
         return (
           <Button
             key={opt.optionId}
-            aria-label={opt.label}
+            aria-label={title}
             className="cursor-pointer size-4 flex items-center justify-center p-0"
             onPress={() => {
               onSelect(
@@ -293,7 +337,7 @@ export function ProductCardSwatches({
             {({ isHovered }) => (
               <span
                 className={cn(
-                  'relative inline-flex items-center justify-center size-4 rounded-full transition-all duration-150',
+                  'relative inline-flex items-center justify-center size-4 rounded-full transition-all duration-150 overflow-hidden',
                   hasImage && 'bg-cover bg-center',
                   hasImage &&
                     isSelected &&
@@ -306,7 +350,31 @@ export function ProductCardSwatches({
                 )}
                 style={circleStyle}
               >
-                {!hasImage && (isSelected || isHovered) && (
+                {!opt.isSaleable && (
+                  <>
+                    <span
+                      className={cn(
+                        'absolute top-1/2 left-1/2 w-[141%] h-[1.5px] -translate-x-1/2 -translate-y-1/2 -rotate-45',
+                        needsBorder
+                          ? 'bg-slate-400'
+                          : 'bg-white drop-shadow-sm',
+                        isHovered && !isSelected && 'opacity-70',
+                      )}
+                    />
+                    {(isSelected || isHovered) && (
+                      <span
+                        className={cn(
+                          'absolute top-1/2 left-1/2 w-[141%] h-[1.5px] -translate-x-1/2 -translate-y-1/2 rotate-45',
+                          needsBorder
+                            ? 'bg-slate-400'
+                            : 'bg-white drop-shadow-sm',
+                          isHovered && !isSelected && 'opacity-70',
+                        )}
+                      />
+                    )}
+                  </>
+                )}
+                {!hasImage && opt.isSaleable && (isSelected || isHovered) && (
                   <CheckIcon
                     className={cn(
                       'w-2.5 h-2.5 transition-opacity duration-150',
