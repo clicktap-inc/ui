@@ -1,3 +1,10 @@
+[0.27.0](https://github.com/clicktap-inc/ui/compare/0.26.1...0.27.0) (2026-04-24)
+
+### Features
+* clicktap-placeholder.svg baseline image placeholder ([451c334](https://github.com/clicktap-inc/ui/commit/451c33473fde5e9ede302e969aeef90c5b880c07))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.26.1](https://github.com/clicktap-inc/ui/compare/0.26.0...0.26.1) (2026-04-14)
 
 
