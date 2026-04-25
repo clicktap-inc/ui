@@ -9,5 +9,6 @@ For migrations affecting the frontend app, see [frontend migrations](../../../ap
 | Date | Migration | Breaking | Dependencies |
 |------|-----------|----------|--------------|
 | 2026-03-24 | [Image: dimmed, hidden, and onReady Props](./2026/03/2026-03-24-image-dimmed-hidden-onready.md) ↔ | No | *None* |
+| 2026-04-24 | [`PLACEHOLDER_IMAGE` Export from `@clicktap/ui/utils/placeholder`](./2026/04/2026-04-24-image-placeholder-frontend-fallback.md) ↔ | No | *None* |
 
 ↔ = cross-app migration (has counterpart in frontend app)

@@ -1,3 +1,8 @@
+[0.27.1](https://github.com/clicktap-inc/ui/compare/0.27.0...0.27.1) (2026-04-25)
+
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.27.0](https://github.com/clicktap-inc/ui/compare/0.26.1...0.27.0) (2026-04-24)
 
 ### Features
