@@ -1,3 +1,10 @@
+[0.28.0](https://github.com/clicktap-inc/ui/compare/0.27.2...0.28.0) (2026-04-30)
+
+### Features
+* top-down PDP option dependency with reusable variantOptions utils ([40fb74e](https://github.com/clicktap-inc/ui/commit/40fb74e62705e10ddbf3e799547be6e171f803c1))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.27.2](https://github.com/clicktap-inc/ui/compare/0.27.1...0.27.2) (2026-04-27)
 
 

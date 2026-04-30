@@ -10,5 +10,6 @@ For migrations affecting the frontend app, see [frontend migrations](../../../ap
 |------|-----------|----------|--------------|
 | 2026-03-24 | [Image: dimmed, hidden, and onReady Props](./2026/03/2026-03-24-image-dimmed-hidden-onready.md) ↔ | No | *None* |
 | 2026-04-24 | [`PLACEHOLDER_IMAGE` Export from `@clicktap/ui/utils/placeholder`](./2026/04/2026-04-24-image-placeholder-frontend-fallback.md) ↔ | No | *None* |
+| 2026-04-30 | [Top-Down PDP Option Dependency — `@clicktap/ui/utils/variantOptions`](./2026/04/2026-04-30-top-down-pdp-option-dependency.md) ↔ | No | *None* |
 
 ↔ = cross-app migration (has counterpart in frontend app)
