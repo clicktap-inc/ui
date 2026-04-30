@@ -1,3 +1,10 @@
+[0.29.0](https://github.com/clicktap-inc/ui/compare/0.28.0...0.29.0) (2026-04-30)
+
+### Features
+* preserve still-valid downstream PDP selections via pruneInvalidSelections ([367f1a1](https://github.com/clicktap-inc/ui/commit/367f1a131e3f794deefc2e656c10d0848e080b43))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.28.0](https://github.com/clicktap-inc/ui/compare/0.27.2...0.28.0) (2026-04-30)
 
 ### Features
