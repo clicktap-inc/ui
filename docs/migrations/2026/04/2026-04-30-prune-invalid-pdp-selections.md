@@ -70,33 +70,46 @@ Implementation properties worth knowing:
 
 ## Pattern for Consumers
 
-Replace `getDownstreamAxisCodes` + manual delete in your selection handler with `pruneInvalidSelections` over the full candidate map:
+Replace `getDownstreamAxisCodes` + manual delete in your selection handler with `pruneInvalidSelections` over the full candidate map. **Read the previous selections from the closure and run all side effects in event-handler scope — do NOT use the functional-updater form of setState here**:
 
 ```tsx
-import {
-  pruneInvalidSelections,
-  findVariant,
-} from '@clicktap/ui/utils/variantOptions';
+import { pruneInvalidSelections } from '@clicktap/ui/utils/variantOptions';
 
 const setSelection = useCallback(
   (axisCode: string, optionCode: string) => {
-    setSelections((prev) => {
-      if (prev[axisCode] === optionCode) {
-        return prev;
-      }
-      const candidate = { ...prev, [axisCode]: optionCode };
-      // Prune cascades: top-to-bottom, each axis reads pruned upstream.
-      return pruneInvalidSelections(variants, candidate, axisCodes);
-    });
+    if (selections[axisCode] === optionCode) {
+      return;
+    }
+    const candidate = { ...selections, [axisCode]: optionCode };
+    // Prune cascades: top-to-bottom, each axis reads pruned upstream.
+    const next = pruneInvalidSelections(variants, candidate, axisCodes);
+
+    setSelections(next);
+    writeSelectionsToUrl(next); // or any other side effect
   },
-  [variants, axisCodes],
+  [axisCodes, selections, variants],
 );
 ```
+
+> ⚠ **Don't put side effects inside a `setSelections((prev) => ...)` updater.**
+> React requires functional updaters to be pure — no calls that schedule
+> updates on other components, no mutations. Calling `router.replace()` (or
+> any side effect that dispatches into another component's render cycle)
+> from inside an updater triggers `"Cannot update a component while
+> rendering a different component"` and a recoverable crash on
+> first-select / deselect interactions. React 19 enforces this harder.
+> Read the previous state from the closure and put side effects after the
+> setter, in the event-handler scope. Trade-off: closure-read loses
+> stale-closure protection if multiple selections fire in the same
+> event-loop tick — fine for swatch clicks paced by humans, but if you
+> wire a programmatic batch-set-multiple-axes flow on top, defer the side
+> effects to a `useEffect` keyed on `selections` and bring back the
+> functional updater for the state write.
 
 If your component tracks per-axis manual-clear flags (so auto-collapse doesn't re-fill an axis the user explicitly cleared), only unflag the axes that the prune actually dropped:
 
 ```tsx
-const candidate = { ...prev, [axisCode]: optionCode };
+const candidate = { ...selections, [axisCode]: optionCode };
 const next      = pruneInvalidSelections(variants, candidate, axisCodes);
 
 for (const code of axisCodes) {
@@ -104,6 +117,9 @@ for (const code of axisCodes) {
     manuallyClearedAxes.current.delete(code);
   }
 }
+
+setSelections(next);
+writeSelectionsToUrl(next);
 ```
 
 Otherwise, a kept (still-valid) selection could later get auto-collapsed back to a value the user previously cleared.
