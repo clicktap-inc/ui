@@ -12,5 +12,6 @@ For migrations affecting the frontend app, see [frontend migrations](../../../ap
 | 2026-04-24 | [`PLACEHOLDER_IMAGE` Export from `@clicktap/ui/utils/placeholder`](./2026/04/2026-04-24-image-placeholder-frontend-fallback.md) ↔ | No | *None* |
 | 2026-04-30 | [Top-Down PDP Option Dependency — `@clicktap/ui/utils/variantOptions`](./2026/04/2026-04-30-top-down-pdp-option-dependency.md) ↔ | No | *None* |
 | 2026-04-30 | [PDP Option Selection — Conservative Prune Helper (`pruneInvalidSelections`)](./2026/04/2026-04-30-prune-invalid-pdp-selections.md) ↔ | No | Top-Down PDP Option Dependency |
+| 2026-05-01 | [`buildPdpUrl` Utility — `@clicktap/ui/utils/buildPdpUrl`](./2026/05/2026-05-01-build-pdp-url-util.md) | No | *None* |
 
 ↔ = cross-app migration (has counterpart in frontend app)

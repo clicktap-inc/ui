@@ -33,6 +33,7 @@ export { QuoteIcon } from './QuoteIcon';
 export { ResetPasswordIcon } from './ResetPasswordIcon';
 export { RoleIcon } from './RoleIcon';
 export { ShieldUserIcon } from './ShieldUserIcon';
+export { StarIcon, type StarIconProps } from './StarIcon';
 export { SyncIcon } from './SyncIcon';
 export { UpdateIcon } from './UpdateIcon';
 export { UserEditIcon } from './UserEditIcon';

@@ -1,3 +1,13 @@
+[0.30.0](https://github.com/clicktap-inc/ui/compare/0.29.1...0.30.0) (2026-05-02)
+
+### Features
+* cart items to PDP with selected variant via shared buildPdpUrl util ([72c12bd](https://github.com/clicktap-inc/ui/commit/72c12bd37684fc0d81fff5676b6e07bc122a8cec))
+* preferred payment method with toggle UI and first-order fallback ([64d3e2f](https://github.com/clicktap-inc/ui/commit/64d3e2f259cb0f59bc2c6811947e53a867c1bb07))
+### Bug Fixes
+* drawer interactivity, empty-cart close action, item layout match ([ddb8911](https://github.com/clicktap-inc/ui/commit/ddb89117a5cb67298107333dce795209c7cdbd7a))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.29.1](https://github.com/clicktap-inc/ui/compare/0.29.0...0.29.1) (2026-05-01)
 
 ### Bug Fixes

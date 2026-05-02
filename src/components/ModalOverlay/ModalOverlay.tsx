@@ -213,12 +213,22 @@ function InnerModalOverlay({
         animationVariants || {
           hidden: {
             opacity: 0,
+            // Pass clicks through while transparent. AnimatePresence
+            // sometimes leaves the overlay mounted with opacity:0 after
+            // exit (race between RAC's own isOpen=false unmount and
+            // framer's exit animation, or a focus-restore stall when the
+            // focused child unmounts mid-flow — e.g. removing the last
+            // cart item then closing the drawer). Setting pointerEvents
+            // in the variant means the transparent leftover is
+            // non-blocking even if it lingers.
+            pointerEvents: 'none',
             transition: {
               delay: 0.08,
             },
           },
           visible: {
             opacity: 1,
+            pointerEvents: 'auto',
           },
         }
       }
