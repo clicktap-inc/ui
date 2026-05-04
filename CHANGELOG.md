@@ -1,3 +1,10 @@
+[0.31.0](https://github.com/clicktap-inc/ui/compare/0.30.0...0.31.0) (2026-05-04)
+
+### Features
+* GraphQL client with 401/403/5xx event bus ([e17f443](https://github.com/clicktap-inc/ui/commit/e17f443bc41380c2634fd0aa7d350b7c6b0024e2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.30.0](https://github.com/clicktap-inc/ui/compare/0.29.1...0.30.0) (2026-05-02)
 
 ### Features
