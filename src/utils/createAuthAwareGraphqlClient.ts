@@ -61,9 +61,15 @@ export interface AuthAwareEventDetail {
 type AuthAwareEventListener = (detail: AuthAwareEventDetail) => void;
 
 class AuthAwareEventBus {
-  private readonly listeners: Map<AuthAwareEventName, Set<AuthAwareEventListener>> = new Map();
+  private readonly listeners: Map<
+    AuthAwareEventName,
+    Set<AuthAwareEventListener>
+  > = new Map();
 
-  subscribe(name: AuthAwareEventName, listener: AuthAwareEventListener): () => void {
+  subscribe(
+    name: AuthAwareEventName,
+    listener: AuthAwareEventListener,
+  ): () => void {
     if (!this.listeners.has(name)) {
       this.listeners.set(name, new Set());
     }
@@ -116,7 +122,6 @@ function handlePartialResponse<TData>(error: unknown): TData {
     if (data) {
       if (process.env.NODE_ENV === 'development' && errors?.length) {
         for (const err of errors) {
-          // eslint-disable-next-line no-console
           console.error(
             `[GraphQL] Field error at ${err.path?.join('.') ?? 'unknown'}:`,
             err.message,
@@ -210,9 +215,16 @@ export function createAuthAwareGraphqlClient(): AuthAwareGraphqlClient {
 export function createAuthAwareFetch(): typeof fetch {
   return async function authAwareFetch(input, init) {
     const response = await fetch(input, init);
-    if (response.status === 401 || response.status === 403 || response.status >= 500) {
+    if (
+      response.status === 401 ||
+      response.status === 403 ||
+      response.status >= 500
+    ) {
       // Clone so the consumer (graphql-request) still gets a fresh body to read.
-      dispatchByStatus(response.status, { status: response.status, response: response.clone() });
+      dispatchByStatus(response.status, {
+        status: response.status,
+        response: response.clone(),
+      });
     }
     return response;
   };

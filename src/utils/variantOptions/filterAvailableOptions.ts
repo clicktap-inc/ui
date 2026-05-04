@@ -34,7 +34,7 @@ export function filterAvailableOptions<V extends VariantLike>(
   if (axisIndex > 0) {
     for (let i = 0; i < axisIndex; i++) {
       const upCode = axes[i];
-      const sel    = selections[upCode];
+      const sel = selections[upCode];
       if (sel) {
         upstream[upCode] = sel;
       }
@@ -43,11 +43,11 @@ export function filterAvailableOptions<V extends VariantLike>(
 
   const available = new Set<string>();
   for (const variant of variants) {
-    let matches: boolean        = true;
+    let matches: boolean = true;
     let targetValue: string | null = null;
 
     for (const attr of variant.attributes ?? []) {
-      const code       = attr?.attribute?.code;
+      const code = attr?.attribute?.code;
       const optionCode = attr?.option?.code;
       if (!code || !optionCode) {
         continue;

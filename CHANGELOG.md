@@ -1,3 +1,10 @@
+[0.31.1](https://github.com/clicktap-inc/ui/compare/0.31.0...0.31.1) (2026-05-04)
+
+### Bug Fixes
+* pipeline lint failures ([9846374](https://github.com/clicktap-inc/ui/commit/9846374a6c9b349a2223e5a82fefb1ede3485a4e))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.0](https://github.com/clicktap-inc/ui/compare/0.30.0...0.31.0) (2026-05-04)
 
 ### Features
