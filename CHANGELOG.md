@@ -1,3 +1,10 @@
+[0.31.2](https://github.com/clicktap-inc/ui/compare/0.31.1...0.31.2) (2026-05-19)
+
+### Bug Fixes
+* remove FeatureGate barrel index ([c740b56](https://github.com/clicktap-inc/ui/commit/c740b565301959cb49ba9c03c8e7a8019c1fa999))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.1](https://github.com/clicktap-inc/ui/compare/0.31.0...0.31.1) (2026-05-04)
 
 ### Bug Fixes
