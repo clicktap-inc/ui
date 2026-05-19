@@ -1,3 +1,5 @@
+'use client';
+
 import { Transition } from 'framer-motion';
 import { useState, useMemo, useCallback } from 'react';
 import { TransitionConfig } from '../NumberTicker.types';

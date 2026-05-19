@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import { NumberTickerConfig } from '../NumberTicker.types';
 

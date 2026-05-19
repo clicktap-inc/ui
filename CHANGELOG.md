@@ -1,3 +1,10 @@
+[0.31.3](https://github.com/clicktap-inc/ui/compare/0.31.2...0.31.3) (2026-05-19)
+
+### Bug Fixes
+* preserve 'use client' directives in build output ([1dfc4f3](https://github.com/clicktap-inc/ui/commit/1dfc4f358119aad460ff095aa0daf9bc6b53443f))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.2](https://github.com/clicktap-inc/ui/compare/0.31.1...0.31.2) (2026-05-19)
 
 ### Bug Fixes
