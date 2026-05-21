@@ -1,3 +1,10 @@
+[0.31.6](https://github.com/clicktap-inc/ui/compare/0.31.5...0.31.6) (2026-05-21)
+
+### Bug Fixes
+* republish — npm publish of 0.31.4 hit a transient registry 404, retry with a fresh patch bump ([b8cabe2](https://github.com/clicktap-inc/ui/commit/b8cabe2e7ada4d426bd9e035cfb36f2c010403a3))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.5](https://github.com/clicktap-inc/ui/compare/0.31.4...0.31.5) (2026-05-21)
 
 ### Bug Fixes
