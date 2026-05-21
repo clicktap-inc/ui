@@ -1,3 +1,10 @@
+[0.31.5](https://github.com/clicktap-inc/ui/compare/0.31.4...0.31.5) (2026-05-21)
+
+### Bug Fixes
+* *.test.* and *.spec.* from vite library build inputs so vite-plugin-dts stops emitting .d.ts for test files and tests stop landing in the published tarball ([10afe69](https://github.com/clicktap-inc/ui/commit/10afe697b16ead7190e6e8d7123fe379ef9da661))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.4](https://github.com/clicktap-inc/ui/compare/0.31.3...0.31.4) (2026-05-21)
 
 ### Bug Fixes
