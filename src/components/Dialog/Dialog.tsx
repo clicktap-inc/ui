@@ -50,8 +50,14 @@ export function Dialog({
   const commonProps = {
     className: cn(
       'p-8 outline-0 max-w-max w-screen absolute top-2/4 left-2/4',
+      // Centering uses static Tailwind classes (NOT framer-motion `x`/`y`
+      // variants). framer-motion 11.x's keyframe resolver can crash
+      // inside `mixObject` (complex.mjs:48) when transform-related
+      // primitives are batched alongside another animating component.
+      // Sticking to opacity-only variants below keeps WAAPI off the
+      // complex-value path entirely.
+      '-translate-x-1/2 -translate-y-1/2',
       'shadow-[0_8px_24px_rgba(0,0,0,0.1)] rounded-lg bg-white border border-solid border-slate-400',
-      'transform -translate-x-1/2 -translate-y-1/2',
       className,
     ),
     ...props,
@@ -71,18 +77,8 @@ export function Dialog({
       {...commonProps}
       variants={
         animationVariants || {
-          hidden: {
-            transform: 'translate(-50%, -50%) scale(0.8)',
-            transition: {
-              ease: 'backIn',
-            },
-          },
-          visible: {
-            transform: 'translate(-50%, -50%) scale(1)',
-            transition: {
-              ease: 'backOut',
-            },
-          },
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
         }
       }
     >

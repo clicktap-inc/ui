@@ -31,6 +31,15 @@ export function PasswordCheck({
   const strength = checkStrength(value);
 
   if (variant === 'requirements') {
+    // Hide the requirements + strength block entirely when the input
+    // is empty. Showing four unchecked bullet-points before the visitor
+    // has typed anything reads as a list of demands rather than live
+    // feedback. Once they start typing the block reveals itself with
+    // the rules tracking their progress.
+    if (!value) {
+      return null;
+    }
+
     return (
       <div className="mt-4 flex flex-col gap-2">
         <ul className="flex flex-col gap-1 text-xs text-left">

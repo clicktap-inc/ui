@@ -6,14 +6,23 @@ import { Badge as NextUIBadge } from '@nextui-org/badge';
 import { cn } from '../../utils/cn';
 import type { BadgeProps } from './Badge.types';
 
+// WARNING: Do NOT animate a `transform` string here (e.g.
+// 'scale(0)' / 'scale(1)'). framer-motion's WAAPI keyframe resolver
+// parses such strings as complex values and, when an ancestor
+// AnimatePresence is mid-transition (which happens whenever this
+// Badge is mounted under a modal opening flow — Add Address etc.),
+// will hit:
+//   mixObject (complex.mjs:48) → Cannot read properties of null
+// Use the `scale` primitive (a plain number) instead — same fix as
+// in `Dialog.tsx` and `ModalOverlay.tsx`.
 const animationVariants = {
   hidden: {
     opacity: 0,
-    transform: 'scale(0)',
+    scale: 0,
   },
   show: {
     opacity: 1,
-    transform: 'scale(1)',
+    scale: 1,
   },
 };
 

@@ -1,3 +1,15 @@
+[0.31.4](https://github.com/clicktap-inc/ui/compare/0.31.3...0.31.4) (2026-05-21)
+
+### Bug Fixes
+* PasswordCheck requirements variant on empty input until the visitor starts typing ([e7ceb76](https://github.com/clicktap-inc/ui/commit/e7ceb7605fbfe7edc789b36ab70ac391555594cc))
+* submit loader visible across save-card and step-submit, standardize all submit buttons on right-side spinner via ButtonLoadingContent ([62788a7](https://github.com/clicktap-inc/ui/commit/62788a7bd70f26997d8911cb3162d2090dd654b5))
+* Dialog and ModalOverlay opacity-only to avoid framer-motion 11.x complex-value crash ([522ea8f](https://github.com/clicktap-inc/ui/commit/522ea8fdb74cb6c6f133ef6c8b1c7296863acf2b))
+* framer-motion rotate/scale primitives in Loader spinners to avoid mixObject crash ([f184110](https://github.com/clicktap-inc/ui/commit/f1841106e208e1838297d16c39193196273b3098))
+* framer-motion scale primitive in Badge to avoid mixObject crash under AnimatePresence ancestors ([50b9022](https://github.com/clicktap-inc/ui/commit/50b902273992e92a8c786079f3ab041249457f49))
+* framer-motion primitives in Dialog variants for centering ([b087118](https://github.com/clicktap-inc/ui/commit/b087118b65fa7fcf0c79cc81411d211c6282b613))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.3](https://github.com/clicktap-inc/ui/compare/0.31.2...0.31.3) (2026-05-19)
 
 ### Bug Fixes

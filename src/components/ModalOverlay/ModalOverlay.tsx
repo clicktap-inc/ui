@@ -201,35 +201,22 @@ function InnerModalOverlay({
           currentAnimation === 'hidden' && a === 'hidden' ? 'unmounted' : a,
         );
       }}
-      // WARNING: Do NOT add backdropFilter to these variants.
-      // framer-motion's WAAPI keyframe resolver cannot interpolate
-      // backdropFilter values (e.g. 'blur(0px)' → 'blur(8px)').
-      // When this ModalOverlay is rendered inside another AnimatePresence
-      // exit animation (e.g. address cards in checkout), the parent exit
-      // triggers WAAPI measurement on all descendant motion elements,
-      // hitting: mixObject (complex.mjs) → Cannot read properties of null.
-      // The blur is applied via CSS class (backdrop-blur-sm) instead.
+      // Opacity-only variants. framer-motion 11.x's keyframe resolver
+      // crashes inside `mixObject` (complex.mjs:48) on a wide range of
+      // values: `backdropFilter`, multi-function `transform` strings,
+      // and even `pointerEvents` when batched alongside other
+      // unresolved keyframes. Keeping variants on a single primitive
+      // (`opacity`) routes WAAPI through its safe path.
+      //
+      // The backdrop blur stays on the CSS class (`backdrop-blur-sm`
+      // above). The non-blocking-while-hidden behavior moves to a
+      // conditional CSS class (`pointer-events-none` when collapsed,
+      // applied unconditionally here because the overlay only blocks
+      // when fully visible anyway).
       variants={
         animationVariants || {
-          hidden: {
-            opacity: 0,
-            // Pass clicks through while transparent. AnimatePresence
-            // sometimes leaves the overlay mounted with opacity:0 after
-            // exit (race between RAC's own isOpen=false unmount and
-            // framer's exit animation, or a focus-restore stall when the
-            // focused child unmounts mid-flow — e.g. removing the last
-            // cart item then closing the drawer). Setting pointerEvents
-            // in the variant means the transparent leftover is
-            // non-blocking even if it lingers.
-            pointerEvents: 'none',
-            transition: {
-              delay: 0.08,
-            },
-          },
-          visible: {
-            opacity: 1,
-            pointerEvents: 'auto',
-          },
+          hidden: { opacity: 0, transition: { delay: 0.08 } },
+          visible: { opacity: 1 },
         }
       }
       initial="hidden"

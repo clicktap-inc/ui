@@ -14,5 +14,8 @@ For migrations affecting the frontend app, see [frontend migrations](../../../ap
 | 2026-04-30 | [PDP Option Selection — Conservative Prune Helper (`pruneInvalidSelections`)](./2026/04/2026-04-30-prune-invalid-pdp-selections.md) ↔ | No | Top-Down PDP Option Dependency |
 | 2026-05-01 | [`buildPdpUrl` Utility — `@clicktap/ui/utils/buildPdpUrl`](./2026/05/2026-05-01-build-pdp-url-util.md) | No | *None* |
 | 2026-05-03 | [Auth-aware GraphQL client — `@clicktap/ui/utils/createAuthAwareGraphqlClient`](./2026/05/2026-05-03-auth-aware-graphql-client.md) | No | *None* |
+| 2026-05-20 | [framer-motion 11.x idioms — opacity-only for modals, primitives elsewhere, matched keyframe shapes](./2026/05/2026-05-20-framer-motion-11-idioms.md) ↔ | Yes (custom `animationVariants` only) | *None* |
+| 2026-05-21 | [`ButtonLoadingContent` helper — right-side spinner for all submit buttons](./2026/05/2026-05-21-button-loading-content.md) ↔ | No | *None* |
+| 2026-05-21 | [`PasswordCheck` `requirements` variant hides until the visitor types](./2026/05/2026-05-21-password-check-hide-on-empty.md) | No | *None* |
 
 ↔ = cross-app migration (has counterpart in frontend app)

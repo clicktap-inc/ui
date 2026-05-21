@@ -27,8 +27,14 @@ export function CircularEasing({
       )}
     >
       <motion.svg
+        // Use framer-motion's `rotate` primitive (a plain number)
+        // instead of a `transform: 'rotate(...)'` string. The string
+        // form goes through framer-motion 11.x's complex-value parser
+        // and can crash inside `mixObject` (complex.mjs:48) when an
+        // ancestor `AnimatePresence` triggers a remeasure mid-flow.
+        // See the framer-motion 11.x idioms migration guide.
         animate={{
-          transform: 'rotate(360deg)',
+          rotate: 360,
           transition: { repeat: Infinity, duration: 2, ease: 'linear' },
         }}
         viewBox="25 25 50 50"
