@@ -1,3 +1,10 @@
+[0.31.7](https://github.com/clicktap-inc/ui/compare/0.31.6...0.31.7) (2026-05-22)
+
+### Bug Fixes
+* publish — 0.31.4/0.31.5/0.31.6 chore-release commits landed on master but the npm tarballs were never uploaded (latest on registry is still 0.31.3) ([8cf46ca](https://github.com/clicktap-inc/ui/commit/8cf46ca90d88d6ba46b0420c8608ea0554cee9f5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.6](https://github.com/clicktap-inc/ui/compare/0.31.5...0.31.6) (2026-05-21)
 
 ### Bug Fixes
