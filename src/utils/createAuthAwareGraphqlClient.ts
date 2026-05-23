@@ -116,15 +116,33 @@ function handlePartialResponse<TData>(error: unknown): TData {
   if (error instanceof ClientError && error.response?.data) {
     const { data, errors } = error.response as {
       data: TData;
-      errors?: Array<{ message: string; path?: Array<string | number> }>;
+      errors?: Array<{
+        message: string;
+        path?: Array<string | number>;
+        locations?: Array<{ line: number; column: number }>;
+        extensions?: Record<string, unknown>;
+      }>;
     };
 
     if (data) {
       if (process.env.NODE_ENV === 'development' && errors?.length) {
+        // Dev log packs the matching request (operation name + variables +
+        // raw query) alongside the error so the dev doesn't have to chase
+        // the GraphQL call site from the stack trace. The error object is
+        // included as its own arg so devtools renders it as an expandable
+        // tree — `extensions.debugMessage`, `extensions.file/line`, and
+        // `extensions.trace` are where the actionable backend info lives.
+        const { query, variables } = (error.request ?? {}) as {
+          query?: string;
+          variables?: unknown;
+        };
+        const operationName = query?.match(
+          /^\s*(?:query|mutation|subscription)\s+([A-Za-z_][A-Za-z0-9_]*)/,
+        )?.[1];
         for (const err of errors) {
           console.error(
-            `[GraphQL] Field error at ${err.path?.join('.') ?? 'unknown'}:`,
-            err.message,
+            `[GraphQL] ${operationName ?? 'operation'} — field error at ${err.path?.join('.') ?? 'unknown'}: ${err.message}`,
+            { error: err, request: { operationName, variables, query } },
           );
         }
       }

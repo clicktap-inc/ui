@@ -1,3 +1,10 @@
+[0.31.8](https://github.com/clicktap-inc/ui/compare/0.31.7...0.31.8) (2026-05-23)
+
+### Bug Fixes
+* include request + full error object in dev-mode GraphQL field-error log ([fc2a85d](https://github.com/clicktap-inc/ui/commit/fc2a85da0b35e137e8e613b6271c7f0c1f1a3e39))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.7](https://github.com/clicktap-inc/ui/compare/0.31.6...0.31.7) (2026-05-22)
 
 ### Bug Fixes
