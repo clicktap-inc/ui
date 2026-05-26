@@ -8,10 +8,7 @@ import {
   Popover,
   ListBox,
 } from 'react-aria-components';
-import type {
-  SelectProps as AriaSelectProps,
-  Key,
-} from 'react-aria-components';
+import type { SelectProps as AriaSelectProps } from 'react-aria-components';
 import type { ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 
