@@ -17,5 +17,6 @@ For migrations affecting the frontend app, see [frontend migrations](../../../ap
 | 2026-05-20 | [framer-motion 11.x idioms — opacity-only for modals, primitives elsewhere, matched keyframe shapes](./2026/05/2026-05-20-framer-motion-11-idioms.md) ↔ | Yes (custom `animationVariants` only) | *None* |
 | 2026-05-21 | [`ButtonLoadingContent` helper — right-side spinner for all submit buttons](./2026/05/2026-05-21-button-loading-content.md) ↔ | No | *None* |
 | 2026-05-21 | [`PasswordCheck` `requirements` variant hides until the visitor types](./2026/05/2026-05-21-password-check-hide-on-empty.md) | No | *None* |
+| 2026-05-29 | [`PasswordCheck` — the `requirements` variant (adoption guide for forks)](./2026/05/2026-05-29-password-check-requirements-variant.md) | No | PasswordCheck hide-on-empty |
 
 ↔ = cross-app migration (has counterpart in frontend app)
