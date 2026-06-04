@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback, useEffect, useId } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useId } from 'react';
 import type {
   Dispatch,
   PointerEvent,
@@ -8,7 +8,10 @@ import type {
   Ref,
   SetStateAction,
 } from 'react';
-import { ModalOverlay as UIModalOverlay } from 'react-aria-components';
+import {
+  ModalOverlay as UIModalOverlay,
+  OverlayTriggerStateContext,
+} from 'react-aria-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDialogTrigger } from '../DialogTrigger/DialogTrigger';
 /** @todo this probably belongs in Modal instead of DialogTrigger */
@@ -153,16 +156,29 @@ function InnerModalOverlay({
     [propShouldClose],
   );
 
+  // react-aria's overlay state from context (populated when this overlay is
+  // rendered inside a <DialogTrigger>). This is how we actually close in the
+  // common, DialogTrigger-managed case where no `onOpenChange` prop is passed.
+  const overlayState = useContext(OverlayTriggerStateContext);
+
   // react-aria's useInteractOutside checks clicks outside the overlay ref,
   // but since the overlay covers the viewport, backdrop clicks are "inside"
-  // and never trigger dismiss. Handle backdrop clicks explicitly.
+  // and never trigger dismiss. Handle backdrop clicks explicitly: prefer the
+  // controlled `onOpenChange` prop, else close via the react-aria overlay
+  // state from <DialogTrigger> (the standard usage app-wide — without this,
+  // backdrop click-away does nothing and only Escape closes the modal).
   const handlePointerDown = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
-      if (isDismissable && e.target === e.currentTarget && onOpenChange) {
+      if (!isDismissable || e.target !== e.currentTarget) {
+        return;
+      }
+      if (onOpenChange) {
         onOpenChange(false);
+      } else {
+        overlayState?.close();
       }
     },
-    [isDismissable, onOpenChange],
+    [isDismissable, onOpenChange, overlayState],
   );
 
   const commonProps = {

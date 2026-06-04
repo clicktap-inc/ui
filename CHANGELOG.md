@@ -1,3 +1,11 @@
+[0.31.11](https://github.com/clicktap-inc/ui/compare/0.31.10...0.31.11) (2026-06-04)
+
+### Bug Fixes
+* modal on backdrop click-away in DialogTrigger-managed overlays ([ea0caef](https://github.com/clicktap-inc/ui/commit/ea0caef845484a84ff79ede0ad5b9b2b7cda7b79))
+* cursor-pointer on Checkbox label hover (cursor-not-allowed when disabled) ([0eaa4f8](https://github.com/clicktap-inc/ui/commit/0eaa4f8293e5674c66e5c226ed45ef200260b536))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.10](https://github.com/clicktap-inc/ui/compare/0.31.9...0.31.10) (2026-05-29)
 
 

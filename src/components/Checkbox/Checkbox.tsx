@@ -96,8 +96,8 @@ export function Checkbox({
   return (
     <AriaCheckbox
       className={cn(
-        'flex items-center gap-2',
-        'text-xs text-slate-500 forced-color-adjust-none disabled:text-slate-400 group',
+        'flex items-center gap-2 cursor-pointer',
+        'text-xs text-slate-500 forced-color-adjust-none disabled:text-slate-400 disabled:cursor-not-allowed group',
         'invalid:text-red-500',
         className,
       )}
