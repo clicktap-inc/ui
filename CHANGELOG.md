@@ -1,3 +1,10 @@
+[0.32.0](https://github.com/clicktap-inc/ui/compare/0.31.11...0.32.0) (2026-06-08)
+
+### Features
+* buildPdpUrl — no remaining use case; PDP/line-item links are backend-driven (item.productUrl, variant.canonicalUrl) ([73e651d](https://github.com/clicktap-inc/ui/commit/73e651de22dd0b376d71bc5ffc3874ebe5241c2b))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.31.11](https://github.com/clicktap-inc/ui/compare/0.31.10...0.31.11) (2026-06-04)
 
 ### Bug Fixes
