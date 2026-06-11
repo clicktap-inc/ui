@@ -1,3 +1,14 @@
+[0.34.0](https://github.com/clicktap-inc/ui/compare/0.33.0...0.34.0) (2026-06-11)
+
+### Features
+* stand up Storybook for libs/ui (v3, react-vite builder) ([b52f27b](https://github.com/clicktap-inc/ui/commit/b52f27bf28624ffc7f670ec0eb130b439afff79f))
+### Bug Fixes
+* Storybook <Time> local examples use the real browser timezone ([2bbf98b](https://github.com/clicktap-inc/ui/commit/2bbf98b979fea179018406b4bef190c19dc869ae))
+* provide React global + automatic JSX runtime for Storybook (fix "React is not defined") ([33e9284](https://github.com/clicktap-inc/ui/commit/33e9284ac83dc69172714f3782f8e5bd5341d802))
+* use webpack5 Storybook builder (vite 7 incompatible with builder-vite); align @storybook/* to 8.6.18 ([f12bbf6](https://github.com/clicktap-inc/ui/commit/f12bbf6d02fc76891db5669fe4405b268952221c))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.33.0](https://github.com/clicktap-inc/ui/compare/0.32.0...0.33.0) (2026-06-11)
 
 ### Features
