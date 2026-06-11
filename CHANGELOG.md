@@ -1,3 +1,10 @@
+[0.33.0](https://github.com/clicktap-inc/ui/compare/0.32.0...0.33.0) (2026-06-11)
+
+### Features
+* scoped default timezone setting and SSR-safe Time rendering ([f8332de](https://github.com/clicktap-inc/ui/commit/f8332deb8aa0712dc09dc5af4cac002c1d9d3306))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.32.0](https://github.com/clicktap-inc/ui/compare/0.31.11...0.32.0) (2026-06-08)
 
 ### Features
