@@ -1,3 +1,10 @@
+[0.34.1](https://github.com/clicktap-inc/ui/compare/0.34.0...0.34.1) (2026-06-15)
+
+### Bug Fixes
+* Badge content as motion.span not motion.div to fix div-in-span hydration error ([cdb6e89](https://github.com/clicktap-inc/ui/commit/cdb6e89ea15bae13a22efbdd71eea8c10a55b3d8))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.34.0](https://github.com/clicktap-inc/ui/compare/0.33.0...0.34.0) (2026-06-11)
 
 ### Features

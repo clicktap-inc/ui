@@ -121,7 +121,7 @@ export function Badge({
       content={
         <AnimatePresence>
           {!isInvisible && (
-            <motion.div
+            <motion.span
               layout
               key={`badge-${id}`}
               variants={animationVariants}
@@ -164,7 +164,7 @@ export function Badge({
               )}
             >
               {content}
-            </motion.div>
+            </motion.span>
           )}
         </AnimatePresence>
       }
