@@ -39,9 +39,13 @@ import {
   createAuthAwareGraphqlClient,
   createAuthAwareFetch,
   authAwareEvents,
+  ClientError, // re-exported — see "Cross-package error handling" below
+  GraphQLClient, // re-exported
   type AuthAwareEventName,
   type AuthAwareEventDetail,
 } from '@clicktap/ui/utils/createAuthAwareGraphqlClient';
+
+import { getRequestErrorStatus } from '@clicktap/ui/utils/error';
 ```
 
 ```ts
@@ -161,6 +165,75 @@ const client = new GraphQLClient(url, {
 });
 ```
 
+## Cross-package error handling — `ClientError` re-export + `getRequestErrorStatus`
+
+**Added 2026-06-15.**
+
+`graphql-request` is bundled into every consuming package, so its `ClientError`
+class is a *different object* in each bundle. A consumer that catches an error
+thrown by this client and checks `error instanceof ClientError` using its **own**
+`import { ClientError } from 'graphql-request'` always gets `false` — the class
+identities don't match across the package boundary. In practice this silently
+broke the 401→login redirect on SSR route fetches: the `instanceof` guard
+failed, the 401 fell through to a rethrow, and the page **500'd instead of
+redirecting**.
+
+Two fixes, both additive:
+
+1. **`ClientError` (and `GraphQLClient`) are re-exported from the client
+   module.** Import them from `@clicktap/ui` so the class identity matches the
+   one this client throws:
+
+   ```ts
+   import { ClientError } from '@clicktap/ui/utils/createAuthAwareGraphqlClient';
+
+   try {
+     return await fetchRoute(path);
+   } catch (error) {
+     if (error instanceof ClientError && error.response?.status === 401) {
+       redirect('/account/authenticate?…');
+     }
+     throw error;
+   }
+   ```
+
+2. **`getRequestErrorStatus(error)` — identity-agnostic status extraction.**
+   Prefer this at cross-package boundaries: it duck-types `response.status`, so
+   it works regardless of which bundle threw, with no `instanceof` at all.
+   Returns `undefined` when no numeric status is present.
+
+   ```ts
+   import { getRequestErrorStatus } from '@clicktap/ui/utils/error';
+
+   try {
+     return await fetchRoute(path);
+   } catch (error) {
+     if (getRequestErrorStatus(error) === 401) {
+       redirect(`/account/authenticate?redirect=${path}&reason=authentication_required`);
+     }
+     throw error;
+   }
+   ```
+
+### SSR route fetches must forward the auth token
+
+Now that catalog/entity routes can be auth-gated on the backend (the router's
+`EntityAuthenticationGate` 401s a guest request whose route resolves to a gated
+entity type), an SSR route/data fetch that omits the caller's bearer token makes
+a **logged-in user look unauthenticated to the gate** — they get bounced like a
+guest. SSR fetches for gated routes must forward `Authorization: Bearer <token>`
+from the request's session:
+
+```ts
+const token = await getAccessToken(); // request-memoized; no extra round-trip
+const data = await graphqlRequest(url, GetRoute, { path }, {
+  ...scopeHeaders,
+  ...(token ? { Authorization: `Bearer ${token}` } : {}),
+});
+```
+
+The storefront-auth-gating guide documents where route protection is configured.
+
 ## Migration Steps
 
 This is purely additive — existing code keeps compiling. To adopt:
@@ -196,7 +269,8 @@ Actors that hit non-gated operations don't need migration unless you want their 
 
 | File | Change |
 |---|---|
-| `libs/ui/src/utils/createAuthAwareGraphqlClient.ts` | NEW — factories + event bus |
+| `libs/ui/src/utils/createAuthAwareGraphqlClient.ts` | NEW — factories + event bus; re-exports `ClientError`/`GraphQLClient` (2026-06-15) |
+| `libs/ui/src/utils/error.ts` | `getRequestErrorStatus()` — identity-agnostic HTTP-status extraction (2026-06-15) |
 
 ## References
 

@@ -45,6 +45,16 @@ import {
 import type { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types';
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
+// Re-export the exact `ClientError`/`GraphQLClient` this module uses.
+// `graphql-request` is bundled per consuming package, so a consumer doing
+// `error instanceof ClientError` against ITS OWN copy of the class gets a
+// different class object than the one thrown here — the check is always
+// `false` (the dual-package hazard), and an auth-required redirect can fall
+// through to a 500 instead of firing. Import `ClientError` from here so the
+// identity matches, or prefer the identity-agnostic `getRequestErrorStatus`
+// from `@clicktap/ui/utils/error` (no `instanceof` needed at all).
+export { ClientError, GraphQLClient } from 'graphql-request';
+
 export type AuthAwareEventName =
   | 'unauthenticated'
   | 'permissionDenied'

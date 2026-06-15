@@ -1,3 +1,10 @@
+[0.35.0](https://github.com/clicktap-inc/ui/compare/0.34.1...0.35.0) (2026-06-15)
+
+### Features
+* ClientError and add getRequestErrorStatus for cross-package error handling ([9cbafe2](https://github.com/clicktap-inc/ui/commit/9cbafe2f50a96aded19970f16b0c77908cd5e913))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.34.1](https://github.com/clicktap-inc/ui/compare/0.34.0...0.34.1) (2026-06-15)
 
 ### Bug Fixes
