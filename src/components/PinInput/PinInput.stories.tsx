@@ -17,3 +17,15 @@ export const Example: Story = {
     isMasked: { control: 'boolean' },
   },
 };
+
+export const Variants: Story = {
+  render: () => (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 280 }}
+    >
+      <PinInput label="4-digit code" length={4} type="numeric" />
+      <PinInput label="6-digit, masked" length={6} type="numeric" isMasked />
+      <PinInput label="Alphanumeric" length={5} type="alphanumeric" />
+    </div>
+  ),
+};

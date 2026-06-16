@@ -10,7 +10,7 @@ type Story = StoryObj<typeof CircularEasing>;
 export const Variants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-      <CircularEasing />
+      <CircularEasing stroke="#334155" width={32} />
       <Pulse />
     </div>
   ),

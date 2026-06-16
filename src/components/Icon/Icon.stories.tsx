@@ -10,25 +10,27 @@ import {
   Minus,
 } from './index';
 
-// The icon set shares one prop shape (IconProps: className/style). `Cart` stands
-// in for the family in the autodocs props table; the story renders a gallery.
+// `Cart` stands in for the family in the autodocs props table; the story renders
+// a gallery. Icons are rendered prop-less: the set is inconsistent — some accept
+// `IconProps` (className/style), others take no props — so the gallery passes
+// none, which compiles for both.
 const meta: Meta<typeof Cart> = { component: Cart };
 export default meta;
 type Story = StoryObj<typeof Cart>;
 
 export const Gallery: Story = {
-  render: (args) => (
+  render: () => (
     <div
       style={{ display: 'flex', gap: 16, alignItems: 'center', fontSize: 24 }}
     >
-      <Account {...args} />
-      <Cart {...args} />
-      <Search {...args} />
-      <Trash {...args} />
-      <Checkmark {...args} />
-      <Cross {...args} />
-      <Plus {...args} />
-      <Minus {...args} />
+      <Account />
+      <Cart />
+      <Search />
+      <Trash />
+      <Checkmark />
+      <Cross />
+      <Plus />
+      <Minus />
     </div>
   ),
 };

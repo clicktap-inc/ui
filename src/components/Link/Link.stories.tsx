@@ -74,7 +74,7 @@ export const Example: Story = {
     onPressUp: {},
   },
   args: {
-    href: '/',
+    href: '#',
     target: '_blank',
     isDisabled: false,
     autoFocus: false,

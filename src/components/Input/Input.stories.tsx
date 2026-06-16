@@ -13,3 +13,25 @@ export const Example: Story = {
     isDisabled: false,
   },
 };
+
+export const States: Story = {
+  render: () => (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 280 }}
+    >
+      <Input label="Default" placeholder="Type here" />
+      <Input
+        label="With description"
+        description="Helper text shown below the field."
+        placeholder="Type here"
+      />
+      <Input
+        label="Invalid"
+        isInvalid
+        errorMessage="This field is required."
+        placeholder="Type here"
+      />
+      <Input label="Disabled" isDisabled placeholder="Can't edit" />
+    </div>
+  ),
+};

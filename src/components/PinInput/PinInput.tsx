@@ -211,6 +211,10 @@ export function PinInput({
               'text-sm text-slate-900 placeholder-slate-400 text-center',
               'h-10 px-2 py-0 m-0 w-full',
               'bg-white',
+              // Hide the browser's native password reveal/clear chrome (Edge's
+              // ::-ms-reveal / ::-ms-clear). On a segmented single-char PIN it
+              // shows as a cramped, non-functional eye in the active cell.
+              '[&::-ms-reveal]:hidden [&::-ms-clear]:hidden',
               'transition-all duration-200 ease-in-out',
               'hover:border-slate-400',
               'focus:outline-2 focus:outline focus:outline-slate-200 focus:border-slate-400',

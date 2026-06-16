@@ -15,3 +15,36 @@ export const Example: Story = {
     </RadioGroup>
   ),
 };
+
+export const Horizontal: Story = {
+  render: () => (
+    <RadioGroup
+      label="Size"
+      orientation="horizontal"
+      defaultValue="m"
+      description="Lay options out in a row."
+    >
+      <Radio value="s">Small</Radio>
+      <Radio value="m">Medium</Radio>
+      <Radio value="l">Large</Radio>
+    </RadioGroup>
+  ),
+};
+
+export const Invalid: Story = {
+  render: () => (
+    <RadioGroup label="Shipping method" isInvalid errorMessage="Pick a method.">
+      <Radio value="standard">Standard</Radio>
+      <Radio value="express">Express</Radio>
+    </RadioGroup>
+  ),
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <RadioGroup label="Shipping method" defaultValue="standard" isDisabled>
+      <Radio value="standard">Standard</Radio>
+      <Radio value="express">Express</Radio>
+    </RadioGroup>
+  ),
+};

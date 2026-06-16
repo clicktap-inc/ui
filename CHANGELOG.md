@@ -1,3 +1,11 @@
+[0.35.2](https://github.com/clicktap-inc/ui/compare/0.35.1...0.35.2) (2026-06-16)
+
+### Bug Fixes
+* hide native browser password reveal/clear chrome on masked cells ([271aee8](https://github.com/clicktap-inc/ui/commit/271aee8bb33247ff63fcec0015c30b289642af3c))
+* stories/test from dts so they are not emitted into the published package (fixes npm build) ([263d541](https://github.com/clicktap-inc/ui/commit/263d54168d98c89dc94e7af5e2b229ca4b8649eb))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.35.1](https://github.com/clicktap-inc/ui/compare/0.35.0...0.35.1) (2026-06-16)
 
 
