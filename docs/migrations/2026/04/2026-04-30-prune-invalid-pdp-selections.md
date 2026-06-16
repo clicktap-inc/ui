@@ -8,7 +8,7 @@
 ## Dependencies
 
 - Builds on [`2026-04-30-top-down-pdp-option-dependency.md`](./2026-04-30-top-down-pdp-option-dependency.md). That migration introduced top-down option filtering with a blanket "clear every downstream selection on any upstream change". This migration replaces the recommended consumer pattern with a more conservative prune that preserves still-valid downstream picks.
-- Frontend counterpart: [`apps/frontend/.../2026-04-30-prune-invalid-pdp-selections.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-30-prune-invalid-pdp-selections.md) ↔.
+- Frontend counterpart: [`apps/frontend/.../2026-04-30-prune-invalid-pdp-selections.md`](2026-04-30-prune-invalid-pdp-selections.md) ↔.
 
 ## Summary
 
@@ -162,5 +162,5 @@ Replace the manual delete loop with a single `pruneInvalidSelections` call (see 
 
 ## References
 
-- Frontend counterpart migration: [`apps/frontend/.../2026-04-30-prune-invalid-pdp-selections.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-30-prune-invalid-pdp-selections.md) ↔
+- Frontend counterpart migration: [`apps/frontend/.../2026-04-30-prune-invalid-pdp-selections.md`](2026-04-30-prune-invalid-pdp-selections.md) ↔
 - Previous top-down migration this builds on: [`2026-04-30-top-down-pdp-option-dependency.md`](./2026-04-30-top-down-pdp-option-dependency.md)

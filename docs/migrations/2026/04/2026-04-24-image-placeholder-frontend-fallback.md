@@ -7,7 +7,7 @@
 
 ## Dependencies
 
-- See [frontend counterpart](../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-image-placeholder-frontend-fallback.md) ↔ for the consuming-app changes.
+- See [frontend counterpart](2026-04-24-image-placeholder-frontend-fallback.md) ↔ for the consuming-app changes.
 
 ## Summary
 
@@ -60,7 +60,7 @@ Works equally well with raw `<img>`:
 <img src={product.image ?? PLACEHOLDER_IMAGE} alt="" />
 ```
 
-For the PDP/PLP migration, see the [frontend counterpart guide](../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-image-placeholder-frontend-fallback.md) — it covers the full cascade decision (variant → placeholder, no parent fallback) and the dead `no_selection` checks to remove.
+For the PDP/PLP migration, see the [frontend counterpart guide](2026-04-24-image-placeholder-frontend-fallback.md) — it covers the full cascade decision (variant → placeholder, no parent fallback) and the dead `no_selection` checks to remove.
 
 ## Files Changed
 
@@ -74,7 +74,7 @@ For the PDP/PLP migration, see the [frontend counterpart guide](../../../../apps
 
 - [ ] `@clicktap/ui >= 0.27.0` installed in consumers.
 - [ ] No need to copy any SVG into the consuming app's `public/` folder.
-- [ ] Apply the [frontend counterpart guide](../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-image-placeholder-frontend-fallback.md) for the consuming-app changes.
+- [ ] Apply the [frontend counterpart guide](2026-04-24-image-placeholder-frontend-fallback.md) for the consuming-app changes.
 
 ## Why a data URL and not a bundled file?
 

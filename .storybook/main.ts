@@ -42,6 +42,19 @@ const config: StorybookConfig = {
       },
     },
   ],
+  // Autodocs source of truth: extract the props table directly from each
+  // component's TypeScript types (react-docgen-typescript) so docs never drift
+  // from the code. `propFilter` keeps only the component's OWN props — not the
+  // hundreds inherited from react-aria-components / DOM in node_modules.
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop: { parent?: { fileName: string } }) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
+  },
   // Belt-and-suspenders: the preview config (preview.tsx) and addon code are
   // not always run through the automatic-runtime SWC loader, so any classic
   // `React.createElement` output would throw "React is not defined". Provide

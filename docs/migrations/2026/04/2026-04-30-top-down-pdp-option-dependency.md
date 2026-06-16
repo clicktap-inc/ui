@@ -7,7 +7,7 @@
 
 ## Dependencies
 
-- Builds on the per-axis selection model used in [`apps/frontend/.../2026-04-24-pdp-configurable-selector-ux.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-pdp-configurable-selector-ux.md). The previous symmetric filter lived in the frontend app; that logic now lives here in generic, reusable form. See [`apps/frontend/.../2026-04-30-top-down-pdp-option-dependency.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-30-top-down-pdp-option-dependency.md) ↔ for the frontend-side migration steps that adopt the new utilities and switch to top-down semantics.
+- Builds on the per-axis selection model used in [`apps/frontend/.../2026-04-24-pdp-configurable-selector-ux.md`](../../../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-pdp-configurable-selector-ux.md). The previous symmetric filter lived in the frontend app; that logic now lives here in generic, reusable form. See [`apps/frontend/.../2026-04-30-top-down-pdp-option-dependency.md`](2026-04-30-top-down-pdp-option-dependency.md) ↔ for the frontend-side migration steps that adopt the new utilities and switch to top-down semantics.
 
 ## Summary
 
@@ -282,5 +282,5 @@ Skip this and you'll occasionally see the matched variant query against an impos
 
 ## References
 
-- Frontend counterpart migration: [`apps/frontend/.../2026-04-30-top-down-pdp-option-dependency.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-30-top-down-pdp-option-dependency.md) ↔
-- Prior symmetric-filter implementation it replaces: [`apps/frontend/.../2026-04-24-pdp-configurable-selector-ux.md`](../../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-pdp-configurable-selector-ux.md)
+- Frontend counterpart migration: [`apps/frontend/.../2026-04-30-top-down-pdp-option-dependency.md`](2026-04-30-top-down-pdp-option-dependency.md) ↔
+- Prior symmetric-filter implementation it replaces: [`apps/frontend/.../2026-04-24-pdp-configurable-selector-ux.md`](../../../../../../apps/frontend/docs/migrations/2026/04/2026-04-24-pdp-configurable-selector-ux.md)

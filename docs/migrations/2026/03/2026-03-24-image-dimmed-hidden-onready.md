@@ -10,7 +10,7 @@
 
 *None*
 
-See also: [Collection Image Filter Transitions](../../../../../apps/frontend/docs/migrations/2026/03/2026-03-24-collection-image-filter-transitions.md) ↔ — frontend implementation using these props
+See also: [Collection Image Filter Transitions](../../../../../../apps/frontend/docs/migrations/2026/03/2026-03-24-collection-image-filter-transitions.md) ↔ — frontend implementation using these props
 
 ## Summary
 
