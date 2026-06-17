@@ -1,3 +1,10 @@
+[0.40.0](https://github.com/clicktap-inc/ui/compare/0.39.1...0.40.0) (2026-06-17)
+
+### Features
+* searchable options by match relevance (exact-token > prefix > substring) ([25eccc6](https://github.com/clicktap-inc/ui/commit/25eccc644e60e7779d51dd1be6133dfc7271fe20))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.39.1](https://github.com/clicktap-inc/ui/compare/0.39.0...0.39.1) (2026-06-17)
 
 ### Bug Fixes

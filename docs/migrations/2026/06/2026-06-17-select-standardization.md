@@ -174,6 +174,15 @@ By default filtering matches the option's `textValue` (its display name). To let
 </Option>
 ```
 
+**Match ranking.** While filtering a flat searchable list, matches are reordered
+by relevance: an exact whitespace-token match (a code, e.g. `us`) first, then
+options whose name **starts with** the query, then mid-word substring hits. So
+typing `us` ranks *United States* (code `us`) above *Belarus* (substring), and
+typing `uni` ranks *United States* (prefix) above *Reunion* (mid-word). Ranking
+applies only when the Select owns filtering — it's skipped when you control
+`inputValue` (you own ordering), pass a render-fn `children`, or use `<Section>`
+groups (reordering would break grouping). See the `MatchRanking` story.
+
 ### 9. (Optional) Group options with `<Section>`
 
 Wrap `<Option>`s in `<Section title="…">` for grouped lists (an accessible group

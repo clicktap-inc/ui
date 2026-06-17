@@ -1,7 +1,9 @@
 'use client';
 
 import {
+  Children,
   forwardRef,
+  isValidElement,
   useEffect,
   useMemo,
   useRef,
@@ -9,6 +11,8 @@ import {
   type FocusEvent,
   type ForwardedRef,
   type KeyboardEvent,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 import {
   HiddenSelect,
@@ -28,6 +32,7 @@ import {
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
 import { ChevronIcon, SelectListBox, SelectOverlay, SelectTags } from './parts';
+import { Section } from './Option';
 import type { SelectBaseProps, SelectProps } from './Select.types';
 
 // The text to DISPLAY for an option in the input. Options may set `textValue` to
@@ -43,22 +48,68 @@ function itemDisplayText<T>(item: Node<T> | null | undefined): string {
     : (item.textValue ?? '');
 }
 
-// The first SELECTABLE option key, in document order — skipping <Section> header
-// nodes (collection.getFirstKey() returns the section, not an option, so
-// highlight-first/Tab-complete would land on a non-selectable header with groups).
-function firstItemKey<T>(collection: {
-  getFirstKey: () => Key | null;
-  getKeyAfter: (key: Key) => Key | null;
-  getItem: (key: Key) => Node<T> | null;
-}): Key | null {
+// The key to highlight while filtering. Walks the (filtered) collection in
+// document order, skipping <Section> headers, and PREFERS an exact match — an
+// option whose textValue has a whitespace token equal to the query (e.g. a code:
+// "United States of America us" matches input "us"). This beats a mid-word
+// substring hit (typing "us" otherwise highlights "Belarus", the alphabetically
+// first match). Falls back to the first option when nothing matches exactly.
+function highlightKey<T>(
+  collection: {
+    getFirstKey: () => Key | null;
+    getKeyAfter: (key: Key) => Key | null;
+    getItem: (key: Key) => Node<T> | null;
+  },
+  inputValue: string,
+): Key | null {
+  const query = inputValue.trim().toLowerCase();
+  let firstItem: Key | null = null;
   let key = collection.getFirstKey();
   while (key != null) {
-    if (collection.getItem(key)?.type === 'item') {
-      return key;
+    const node = collection.getItem(key);
+    if (node?.type === 'item') {
+      if (firstItem == null) {
+        firstItem = key;
+      }
+      if (
+        query.length > 0 &&
+        (node.textValue ?? '').toLowerCase().split(/\s+/).includes(query)
+      ) {
+        return key;
+      }
     }
     key = collection.getKeyAfter(key);
   }
-  return null;
+  return firstItem;
+}
+
+// Relevance rank of an option's searchable text against the query (lower = more
+// relevant): exact whitespace-token match (a code like "us") → prefix of the
+// whole value → prefix of any word → mid-word substring. So "us" ranks
+// United States (token "us") and "Usbekistan" (prefix) above "Belarus" (substring).
+function matchRank(textValue: string, query: string): number {
+  const tv = textValue.toLowerCase();
+  const tokens = tv.split(/\s+/);
+  if (tokens.includes(query)) {
+    return 0;
+  }
+  if (tv.startsWith(query)) {
+    return 1;
+  }
+  if (tokens.some((token) => token.startsWith(query))) {
+    return 2;
+  }
+  return 3;
+}
+
+// The searchable text of an <Option> element: explicit textValue, else its
+// string children (matches how react-stately derives an Item's textValue).
+function optionText(element: ReactElement): string {
+  const props = element.props as { textValue?: string; children?: ReactNode };
+  if (typeof props.textValue === 'string') {
+    return props.textValue;
+  }
+  return typeof props.children === 'string' ? props.children : '';
 }
 
 // Searchable mode: react-stately `useComboBoxState` + react-aria `useComboBox`,
@@ -139,6 +190,35 @@ function ComboBoxSelectInner<T extends object>(
     ? comboProps.inputValue
     : internalInputValue;
 
+  // Relevance-rank options while filtering a flat, uncontrolled-input searchable
+  // select (e.g. country/region): exact-token and prefix matches sort above
+  // mid-word substring hits, so typing "us" puts United States (token "us") and
+  // "Usbekistan" (prefix) above "Belarus" (substring). react-aria's filter is
+  // keep/drop only — reordering the source children makes the *visible* matches
+  // come out ranked, and keyboard nav follows. Skipped when the consumer controls
+  // input (owns filtering), uses a render fn, or uses <Section> groups (reordering
+  // would break grouping); empty query keeps the original order.
+  const rankedChildren = useMemo(() => {
+    const query = (inputValue ?? '').trim().toLowerCase();
+    if (
+      consumerControlsInput ||
+      typeof children === 'function' ||
+      query === ''
+    ) {
+      return children;
+    }
+    const elements = Children.toArray(children).filter(
+      (child): child is ReactElement => isValidElement(child),
+    );
+    if (elements.length === 0 || elements.some((el) => el.type === Section)) {
+      return children;
+    }
+    return [...elements].sort(
+      (a, b) =>
+        matchRank(optionText(a), query) - matchRank(optionText(b), query),
+    );
+  }, [children, consumerControlsInput, inputValue]);
+
   // Multi value/defaultValue must be a stable ARRAY ref — react-aria treats a
   // controlled `value` referentially, so spreading selectedKeys inline every
   // render (`[...selectedKeys]`) makes it look perpetually changed → infinite
@@ -184,7 +264,7 @@ function ComboBoxSelectInner<T extends object>(
   const ariaProps = {
     ...comboProps,
     label,
-    children: children as never,
+    children: rankedChildren as never,
     placeholder,
     isDisabled,
     menuTrigger: menuTrigger ?? 'focus',
@@ -347,9 +427,10 @@ function ComboBoxSelectInner<T extends object>(
       return;
     }
     // Read the filtered collection at effect time (a render behind any
-    // show-all-items flash), so the first key is the real first match. Skip
-    // section headers so grouped lists highlight/commit the first OPTION.
-    const firstKey = firstItemKey(state.collection);
+    // show-all-items flash). Prefer an exact code/word match over the first
+    // substring hit (typing "us" highlights "United States" via its "us" token,
+    // not "Belarus"); skip section headers either way.
+    const firstKey = highlightKey(state.collection, state.inputValue);
     autoHighlightRef.current = firstKey ?? null;
     if (firstKey != null && firstKey !== focusedKey) {
       manager.setFocusedKey(firstKey);

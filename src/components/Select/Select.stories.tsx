@@ -64,6 +64,7 @@ export const Picker: Story = {
 // typing the code ("us") filters to the row — while the field still displays the
 // name (the combobox shows the rendered children, not textValue).
 const countries = [
+  { code: 'by', name: 'Belarus' },
   { code: 'ca', name: 'Canada' },
   { code: 'cm', name: 'Cameroon' },
   { code: 'cl', name: 'Chile' },
@@ -72,6 +73,7 @@ const countries = [
   { code: 'fr', name: 'France' },
   { code: 'de', name: 'Germany' },
   { code: 'us', name: 'United States' },
+  { code: 'uz', name: 'Uzbekistan' },
 ];
 
 function CountrySelect() {
@@ -101,6 +103,64 @@ function CountrySelect() {
 
 export const Searchable: Story = {
   render: () => <CountrySelect />,
+};
+
+// Match ranking: while filtering a flat searchable list, matches are reordered by
+// relevance — an exact whitespace-token match (a code) first, then options whose
+// name STARTS with the query, then mid-word substring hits. Options are listed
+// alphabetically in source; type to watch them reorder.
+function RankedCountrySelect() {
+  const [selectedKey, setSelectedKey] = useState<Key | null>(null);
+  // Alphabetical in source so the relevance reorder is obvious when you type.
+  const options = [
+    { code: 'ar', name: 'Argentina' },
+    { code: 'au', name: 'Australia' },
+    { code: 'by', name: 'Belarus' },
+    { code: 're', name: 'Reunion' },
+    { code: 'tn', name: 'Tunisia' },
+    { code: 'gb', name: 'United Kingdom' },
+    { code: 'us', name: 'United States' },
+    { code: 'uy', name: 'Uruguay' },
+  ];
+  return (
+    <div style={{ width: 320 }}>
+      <Select
+        searchable
+        label="Country"
+        selectedKey={selectedKey}
+        onSelectionChange={setSelectedKey}
+      >
+        {options.map(({ code, name }) => (
+          <Option key={code} textValue={`${name} ${code}`}>
+            {name}
+          </Option>
+        ))}
+      </Select>
+      <ul
+        style={{
+          marginTop: 12,
+          fontSize: 13,
+          lineHeight: 1.6,
+          color: '#555',
+          paddingLeft: 18,
+        }}
+      >
+        <li>
+          Type <strong>uni</strong> — <em>United Kingdom</em> and{' '}
+          <em>United States</em> (name starts with “uni”) sort above{' '}
+          <em>Reunion</em> and <em>Tunisia</em> (mid-word “uni”).
+        </li>
+        <li>
+          Type <strong>us</strong> — <em>United States</em> (code “us”) wins
+          over <em>Belarus</em>/<em>Australia</em> (substring “us”).
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+export const MatchRanking: Story = {
+  render: () => <RankedCountrySelect />,
 };
 
 // `searchable="auto"` turns searchable on once there are more than ~8 options.
