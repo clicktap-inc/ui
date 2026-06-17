@@ -168,6 +168,7 @@ export function ButtonSelect<T extends object>(props: SelectProps<T>) {
               state={state}
               listBoxProps={menuProps as AriaListBoxOptions<T>}
               listBoxRef={listBoxRef}
+              optionClassName={cn(classNames?.option)}
               className={cn(
                 'max-h-80',
                 'overflow-y-auto',

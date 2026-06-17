@@ -27,6 +27,7 @@ export function SelectOption<T extends object>({
   item,
   state,
   shouldUseVirtualFocus,
+  className,
 }: {
   item: Node<T>;
   state: ListState<T>;
@@ -35,6 +36,11 @@ export function SelectOption<T extends object>({
   // working). Passed straight to useOption (it takes priority over the
   // listbox-level value), so it can't be lost in prop plumbing.
   shouldUseVirtualFocus?: boolean;
+  // Consumer override (`classNames.option`). Merged LAST so twMerge lets it win
+  // over the defaults — including the focus/selected/disabled states, which are
+  // emitted as `data-*` variants (not conditional classes) precisely so a
+  // consumer can retarget them, e.g. `data-[focused]:bg-zinc-800` for dark mode.
+  className?: string;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const { optionProps, isFocused, isSelected, isDisabled } = useOption(
@@ -47,6 +53,9 @@ export function SelectOption<T extends object>({
     <li
       {...optionProps}
       ref={ref}
+      data-focused={isFocused || undefined}
+      data-selected={isSelected || undefined}
+      data-disabled={isDisabled || undefined}
       className={cn(
         'flex flex-auto items-center',
         'rounded-md',
@@ -55,9 +64,10 @@ export function SelectOption<T extends object>({
         'cursor-default outline-none',
         'text-slate-900',
         'transition-all ease-in-out duration-150',
-        isFocused && 'bg-slate-100',
-        isSelected && 'font-semibold',
-        isDisabled && 'text-slate-500',
+        'data-[focused]:bg-slate-100',
+        'data-[selected]:font-semibold',
+        'data-[disabled]:text-slate-500',
+        className,
       )}
     >
       {item.rendered}
@@ -70,12 +80,15 @@ export function SelectListBox<T extends object>({
   listBoxProps,
   listBoxRef,
   className,
+  optionClassName,
   optionVirtualFocus,
 }: {
   state: ListState<T>;
   listBoxProps: AriaListBoxOptions<T>;
   listBoxRef: RefObject<HTMLUListElement>;
   className?: string;
+  // `classNames.option` — applied to each row's <li>.
+  optionClassName?: string;
   optionVirtualFocus?: boolean;
 }) {
   const { listBoxProps: ariaListBoxProps } = useListBox(
@@ -92,6 +105,7 @@ export function SelectListBox<T extends object>({
           item={item}
           state={state}
           shouldUseVirtualFocus={optionVirtualFocus}
+          className={optionClassName}
         />
       ))}
     </ul>

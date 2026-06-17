@@ -61,6 +61,10 @@ export interface SelectProps<T extends object> extends Omit<
     | 'errorMessage'
     | 'listContainer'
     | 'list'
+    // Each option row's <li>. Merged last so it wins; focus/selected/disabled
+    // are exposed as data-* variants (data-[focused], data-[selected],
+    // data-[disabled]) so they can be retargeted, e.g. for dark mode.
+    | 'option'
   >;
   autoComplete?: HTMLInputAutoCompleteAttribute;
 }

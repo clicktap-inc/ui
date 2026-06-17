@@ -356,3 +356,40 @@ function ServerSearchSelect() {
 export const ServerSideSearch: Story = {
   render: () => <ServerSearchSelect />,
 };
+
+// Theming option rows: `classNames.option` overrides the per-row defaults, and
+// the focus/selected/disabled states are exposed as data-* variants
+// (`data-[focused]` / `data-[selected]` / `data-[disabled]`) so a non-light theme
+// can retarget them. Surface via `listContainer`, rows via `option`. No per-option
+// wrapper needed (and none is possible — Option is a collection descriptor).
+function DarkThemedSelect() {
+  const [selectedKey, setSelectedKey] = useState<Key | null>(null);
+  return (
+    <div style={{ width: 280, padding: 24, background: '#18181b' }}>
+      <Select
+        searchable
+        label="Country (dark theme)"
+        selectedKey={selectedKey}
+        onSelectionChange={setSelectedKey}
+        classNames={{
+          label: 'text-zinc-400',
+          input:
+            'bg-zinc-800 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 hover:border-zinc-600 focus:border-zinc-500 focus:outline-zinc-700',
+          listContainer: 'bg-zinc-900 border-zinc-700',
+          option:
+            'text-zinc-100 data-[focused]:bg-zinc-800 data-[selected]:text-white data-[disabled]:text-zinc-600',
+        }}
+      >
+        {countries.map(({ code, name }) => (
+          <Option key={code} textValue={`${name} ${code}`}>
+            {name}
+          </Option>
+        ))}
+      </Select>
+    </div>
+  );
+}
+
+export const ThemedOptions: Story = {
+  render: () => <DarkThemedSelect />,
+};

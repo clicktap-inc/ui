@@ -418,6 +418,7 @@ function ComboBoxSelectInner<T extends object>(
               listBoxProps={listBoxProps as AriaListBoxOptions<T>}
               listBoxRef={listBoxRef}
               optionVirtualFocus
+              optionClassName={cn(classNames?.option)}
               className={cn(
                 'max-h-80',
                 'overflow-y-auto',

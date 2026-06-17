@@ -3,7 +3,7 @@
 **Date:** 2026-06-17
 **Affects:** Any app consuming `@clicktap/ui`'s `Select` / `DropdownSelect` (Crispi, FFL, and any fork that renders pickers, sort controls, country/region selects, or configurable-product options).
 **Classification:** FEATURE + BREAKING
-**Breaking:** Yes — (1) `DropdownSelect` removed, (2) the bare `<Select>` is now a **button picker**, not a combobox, (3) `DropdownSelect`'s `classNames.trigger` is now `classNames.input`, (4) the root is `w-full` by default.
+**Breaking:** Yes — (1) `DropdownSelect` removed, (2) the bare `<Select>` is now a **button picker**, not a combobox, (3) `DropdownSelect`'s `classNames.trigger` is now `classNames.input`, (4) the root is `w-full` by default, (5) `<Option>` is react-stately's `Item` — keyed by `key` (no `id`) and **cannot be wrapped**.
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ They're now **one** component — `<Select>` — with a `searchable` prop:
 - `searchable` *(`true`)* — **combobox**: type to filter; the first match highlights, Tab/Enter commit it and Tab advances to the next field. Right for long lists (country, region). The dropdown is **portaled** so it works inside modals/drawers, and it ships with a hidden `<select>` mirror so password managers / browser autofill still work.
 - `searchable="auto"` — searchable once there are more than ~8 options.
 
-`<Option>` / `OptionProps` are unchanged (still react-stately's `Item`).
+`<Option>` is react-stately's `Item` (`OptionProps<T> = ItemProps<T>`). **This is a breaking change if you previously passed `id` or wrapped `<Option>`** — see [Options: `id` → `key`, do not wrap](#options-id--key-do-not-wrap).
 
 ## What changed
 
@@ -33,7 +33,9 @@ They're now **one** component — `<Select>` — with a `searchable` prop:
 | Bare `<Select>` | Combobox (type-to-filter) | **Button picker** — add `searchable` to keep filtering |
 | `DropdownSelect` button class | `classNames.trigger` | `classNames.input` |
 | Root width | `DropdownSelect`: auto (`flex items-center`) | `w-full` (form-field default) — override for inline/`justify-end` rows |
+| **`<Option>`** | own element / accepted `id`, could be wrapped | **react-stately `Item`** — keyed by React `key` (no `id`); **cannot be wrapped** (it's a collection descriptor, not a rendered element). Style rows via `classNames.option`. |
 | `SelectSlots.listBoxComponent` | Custom listbox renderer | **No-op** — the dropdown is rendered internally now; remove it |
+| Option row theming | — | new `classNames.option` slot; focus/selected/disabled are `data-[focused]` / `data-[selected]` / `data-[disabled]` variants |
 | New props | — | `searchable`, `selectTextOnFocus`, `autoFocusFirstOption`, `name` + `autoComplete` (autofill) |
 | Filtering | name only | match by name **or** option `textValue` aliases (codes) |
 
@@ -106,11 +108,42 @@ For long lists where you're unsure, `searchable="auto"` turns it on past ~8 opti
 
 > `classNames.input` sizes the button/input; **`className` sizes the root.** Constrain the root anywhere the Select isn't meant to be full-width.
 
-### 4. Remove `slots.listBoxComponent`
+### 4. Options: `id` → `key`, do not wrap
 
-The dropdown list is rendered internally now; a custom `listBoxComponent` is ignored. Delete it (style via `classNames.listContainer` / `classNames.list` instead).
+`<Option>` is now react-stately's `Item` (`OptionProps<T> = ItemProps<T>`). Two consequences:
 
-### 5. (Optional) Enable autofill on a searchable select
+- **`id` is gone — options are keyed by the React `key`.** Every `<Option id={…}>` fails to typecheck.
+  ```tsx
+  // Before
+  <Option id={country.code}>{country.name}</Option>
+  // After
+  <Option key={country.code}>{country.name}</Option>
+  ```
+- **You cannot wrap `<Option>`.** `Item` is a *collection descriptor*, not a rendered element — the Select reads its props to build the list and renders the rows itself. A wrapper (`<MyOption>` → styled `<div>` → `<Item>`) breaks twice: the React `key` is swallowed by the wrapper (identity lost) and the wrapper's markup/`className` is never rendered. Use `<Option>` **directly** and style rows with `classNames.option` (next step).
+
+### 5. Theme the option rows (`classNames.option`)
+
+Option rows previously hard-coded a light palette with no override hook. There's now a `classNames.option` slot, and the focus/selected/disabled states are emitted as **`data-*` variants** so a non-light theme can retarget them:
+
+```tsx
+<Select
+  searchable
+  classNames={{
+    listContainer: 'bg-zinc-900 border-zinc-700',          // the dropdown surface
+    option: 'text-zinc-100 data-[focused]:bg-zinc-800 data-[disabled]:text-zinc-500',
+  }}
+>
+  {items.map((i) => <Option key={i.id}>{i.label}</Option>)}
+</Select>
+```
+
+`classNames.option` is merged last, so `twMerge` lets it win over the defaults (`text-slate-900`, `data-[focused]:bg-slate-100`, …). This replaces the old descendant-selector hack (`classNames.list: '[&_li]:…'`) and any per-option wrapper.
+
+### 6. Remove `slots.listBoxComponent`
+
+The dropdown list is rendered internally now; a custom `listBoxComponent` is ignored. Delete it (style via `classNames.listContainer` / `classNames.list` / `classNames.option` instead).
+
+### 7. (Optional) Enable autofill on a searchable select
 
 A searchable combobox has no native form control for its *selection*, so password managers / browser autofill can't fill it — **unless** you pass `name` (and ideally an `autoComplete` token). The Select then renders a hidden native `<select>` (for ≤300 options) that autofill targets; its change drives the selection.
 
@@ -128,7 +161,7 @@ A searchable combobox has no native form control for its *selection*, so passwor
 
 Autofill matches the **option text** (the state/country name), so render the name as the option's children.
 
-### 6. (Optional) Match by code/alias when typing
+### 8. (Optional) Match by code/alias when typing
 
 By default filtering matches the option's `textValue` (its display name). To let users type a **code** ("tx", "us-tx") and still find the row, put the aliases in `textValue` — the field still displays the rendered children, not `textValue`:
 
@@ -152,6 +185,7 @@ Visually confirm, per migrated select:
 - [ ] Searchable inside a **modal/drawer**: Tab moves to the next field (dropdown is portaled out of the focus trap).
 - [ ] Toolbar/inline selects float/size correctly (root width set).
 - [ ] Autofill (if enabled): password manager fills the field; value sticks.
+- [ ] Themed rows (if you set `classNames.option`): text + focus/selected/disabled colors apply (see the `ThemedOptions` story).
 
 ## Rollback
 
@@ -167,6 +201,6 @@ Safe — presentation-layer only, no persistent state.
 
 - Source: `libs/ui/src/components/Select/` (`Select.tsx` dispatches to `ButtonSelect.tsx` / `ComboBoxSelect.tsx`; shared parts in `parts.tsx`)
 - Types: `libs/ui/src/components/Select/Select.types.ts`
-- Stories: `libs/ui/src/components/Select/Select.stories.tsx` (`Picker`, `Searchable`, `SearchableAuto`)
+- Stories: `libs/ui/src/components/Select/Select.stories.tsx` (`Picker`, `Searchable`, `SearchableAuto`, `AsyncDataSource`, `ServerSideSearch`, `ThemedOptions`)
 - In-repo consumer examples: `apps/frontend/components/AddressForm/AddressForm.tsx` (country/region, autofill, aliases), `apps/frontend/components/Collection/CollectionToolbar.tsx` (toolbar width), `apps/frontend/components/Product/components/ConfigurableOptions/ConfigurableOptions.tsx`
 - Related: [`Select` `onSelectionChange` widened to `Key | T`](../04/2026-04-17-select-address-input-onchange-key-or-item.md), [`Select` `popoverPortalContainer` restored](../02/2026-02-17-select-popover-portal-container-restored.md)

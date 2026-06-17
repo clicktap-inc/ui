@@ -1,3 +1,10 @@
+[0.37.0](https://github.com/clicktap-inc/ui/compare/0.36.1...0.37.0) (2026-06-17)
+
+### Features
+* themeable option rows via classNames.option (focus/selected/disabled as data-* variants); story + guide ([cfa1b0e](https://github.com/clicktap-inc/ui/commit/cfa1b0e10497cebc0ecb428745739ebb2364dce2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.36.1](https://github.com/clicktap-inc/ui/compare/0.36.0...0.36.1) (2026-06-17)
 
 ### Bug Fixes
