@@ -1,3 +1,10 @@
+[0.40.1](https://github.com/clicktap-inc/ui/compare/0.40.0...0.40.1) (2026-06-17)
+
+### Bug Fixes
+* option keys when ranking + always close searchable menu on blur ([6b49ebd](https://github.com/clicktap-inc/ui/commit/6b49ebd33585dd598dedae15db6fbf6dd83c033e))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.40.0](https://github.com/clicktap-inc/ui/compare/0.39.1...0.40.0) (2026-06-17)
 
 ### Features

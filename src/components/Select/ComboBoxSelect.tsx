@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  Children,
   forwardRef,
   isValidElement,
   useEffect,
@@ -198,19 +197,33 @@ function ComboBoxSelectInner<T extends object>(
   // come out ranked, and keyboard nav follows. Skipped when the consumer controls
   // input (owns filtering), uses a render fn, or uses <Section> groups (reordering
   // would break grouping); empty query keeps the original order.
+  //
+  // Sort the RAW children array — NOT Children.toArray(), which re-keys its output
+  // (an `<Option key="us">` comes back as ".$us"). That re-key desyncs the
+  // collection's item keys from the controlled selectedKey, so state.selectedItem
+  // resolves to null and the blur re-sync clears the committed value. A plain array
+  // (the `items.map()` / multiple-static-child case) keeps each element's original
+  // key when sorted; anything else (single child, nested/mixed content) is left
+  // untouched.
   const rankedChildren = useMemo(() => {
     const query = (inputValue ?? '').trim().toLowerCase();
     if (
       consumerControlsInput ||
       typeof children === 'function' ||
-      query === ''
+      query === '' ||
+      !Array.isArray(children)
     ) {
       return children;
     }
-    const elements = Children.toArray(children).filter(
-      (child): child is ReactElement => isValidElement(child),
+    const childArray = children as ReactNode[];
+    const elements = childArray.filter((child): child is ReactElement =>
+      isValidElement(child),
     );
-    if (elements.length === 0 || elements.some((el) => el.type === Section)) {
+    if (
+      elements.length !== childArray.length ||
+      elements.length === 0 ||
+      elements.some((el) => el.type === Section)
+    ) {
       return children;
     }
     return [...elements].sort(
@@ -472,6 +485,13 @@ function ComboBoxSelectInner<T extends object>(
         return;
       }
       isFocusedRef.current = false;
+      // Always close on blur. react-aria's blur-commit leaves the menu open when
+      // the input was cleared to empty (allowsEmptyCollection keeps the full list
+      // "open" and there's no focused key to commit-and-close). The activeElement
+      // guard above means a mouse pick — which keeps DOM focus on the input via
+      // virtual focus — never reaches here, so this only fires when focus genuinely
+      // left the field. No-op when react-aria already closed.
+      stateRef.current?.close();
       // Reset an abandoned partial edit. Single: revert to the committed
       // selection's text. Multi: the input is just a filter, so clear it (chips
       // hold the selections). Deferred + unfocused, so no reopen.
