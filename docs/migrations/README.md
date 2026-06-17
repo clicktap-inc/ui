@@ -25,5 +25,6 @@ For migrations affecting the frontend app, see [frontend migrations](../../../..
 | 2026-05-21 | [`ButtonLoadingContent` helper — right-side spinner for all submit buttons](./2026/05/2026-05-21-button-loading-content.md) ↔ | No | *None* |
 | 2026-05-21 | [`PasswordCheck` `requirements` variant hides until the visitor types](./2026/05/2026-05-21-password-check-hide-on-empty.md) | No | *None* |
 | 2026-05-29 | [`PasswordCheck` — the `requirements` variant (adoption guide for forks)](./2026/05/2026-05-29-password-check-requirements-variant.md) | No | PasswordCheck hide-on-empty |
+| 2026-06-17 | [Select standardization — one `<Select searchable>`, `DropdownSelect` removed](./2026/06/2026-06-17-select-standardization.md) ↔ | Yes | *None* |
 
 ↔ = cross-app migration (has counterpart in frontend app)

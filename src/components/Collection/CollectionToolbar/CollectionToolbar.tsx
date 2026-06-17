@@ -1,7 +1,6 @@
 'use client';
 
-import { DropdownSelect } from '../../Select';
-import { Option } from '../../Select';
+import { Select, Option } from '../../Select';
 import { Button } from '../../Button';
 import { FilterIcon } from '../../Icon/FilterIcon';
 import type { SortOrder } from '../../../types/collection';
@@ -43,7 +42,8 @@ export function CollectionToolbar({
           <FilterIcon className="w-3 h-3" />
           Filters
         </Button>
-        <DropdownSelect
+        <Select
+          className="w-44"
           selectedKey={
             appliedSortOrder
               ? `${appliedSortOrder.code}_${appliedSortOrder.direction}`
@@ -53,7 +53,7 @@ export function CollectionToolbar({
           placeholder="Sort by"
           label="Sort By:"
           classNames={{
-            trigger: 'text-xs w-44 h-8 min-h-0',
+            input: 'text-xs w-44 h-8 min-h-0',
             value: 'text-xs',
             label: 'hidden lg:block text-xs text-gray-600 whitespace-nowrap',
           }}
@@ -61,13 +61,12 @@ export function CollectionToolbar({
           {allSortOrders.map((sort) => (
             <Option
               key={`${sort.code}_${sort.direction}`}
-              id={`${sort.code}_${sort.direction}`}
               textValue={sort.label}
             >
               {sort.label}
             </Option>
           ))}
-        </DropdownSelect>
+        </Select>
       </div>
       {totalItems > 0 && (
         <p className="text-sm text-slate-500">

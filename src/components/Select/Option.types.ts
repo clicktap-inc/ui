@@ -1,3 +1,4 @@
-import type { ListBoxItemProps } from 'react-aria-components';
+import type { ItemProps } from 'react-stately';
 
-export type OptionProps = ListBoxItemProps;
+// <Option> for the combobox is react-stately's `Item`.
+export type OptionProps<T = object> = ItemProps<T>;

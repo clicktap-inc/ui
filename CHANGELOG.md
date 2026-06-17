@@ -1,3 +1,16 @@
+[0.36.0](https://github.com/clicktap-inc/ui/compare/0.35.2...0.36.0) (2026-06-17)
+
+### Features
+* match options by code/alias when typing + reduce autofill menu flash ([6c9c951](https://github.com/clicktap-inc/ui/commit/6c9c951b8516711e051c1dd5a4be149f98cd5427))
+* control inputValue (canonical) + hidden-select autofill + cursor/clear/async-load fixes ([699b6bb](https://github.com/clicktap-inc/ui/commit/699b6bbf70e132b432f44f03132ed0f5d9480e82))
+* Select; one searchable combobox + button picker, portaled dropdown for modal focus-traps ([8c3b97a](https://github.com/clicktap-inc/ui/commit/8c3b97afcb44254a10b400b7ccd979a3368e0abd))
+* consistent default dropdown UX (open-on-focus, select-text-on-focus, highlight + Enter/Tab-commit first match) ([b4e1cc1](https://github.com/clicktap-inc/ui/commit/b4e1cc199b32091adc10b9b45970f0cd452414c6))
+### Bug Fixes
+* constrain toolbar sort/per-row width so it floats right (was full-width) ([d3ba7fb](https://github.com/clicktap-inc/ui/commit/d3ba7fb9d40e3325a653c9bb0253856833e8cbf6))
+* controlled demo stories, blur-on-select, plain first-option focus (open/highlight/commit UX) ([25b0963](https://github.com/clicktap-inc/ui/commit/25b0963fc7270a46b9997feda3e5885750125a08))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.35.2](https://github.com/clicktap-inc/ui/compare/0.35.1...0.35.2) (2026-06-16)
 
 ### Bug Fixes
