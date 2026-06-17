@@ -1,3 +1,10 @@
+[0.39.1](https://github.com/clicktap-inc/ui/compare/0.39.0...0.39.1) (2026-06-17)
+
+### Bug Fixes
+* externalize react-stately so the build does not emit a vendored chunk missing use-client (fixes npm publish build) ([c4fcb1d](https://github.com/clicktap-inc/ui/commit/c4fcb1d63ad03f3c8e5cb876db2d3507fb083575))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.39.0](https://github.com/clicktap-inc/ui/compare/0.38.0...0.39.0) (2026-06-17)
 
 ### Features
