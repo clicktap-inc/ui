@@ -1,3 +1,10 @@
+[0.39.0](https://github.com/clicktap-inc/ui/compare/0.38.0...0.39.0) (2026-06-17)
+
+### Features
+* button-mode multi-select (selectionMode=multiple, no searchable) + Select autodocs page ([c4bf5b5](https://github.com/clicktap-inc/ui/commit/c4bf5b5ec48a64ae91ba1eca4a693a21e14b6cff))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.38.0](https://github.com/clicktap-inc/ui/compare/0.37.0...0.38.0) (2026-06-17)
 
 ### Features

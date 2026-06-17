@@ -6,7 +6,26 @@ import { Select } from './Select';
 import { Option, Section } from './Option';
 import { Input } from '../Input/Input';
 
-const meta: Meta<typeof Select> = { component: Select };
+const meta: Meta<typeof Select> = {
+  component: Select,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          'One `<Select>` with two display modes, plus multi-select and grouping. The prop table below is generated from the types; the stories are live examples of each capability.',
+          '',
+          '- **Button picker** (default) — click to open, pick one. For short, fixed lists (`Picker`).',
+          '- **Searchable combobox** (`searchable`) — type to filter; the first match highlights and Tab/Enter commit it (Tab also advances). For long lists (`Searchable`). `searchable="auto"` turns it on past ~8 options (`SearchableAuto`).',
+          '- **Multi-select** (`selectionMode="multiple"`) — pick several → `onSelectionChange(Key[])`. Searchable shows removable chips in selection order (`Multiple`); non-searchable shows a button summary in collection order (`ButtonMultiple`). Combines with groups (`GroupedMultiple`).',
+          '- **Option groups** — wrap options in `<Section title="…">` (`Grouped`).',
+          '',
+          'Theme option rows via `classNames.option` with `data-[focused]`/`data-[selected]`/`data-[disabled]` variants (`ThemedOptions`). Searchable selects render a hidden native `<select>` so password managers / browser autofill work (pass `name`). Async / server-side data: feed `items` + control `inputValue` (`AsyncDataSource`, `ServerSideSearch`).',
+        ].join('\n'),
+      },
+    },
+  },
+};
 export default meta;
 type Story = StoryObj<typeof Select>;
 
@@ -512,4 +531,33 @@ function GroupedMultiSelect() {
 
 export const GroupedMultiple: Story = {
   render: () => <GroupedMultiSelect />,
+};
+
+// Button-mode multi-select: `selectionMode="multiple"` WITHOUT `searchable`.
+// A button (summary of picks) opens a listbox where clicking toggles each option;
+// the menu stays open. For short fixed lists you multi-pick without typing.
+function ButtonMultiSelect() {
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
+  return (
+    <div style={{ width: 240 }}>
+      <Select
+        selectionMode="multiple"
+        label="Days available (button multi)"
+        placeholder="Select days"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((d) => (
+          <Option key={d}>{d}</Option>
+        ))}
+      </Select>
+      <p style={{ marginTop: 8, fontSize: 12, color: '#64748b' }}>
+        Selected: {selectedKeys.length ? selectedKeys.join(', ') : '—'}
+      </p>
+    </div>
+  );
+}
+
+export const ButtonMultiple: Story = {
+  render: () => <ButtonMultiSelect />,
 };

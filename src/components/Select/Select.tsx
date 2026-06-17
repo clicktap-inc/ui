@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { ButtonSelect } from './ButtonSelect';
 import { ComboBoxSelect } from './ComboBoxSelect';
+import { MultiButtonSelect } from './MultiButtonSelect';
 import { Section } from './Option';
 import type { SelectProps } from './Select.types';
 
@@ -47,16 +48,19 @@ function SelectInner<T extends object>(
   props: SelectProps<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  // Multi-select is combobox-only (button mode / useSelectState is single-only),
-  // so 'multiple' forces the searchable path regardless of `searchable`.
   const searchable =
-    props.selectionMode === 'multiple' ||
-    (props.searchable === 'auto'
+    props.searchable === 'auto'
       ? optionCount(props) > AUTO_SEARCH_THRESHOLD
-      : Boolean(props.searchable));
+      : Boolean(props.searchable);
 
+  // Searchable handles both single and multi (combobox). Non-searchable splits:
+  // single → ButtonSelect (useSelectState), multi → MultiButtonSelect (useListState
+  // multiple); useSelectState is single-only, so multi needs its own button path.
   if (searchable) {
     return <ComboBoxSelect ref={ref} {...props} />;
+  }
+  if (props.selectionMode === 'multiple') {
+    return <MultiButtonSelect {...props} />;
   }
   return <ButtonSelect {...props} />;
 }
