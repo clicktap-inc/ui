@@ -1,3 +1,10 @@
+[0.36.1](https://github.com/clicktap-inc/ui/compare/0.36.0...0.36.1) (2026-06-17)
+
+### Bug Fixes
+* searchable: isLoading shows spinner without disabling the input (keeps type-ahead focus) ([30755d7](https://github.com/clicktap-inc/ui/commit/30755d7d0b3fd1f2ac793099519f5d32ad9f0ae0))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.36.0](https://github.com/clicktap-inc/ui/compare/0.35.2...0.36.0) (2026-06-17)
 
 ### Features

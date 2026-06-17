@@ -82,7 +82,11 @@ function ComboBoxSelectInner<T extends object>(
     ...comboProps
   } = props;
 
-  const isDisabled = Boolean(comboProps.isDisabled || isLoading);
+  // NOTE: isLoading must NOT disable the input here. In a searchable type-ahead
+  // (results fetched per keystroke), disabling on each fetch drops input focus and
+  // stops the user typing. isLoading only drives the spinner (see render); the
+  // field stays interactive while results load.
+  const isDisabled = Boolean(comboProps.isDisabled);
 
   const isFocusedRef = useRef(false);
   // Always-current state snapshot so callbacks defined before `state` exists
