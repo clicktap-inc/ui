@@ -11,11 +11,19 @@ import {
   DismissButton,
   Overlay,
   useListBox,
+  useListBoxSection,
   useOption,
   usePopover,
   type AriaListBoxOptions,
 } from 'react-aria';
 import type { ListState, Node, OverlayTriggerState } from 'react-stately';
+import {
+  Button as AriaButton,
+  Tag as AriaTag,
+  TagGroup as AriaTagGroup,
+  TagList as AriaTagList,
+  type Key,
+} from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import type { SelectSlots } from './Select.types';
 
@@ -75,12 +83,62 @@ export function SelectOption<T extends object>({
   );
 }
 
+// A <Section> group: an accessible heading + a nested group of its options.
+// react-aria's useListBoxSection wires the group/heading roles; the option rows
+// are the same SelectOption used elsewhere.
+function SelectSection<T extends object>({
+  section,
+  state,
+  shouldUseVirtualFocus,
+  optionClassName,
+  headingClassName,
+}: {
+  section: Node<T>;
+  state: ListState<T>;
+  shouldUseVirtualFocus?: boolean;
+  optionClassName?: string;
+  headingClassName?: string;
+}) {
+  const { itemProps, headingProps, groupProps } = useListBoxSection({
+    heading: section.rendered,
+    'aria-label': section['aria-label'],
+  });
+
+  return (
+    <li {...itemProps} className={cn('pt-1.5 first:pt-0')}>
+      {section.rendered != null && (
+        <span
+          {...headingProps}
+          className={cn(
+            'block px-3 pb-1 text-xs font-semibold text-slate-400',
+            headingClassName,
+          )}
+        >
+          {section.rendered}
+        </span>
+      )}
+      <ul {...groupProps}>
+        {[...state.collection.getChildren!(section.key)].map((node) => (
+          <SelectOption
+            key={node.key}
+            item={node}
+            state={state}
+            shouldUseVirtualFocus={shouldUseVirtualFocus}
+            className={optionClassName}
+          />
+        ))}
+      </ul>
+    </li>
+  );
+}
+
 export function SelectListBox<T extends object>({
   state,
   listBoxProps,
   listBoxRef,
   className,
   optionClassName,
+  sectionHeadingClassName,
   optionVirtualFocus,
 }: {
   state: ListState<T>;
@@ -89,6 +147,8 @@ export function SelectListBox<T extends object>({
   className?: string;
   // `classNames.option` — applied to each row's <li>.
   optionClassName?: string;
+  // `classNames.sectionHeading` — applied to each <Section> heading.
+  sectionHeadingClassName?: string;
   optionVirtualFocus?: boolean;
 }) {
   const { listBoxProps: ariaListBoxProps } = useListBox(
@@ -99,15 +159,26 @@ export function SelectListBox<T extends object>({
 
   return (
     <ul {...ariaListBoxProps} ref={listBoxRef} className={className}>
-      {[...state.collection].map((item) => (
-        <SelectOption
-          key={item.key}
-          item={item}
-          state={state}
-          shouldUseVirtualFocus={optionVirtualFocus}
-          className={optionClassName}
-        />
-      ))}
+      {[...state.collection].map((node) =>
+        node.type === 'section' ? (
+          <SelectSection
+            key={node.key}
+            section={node}
+            state={state}
+            shouldUseVirtualFocus={optionVirtualFocus}
+            optionClassName={optionClassName}
+            headingClassName={sectionHeadingClassName}
+          />
+        ) : (
+          <SelectOption
+            key={node.key}
+            item={node}
+            state={state}
+            shouldUseVirtualFocus={optionVirtualFocus}
+            className={optionClassName}
+          />
+        ),
+      )}
     </ul>
   );
 }
@@ -209,6 +280,69 @@ export function SelectOverlay({
         <DismissButton onDismiss={() => state.close()} />
       </div>
     </Overlay>
+  );
+}
+
+// Multi-select chips. react-aria-components TagGroup gives full keyboard a11y:
+// arrow-key navigation between chips and Backspace/Delete to remove the focused
+// one (plus the click-× remove button). `onRemove` receives the removed keys.
+export function SelectTags({
+  items,
+  onRemove,
+  classNames,
+}: {
+  items: { id: Key; label: string }[];
+  onRemove: (key: Key) => void;
+  classNames?: {
+    tagGroup?: string;
+    tag?: string;
+    tagRemoveButton?: string;
+  };
+}) {
+  if (items.length === 0) {
+    return null;
+  }
+  return (
+    <AriaTagGroup
+      aria-label="Selected options"
+      onRemove={(keys) => {
+        for (const key of keys) {
+          onRemove(key);
+        }
+      }}
+      className={cn('mb-1.5', classNames?.tagGroup)}
+    >
+      <AriaTagList items={items} className={cn('flex flex-wrap gap-1.5')}>
+        {(item) => (
+          <AriaTag
+            id={item.id}
+            textValue={item.label}
+            className={cn(
+              'inline-flex items-center gap-1',
+              'rounded-md bg-slate-100 text-slate-900',
+              'px-2 py-0.5 text-xs',
+              'outline-none',
+              'data-[focus-visible]:ring-2 data-[focus-visible]:ring-slate-300',
+              classNames?.tag,
+            )}
+          >
+            {item.label}
+            <AriaButton
+              slot="remove"
+              aria-label={`Remove ${item.label}`}
+              className={cn(
+                'leading-none outline-none',
+                'text-slate-500 hover:text-slate-900',
+                'data-[focus-visible]:text-slate-900',
+                classNames?.tagRemoveButton,
+              )}
+            >
+              ×
+            </AriaButton>
+          </AriaTag>
+        )}
+      </AriaTagList>
+    </AriaTagGroup>
   );
 }
 

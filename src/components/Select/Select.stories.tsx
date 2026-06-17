@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useAsyncList } from 'react-stately';
 import type { Key } from 'react-aria-components';
 import { Select } from './Select';
-import { Option } from './Option';
+import { Option, Section } from './Option';
 import { Input } from '../Input/Input';
 
 const meta: Meta<typeof Select> = { component: Select };
@@ -392,4 +392,124 @@ function DarkThemedSelect() {
 
 export const ThemedOptions: Story = {
   render: () => <DarkThemedSelect />,
+};
+
+// Option groups: wrap <Option>s in <Section title="…">. Works in both modes; in
+// searchable mode the filter keeps matching options and drops empty groups.
+function GroupedSelect() {
+  const [selectedKey, setSelectedKey] = useState<Key | null>(null);
+  return (
+    <div style={{ width: 260 }}>
+      <Select
+        searchable
+        label="Country (grouped)"
+        selectedKey={selectedKey}
+        onSelectionChange={setSelectedKey}
+      >
+        <Section title="North America">
+          <Option key="us" textValue="United States us">
+            United States
+          </Option>
+          <Option key="ca" textValue="Canada ca">
+            Canada
+          </Option>
+          <Option key="mx" textValue="Mexico mx">
+            Mexico
+          </Option>
+        </Section>
+        <Section title="Europe">
+          <Option key="fr" textValue="France fr">
+            France
+          </Option>
+          <Option key="de" textValue="Germany de">
+            Germany
+          </Option>
+        </Section>
+      </Select>
+    </div>
+  );
+}
+
+export const Grouped: Story = {
+  render: () => <GroupedSelect />,
+};
+
+// Multi-select (searchable combobox): `selectionMode="multiple"`. Type to filter,
+// each pick becomes a removable chip and the filter clears so you can keep adding.
+// The selection callback receives a Key[]. Chips have full keyboard a11y
+// (TagGroup): arrow between them, Backspace/Delete to remove, or click ×.
+function MultiSelect() {
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
+  return (
+    <div style={{ width: 320 }}>
+      <Select
+        searchable
+        selectionMode="multiple"
+        label="Toppings (multi-select)"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        {[
+          'Pepperoni',
+          'Mushroom',
+          'Onion',
+          'Sausage',
+          'Bacon',
+          'Olives',
+          'Peppers',
+          'Pineapple',
+        ].map((t) => (
+          <Option key={t}>{t}</Option>
+        ))}
+      </Select>
+      <p style={{ marginTop: 8, fontSize: 12, color: '#64748b' }}>
+        Selected: {selectedKeys.length ? selectedKeys.join(', ') : '—'}
+      </p>
+    </div>
+  );
+}
+
+export const Multiple: Story = {
+  render: () => <MultiSelect />,
+};
+
+// Groups + multi-select combined: <Section> grouping with selectionMode="multiple".
+// Filter within groups, pick across groups (each a chip), empty groups drop out.
+function GroupedMultiSelect() {
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
+  return (
+    <div style={{ width: 320 }}>
+      <Select
+        searchable
+        selectionMode="multiple"
+        label="Toppings by category (grouped + multi)"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        <Section title="Meats">
+          <Option key="pepperoni">Pepperoni</Option>
+          <Option key="sausage">Sausage</Option>
+          <Option key="bacon">Bacon</Option>
+        </Section>
+        <Section title="Veggies">
+          <Option key="mushroom">Mushroom</Option>
+          <Option key="onion">Onion</Option>
+          <Option key="peppers">Peppers</Option>
+          <Option key="olives">Olives</Option>
+        </Section>
+        <Section title="Cheeses">
+          <Option key="mozzarella">Mozzarella</Option>
+          <Option key="parmesan">Parmesan</Option>
+          <Option key="feta">Feta</Option>
+        </Section>
+      </Select>
+      <p style={{ marginTop: 8, fontSize: 12, color: '#64748b' }}>
+        Selected: {selectedKeys.length ? selectedKeys.join(', ') : '—'}
+      </p>
+    </div>
+  );
+}
+
+export const GroupedMultiple: Story = {
+  render: () => <GroupedMultiSelect />,
 };

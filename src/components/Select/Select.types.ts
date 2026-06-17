@@ -3,6 +3,7 @@ import type {
   ComboBoxProps as AriaComboBoxProps,
   ValidationResult,
   ListBoxProps,
+  Key,
 } from 'react-aria-components';
 import type {
   ComponentType,
@@ -17,9 +18,33 @@ export type SelectSlots<T extends object> = {
   listBoxComponent?: ComponentType<ListBoxProps<T>>;
 };
 
-export interface SelectProps<T extends object> extends Omit<
+// The selection contract is a discriminated union on `selectionMode`, so
+// single-select keeps its exact `selectedKey`/`onSelectionChange(Key | null)`
+// types and multi-select gets `selectedKeys`/`onSelectionChange(Key[])`. The
+// keys are Omit-ed from the react-aria base (which types the combobox
+// single-only) and re-declared here.
+type SelectSingleSelection = {
+  selectionMode?: 'single';
+  selectedKey?: Key | null;
+  defaultSelectedKey?: Key;
+  onSelectionChange?: (key: Key | null) => void;
+};
+
+type SelectMultipleSelection = {
+  /** Multi-select is searchable-combobox only for now (button mode is single). */
+  selectionMode: 'multiple';
+  selectedKeys?: Iterable<Key>;
+  defaultSelectedKeys?: Iterable<Key>;
+  onSelectionChange?: (keys: Key[]) => void;
+};
+
+export interface SelectBaseProps<T extends object> extends Omit<
   AriaComboBoxProps<T>,
-  'children'
+  | 'children'
+  | 'selectionMode'
+  | 'selectedKey'
+  | 'defaultSelectedKey'
+  | 'onSelectionChange'
 > {
   label?: string;
   description?: string | null;
@@ -65,6 +90,16 @@ export interface SelectProps<T extends object> extends Omit<
     // are exposed as data-* variants (data-[focused], data-[selected],
     // data-[disabled]) so they can be retargeted, e.g. for dark mode.
     | 'option'
+    // Each <Section> group heading.
+    | 'sectionHeading'
+    // Multi-select: the chip row, a chip, and a chip's remove button.
+    | 'tagGroup'
+    | 'tag'
+    | 'tagRemoveButton'
   >;
   autoComplete?: HTMLInputAutoCompleteAttribute;
 }
+
+// Public props: base + the selection contract (single | multiple).
+export type SelectProps<T extends object> = SelectBaseProps<T> &
+  (SelectSingleSelection | SelectMultipleSelection);

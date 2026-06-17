@@ -1,3 +1,11 @@
+[0.38.0](https://github.com/clicktap-inc/ui/compare/0.37.0...0.38.0) (2026-06-17)
+
+### Features
+* multi-select chips use TagGroup (keyboard nav + Backspace/Delete remove) ([a4de522](https://github.com/clicktap-inc/ui/commit/a4de5224337adc321a0de47dddd93080c36bc223))
+* multi-select searchable combobox (selectionMode=multiple, selectedKeys/onSelectionChange(Key[]), removable chips); discriminated-union selection props ([5c9b2dc](https://github.com/clicktap-inc/ui/commit/5c9b2dc7a80a337035ed8a0706f2c434d90df7c2))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.37.0](https://github.com/clicktap-inc/ui/compare/0.36.1...0.37.0) (2026-06-17)
 
 ### Features

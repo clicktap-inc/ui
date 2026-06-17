@@ -36,6 +36,9 @@ They're now **one** component — `<Select>` — with a `searchable` prop:
 | **`<Option>`** | own element / accepted `id`, could be wrapped | **react-stately `Item`** — keyed by React `key` (no `id`); **cannot be wrapped** (it's a collection descriptor, not a rendered element). Style rows via `classNames.option`. |
 | `SelectSlots.listBoxComponent` | Custom listbox renderer | **No-op** — the dropdown is rendered internally now; remove it |
 | Option row theming | — | new `classNames.option` slot; focus/selected/disabled are `data-[focused]` / `data-[selected]` / `data-[disabled]` variants |
+| Option groups | — | new `<Section title="…">` to group options (accessible heading); `classNames.sectionHeading` slot |
+| Multi-select | — | `selectionMode="multiple"` (searchable only) → `selectedKeys: Key[]` + `onSelectionChange(keys: Key[])`, removable chips. Single-select props/types unchanged. |
+| Selection types | `SelectProps` is one interface | `SelectProps` is a **discriminated union** on `selectionMode`. New `SelectBaseProps` export = everything except the selection contract — base single-select **wrappers** on it (`Omit` over the union collapses to common keys). |
 | New props | — | `searchable`, `selectTextOnFocus`, `autoFocusFirstOption`, `name` + `autoComplete` (autofill) |
 | Filtering | name only | match by name **or** option `textValue` aliases (codes) |
 
@@ -171,6 +174,63 @@ By default filtering matches the option's `textValue` (its display name). To let
 </Option>
 ```
 
+### 9. (Optional) Group options with `<Section>`
+
+Wrap `<Option>`s in `<Section title="…">` for grouped lists (an accessible group
+heading per section). Works in both modes; in searchable mode the filter matches
+options within groups and drops empty ones, and Tab-complete commits the first
+matching **option** (section headers are skipped). Style headings via
+`classNames.sectionHeading`.
+
+```tsx
+import { Select, Option, Section } from '@clicktap/ui/components/Select';
+
+<Select searchable classNames={{ sectionHeading: 'text-zinc-400' }}>
+  <Section title="North America">
+    <Option key="us">United States</Option>
+    <Option key="ca">Canada</Option>
+  </Section>
+  <Section title="Europe">
+    <Option key="fr">France</Option>
+  </Section>
+</Select>
+```
+
+`<Section>` is react-stately's `Section` (a collection descriptor, like `<Option>`); it also accepts the dynamic `items` render form. `searchable="auto"` counts the options inside groups, not the groups.
+
+### 10. (Optional) Multi-select
+
+`selectionMode="multiple"` (searchable combobox only) switches the selection
+contract to an array: type to filter, each pick becomes a removable chip and the
+filter clears so you can keep adding. The callback receives a `Key[]`.
+
+```tsx
+const [keys, setKeys] = useState<Key[]>([]);
+
+<Select
+  searchable
+  selectionMode="multiple"
+  selectedKeys={keys}
+  onSelectionChange={setKeys}        // (keys: Key[]) => void
+>
+  {/* combines with <Section> groups too */}
+</Select>
+```
+
+`SelectProps` is a **discriminated union** on `selectionMode`, so single-select
+keeps its exact `selectedKey`/`onSelectionChange(Key | null)` types — no change to
+existing call sites. `selectionMode="multiple"` forces the searchable path (button
+mode is single-only). Chip styling: `classNames.tagGroup` / `tag` / `tagRemoveButton`.
+
+> **Wrappers:** if you build a single-select wrapper that does
+> `Omit<SelectProps, …>`, switch the base to the new **`SelectBaseProps`** export.
+> `Omit` over a union keeps only keys common to *all* members, which silently
+> drops the per-mode selection props. (This is why `AddressInput` was rebased.)
+>
+> Chips have full keyboard a11y (react-aria-components `TagGroup`: arrow-key nav,
+> Backspace/Delete to remove). _Not yet:_ button-style multi-select (combobox
+> only — button mode is single) — a follow-up.
+
 ### Verification
 
 ```bash
@@ -186,6 +246,8 @@ Visually confirm, per migrated select:
 - [ ] Toolbar/inline selects float/size correctly (root width set).
 - [ ] Autofill (if enabled): password manager fills the field; value sticks.
 - [ ] Themed rows (if you set `classNames.option`): text + focus/selected/disabled colors apply (see the `ThemedOptions` story).
+- [ ] Grouped options (if you use `<Section>`): headings render, filtering matches within groups, Tab commits the first matching option (see the `Grouped` story).
+- [ ] Multi-select (if you use `selectionMode="multiple"`): picks become chips, filter clears per pick, × removes, callback gets `Key[]` (see `Multiple` / `GroupedMultiple`).
 
 ## Rollback
 
@@ -201,6 +263,6 @@ Safe — presentation-layer only, no persistent state.
 
 - Source: `libs/ui/src/components/Select/` (`Select.tsx` dispatches to `ButtonSelect.tsx` / `ComboBoxSelect.tsx`; shared parts in `parts.tsx`)
 - Types: `libs/ui/src/components/Select/Select.types.ts`
-- Stories: `libs/ui/src/components/Select/Select.stories.tsx` (`Picker`, `Searchable`, `SearchableAuto`, `AsyncDataSource`, `ServerSideSearch`, `ThemedOptions`)
+- Stories: `libs/ui/src/components/Select/Select.stories.tsx` (`Picker`, `Searchable`, `SearchableAuto`, `AsyncDataSource`, `ServerSideSearch`, `ThemedOptions`, `Grouped`, `Multiple`, `GroupedMultiple`)
 - In-repo consumer examples: `apps/frontend/components/AddressForm/AddressForm.tsx` (country/region, autofill, aliases), `apps/frontend/components/Collection/CollectionToolbar.tsx` (toolbar width), `apps/frontend/components/Product/components/ConfigurableOptions/ConfigurableOptions.tsx`
 - Related: [`Select` `onSelectionChange` widened to `Key | T`](../04/2026-04-17-select-address-input-onchange-key-or-item.md), [`Select` `popoverPortalContainer` restored](../02/2026-02-17-select-popover-portal-container-restored.md)

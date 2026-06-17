@@ -9,14 +9,18 @@ import {
 } from 'react-aria';
 import { useInteractOutside } from '@react-aria/interactions';
 import { useSelectState } from 'react-stately';
+import type { Key } from 'react-aria-components';
 import { cn } from '../../utils/cn';
 import { ChevronIcon, SelectListBox, SelectPopover } from './parts';
-import type { SelectProps } from './Select.types';
+import type { SelectBaseProps, SelectProps } from './Select.types';
 
 // Non-searchable mode: react-stately `useSelectState` + react-aria `useSelect`,
 // rendered as a button that shows the selected value (no text input). Same
 // react-stately Item collection + same <Option> + same listbox renderer as the
 // searchable mode. List is inline (no overlay), matching the combobox.
+//
+// Button mode is SINGLE-select only (multiple is routed to the combobox by
+// Select.tsx), so we read the single selection props off the union.
 export function ButtonSelect<T extends object>(props: SelectProps<T>) {
   const {
     label,
@@ -39,7 +43,11 @@ export function ButtonSelect<T extends object>(props: SelectProps<T>) {
     isInvalid: isInvalidProp,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
-  } = props;
+  } = props as SelectBaseProps<T> & {
+    selectedKey?: Key | null;
+    defaultSelectedKey?: Key;
+    onSelectionChange?: (key: Key | null) => void;
+  };
 
   const isDisabled = Boolean(props.isDisabled || isLoading);
 
@@ -169,6 +177,7 @@ export function ButtonSelect<T extends object>(props: SelectProps<T>) {
               listBoxProps={menuProps as AriaListBoxOptions<T>}
               listBoxRef={listBoxRef}
               optionClassName={cn(classNames?.option)}
+              sectionHeadingClassName={cn(classNames?.sectionHeading)}
               className={cn(
                 'max-h-80',
                 'overflow-y-auto',

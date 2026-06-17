@@ -3,6 +3,7 @@
 import {
   forwardRef,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type FocusEvent,
@@ -26,8 +27,8 @@ import {
 } from 'react-stately';
 import { cn } from '../../utils/cn';
 import { Pulse } from '../Loader';
-import { ChevronIcon, SelectListBox, SelectOverlay } from './parts';
-import type { SelectProps } from './Select.types';
+import { ChevronIcon, SelectListBox, SelectOverlay, SelectTags } from './parts';
+import type { SelectBaseProps, SelectProps } from './Select.types';
 
 // The text to DISPLAY for an option in the input. Options may set `textValue` to
 // include search aliases (e.g. "Texas TX US-TX") so typing a code filters to the
@@ -40,6 +41,24 @@ function itemDisplayText<T>(item: Node<T> | null | undefined): string {
   return typeof item.rendered === 'string'
     ? item.rendered
     : (item.textValue ?? '');
+}
+
+// The first SELECTABLE option key, in document order — skipping <Section> header
+// nodes (collection.getFirstKey() returns the section, not an option, so
+// highlight-first/Tab-complete would land on a non-selectable header with groups).
+function firstItemKey<T>(collection: {
+  getFirstKey: () => Key | null;
+  getKeyAfter: (key: Key) => Key | null;
+  getItem: (key: Key) => Node<T> | null;
+}): Key | null {
+  let key = collection.getFirstKey();
+  while (key != null) {
+    if (collection.getItem(key)?.type === 'item') {
+      return key;
+    }
+    key = collection.getKeyAfter(key);
+  }
+  return null;
 }
 
 // Searchable mode: react-stately `useComboBoxState` + react-aria `useComboBox`,
@@ -76,11 +95,30 @@ function ComboBoxSelectInner<T extends object>(
     selectTextOnFocus = true,
     autoFocusFirstOption = true,
     searchable: _searchable,
+    selectionMode = 'single',
+    // Selection props live on the discriminated union; read them via a loose
+    // accessor (cast below) and map to react-aria's per-mode shape in ariaProps.
+    selectedKey,
+    defaultSelectedKey,
+    selectedKeys,
+    defaultSelectedKeys,
+    onSelectionChange,
     // Extracted so it lands ONLY on the hidden <select> (the autofill target),
     // never on the combobox text input — otherwise autofill fills the filter text.
     name,
     ...comboProps
-  } = props;
+  } = props as SelectBaseProps<T> & {
+    selectionMode?: 'single' | 'multiple';
+    selectedKey?: Key | null;
+    defaultSelectedKey?: Key;
+    selectedKeys?: Iterable<Key>;
+    defaultSelectedKeys?: Iterable<Key>;
+    onSelectionChange?: ((key: Key | null) => void) | ((keys: Key[]) => void);
+  };
+
+  // Multi-select (searchable combobox only). Single is the default, untouched
+  // path; every multi branch below is gated on `isMultiple`.
+  const isMultiple = selectionMode === 'multiple';
 
   // NOTE: isLoading must NOT disable the input here. In a searchable type-ahead
   // (results fetched per keystroke), disabling on each fetch drops input focus and
@@ -101,6 +139,48 @@ function ComboBoxSelectInner<T extends object>(
     ? comboProps.inputValue
     : internalInputValue;
 
+  // Multi value/defaultValue must be a stable ARRAY ref — react-aria treats a
+  // controlled `value` referentially, so spreading selectedKeys inline every
+  // render (`[...selectedKeys]`) makes it look perpetually changed → infinite
+  // re-render. Memoize on the consumer's reference.
+  const multiValue = useMemo(
+    () => (isMultiple && selectedKeys ? [...selectedKeys] : undefined),
+    [isMultiple, selectedKeys],
+  );
+  const multiDefaultValue = useMemo(
+    () =>
+      isMultiple && defaultSelectedKeys ? [...defaultSelectedKeys] : undefined,
+    [isMultiple, defaultSelectedKeys],
+  );
+
+  // Selection mapping. Single uses react-aria's selectedKey/onSelectionChange
+  // (wrapped to sync the input text). Multiple maps our selectedKeys/
+  // onSelectionChange(Key[]) onto react-aria's multi contract (value/onChange) —
+  // react-stately's multi-combobox routes through value/onChange, not
+  // onSelectionChange — and the input is just a filter (cleared per pick below).
+  const selectionAriaProps = isMultiple
+    ? {
+        selectionMode: 'multiple' as const,
+        value: multiValue,
+        defaultValue: multiDefaultValue,
+        onChange: onSelectionChange as ((keys: Key[]) => void) | undefined,
+      }
+    : {
+        selectedKey,
+        defaultSelectedKey,
+        onSelectionChange: (key: Key | null) => {
+          // Canonical control-both sync: set the text to the selected item HERE,
+          // synchronously with the select while the menu is still open, so the
+          // reopen-on-input-change path (needs a closed menu) never triggers.
+          if (!consumerControlsInput) {
+            const item =
+              key != null ? stateRef.current?.collection.getItem(key) : null;
+            setInternalInputValue(itemDisplayText(item));
+          }
+          (onSelectionChange as ((key: Key | null) => void) | undefined)?.(key);
+        },
+      };
+
   const ariaProps = {
     ...comboProps,
     label,
@@ -110,29 +190,18 @@ function ComboBoxSelectInner<T extends object>(
     menuTrigger: menuTrigger ?? 'focus',
     autoComplete,
     inputValue,
+    ...selectionAriaProps,
     onInputChange: (next: string) => {
       if (!consumerControlsInput) {
         setInternalInputValue(next);
       }
       comboProps.onInputChange?.(next);
       // Control-both: emptying the field must clear the selection — react-aria
-      // only does this automatically when inputValue is uncontrolled. Without it,
-      // a cleared field reverts to the old value on blur. Mirrors react-aria's
-      // own uncontrolled behavior (setValue(null) on empty input).
-      if (next === '' && stateRef.current?.selectedKey != null) {
+      // only does this automatically when inputValue is uncontrolled. Single
+      // only — in multi the input is just a filter and clearing it keeps chips.
+      if (!isMultiple && next === '' && stateRef.current?.selectedKey != null) {
         stateRef.current.setSelectedKey(null);
       }
-    },
-    onSelectionChange: (key: Key | null) => {
-      // Canonical control-both sync: set the text to the selected item HERE,
-      // synchronously with the select while the menu is still open, so the
-      // reopen-on-input-change path (which needs a closed menu) never triggers.
-      if (!consumerControlsInput) {
-        const item =
-          key != null ? stateRef.current?.collection.getItem(key) : null;
-        setInternalInputValue(itemDisplayText(item));
-      }
-      comboProps.onSelectionChange?.(key);
     },
   };
 
@@ -145,11 +214,32 @@ function ComboBoxSelectInner<T extends object>(
     // keystroke). We just don't render the empty dropdown (see below), so the
     // user can keep typing freely.
     allowsEmptyCollection: true,
-  });
+    // Cast: react-aria types the combobox single-only; the hook supports
+    // selectionMode 'multiple' (+ value/onChange) at runtime.
+  } as Parameters<typeof useComboBoxState<T>>[0]);
 
   useEffect(() => {
     stateRef.current = state;
   });
+
+  // Multi-select: clear the filter after each pick so the user can keep adding.
+  // react-stately's multi-combobox routes through value/onChange (not
+  // onSelectionChange), so we detect a pick by the selected count growing.
+  const prevSelectedCountRef = useRef(0);
+  const selectedCount = state.selectionManager.selectedKeys.size;
+  useEffect(() => {
+    if (!isMultiple) {
+      return;
+    }
+    if (
+      selectedCount > prevSelectedCountRef.current &&
+      !consumerControlsInput
+    ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setInternalInputValue('');
+    }
+    prevSelectedCountRef.current = selectedCount;
+  }, [isMultiple, selectedCount, consumerControlsInput]);
 
   // The selected item's text — from state.selectedItem, which reads the ORIGINAL
   // collection (not state.collection, the *displayed* one that's frozen to a
@@ -161,10 +251,12 @@ function ComboBoxSelectInner<T extends object>(
   // Mirror EXTERNAL/mount selection into the input — covers a pre-selected value,
   // its option arriving from async load, and an external setValue (autocomplete).
   // Only while UNFOCUSED so it can't hit the reopen-while-focused path; user
-  // selections sync through onSelectionChange above instead.
+  // selections sync through onSelectionChange above instead. Single only —
+  // multi has no single "selected item" to mirror (chips show the selections).
   useEffect(() => {
     if (
       consumerControlsInput ||
+      isMultiple ||
       isFocusedRef.current ||
       internalInputValue === selectedItemText
     ) {
@@ -175,7 +267,7 @@ function ComboBoxSelectInner<T extends object>(
     // it a no-op once in sync, so no cascading renders.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setInternalInputValue(selectedItemText);
-  }, [selectedItemText, consumerControlsInput, internalInputValue]);
+  }, [selectedItemText, consumerControlsInput, internalInputValue, isMultiple]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useObjectRef(ref);
@@ -197,7 +289,10 @@ function ComboBoxSelectInner<T extends object>(
     descriptionProps,
     errorMessageProps,
   } = useComboBox(
-    { ...ariaProps, inputRef, listBoxRef, popoverRef, buttonRef },
+    // Cast: single-only typing vs runtime multi-select support.
+    { ...ariaProps, inputRef, listBoxRef, popoverRef, buttonRef } as Parameters<
+      typeof useComboBox<T>
+    >[0],
     state,
   );
 
@@ -252,8 +347,9 @@ function ComboBoxSelectInner<T extends object>(
       return;
     }
     // Read the filtered collection at effect time (a render behind any
-    // show-all-items flash), so the first key is the real first match.
-    const firstKey = state.collection.getFirstKey();
+    // show-all-items flash), so the first key is the real first match. Skip
+    // section headers so grouped lists highlight/commit the first OPTION.
+    const firstKey = firstItemKey(state.collection);
     autoHighlightRef.current = firstKey ?? null;
     if (firstKey != null && firstKey !== focusedKey) {
       manager.setFocusedKey(firstKey);
@@ -295,11 +391,13 @@ function ComboBoxSelectInner<T extends object>(
         return;
       }
       isFocusedRef.current = false;
-      // Reset an abandoned partial edit (typed/cleared without picking) back to
-      // the committed selection. Deferred + unfocused, so no reopen. stateRef so
-      // we read the post-commit selectedKey, not a stale closure.
+      // Reset an abandoned partial edit. Single: revert to the committed
+      // selection's text. Multi: the input is just a filter, so clear it (chips
+      // hold the selections). Deferred + unfocused, so no reopen.
       if (!consumerControlsInput) {
-        setInternalInputValue(itemDisplayText(stateRef.current?.selectedItem));
+        setInternalInputValue(
+          isMultiple ? '' : itemDisplayText(stateRef.current?.selectedItem),
+        );
       }
     });
   };
@@ -338,6 +436,21 @@ function ComboBoxSelectInner<T extends object>(
         isDisabled={isDisabled}
         autoComplete={autoComplete}
       />
+      {/* Multi-select chips with full keyboard a11y (TagGroup). */}
+      {isMultiple && (
+        <SelectTags
+          items={(state.selectedItems ?? []).map((selected) => ({
+            id: selected.key,
+            label: itemDisplayText(selected),
+          }))}
+          onRemove={(key) => state.selectionManager.toggleSelection(key)}
+          classNames={{
+            tagGroup: cn(classNames?.tagGroup),
+            tag: cn(classNames?.tag),
+            tagRemoveButton: cn(classNames?.tagRemoveButton),
+          }}
+        />
+      )}
       <div
         ref={triggerWrapperRef}
         className={cn(
@@ -419,6 +532,7 @@ function ComboBoxSelectInner<T extends object>(
               listBoxRef={listBoxRef}
               optionVirtualFocus
               optionClassName={cn(classNames?.option)}
+              sectionHeadingClassName={cn(classNames?.sectionHeading)}
               className={cn(
                 'max-h-80',
                 'overflow-y-auto',
