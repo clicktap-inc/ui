@@ -1,3 +1,10 @@
+[0.40.2](https://github.com/clicktap-inc/ui/compare/0.40.1...0.40.2) (2026-06-18)
+
+### Bug Fixes
+* shim setValue->setSelectedKey on HiddenSelect state so browser autofill on a searchable (ComboBox) Select no longer crashes (ComboBoxState lacks setValue) ([637e6db](https://github.com/clicktap-inc/ui/commit/637e6dbed2ec2217121830b519f9e4317cc52df7))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.40.1](https://github.com/clicktap-inc/ui/compare/0.40.0...0.40.1) (2026-06-17)
 
 ### Bug Fixes

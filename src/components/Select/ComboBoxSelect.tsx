@@ -503,6 +503,25 @@ function ComboBoxSelectInner<T extends object>(
     });
   };
 
+  // react-aria's HiddenSelect (rendered below for autofill) calls `state.setValue`
+  // in its hidden <select>'s onChange — a method SelectState has but ComboBoxState
+  // does NOT. Browser autofill writing into that <select> would otherwise throw
+  // "setValue is not a function". Wrap the combobox state in a Proxy that maps
+  // setValue → setSelectedKey, preserving the state's live getters (selectedKey,
+  // collection, …) so the hidden mirror reflects the current selection.
+  const hiddenSelectState = useMemo(
+    () =>
+      new Proxy(state, {
+        get(target, prop) {
+          if (prop === 'setValue') {
+            return (key: Key | null) => target.setSelectedKey(key);
+          }
+          return Reflect.get(target, prop);
+        },
+      }) as unknown as SelectState<T>,
+    [state],
+  );
+
   return (
     <div
       ref={containerRef}
@@ -519,8 +538,10 @@ function ComboBoxSelectInner<T extends object>(
         control for its SELECTION, so password managers / browser autofill have
         nothing to fill. react-aria's HiddenSelect renders a real (visually
         hidden) <select> for collections ≤300 — autofill targets it and its
-        onChange drives state.setValue → our selection. ComboBoxState exposes the
-        value/setValue/collection HiddenSelect needs (it's typed for SelectState).
+        onChange drives setValue → our selection. ComboBoxState has NO `setValue`,
+        so we pass `hiddenSelectState` (a Proxy mapping setValue → setSelectedKey);
+        without it, autofill into the hidden <select> throws "setValue is not a
+        function".
 
         triggerRef points at the NON-FOCUSABLE wrapper (not the input): when
         autofill focuses the hidden <select>, HiddenSelect redirects focus to
@@ -530,7 +551,7 @@ function ComboBoxSelectInner<T extends object>(
         nor the input-change-reopen fires. The value still sets via onChange.
       */}
       <HiddenSelect
-        state={state as unknown as SelectState<T>}
+        state={hiddenSelectState}
         triggerRef={triggerWrapperRef}
         label={label}
         name={name}
