@@ -1,3 +1,10 @@
+[0.40.4](https://github.com/clicktap-inc/ui/compare/0.40.3...0.40.4) (2026-06-25)
+
+### Bug Fixes
+* type vite glob reduce accumulator as Record<string, string> ([8ef8c9a](https://github.com/clicktap-inc/ui/commit/8ef8c9a9a2c4ce22e9234f66a3b570e79cdc4d85))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.40.3](https://github.com/clicktap-inc/ui/compare/0.40.2...0.40.3) (2026-06-25)
 
 ### Bug Fixes
