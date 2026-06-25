@@ -1,3 +1,10 @@
+[0.40.3](https://github.com/clicktap-inc/ui/compare/0.40.2...0.40.3) (2026-06-25)
+
+### Bug Fixes
+* block pnpm install from lib subdirectories, not just the lib root ([9c1c9fd](https://github.com/clicktap-inc/ui/commit/9c1c9fdb37f68f299bfb3d094f0b02321a5671c5))
+
+<!--- CHANGELOG SPLIT MARKER -->
+
 [0.40.2](https://github.com/clicktap-inc/ui/compare/0.40.1...0.40.2) (2026-06-18)
 
 ### Bug Fixes
